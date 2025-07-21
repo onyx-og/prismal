@@ -1,0 +1,155 @@
+@use "@sass-collective/strip-unit";
+
+@mixin google-font($family) {
+  @import url(https://fonts.googleapis.com/css?family=#{$family});
+}
+
+// ==============================
+// Font size mixin
+// https://codepen.io/jakob-e/pen/yVyYzv
+// ==============================
+
+//  default font scale bounding
+$font-lock-min:  400px !default; 
+$font-lock-max: 1000px !default;
+
+//  font-size 
+@mixin font-size(
+  $min,                         // font-size 
+  $max: null,                   // optional maximum font size
+  $lock-min: $font-lock-min,  // optional minimum viewport width 
+  $lock-max: $font-lock-max   // optional maximum viewport width 
+  ){
+    & { font-size: $min; }
+    @if $max {
+      @media (min-width: $lock-min) { 
+        & { 
+          font-size: calc(
+            #{$min} + 
+            #{strip-unit.strip($max) - strip-unit.strip($min)} * 
+            (100vw - #{$lock-min}) / 
+            #{strip-unit.strip($lock-max) - strip-unit.strip($lock-min)}
+          ); 
+        } 
+      }
+      @media (min-width: $lock-max){ 
+        & { font-size: $max; } 
+      }
+    }
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+  $padding: unquote( ( calc($y / $x) ) * 100 + '%' );
+  @if $pseudo {
+      &:before {
+          @include pseudo($pos: relative);
+          width: 100%;
+          padding-top: $padding;
+      }
+  } @else {
+      padding-top: $padding;
+  }
+}
+
+///
+/// Viewport sized typography with minimum and maximum values
+///
+/// @author Eduardo Boucas (@eduardoboucas)
+///
+/// @param {Number}   $responsive  - Viewport-based size
+/// @param {Number}   $min         - Minimum font size (px)
+/// @param {Number}   $max         - Maximum font size (px)
+///                                  (optional)
+/// @param {Number}   $fallback    - Fallback for viewport-
+///                                  based units (optional)
+///
+/// @example scss - 5vw font size (with 50px fallback), 
+///                 minumum of 35px and maximum of 150px
+///
+@mixin responsive-font($responsive, $min, $max: false, $fallback: false) {
+  $responsive-unitless: calc($responsive / ($responsive - $responsive + 1vmin));
+  $dimension: if(unit($responsive) == 'vh', 'height', 'width');
+  $min-breakpoint: calc($min / $responsive-unitless) * 100;
+  
+  @media (max-#{$dimension}: #{$min-breakpoint}) {
+    font-size: $min;
+  }
+  
+  @if $max {
+    $max-breakpoint: calc($max / $responsive-unitless) * 100;
+    
+    @media (min-#{$dimension}: #{$max-breakpoint}) {
+      font-size: $max;
+    }
+  }
+  
+  @if $fallback {
+    font-size: $fallback;
+  }
+  
+  font-size: $responsive;
+}
+
+@mixin content-in-ratio {
+  & > div, > svg, > iframe, > img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+// A map of breakpoints.
+$breakpoints: (
+  xs: 408px,
+  sm: 600px,
+  md: 840px,
+  lg: 960px,
+  xl: 1280px
+);
+@mixin mq_max($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin mq_min($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}

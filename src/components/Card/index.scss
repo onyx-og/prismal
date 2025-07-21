@@ -1,0 +1,45 @@
+@use '../../styles/utils';
+
+.alenite-card {
+    overflow: clip;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    &:hover {
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;    }
+    &.corner-s {
+        border-radius: 0.5rem;
+    }
+    &.corner-m {
+        border-radius: 1rem;
+    }
+    &.corner-l {
+        border-radius: 2rem;
+    }
+
+    .hero {
+        border-bottom: transparent solid;
+        border-radius: 0 0 10px 10px;
+        margin: -1%;
+        flex: 1;
+    }
+
+    .cover {
+        height: inherit;
+        display: flex;
+        flex-direction: column;
+        .heading {
+            width: 100%;
+        }
+    }
+
+    &.padding-s .cover .heading {
+        padding: 0.5rem;
+    }
+    
+    &.cover-anim .cover {
+        background: linear-gradient(45deg, #e3e3e3, #eeeeee, #ffffff, #eeeeee, #e3e3e3);
+        background-size: 300% 300%;
+        animation: gradient 3s ease infinite;
+    }
+}
+

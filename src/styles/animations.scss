@@ -1,0 +1,29 @@
+@use './vars.scss';
+
+// @keyframes gradient {
+// 	0% {
+// 		background-position: 0% 50%;
+// 	}
+// 	50% {
+// 		background-position: 100% 50%;
+// 	}
+// 	100% {
+// 		background-position: 0% 50%;
+// 	}
+// }
+
+@mixin anim-pulse {
+    &:hover, &:focus {
+        animation: pulse 0.5s;
+        box-shadow: 0 0 0 2em transparent;
+    }
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+@mixin transition-bounce($props: 'all', $time: 0.5s) {
+    transition: $props $time cubic-bezier(.47, 1.64, .41, .8);
+}

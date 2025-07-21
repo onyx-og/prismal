@@ -1,0 +1,65 @@
+@use '../../../styles/vars';
+@use '../../../styles/typography';
+@use '../../../styles/layout';
+
+.alenite-input-text {
+    gap: 1rem;
+    display: flex;
+    &.size-s {
+        @include layout.column(4);
+        @include layout.column(8, lg);
+        @include layout.column(12, sm);
+    }
+    &.size-m {
+        @include layout.column(8);
+        @include layout.column(12, sm);
+    }
+    &.size-l {
+        @include layout.column(12);
+    }
+    .input-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: .5rem;
+        margin-left: .5rem;
+        width: 100%;
+        flex-direction: column;
+        gap: .5rem;
+        &.inline {
+            align-items: center;
+            flex-direction: row;
+            gap: 1rem;
+        }
+        .input-text-label {
+            position: relative;
+            font-family: vars.$font-body;
+        }
+        input {
+            background-color: white;
+            padding: 0.5rem 1rem;
+            font-size: inherit;
+            border: solid thin grey;
+            // width: 100%;
+            flex: 1;
+            &:focus-visible {
+                outline: 2px solid vars.$primary-color;
+            }
+        }
+    
+        
+        .input-errors {
+            color: vars.$error-color;
+            margin-right: .5rem;
+            margin-left: .5rem;
+            @include typography.f6;
+        }
+    }
+    &.input-required {
+        label::before {
+            content: '•';
+            color: vars.$error-color;
+            margin-right: 0.25rem;
+            font-size: inherit;
+        }
+    }
+}

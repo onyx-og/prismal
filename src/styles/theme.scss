@@ -1,0 +1,5 @@
+@use './vars.scss';
+
+:root {
+    @include vars.theme;
+}

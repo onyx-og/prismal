@@ -1,0 +1,58 @@
+@use '../../styles/layout';
+@use '../../styles/vars';
+@use '../../styles/utils';
+
+.alenite-list {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    .list-wrapper {
+        height:100%;
+        @include layout.column(9);
+        @include layout.column(12, lg);
+        .page-container {
+            width: 100%;
+        }
+    }
+
+    &.list {
+        .list-wrapper > .page-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+    &.grid {
+        .list-wrapper > .page-container {
+            display: grid;
+            grid-auto-rows: 12em;
+            &.padding-s {
+                gap: 1rem;
+            }
+            &.padding-m {
+                gap: 2rem;
+            }
+            &.padding-l {
+                gap: 3rem;
+            }
+            @include utils.mq_min(xs) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @include utils.mq_min(sm) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @include utils.mq_min(md) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            @include utils.mq_min(lg) {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            @include utils.mq_min(xl) {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+    }
+}

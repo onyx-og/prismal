@@ -1,0 +1,18 @@
+@use '../../styles/vars';
+
+.alenite-searchbar  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    min-width: 12rem;
+
+    .input-wrapper {
+        margin-right: 0 !important;
+    }
+
+    .alenite-btn {
+        margin-left: auto;
+        padding: 0.5rem;
+    }
+}

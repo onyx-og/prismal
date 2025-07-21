@@ -1,0 +1,57 @@
+{
+  "name": "@prismal/react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "src": "src/index.ts",
+  "scripts": {
+    "build": "rimraf --glob lib/* && webpack --node-env=production && rimraf --glob ./lib/styles/*.js",
+    "test": "jest"
+  },
+  "author": "Onyx <hello@onyx.ac> (https://onxy.ac)",
+  "contributors": [
+    "Onyx <hello@onyx.ac> (https://onyx.ac)"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "files": [
+    "lib",
+    "src",
+    "README.md"
+  ],
+  "keywords": [
+    "react",
+    "material-design",
+    "ui",
+    "components"
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-react": "^7.18.6",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "color2k": "^2.0.3",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.2.1",
+    "jest-environment-jsdom": "^29.2.2",
+    "mini-css-extract-plugin": "^2.6.1",
+    "pino": "^8.7.0",
+    "rimraf": "^6.0.1",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "ts-jest": "^29.0.3",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "@sass-collective/strip-unit": "^3.1.2"
+  }
+}

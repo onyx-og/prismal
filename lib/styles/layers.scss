@@ -1,0 +1,17 @@
+@use './vars.scss';
+
+.z0 {
+    z-index: vars.$zindex-0;
+}
+.z1 {
+    z-index: vars.$zindex-1;
+}
+.z2 {
+    z-index: vars.$zindex-2;
+}
+.z3 {
+    z-index: vars.$zindex-3;
+}
+.z4 {
+    z-index: vars.$zindex-4;
+}

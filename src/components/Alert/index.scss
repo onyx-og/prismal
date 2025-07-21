@@ -1,0 +1,82 @@
+@use '../../styles/vars';
+@use '../../styles/utils';
+@use '../../styles/typography';
+
+:root {
+    @include vars.theme;
+}
+
+.alenite-alert {
+    position: absolute;
+    box-shadow: 0 15px 20px rgba(0,0,0,.1);
+    z-index: vars.$zindex-3;
+    bottom: 0;
+    transform: translateY(100px);
+    right: 0;
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    margin: 1.5rem;
+    box-sizing: border-box;
+    // Bounce and no delay when hiding
+    transition: all cubic-bezier(.47,1.64,.41,.8) 1s;
+    &.visible {
+        // Bounce and delay when 1s when showing
+        transition: all cubic-bezier(.47,1.64,.41,.8) 1s 1s;
+        transform: translateX(0);
+        bottom: 0;
+        visibility:visible;
+        opacity: 1;
+    }
+    .alert-close {
+        float: right;
+        margin: 0.25rem;
+    }
+    .alert-wrapper {
+        min-height: 4rem;
+        box-sizing: border-box;
+        // min-width: 20rem;
+        display: grid;
+        grid-template-columns: minmax(4rem,auto) auto;
+        justify-items: stretch;
+        padding: .5rem;
+        grid-column-gap: .5rem;
+        .alert-cover {
+            background-color: var(--color-primary);
+            color: white;
+            box-sizing: border-box;
+            aspect-ratio: 1;
+            height: 4rem;
+            place-self: center;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .alert-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            @include typography.f6;
+            .message {
+                flex: 1;
+            }
+            .action {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+        }
+    }
+
+    &.corner-radius-s {
+        border-radius: .75rem;
+        .alert-wrapper .alert-cover {
+            border-radius: .75rem;
+        }
+    }
+
+    // TODO: Corner radius l, m
+    
+}

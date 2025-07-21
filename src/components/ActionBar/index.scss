@@ -1,0 +1,59 @@
+@use '../../styles/vars';
+
+:root {
+    @include vars.theme;
+}
+
+.alenite-actionbar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    &.primary {
+        background-color: vars.$primary-color;
+        color: white;
+    }
+    &.secondary {
+        background-color: vars.$primary-color-light;
+        color: vars.$primary-color-dark;
+    }
+
+    &.top {
+        align-self: top;
+    }
+
+    &.bottom {
+        align-self: bottom;
+    }
+
+    // TODO: Move width to jsx and change it based on allocation
+    .actionbar-left,
+    .actionbar-right,
+    .actionbar-center {
+        align-items: center;
+        // TODO: Change accordingly to alenite-actionbar children number
+        min-width: 33%;
+        box-sizing: border-box;
+        align-items: center;
+        padding: 0 0.5rem;
+    }
+    .actionbar-left {
+        flex: 0.5;
+        display: flex;
+        justify-content: start;
+    }
+
+    .actionbar-center {
+        flex: 0.5;
+        display: flex;
+        place-content: center;
+    }
+
+    .actionbar-right {
+        flex: 0.5;
+        display: flex;
+        place-content: end;
+        margin-left: auto;
+    }
+}
