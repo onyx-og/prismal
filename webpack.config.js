@@ -51,6 +51,7 @@ const components = {
         select: ['./src/components/Form/Select/index.scss', './src/styles/theme.scss'],
         textInput: ['./src/components/Form/TextInput/index.scss', './src/styles/theme.scss'],
         actionBar: ['./src/components/ActionBar/index.scss', './src/styles/theme.scss'],
+        stack: ['./src/components/Stack/index.scss', './src/styles/theme.scss'],
         form: ['./src/components/Form/index.scss', './src/styles/theme.scss'],
         global: ['./src/styles/global.scss', './src/styles/theme.scss'],
     },

@@ -1,2 +1,2 @@
-.alenite-form .form-error{color:#e85600}
+form .form-fields{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between}form .form-error{color:#e85600}
 :root{--font-default: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";--font-primary: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;--font-secondary: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;--color-primary: #6200EE;--color-primary-light: #B988FF;--color-primary-dark: #230055}

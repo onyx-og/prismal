@@ -7,20 +7,12 @@ interface FormProps {
     children: JSX.Element | JSX.Element[];
     name?: string;
     submit: JSX.Element;
-    onSubmit?: ( formData: {} ) => void;
-    fieldsClass?: string;
-    className?: string;
+    onSubmit?: ( formData: {[key:string]: any} ) => void;
 }
 const Form = ( props: FormProps ) => {
-    const { children, name, submit, onSubmit, fieldsClass, className } = props;
+    const { children, name, submit, onSubmit } = props;
     const inputsRef = React.useRef<(InputRefType)[]>([]);
     const [ isInvalid, markInvalid ] = React.useState(false);
-
-    let _className = 'alenite-form';
-    if (className) _className = `${className} ${_className}`;
-
-    let _fieldClass = 'alenite-form-fields f fd-row fw jcb my05';
-    if (fieldsClass) _fieldClass = `${_fieldClass} ${fieldsClass}`;
 
     // Assures that _children is an array, event when it's not
     const _children = ([] as JSX.Element[]).concat(children);
@@ -42,7 +34,7 @@ const Form = ( props: FormProps ) => {
     /* Renders all given child while using callback ref to dinamically populate ref array
      */
     const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
-        return <child.type key={i}
+        return <child.type key={i} 
             ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
         {...child.props} />
     }), [_children]);
@@ -76,25 +68,19 @@ const Form = ( props: FormProps ) => {
         }
     }
     
-    const submitComponent = React.useMemo( () => {
-        if (!submit) {
-            return <Button 
-                type='primary' 
-                className='alenite-form-submit f-right' onClick={submitForm}>
-                    Submit
-            </Button>
-        } else {
-            return <submit.type {...submit.props} onClick={() => {
-                submit.props.onClick && submit.props.onClick();
-                submitForm();
-            }}/>
-        }
-    },[submit]);
+    const submitComponent = !submit ? <Button 
+        type='primary' 
+        className='form-submit f-right' onClick={() => submitForm()}>
+            Submit
+    </Button> : <submit.type {...submit.props} onClick={() => {
+        submit.props.onClick && submit.props.onClick();
+        submitForm();
+    }}/>
 
-    return <form name={name} className={_className}>
-        <div className={_fieldClass}>{renderedChildren}</div>
+    return <form name={name}>
+        <div className='form-fields my05'>{renderedChildren}</div>
         { submitComponent }
-        { isInvalid ?
+        { isInvalid ? 
             <span className='form-error t6 my05'>Check the fields for errors</span> : null
         }
     </form>

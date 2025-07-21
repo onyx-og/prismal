@@ -4,9 +4,9 @@ interface FormProps {
     children: JSX.Element | JSX.Element[];
     name?: string;
     submit: JSX.Element;
-    onSubmit?: (formData: {}) => void;
-    fieldsClass?: string;
-    className?: string;
+    onSubmit?: (formData: {
+        [key: string]: any;
+    }) => void;
 }
 declare const Form: (props: FormProps) => import("react/jsx-runtime").JSX.Element;
 export default Form;

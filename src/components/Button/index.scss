@@ -13,40 +13,19 @@
     gap: 0.75rem;
     height: 2.5rem;
     min-width: 2.5rem;
-    border-radius: .25rem;
+    border-radius: var(--border-radius);
     box-sizing: border-box;
     width: fit-content;
-
     &.anim-pulse {
         @include animations.anim-pulse;
-    }
-
-    &.btn-loading {
-        position:relative;
-        &::after {
-            content: "";
-            position: absolute;
-            display: block;
-            margin: auto;
-            height: 2px;
-            bottom: 0;
-            animation: underline 2s infinite;
-            @keyframes underline {
-                0% { width: 0%; background-color: var(--loading-bar-color);}
-                100% {width: 100%; background-color: transparent;}
-            }
-        }
-        
     }
 
     &.btn-default {
         border: solid thin vars.$primary-color;
         color: vars.$primary-color;
-        --loading-bar-color: #{vars.$primary-color};
         &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
             background-color: vars.$primary-color-light;
             border: solid thin vars.$primary-color-light;
-            --loading-bar-color: #{vars.$primary-color-dark};
             color: vars.$primary-color-dark;
         }
         &.btn-disabled {
@@ -57,13 +36,11 @@
     &.btn-primary {
         border: solid thin vars.$primary-color;
         background-color: vars.$primary-color;
-        color: vars.$primary-color-light;
-        --loading-bar-color: #{vars.$primary-color-light};
+        color: vars.$primary-color-dark;
         &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
             border: solid thin vars.$primary-color-dark;
             background-color: vars.$primary-color-dark;
-            color: vars.$primary-color-light;
-            --loading-bar-color: #{vars.$primary-color-light};
+            color: white;
         }
         &.btn-disabled {
             filter: opacity(0.15);
@@ -73,7 +50,6 @@
     &.btn-text {
         color: vars.$primary-color;
         border: solid thin transparent;
-        --loading-bar-color: #{vars.$primary-color};
         &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
             border: solid thin vars.$primary-color;
         }

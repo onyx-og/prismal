@@ -58,7 +58,8 @@
         label::before {
             content: '•';
             color: vars.$error-color;
-            margin-right: 0.25rem;
+            position: absolute;
+            left: -1rem;
             font-size: inherit;
         }
     }

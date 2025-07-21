@@ -1,0 +1,29 @@
+@use '../../styles/vars';
+
+.alenite-stack {
+  display: block;
+  position: relative;
+
+  .stack-item-container {
+    border-radius: var(--border-radius);
+    position: absolute;
+    background-color: vars.$primary-color;
+    --totalOffset: calc(var(--position) * var(--gap) + var(--offset) - var(--hasOffset) * var(--gap));
+    top: var(--totalOffset);
+    height: calc(var(--gap) + var(--gap)*0.5);
+    overflow: hidden;
+
+    &.active {
+      background-color: vars.$primary-color-light;
+      height: auto;
+    }
+
+    &:not(.active):last-child {
+      height: var(--gap);
+    }
+
+    .stack-item-default {
+      padding: 5px 10px;
+    }
+  }
+}

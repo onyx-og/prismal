@@ -1,6 +1,12 @@
 @use '../../styles/vars.scss';
 
-.alenite-form {
+form {
+    .form-fields {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
     .form-error {
         color: vars.$error-color;
     }

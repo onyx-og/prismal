@@ -1,5 +1,7 @@
 # Alenite Design
 
+[![NPM](https://img.shields.io/npm/v/alenite-design.svg)](https://www.npmjs.com/package/alenite-design) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 Alenite Design is a React UI library designed to provide a set of reusable components for building modern web applications. It's mainly inspired by Material Design 3
 
 ## Table of Contents
@@ -10,9 +12,13 @@ Alenite Design is a React UI library designed to provide a set of reusable compo
 - [Contributing](#contributing)
 - [License](#license)
 
+## Preview
+You can preview most of the components on storybook [here](https://onyxcodes.github.io/alenite-design/).
+
 ## Installation
 
-To install Alenite Design, you can use npm. Haven't published the repository on npmjs yet so:
+This project is still in early development, please use with care, and don't be afraid to report any bug!
+To install Alenite Design, you can use npm:
 
 ```bash
 npm install alenite-design
@@ -47,6 +53,8 @@ Alenite Design provides the following components:
 - Input: A customizable input field.
 - Modal: A modal dialog component.
 - Card: A card component for displaying content.
+- ActionBar: Menus and action bars with a focus on responsiveness
+- SASS utilities: helps streamline the development of user interfaces
 
 ## Contributing
 We welcome contributions to Alenite Design! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
@@ -67,7 +75,7 @@ npm install
 npm run build
 ```
 
-And you should be good go.
+And you should be good to go.
 
 ### Running tests
 To run the tests, use the following command:
@@ -76,4 +84,4 @@ To run the tests, use the following command:
 Alenite Design is licensed under the CC-BY-SA-4.0 License. See the LICENSE file for more information.
 
 ### Author
-Onyx - onyx.ac
+Onyx - https://onyx.ac

@@ -10,8 +10,11 @@ import Slider from "./components/Slider";
 import Sidebar from "./components/Sidebar";
 import ActionBar, {ActionBarItemConfig} from "./components/ActionBar";
 import Alert from "./components/Alert";
+import Pie from "./components/Pie"
+import Stack from "./components/Stack"
 import { setAccentStyle, hex2rgba } from "./utils/colors";
 import Card, {CardProps} from "./components/Card";
+import Tabs from "./components/Tabs";
 
 import "./styles/global.scss";
 
@@ -26,6 +29,7 @@ export { ActionBar };
 export type { ActionBarItemConfig };
 export type { CardProps };
 export {Icon, Card, Button, Form, TextInput, List, Modal, Alert, SearchBar, Sidebar, Slider};
+export { Pie, Stack, Tabs }
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
 export { useElementHeight, useElementWidth };

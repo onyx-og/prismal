@@ -5,6 +5,12 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "src": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onyx-og/prismal-react.git"
+  },
+  "keywords": ["material-design", "md3", "react", "ui-kit", "typescript", "ui-library"],
+  "homepage": "https://onyx-og.github.io/prismal-react/",
   "scripts": {
     "build": "rimraf --glob lib/* && webpack --node-env=production && rimraf --glob ./lib/styles/*.js",
     "test": "jest"
@@ -22,12 +28,6 @@
     "lib",
     "src",
     "README.md"
-  ],
-  "keywords": [
-    "react",
-    "material-design",
-    "ui",
-    "components"
   ],
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",

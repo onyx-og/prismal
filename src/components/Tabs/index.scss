@@ -1,0 +1,58 @@
+@use '../../styles/vars';
+
+.alenite-tabs-container {
+    .alenite-tabs {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        background-color: vars.$primary-color-light;
+        gap: 1rem;
+        justify-content: space-evenly;
+        overflow-x: scroll;
+        overflow-y: clip;
+        border-radius: var(--border-radius);
+        &::after {
+            content: "\a0";
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            bottom: 0;
+            background-color: grey;
+        }
+
+        .alenite-tab-container {
+            flex: 1;
+            position: relative;
+
+            .alenite-tab {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-width: 6rem;
+                height: 2.5rem;
+                align-items: center;
+                border-radius: var(--border-radius);
+                color: vars.$dark-color;
+                cursor: pointer;
+                
+                &.selected {
+                    color: vars.$primary-color;
+                }
+
+                &.selected::after {
+                    content: "\a0";
+                    width: 4rem;
+                    height: 3px;
+                    background-color: vars.$primary-color;
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    .alenite-tab-content {
+        padding: 1rem;
+    }
+
+}

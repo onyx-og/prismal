@@ -1,25 +1,26 @@
 import React from "react";
 import './index.scss';
 import ComponentProps from '../Component';
-import { ActionBarItemConfig } from "../ActionBar";
 export interface CardProps extends ComponentProps {
-    title?: string;
+    heading?: string;
     children?: React.ReactNode;
-    orientation?: "column" | "row";
     size?: [number, number];
-    topActionBarItems?: ActionBarItemConfig[] | (() => ActionBarItemConfig[]);
-    btmActionBarItems?: ActionBarItemConfig[] | (() => ActionBarItemConfig[]);
+    size_s?: [number, number];
+    size_m?: [number, number];
+    size_l?: [number, number];
     className?: string;
-    onClick?: (arg?: any) => void;
-    onClose?: (arg?: any) => void;
+    onClick?: () => void;
+    onClose?: () => void;
     transition?: boolean;
     visible?: boolean;
     showClose?: boolean;
     bgColor?: string;
-    headingCover?: string;
-    headingClassName?: string;
+    cover?: string;
     cornerRadius?: 's' | 'm' | 'l' | false;
     padding?: 's' | 'm' | 'l';
+    headingBgAlfa?: number;
+    headingBgColor?: string;
+    headingTextAlign?: 'start' | 'center' | 'end';
 }
 declare const Card: React.FC<CardProps>;
 export default Card;

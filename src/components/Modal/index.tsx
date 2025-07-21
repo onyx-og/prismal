@@ -34,8 +34,8 @@ const Modal: React.FC<ModalProps> = (props) => {
     if (visible) modalClass = `${modalClass} visible`;
     if (className) modalClass = `${modalClass} ${className}`;
 
-    let modalFgClass = 'alenite-modal-fg'; // The modal
-    let modalBgClass = 'alenite-modal-bg'; // Mask
+    let modalFgClass = 'modal-fg'; // The modal
+    let modalBgClass = 'modal-bg'; // Mask
 
     const modalArea = areaId ? document.getElementById(areaId) : undefined;
 
@@ -58,7 +58,7 @@ const Modal: React.FC<ModalProps> = (props) => {
                     } : null
                 ]}
             />
-            {<div className='alenite-modal-content'>
+            {<div className='modal-content'>
                 {children}
             </div>}
             {btmActionBarItems && <ActionBar position='bottom'

@@ -17,8 +17,6 @@ interface ListProps {
     // size?: 'm' | 'l';
     type?: 'list' | 'grid';
     padding?: 's' | 'm' | 'l';
-    className?: string;
-    listClass?: string;
 }
 const List: React.FC<ListProps> = ( props ) => {
     const { 
@@ -28,7 +26,6 @@ const List: React.FC<ListProps> = ( props ) => {
         headerItems, footerItems,
         padding = 's',
         listProcessor, onProcessEnd,
-        className, listClass
     } = props;
 
     const useInfinitePages = (
@@ -53,17 +50,15 @@ const List: React.FC<ListProps> = ( props ) => {
         return pages
     }
 
-    let _className = `alenite-list ${type}`;
-    if (className) _className = `${className} ${_className}`;
-    
-    let _listClass = `list-wrapper`;
-    if (listClass) _listClass = `${listClass} ${_listClass}`;
+    let listClass = `alenite-list ${type}`,
+    // listWrapprerClass = `col-9 col-lg-12`;
+    listWrapprerClass = `list-wrapper`;
 
-    return <div className={_className}>
+    return <div className={listClass}>
         { headerItems && <ActionBar position="top"
             items={headerItems || []}
         /> }
-        <div className={_listClass}>
+        <div className={listWrapprerClass}>
             <div className={`page-container padding-${padding}`}>
             {/* <div className='columns jcc'> */}
                 { infiniteScroll ? 

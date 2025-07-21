@@ -1,78 +1,43 @@
 import React from 'react';
+import ComponentProps from '../../Component';
 import { setAccentStyle } from 'utils/colors';
 import './index.scss';
-
-import { InputProps, InputRefType } from '../types';
-
+    
 export type SelectOption = {
     label: string;
     value: string;
     selected?: boolean;
 }
-export interface SelectProps extends InputProps {
+export interface SelectProps extends ComponentProps {
     options: SelectOption[];
     name: string;
     label?: string;
-    placeholder?: string;
+    placeholder?: string | JSX.Element;
     onChange?: ( arg: SelectOption ) => void;
 }
-const Select = React.forwardRef( ( props: SelectProps, ref: React.ForwardedRef<InputRefType> ) => {
+const Select: React.FC<SelectProps> = ( props ) => {
     const {
         options,
         name,
         label,
         placeholder,
-        onChange, validator, required,
+        onChange,
         className,
         accent, accentLight, accentDark
     } = props;
     const [ selected, setSelected ] = React.useState<SelectOption | undefined>(
-        options.find(i => i.selected)
+        undefined
     );
     const selectRef = React.useRef<HTMLSelectElement | null>(null);
 
-    const [ isInvalid, markInvalid ] = React.useState<(string | boolean)[]>([]);
-
-    const checkValidity = React.useCallback( () => {
-        const value = selectRef?.current?.value;
-        let errorMessages = [];
-        // If provided, perform validator method
-        if (validator) {
-            let result = validator(value!);
-            // When the validator returns true or message
-            // is invalid
-            if (result) errorMessages.push(result);
-        }
-        // When field is required and is missing value, add the error
-        if (required && !value) errorMessages.push('This field is mandatory');
-        markInvalid(errorMessages);
-        return errorMessages;
-    }, [validator, required]);
-
-    /* Adds new properties to the returned ref:
-     * a method to know whether the component is valid or not.
-     * a method to trigger the field validation
-     */
-    React.useImperativeHandle(ref, () => ({
-        isInputRefType: true,
-        checkValidity,
-        getValidity: () => isInvalid,
-        current: selectRef.current
-    }), [isInvalid]);
-
     const dropdownRef = React.useRef<HTMLDivElement | null>(null);
-
-    React.useEffect(() => {
-        const selectedOpt = options.find((option) => option.selected );
-        if (selectedOpt) setSelected(selectedOpt);
-    },[options]);
 
     const doSelection = React.useCallback( (el: {
         label: string;
         value: string;
         selected?: boolean;
     }) => {
-        // console.log("alenite-design: doSelection", {el, selected: selectRef.current?.value});
+        console.log("alenite-design: doSelection", {el, selected: selectRef.current?.value});
         // Update hidden input (mirror)
         if (
             selectRef.current &&
@@ -81,12 +46,12 @@ const Select = React.forwardRef( ( props: SelectProps, ref: React.ForwardedRef<I
             selectRef.current.value = el.value;
             // Update surface component
             el.selected = true;
-            // console.log("doSelection: setting selection to", el);
+            console.log("doSelection: setting selection to", el);
             setSelected(el);
         };
         // Remove focus from surface component
         dropdownRef.current?.blur();
-    }, []);
+    }, [selectRef]);
 
     let style: {[key: string]: any} = {};
     style = setAccentStyle(style, {accent, accentLight, accentDark});
@@ -140,6 +105,6 @@ const Select = React.forwardRef( ( props: SelectProps, ref: React.ForwardedRef<I
         </select>
     </div>
         
-});
+}
 
 export default Select;
