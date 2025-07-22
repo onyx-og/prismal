@@ -20,40 +20,5 @@
     &.corner-m {
         border-radius: 2rem;
     }
-
-    .hero {
-        border-bottom: transparent solid;
-        border-radius: 0 0 10px 10px;
-        margin: -1%;
-        flex: 1;
-    }
-
-    .cover {
-        height: inherit;
-        display: flex;
-        align-items: end;
-        .heading {
-            width: 100%;
-        }
-    }
-
-    &.padding-s .cover .heading {
-        padding: 0.5rem;
-    }
-    
-    &.cover-anim .cover {
-        background: linear-gradient(45deg, #e3e3e3, #eeeeee, #ffffff, #eeeeee, #e3e3e3);
-        background-size: 300% 300%;
-        animation: gradient 3s ease infinite;
-    }
-    @include utils.mq_min(sm) {
-        grid-area: var(--card-size-s);
-    }
-    @include utils.mq_min(md) {
-        grid-area: var(--card-size-m);
-    }
-    @include utils.mq_min(lg) {
-        grid-area: var(--card-size-l);
-    }
 }
 
