@@ -1,7 +1,7 @@
 {
   "name": "@prismal/react",
   "version": "0.0.1",
-  "description": "",
+  "description": "Breaking down complex UIs into fundamental react components",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "src": "src/index.ts",
