@@ -1,87 +1,97 @@
-# Alenite Design
+# @prismal/react
 
-[![NPM](https://img.shields.io/npm/v/alenite-design.svg)](https://www.npmjs.com/package/alenite-design) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+**Breaking down complex UIs into fundamental React components.**
 
-Alenite Design is a React UI library designed to provide a set of reusable components for building modern web applications. It's mainly inspired by Material Design 3
+[![npm version](https://badge.fury.io/js/%40prismal%2Freact.svg)](https://www.npmjs.com/package/@prismal/react)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/Written%20in-TypeScript-blue.svg)](https://www.typescriptlang.org/)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://onyx-og.github.io/prismal-react/)
 
-## Table of Contents
+---
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Components](#components)
-- [Contributing](#contributing)
-- [License](#license)
+## 🌟 Overview
 
-## Preview
-You can preview most of the components on storybook [here](https://onyxcodes.github.io/alenite-design/).
+`@prismal/react` is a foundational React component library designed to simplify the development of complex user interfaces. By providing a set of fundamental, well-designed, and highly reusable components, it empowers developers to build robust and consistent UIs with ease and efficiency.
 
-## Installation
+This library is built with:
+* **React**: For building powerful and interactive UIs.
+* **TypeScript**: Ensuring type safety and an enhanced developer experience with intelligent autocompletion and error checking.
+* **Sass**: For flexible and maintainable styling, including utility mixins and base stylesheet classes.
 
-This project is still in early development, please use with care, and don't be afraid to report any bug!
-To install Alenite Design, you can use npm:
+## ✨ Features
+
+* **Fundamental UI Components**: A curated set of essential React components to kickstart your projects.
+* **Type-Safe Development**: Fully written in TypeScript for robust and predictable code.
+* **Styling Utilities**: Includes ready-to-use stylesheet classes and powerful Sass utility mixins for consistent theming and customization.
+* **Storybook Integration**: Live preview and interactive documentation for all components.
+
+## 🚀 Installation
+
+While the package is not yet published, once it is, installation will be straightforward:
 
 ```bash
-npm install alenite-design
+# Using npm
+npm install @prismal/react
 ```
 
-## Usage
-To use a component from Alenite Design, simply import it into your React application:
+## 💡 Usage
+Prismal react components are designed to be imported individually, allowing for optimal bundle size and clear dependency management.
 
 ```jsx
 import React from 'react';
-import { Button } from 'alenite-design';
+import { Button } from '@prismal/react'; // Import specific components
 
-const App = () => (
-  <div>
-    <Button>Click Me</Button>
-  </div>
-);
+function MyComponent() {
+  return (
+    <div>
+      <h1>Welcome to Primal React!</h1>
+      <Button onClick={() => alert('Button clicked!')}>
+        Click Me
+      </Button>
+    </div>
+  );
+}
 
-export default App;
+export default MyComponent;
 ```
 
-Also remember to import the styles:
-```js
-require('alenite-design/lib/index.css')
-```
+### 📖 Component Preview & Documentation
+Explore our components interactively with Storybook. This is the best way to see the components in action, play with their props, and understand their usage.
 
-## Components
+[Visit the Storybook Preview](https://onyx-og.github.io/prismal-react/)
 
-Alenite Design provides the following components:
+## 🎨 Styling
+The library provides both stylesheet classes for direct application and SCSS utility mixins for deeper customization within your Sass stylesheets.
 
-- Button: A basic button component.
-- Input: A customizable input field.
-- Modal: A modal dialog component.
-- Card: A card component for displaying content.
-- ActionBar: Menus and action bars with a focus on responsiveness
-- SASS utilities: helps streamline the development of user interfaces
+For detailed information on available classes and mixins, please refer to the Storybook documentation for each component or the dedicated styling guide (coming soon).
 
-## Contributing
-We welcome contributions to Alenite Design! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
-
-### Building
+## Building
 To set up the development environment:
 
-1. Clone the repository:
-```
+Clone the repository:
+```bash
 git clone https://github.com/onyxcodes/alenite-design.git
 ```
-2. Install dependencies:
-```
+Install dependencies:
+```bash
 npm install
 ```
-3. Run build
-```
+Run build
+```bash
 npm run build
 ```
+And you should be good go.
 
-And you should be good to go.
-
-### Running tests
+## Running tests
 To run the tests, use the following command:
+```
+npm run test
+```
+## 📄 License
+This project is licensed under the CC-BY-SA-4.0 License - see the [LICENSE](https://github.com/onyx-og/prismal-react/blob/main/LICENSE.md) for details.
 
-## License
-Alenite Design is licensed under the CC-BY-SA-4.0 License. See the LICENSE file for more information.
+## Author
+Onyx - [onyx.ac](https://onyx.ac)
 
-### Author
-Onyx - https://onyx.ac
+## Contributing
+We welcome contributions! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
