@@ -6,7 +6,7 @@ export interface IconProps {
 }
 const Icon = ( props: IconProps ) => {
     const { name } = props;
-    return <i data-testid={`icon-${name}`} className={`alenite-icon icon-${name}`}> </i>
+    return <i data-testid={`icon-${name}`} className={`prismal-icon icon-${name}`}> </i>
 }
 
 export default Icon;

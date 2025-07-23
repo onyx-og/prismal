@@ -44,7 +44,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         current: inputRef.current
     }), [isInvalid]);
 
-    let inputClass = 'alenite-input-text',
+    let inputClass = 'prismal-input-text',
         inputWrapperClass = 'input-wrapper';
 
     if (className) inputClass = `${inputClass} ${className}`;

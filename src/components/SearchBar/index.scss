@@ -1,6 +1,6 @@
 @use '../../styles/vars';
 
-.alenite-searchbar  {
+.prismal-searchbar  {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,7 +11,7 @@
         margin-right: 0 !important;
     }
 
-    .alenite-btn {
+    .prismal-btn {
         margin-left: auto;
         padding: 0.5rem;
     }

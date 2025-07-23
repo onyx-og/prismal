@@ -1,7 +1,7 @@
 @use '../../styles/vars';
 
-.alenite-tabs-container {
-    .alenite-tabs {
+.prismal-tabs-container {
+    .prismal-tabs {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -20,11 +20,11 @@
             background-color: grey;
         }
 
-        .alenite-tab-container {
+        .prismal-tab-container {
             flex: 1;
             position: relative;
 
-            .alenite-tab {
+            .prismal-tab {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -51,7 +51,7 @@
         }
     }
 
-    .alenite-tab-content {
+    .prismal-tab-content {
         padding: 1rem;
     }
 

@@ -10,7 +10,7 @@ interface TabProps extends TabConfig {
 const Tab: React.FC<TabProps> = (props) => {
     const { name, label, iconName, disabled, selected, className } = props;
 
-    let tabClass = "alenite-tab";
+    let tabClass = "prismal-tab";
     if (className) tabClass = `${tabClass} ${className}`;
     if (disabled) tabClass = `${tabClass} disabled`;
     if (selected) tabClass = `${tabClass} selected`;
@@ -34,7 +34,7 @@ interface TabContainerProps {
 const TabContainer: React.FC<TabContainerProps> = (props) => {
     const { tabRenderer, index, isSelected, config, className, setSelected } = props;
 
-    let tabContainerClass = `alenite-tab-container`;
+    let tabContainerClass = `prismal-tab-container`;
     if (className)`${tabContainerClass} ${className}`;
     return <div onClick={() => setSelected(config.name)} className={tabContainerClass}>
         {tabRenderer(config, index, isSelected)}
@@ -72,7 +72,7 @@ const Tabs = React.forwardRef<TabConfig["name"] | undefined, TabsProps>((props, 
     )
     React.useImperativeHandle(ref, () => selected, [selected])
 
-    let tabsClass = "alenite-tabs";
+    let tabsClass = "prismal-tabs";
     if (className) tabsClass = `${tabsClass} ${className}`;
 
     const tabs = React.useMemo(() => {
@@ -89,7 +89,7 @@ const Tabs = React.forwardRef<TabConfig["name"] | undefined, TabsProps>((props, 
         if (content && selected) {
             const selectedContent = content[selected];
             // TODO: Consider adding a fallback content
-            return <div className="alenite-tab-content">
+            return <div className="prismal-tab-content">
                 {selectedContent}
             </div>
         }
@@ -103,7 +103,7 @@ const Tabs = React.forwardRef<TabConfig["name"] | undefined, TabsProps>((props, 
         return _style;
     }, [accent, accentLight, accentDark, borderRadius]);
 
-    return <div style={style} className={"alenite-tabs-container"}>
+    return <div style={style} className={"prismal-tabs-container"}>
         <div className={tabsClass}>{tabs}</div>
         {tabContent}
     </div>

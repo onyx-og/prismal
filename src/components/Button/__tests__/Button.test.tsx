@@ -12,7 +12,7 @@ test('Base button', () => {
     
     expect(btnEl).toBeInTheDocument();
     expect(btnEl).toHaveTextContent('Click me');
-    expect(btnEl).toHaveClass('alenite-btn btn-default btn-default-shape');
+    expect(btnEl).toHaveClass('prismal-btn btn-default btn-default-shape');
     expect(btnEl).not.toHaveClass('btn-disabled btn-primary btn-text btn-circle');
 });
 
@@ -26,7 +26,7 @@ test('Button with specific type, shape and disabled state', () => {
 
     const btnEl = screen.getByTestId('button-primary-circle');
 
-    expect(btnEl).toHaveClass('alenite-btn btn-circle btn-primary btn-disabled');
+    expect(btnEl).toHaveClass('prismal-btn btn-circle btn-primary btn-disabled');
 });
 
 test('Button should inherit class', () => {

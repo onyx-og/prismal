@@ -111,7 +111,7 @@ const Stack: React.FC<StackProps> = (props) => {
         borderRadius, itemContainerClass
     ]);
 
-    let stackClass = "alenite-stack";
+    let stackClass = "prismal-stack";
     if (className) stackClass = `${stackClass} ${className}`;
 
     const style: {[key: string]: any} = React.useMemo(() => {

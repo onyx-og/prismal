@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ( props ) => {
         cornerRadius = 's', padding = 's',
     } = props;
 
-    let cardClass = `alenite-card card-p-${padding}`;
+    let cardClass = `prismal-card card-p-${padding}`;
     if (className) cardClass = `${cardClass} ${className}`;
     
     if (cornerRadius) cardClass = `${cardClass} card-br-${cornerRadius}`;

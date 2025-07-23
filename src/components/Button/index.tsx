@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         elevation, borderRadius
     } = props;
 
-    let btnClass = `alenite-btn btn-${type} btn-${shape}`; 
+    let btnClass = `prismal-btn btn-${type} btn-${shape}`; 
     if ( className ) btnClass = `${btnClass} ${className}`;
     if ( disabled ) btnClass = `${btnClass} btn-disabled`;
     else btnClass = `${btnClass} anim-pulse`;

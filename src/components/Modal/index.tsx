@@ -29,7 +29,7 @@ const Modal: React.FC<ModalProps> = (props) => {
         accent, accentDark, accentLight,
     } = props;
 
-    let modalClass = 'alenite-modal';
+    let modalClass = 'prismal-modal';
 
     if (visible) modalClass = `${modalClass} visible`;
     if (className) modalClass = `${modalClass} ${className}`;

@@ -28,7 +28,7 @@ const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(( props, ref 
         accent, accentLight, accentDark,
         className
     } = props;
-    let actionBarClass = `alenite-actionbar ${type} ${position}`;
+    let actionBarClass = `prismal-actionbar ${type} ${position}`;
 
     // const actionBarRef = React.useRef<HTMLDivElement>(null);
     // console.log("Got actionbar ref", actionBarRef);

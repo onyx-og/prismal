@@ -25,7 +25,7 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
         accent, accentDark, accentLight,
     } = props;
 
-    let searchbarClass = 'alenite-searchbar';
+    let searchbarClass = 'prismal-searchbar';
     if (className) searchbarClass = `${searchbarClass} ${className}`;
 
     const inputRef = React.useRef<InputRefType | null>(null)

@@ -37,7 +37,7 @@ const Select: React.FC<SelectProps> = ( props ) => {
         value: string;
         selected?: boolean;
     }) => {
-        console.log("alenite-design: doSelection", {el, selected: selectRef.current?.value});
+        console.log("prismal-design: doSelection", {el, selected: selectRef.current?.value});
         // Update hidden input (mirror)
         if (
             selectRef.current &&
@@ -56,7 +56,7 @@ const Select: React.FC<SelectProps> = ( props ) => {
     let style: {[key: string]: any} = {};
     style = setAccentStyle(style, {accent, accentLight, accentDark});
 
-    let selectClass = 'alenite-select';
+    let selectClass = 'prismal-select';
     if (className) selectClass = `${selectClass} ${className}`;
 
     React.useEffect( () => {
@@ -68,7 +68,7 @@ const Select: React.FC<SelectProps> = ( props ) => {
 
     const selector = React.useMemo(() => {
         if (placeholder != null && typeof placeholder !== "string" ) {
-            return <div className="alenite-select-selector">{placeholder}</div>;
+            return <div className="prismal-select-selector">{placeholder}</div>;
         } else return <span>{ selected?.label || placeholder || 'Select...'}</span>
     }, [placeholder, selected?.label])
 

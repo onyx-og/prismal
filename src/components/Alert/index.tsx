@@ -47,7 +47,7 @@ const Alert: React.FC<AlertProps> = (props) => {
     const [mounted, mount] = React.useState(false);
     const [visibility, setVisibility] = React.useState(false);
 
-    let alertClass = 'alenite-alert';
+    let alertClass = 'prismal-alert';
     if (cornerRadius) alertClass = `${alertClass} corner-radius-${cornerRadius}`;
 
     let style: {[key: string]: any} = {};

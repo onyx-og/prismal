@@ -91,7 +91,7 @@ const Pie: React.FC<PieChartProps> = (props) => {
 		width: size, height: size
 	};
 
-	let pieClass = 'alenite-pie';
+	let pieClass = 'prismal-pie';
 	if (className) pieClass = `${pieClass} ${className}`
 
 	const slices = React.useMemo(() => {

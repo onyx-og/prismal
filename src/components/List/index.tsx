@@ -50,7 +50,7 @@ const List: React.FC<ListProps> = ( props ) => {
         return pages
     }
 
-    let listClass = `alenite-list ${type}`,
+    let listClass = `prismal-list ${type}`,
     // listWrapprerClass = `col-9 col-lg-12`;
     listWrapprerClass = `list-wrapper`;
 

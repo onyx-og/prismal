@@ -8,5 +8,5 @@ test('Icon should use corresponding class', () => {
 
     const iconEl = screen.getByTestId('icon-close');
 
-    expect(iconEl).toHaveClass('alenite-icon icon-close');
+    expect(iconEl).toHaveClass('prismal-icon icon-close');
 });

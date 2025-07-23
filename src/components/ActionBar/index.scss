@@ -4,7 +4,7 @@
     @include vars.theme;
 }
 
-.alenite-actionbar {
+.prismal-actionbar {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +31,7 @@
     .actionbar-right,
     .actionbar-center {
         align-items: center;
-        // TODO: Change accordingly to alenite-actionbar children number
+        // TODO: Change accordingly to prismal-actionbar children number
         min-width: 33%;
         box-sizing: border-box;
         align-items: center;
