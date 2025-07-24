@@ -1,6 +1,7 @@
 @use '../../styles/vars.scss';
 
 form {
+    font-family: vars.$font-body;
     .form-fields {
         display: flex;
         flex-direction: row;

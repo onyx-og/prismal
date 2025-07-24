@@ -10,6 +10,7 @@
     flex-wrap: wrap;
     padding-top: .5rem;
     padding-bottom: .5rem;
+    font-family: vars.$font-body;
     &.primary {
         background-color: vars.$primary-color;
         color: white;
