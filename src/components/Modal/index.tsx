@@ -4,6 +4,7 @@ import ActionBar, { ActionBarItemConfig } from 'components/ActionBar';
 import Button from 'components/Button';
 import ReactDOM from 'react-dom';
 import ComponentProps from '../Component';
+import Card from 'components/Card';
 
 export interface ModalProps extends ComponentProps {
     areaId?: string;
@@ -39,10 +40,10 @@ const Modal: React.FC<ModalProps> = (props) => {
 
     const modalArea = areaId ? document.getElementById(areaId) : undefined;
 
-    const content = <div className={modalClass}>
+    const component = <div className={modalClass}>
         <div className={modalBgClass} onClick={closeModal}></div>
-        <div className={modalFgClass}>
-            <ActionBar position='top'
+        <Card className={modalFgClass}
+            header={<ActionBar position='top'
                 items={[
                     title ? { item: <span>{title}</span>, position: 'center', key: 'modal-title', scale: false } : null,
                     ...(topActionBarItems instanceof Function && topActionBarItems() || topActionBarItems instanceof Array && topActionBarItems || []),
@@ -57,21 +58,22 @@ const Modal: React.FC<ModalProps> = (props) => {
                         key: 'close-modal'
                     } : null
                 ]}
-            />
+            />} footer={
+                btmActionBarItems && <ActionBar position='bottom'
+                    items={[
+                        ...(btmActionBarItems instanceof Function && btmActionBarItems() || btmActionBarItems instanceof Array && btmActionBarItems || [])
+                    ]}
+                />
+            }>
             {<div className='modal-content'>
                 {children}
             </div>}
-            {btmActionBarItems && <ActionBar position='bottom'
-                items={[
-                    ...(btmActionBarItems instanceof Function && btmActionBarItems() || btmActionBarItems instanceof Array && btmActionBarItems || [])
-                ]}
-            />}
-        </div>
+        </Card>
     </div>
 
     if (visible) {
-        if (modalArea) return ReactDOM.createPortal(content, modalArea);
-        else return content;
+        if (modalArea) return ReactDOM.createPortal(component, modalArea);
+        else return component;
     } else return <></>;
 }
 
