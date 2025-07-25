@@ -18,7 +18,8 @@
     }
   },
   "include": [
-    "src"
+    "src",
+    "packages/storybook/src"
   ],
   "exclude": [
     "src/**/*.test.ts",
