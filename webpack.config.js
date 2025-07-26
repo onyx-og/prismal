@@ -4,15 +4,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // TODO: export only useful!!
 const styleUtils = {
     entry: {
+        index: "./src/styles/index.scss",
+        globals: "./src/styles/globals.scss",
+        vars: "./src/styles/vars.scss",
+        utils: "/src/styles/utils.scss",
         animations: "./src/styles/animations.scss",
-        global: "./src/styles/global.scss",
         icons: "./src/styles/icons.scss",
         layers: "./src/styles/layers.scss",
         layout: "./src/styles/layout.scss",
         lists: "./src/styles/lists.scss",
-        typography: "./src/styles/typography.scss",
-        utils: "/src/styles/utils.scss",
-        vars: "./src/styles/vars.scss"
+        typography: "./src/styles/typography.scss"
     },
     output: {
         path: path.resolve(__dirname, 'lib/styles'),
@@ -41,6 +42,7 @@ const styleUtils = {
 
 const components = {
     entry: {
+        globals: ['./src/styles/globals.scss', './src/styles/theme.scss'],
         button: ['./src/components/Button/index.scss', './src/styles/theme.scss'],
         alert: ['./src/components/Alert/index.scss', './src/styles/theme.scss'],
         list: ['./src/components/List/index.scss', './src/styles/theme.scss'],
@@ -53,7 +55,6 @@ const components = {
         actionBar: ['./src/components/ActionBar/index.scss', './src/styles/theme.scss'],
         stack: ['./src/components/Stack/index.scss', './src/styles/theme.scss'],
         form: ['./src/components/Form/index.scss', './src/styles/theme.scss'],
-        global: ['./src/styles/global.scss', './src/styles/theme.scss'],
     },
     output: {
         path: path.resolve(__dirname, 'lib/styles'),
@@ -120,6 +121,9 @@ const config = {
             {
                 test: /\.(ts|tsx)$/i,
                 loader: 'ts-loader',
+                options: {
+                    configFile: 'tsconfig.json'
+                },
                 exclude: ['/node_modules/'],
             },
         ]
