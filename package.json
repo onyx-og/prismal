@@ -12,7 +12,7 @@
   "keywords": ["material-design", "md3", "react", "ui-kit", "typescript", "ui-library"],
   "homepage": "https://onyx-og.github.io/prismal-react/",
   "scripts": {
-    "build": "rimraf --glob lib/* && webpack --node-env=production && rimraf --glob ./lib/styles/*.js",
+    "build": "rimraf --glob lib/* && webpack --node-env=production && rimraf --glob ./lib/styles/*.js && rimraf --glob ./lib/packages",
     "test": "jest"
   },
   "author": "Onyx <hello@onyx.ac> (https://onxy.ac)",
