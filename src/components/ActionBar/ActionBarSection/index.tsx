@@ -48,7 +48,7 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
 
     return <>
         <Button title={title} shape='circle' iconName='ellipsis-v' onClick={openSidebar}/>
-        <Sidebar>
+        <Sidebar areaId='sidebar-area'>
             <div ref={refSetter} className='actionbar-section-content'>{_items}</div>
         </Sidebar>
     </>
