@@ -1,6 +1,7 @@
 @use '../../styles/utils';
 @use '../../styles/vars';
 @use '../../styles/animations';
+@use '../../styles/globals';
 
 $sidebar-width: calc(180px + 10vw);
 
@@ -23,6 +24,8 @@ $sidebar-width: calc(180px + 10vw);
         height: 100%;
         width: 0;
         background: #fcfcfc;
+        @extend %fd-col;
+        @extend %text-nosel;
         overflow-y: auto;
         @include animations.transition-bounce();
         white-space: nowrap;

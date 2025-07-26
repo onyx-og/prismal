@@ -17,6 +17,6 @@
   @include utils.font-size(.83em, 1);
 }
 @mixin f6 {
-  @include utils.font-size(.67em, .83em);
   font-family: vars.$font-body;
+  @include utils.font-size(.67em, .83em);
 }

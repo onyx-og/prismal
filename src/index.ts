@@ -11,8 +11,6 @@ import Alert from "./components/Alert";
 import { setAccentStyle, hex2rgba } from "./utils/colors";
 import Card, {CardProps} from "./components/Card";
 
-import "./styles/global.scss";
-
 import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
 import useElementHeight from "./hooks/useElementHeight";

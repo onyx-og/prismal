@@ -36,11 +36,11 @@
     &.btn-primary {
         border: solid thin vars.$primary-color;
         background-color: vars.$primary-color;
-        color: vars.$primary-color-dark;
+        color: vars.$light-color;
         &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
             border: solid thin vars.$primary-color-dark;
             background-color: vars.$primary-color-dark;
-            color: white;
+            color: vars.$primary-color-light;
         }
         &.btn-disabled {
             filter: opacity(0.15);

@@ -1,4 +1,5 @@
 @use '../../styles/vars';
+@use '../../styles/globals';
 
 .slideshow {
     position: relative;
@@ -39,7 +40,12 @@
 
     /* Slider Pagger */
     .slider-pagination {
+        @extend %f;
+        @extend %jcc;
+        @extend %my05;
         .wrapper {
+            @extend %px1;
+            @extend %py025;
             background-color: vars.$primary-color;
             border-radius: 30px;
         }

@@ -1,1 +1,1235 @@
-// [TODO] Remove this file, not needed anymore
+@use './vars.scss';
+@use './layout.scss';
+@use './typography.scss';
+@use './utils.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: vars.$font-body !important;
+  font-weight: vars.$font-body-weight;
+  font-style: vars.$font-body-style;
+  @include utils.font-size(1rem, 1.17rem);
+}
+
+a {
+  color: vars.$primary-color;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.t1 ,h1, .h1 {
+  @include typography.f1;
+}
+.t2 ,h2, .h2 {
+  @include typography.f2;
+}
+.t3 ,h3, .h3 {
+  @include typography.f3;
+}
+.t4 ,h4, .h4 {
+  @include typography.f4;
+}
+.t5 ,h5, .h5 {
+  @include typography.f5;
+}
+.t6 ,h6, .h6 {
+  @include typography.f6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.5vmin 0 1.5vmin 0;
+}
+h1, h2, h3,
+.h1, .h2, .h3 {
+  font-family: vars.$font-heading !important;
+}
+
+h4, h5,
+.h4, .h5 {
+  font-family: vars.$font-alt-heading !important;
+  letter-spacing: .1rem;
+}
+
+.show-lg,
+.show-md,
+.show-sm,
+.show-xl,
+.show-xs {
+  display: none !important
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -.4rem;
+  margin-right: -.4rem
+}
+
+.columns.col-gapless {
+  margin-left: 0;
+  margin-right: 0
+}
+
+.columns.col-gapless>.column {
+  padding-left: 0;
+  padding-right: 0
+}
+
+.columns.col-oneline {
+  flex-wrap: nowrap;
+  overflow-x: auto
+}
+
+.column {
+  flex: 1;
+  max-width: 100%;
+  padding-left: .4rem;
+  padding-right: .4rem
+}
+
+.col-12 {
+  @include layout.column(12);
+}
+
+.col-11 {
+  @include layout.column(11);
+}
+
+.col-10 {
+  @include layout.column(10);
+}
+
+.col-9 {
+  @include layout.column(9);
+}
+
+.col-8 {
+  @include layout.column(8);
+}
+
+.col-7 {
+  @include layout.column(7);
+}
+
+.col-6 {
+  @include layout.column(6);
+}
+
+.col-5 {
+  @include layout.column(5);
+}
+
+.col-4 {
+  @include layout.column(4);
+}
+
+.col-3 {
+  @include layout.column(3);
+}
+
+.col-2 {
+  @include layout.column(2);
+}
+
+.col-1 {
+  @include layout.column(1);
+}
+
+.col-auto {
+  flex: 0 0 auto;
+  max-width: none;
+  width: auto
+}
+
+.col-mx-auto {
+  margin-right: auto
+}
+
+.col-ml-auto,
+.col-mx-auto {
+  margin-left: auto
+}
+
+.col-mr-auto {
+  margin-right: auto
+}
+
+.col-xl-12 {
+  @include layout.column(12, xl);
+}
+
+.col-xl-11 {
+  @include layout.column(11, xl);
+}
+
+.col-xl-10 {
+  @include layout.column(10, xl);
+}
+
+.col-xl-9 {
+  @include layout.column(9, xl);
+}
+
+.col-xl-8 {
+  @include layout.column(8, xl);
+}
+
+.col-xl-7 {
+  @include layout.column(7, xl);
+}
+
+.col-xl-6 {
+  @include layout.column(6, xl);
+}
+
+.col-xl-5 {
+  @include layout.column(5, xl);
+}
+
+.col-xl-4 {
+  @include layout.column(4, xl);
+}
+
+.col-xl-3 {
+  @include layout.column(3, xl);
+}
+
+.col-xl-2 {
+  @include layout.column(2, xl);
+}
+
+.col-xl-1 {
+  @include layout.column(1, xl);
+}
+
+@include utils.mq_max(xl) {
+
+  .col-xl-auto {
+    width: auto
+  }
+
+  .hide-xl {
+    display: none !important
+  }
+
+  .show-xl {
+    display: block !important
+  }
+}
+.col-lg-12 {
+  @include layout.column(12, lg);
+}
+.col-lg-11 {
+  @include layout.column(11, lg);
+}
+.col-lg-10 {
+  @include layout.column(10, lg);
+}
+.col-lg-9 {
+  @include layout.column(9, lg);
+}
+.col-lg-8 {
+  @include layout.column(8, lg);
+}
+.col-lg-7 {
+  @include layout.column(7, lg);
+}
+.col-lg-6 {
+  @include layout.column(6, lg);
+}
+.col-lg-5 {
+  @include layout.column(5, lg);
+}
+.col-lg-4 {
+  @include layout.column(4, lg);
+}
+.col-lg-3 {
+  @include layout.column(3, lg);
+}
+.col-lg-2 {
+  @include layout.column(2, lg);
+}
+.col-lg-1 {
+  @include layout.column(1, lg);
+}
+
+@include utils.mq_max(lg) {
+
+  .col-lg-auto {
+    width: auto
+  }
+
+  .hide-lg {
+    display: none !important
+  }
+
+  .show-lg {
+    display: block !important
+  }
+}
+
+.col-md-12 {
+  @include layout.column(12, md);
+}
+.col-md-11 {
+  @include layout.column(11, md);
+}
+.col-md-10 {
+  @include layout.column(10, md);
+}
+.col-md-9 {
+  @include layout.column(9, md);
+}
+.col-md-8 {
+  @include layout.column(8, md);
+}
+.col-md-7 {
+  @include layout.column(7, md);
+}
+.col-md-6 {
+  @include layout.column(6, md);
+}
+.col-md-5 {
+  @include layout.column(5, md);
+}
+.col-md-4 {
+  @include layout.column(4, md);
+}
+.col-md-3 {
+  @include layout.column(3, md);
+}
+.col-md-2 {
+  @include layout.column(2, md);
+}
+.col-md-1 {
+  @include layout.column(1, md);
+}
+
+@include utils.mq_max(md) {
+
+  .col-md-auto {
+    width: auto
+  }
+
+  .hide-md {
+    display: none !important
+  }
+
+  .show-md {
+    display: block !important
+  }
+}
+
+.col-sm-12 {
+  @include layout.column(12, sm);
+}
+.col-sm-11 {
+  @include layout.column(11, sm);
+}
+.col-sm-10 {
+  @include layout.column(10, sm);
+}
+.col-sm-9 {
+  @include layout.column(9, sm);
+}
+.col-sm-8 {
+  @include layout.column(8, sm);
+}
+.col-sm-7 {
+  @include layout.column(7, sm);
+}
+.col-sm-6 {
+  @include layout.column(6, sm);
+}
+.col-sm-5 {
+  @include layout.column(5, sm);
+}
+.col-sm-4 {
+  @include layout.column(4, sm);
+}
+.col-sm-3 {
+  @include layout.column(3, sm);
+}
+.col-sm-2 {
+  @include layout.column(2, sm);
+}
+.col-sm-1 {
+  @include layout.column(1, sm);
+}
+
+@include utils.mq_max(sm) {
+
+  .col-sm-auto {
+    width: auto
+  }
+
+  .hide-sm {
+    display: none !important
+  }
+
+  .show-sm {
+    display: block !important
+  }
+}
+
+.col-xs-12 {
+  @include layout.column(12, xs);
+}
+.col-xs-11 {
+  @include layout.column(11, xs);
+}
+.col-xs-10 {
+  @include layout.column(10, xs);
+}
+.col-xs-9 {
+  @include layout.column(9, xs);
+}
+.col-xs-8 {
+  @include layout.column(8, xs);
+}
+.col-xs-7 {
+  @include layout.column(7, xs);
+}
+.col-xs-6 {
+  @include layout.column(6, xs);
+}
+.col-xs-5 {
+  @include layout.column(5, xs);
+}
+.col-xs-4 {
+  @include layout.column(4, xs);
+}
+.col-xs-3 {
+  @include layout.column(3, xs);
+}
+.col-xs-2 {
+  @include layout.column(2, xs);
+}
+.col-xs-1 {
+  @include layout.column(1, xs);
+}
+
+@include utils.mq_max(xs) {
+
+  .col-xs-auto {
+    width: auto
+  }
+
+  .hide-xs {
+    display: none !important
+  }
+
+  .show-xs {
+    display: block !important
+  }
+}
+
+.rel {
+  position: relative
+}
+
+.abs {
+  position: absolute
+}
+
+.fix {
+  position: fixed
+}
+
+.fill,
+.top {
+  top: 0
+}
+
+.bottom,
+.fill {
+  bottom: 0
+}
+
+.fill,
+.left {
+  left: 0
+}
+
+.fill,
+.right {
+  right: 0
+}
+
+.x {
+  width: 100%
+}
+
+.y {
+  height: 100%
+}
+
+.f {
+  display: flex
+}
+
+.fw {
+  flex-wrap: wrap
+}
+
+.ais {
+  align-items: flex-start
+}
+
+.aie {
+  align-items: flex-end
+}
+
+.aic {
+  align-items: center
+}
+
+.aib {
+  align-items: baseline
+}
+
+.jcs {
+  justify-content: flex-start
+}
+
+.jce {
+  justify-content: flex-end
+}
+
+.jcc {
+  justify-content: center
+}
+
+.jcb {
+  justify-content: space-between
+}
+
+@include utils.mq_max(md) {
+  .ais-md {
+    align-items: flex-start
+  }
+
+  .aie-md {
+    align-items: flex-end
+  }
+
+  .aic-md {
+    align-items: center
+  }
+
+  .aib-md {
+    align-items: baseline
+  }
+
+  .jcs-md {
+    justify-content: flex-start
+  }
+
+  .jce-md {
+    justify-content: flex-end
+  }
+
+  .jcc-md {
+    justify-content: center
+  }
+
+  .jcb-md {
+    justify-content: space-between
+  }
+}
+
+@include utils.mq_max(sm) {
+  .ais-sm {
+    align-items: flex-start
+  }
+
+  .aie-sm {
+    align-items: flex-end
+  }
+
+  .aic-sm {
+    align-items: center
+  }
+
+  .aib-sm {
+    align-items: baseline
+  }
+
+  .jcs-sm {
+    justify-content: flex-start
+  }
+
+  .jce-sm {
+    justify-content: flex-end
+  }
+
+  .jcc-sm {
+    justify-content: center
+  }
+
+  .jcb-sm {
+    justify-content: space-between
+  }
+}
+
+.fa {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0
+}
+
+.al {
+  text-align: left
+}
+
+.ac {
+  text-align: center
+}
+
+.ar {
+  text-align: right
+}
+
+.aj {
+  text-align: justify
+}
+
+.ma,
+.mxa {
+  margin-left: auto;
+  margin-right: auto
+}
+
+.ma,
+.mya {
+  margin-top: auto;
+  margin-bottom: auto
+}
+
+.p0,
+.pt0,
+.py0 {
+  padding-top: 0
+}
+
+.p0,
+.pb0,
+.py0 {
+  padding-bottom: 0
+}
+
+.m0,
+.mt0,
+.my0 {
+  margin-top: 0
+}
+
+.m0,
+.mb0,
+.my0 {
+  margin-bottom: 0
+}
+
+.m025,
+.mt025,
+.my025 {
+  margin-top: .25em
+}
+
+.m025,
+.mb025,
+.my025 {
+  margin-bottom: .25em
+}
+
+.m025,
+.ml025,
+.mx025 {
+  margin-left: .25em
+}
+
+.m025,
+.mr025,
+.mx025 {
+  margin-right: .25em
+}
+
+.p025,
+.pt025,
+.py025 {
+  padding-top: .25em
+}
+
+.p025,
+.pb025,
+.py025 {
+  padding-bottom: .25em
+}
+
+.p025,
+.pl025,
+.px025 {
+  padding-left: .25em
+}
+
+.p025,
+.pr025,
+.px025 {
+  padding-right: .25em
+}
+
+.m05,
+.mt05,
+.my05 {
+  margin-top: .5em
+}
+
+.m05,
+.mb05,
+.my05 {
+  margin-bottom: .5em
+}
+
+.m05,
+.ml05,
+.mx05 {
+  margin-left: .5em
+}
+
+.m05,
+.mr05,
+.mx05 {
+  margin-right: .5em
+}
+
+.p05,
+.pt05,
+.py05 {
+  padding-top: .5em
+}
+
+.p05,
+.pb05,
+.py05 {
+  padding-bottom: .5em
+}
+
+.p05,
+.pl05,
+.px05 {
+  padding-left: .5em
+}
+
+.p05,
+.pr05,
+.px05 {
+  padding-right: .5em
+}
+
+.m075,
+.mt075,
+.my075 {
+  margin-top: .75em
+}
+
+.m075,
+.mb075,
+.my075 {
+  margin-bottom: .75em
+}
+
+.m075,
+.ml075,
+.mx075 {
+  margin-left: .75em
+}
+
+.m075,
+.mr075,
+.mx075 {
+  margin-right: .75em
+}
+
+.p075,
+.pt075,
+.py075 {
+  padding-top: .75em
+}
+
+.p075,
+.pb075,
+.py075 {
+  padding-bottom: .75em
+}
+
+.p075,
+.pl075,
+.px075 {
+  padding-left: .75em
+}
+
+.p075,
+.pr075,
+.px075 {
+  padding-right: .75em
+}
+
+.m1,
+.mt1,
+.my1 {
+  margin-top: 1em
+}
+
+.m1,
+.mb1,
+.my1 {
+  margin-bottom: 1em
+}
+
+.m1,
+.ml1,
+.mx1 {
+  margin-left: 1em
+}
+
+.m1,
+.mr1,
+.mx1 {
+  margin-right: 1em
+}
+
+.p1,
+.pt1,
+.py1 {
+  padding-top: 1em
+}
+
+.p1,
+.pb1,
+.py1 {
+  padding-bottom: 1em
+}
+
+.p1,
+.pl1,
+.px1 {
+  padding-left: 1em
+}
+
+.p1,
+.pr1,
+.px1 {
+  padding-right: 1em
+}
+
+.fill,
+img.fill,
+svg.fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  &.p-absolute {
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+  }
+}
+
+img.fit,
+svg.fit {
+  object-fit: cover;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.elevation-0 {
+  box-shadow: none;
+}
+.elevation-1 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.elevation-2 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.elevation-3 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.elevation-4 {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;  
+}
+.elevation-5 {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.p-fixed {
+  position: fixed;
+}
+
+.p-sticky {
+  position: sticky
+}
+
+.p-absolute {
+  position: absolute;
+
+  &.center {
+    top: 50%;
+    bottom: 50%;
+  }
+}
+
+.list-nostyle {
+  list-style: none
+}
+
+.a-nostyle {
+  text-decoration: none;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right;
+}
+
+.fd-col {
+  flex-direction: column;
+}
+
+.fd-col-r {
+  flex-direction: column-reverse;
+}
+
+.fd-row {
+  flex-direction: row;
+}
+
+.fd-row-r {
+  flex-direction: row-reverse;
+}
+
+.ass {
+  align-self: flex-start
+}
+
+/* Naming conventions sure are bothersome */
+.asc {
+  align-self: center
+}
+
+.ase {
+  align-self: flex-end
+}
+
+.mfd-col {
+  @include utils.mq_max(sm) {
+    flex-direction: column;
+  }
+}
+
+.mfd-col-r {
+  @include utils.mq_max(sm) {
+    flex-direction: column-reverse;
+  }
+}
+
+.mfd-row {
+  @include utils.mq_max(sm) {
+    flex-direction: row;
+  }
+}
+
+.mfd-row-r {
+  @include utils.mq_max(sm) {
+    flex-direction: row-reverse;
+  }
+}
+
+.mfd-col {
+  @include utils.mq_max(sm) {
+    flex-direction: column;
+  }
+}
+
+.c-hand {
+  cursor: pointer;
+  /* fallback */
+  cursor: hand;
+}
+
+.text-nosel {
+  user-select: none;
+}
+
+.c-move {
+  cursor: move
+}
+
+.c-zoom-in {
+  cursor: zoom-in
+}
+
+.c-zoom-out {
+  cursor: zoom-out
+}
+
+.c-not-allowed {
+  cursor: not-allowed
+}
+
+.c-auto {
+  cursor: auto
+}
+
+.r-5-2 {
+  @include utils.responsive-ratio(5, 2, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-9-2 {
+  @include utils.responsive-ratio(9, 2, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-5-4 {
+  @include utils.responsive-ratio(5, 4, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-16-9 {
+  @include utils.responsive-ratio(16, 9, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-16-3 {
+  @include utils.responsive-ratio(16, 3, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-18-9 {
+  @include utils.responsive-ratio(18, 9, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-20-6 {
+  @include utils.responsive-ratio(20, 6, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-20-8 {
+  @include utils.responsive-ratio(20, 8, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-8-5 {
+  @include utils.responsive-ratio(8, 5, true);
+  @include utils.content-in-ratio;
+}
+
+.r-4-35 {
+  @include utils.responsive-ratio(4, 3, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+.r-4-5 {
+  @include utils.responsive-ratio(4, 5, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+@include utils.mq_max(xl) {
+  .xlr-5-2 {
+    @include utils.responsive-ratio(5, 2, true);
+    @include utils.content-in-ratio;
+  }
+
+  .xlr-9-2 {
+    @include utils.responsive-ratio(9, 2, true);
+    @include utils.content-in-ratio;
+    position: relative;
+  }
+
+  .xlr-5-4 {
+    @include utils.responsive-ratio(5, 4, true);
+    @include utils.content-in-ratio;
+  }
+
+  .xlr-8-5 {
+    @include utils.responsive-ratio(8, 5, true);
+    @include utils.content-in-ratio;
+  }
+
+  .xlr-16-9 {
+    @include utils.responsive-ratio(16, 9, true);
+    @include utils.content-in-ratio;
+  }
+
+  .xlr-20-8 {
+    @include utils.responsive-ratio(20, 8, true);
+    @include utils.content-in-ratio;
+  }
+
+  .xlr-20-6 {
+    @include utils.responsive-ratio(20, 6, true);
+    @include utils.content-in-ratio;
+  }
+
+  .xlr-4-5 {
+    @include utils.responsive-ratio(4, 5, true);
+    @include utils.content-in-ratio;
+  }
+}
+
+@include utils.mq_max(lg) {
+  .lgr-5-2 {
+    @include utils.responsive-ratio(5, 2, true);
+    @include utils.content-in-ratio;
+  }
+
+  .lgr-9-2 {
+    @include utils.responsive-ratio(9, 2, true);
+    @include utils.content-in-ratio;
+    position: relative;
+  }
+
+  .lgr-5-4 {
+    @include utils.responsive-ratio(5, 4, true);
+    @include utils.content-in-ratio;
+  }
+
+  .lgr-8-5 {
+    @include utils.responsive-ratio(8, 5, true);
+    @include utils.content-in-ratio;
+  }
+
+  .lgr-16-9 {
+    @include utils.responsive-ratio(16, 9, true);
+    @include utils.content-in-ratio;
+  }
+
+  .lgr-20-8 {
+    @include utils.responsive-ratio(20, 8, true);
+    @include utils.content-in-ratio;
+  }
+
+  .lgr-20-6 {
+    @include utils.responsive-ratio(20, 6, true);
+    @include utils.content-in-ratio;
+  }
+
+  .lgr-4-5 {
+    @include utils.responsive-ratio(4, 5, true);
+    @include utils.content-in-ratio;
+  }
+
+  .lgr-1-1 {
+    @include utils.responsive-ratio(1, 1, true);
+    @include utils.content-in-ratio;
+  }
+}
+
+@include utils.mq_max(md) {
+  .mdr-5-2 {
+    @include utils.responsive-ratio(5, 2, true);
+    @include utils.content-in-ratio;
+  }
+
+  .mdr-9-2 {
+    @include utils.responsive-ratio(9, 2, true);
+    @include utils.content-in-ratio;
+    position: relative;
+  }
+
+  .mdr-5-4 {
+    @include utils.responsive-ratio(5, 4, true);
+    @include utils.content-in-ratio;
+  }
+
+  .mdr-8-5 {
+    @include utils.responsive-ratio(8, 5, true);
+    @include utils.content-in-ratio;
+  }
+
+  .mdr-16-9 {
+    @include utils.responsive-ratio(16, 9, true);
+    @include utils.content-in-ratio;
+  }
+
+  .mdr-20-8 {
+    @include utils.responsive-ratio(20, 8, true);
+    @include utils.content-in-ratio;
+  }
+
+  .mdr-20-6 {
+    @include utils.responsive-ratio(20, 6, true);
+    @include utils.content-in-ratio;
+  }
+
+  .mdr-4-5 {
+    @include utils.responsive-ratio(4, 5, true);
+    @include utils.content-in-ratio;
+  }
+}
+
+@include utils.mq_max(sm) {
+  .smr-5-2 {
+    @include utils.responsive-ratio(5, 2, true);
+    @include utils.content-in-ratio;
+  }
+
+  .smr-9-2 {
+    @include utils.responsive-ratio(9, 2, true);
+    @include utils.content-in-ratio;
+    position: relative;
+  }
+
+  .smr-5-4 {
+    @include utils.responsive-ratio(5, 4, true);
+    @include utils.content-in-ratio;
+  }
+
+  .smr-8-5 {
+    @include utils.responsive-ratio(8, 5, true);
+    @include utils.content-in-ratio;
+  }
+
+  .smr-16-9 {
+    @include utils.responsive-ratio(16, 9, true);
+    @include utils.content-in-ratio;
+  }
+
+  .smr-20-8 {
+    @include utils.responsive-ratio(20, 8, true);
+    @include utils.content-in-ratio;
+  }
+
+  .smr-20-6 {
+    @include utils.responsive-ratio(20, 6, true);
+    @include utils.content-in-ratio;
+  }
+
+  .smr-4-5 {
+    @include utils.responsive-ratio(4, 5, true);
+    @include utils.content-in-ratio;
+  }
+}
