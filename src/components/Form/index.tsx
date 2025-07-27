@@ -70,7 +70,7 @@ const Form = ( props: FormProps ) => {
     
     const submitComponent = !submit ? <Button 
         type='primary' 
-        className='form-submit f-right' onClick={() => submitForm()}>
+        className='form-submit' onClick={() => submitForm()}>
             Submit
     </Button> : <submit.type {...submit.props} onClick={() => {
         submit.props.onClick && submit.props.onClick();
@@ -78,10 +78,10 @@ const Form = ( props: FormProps ) => {
     }}/>
 
     return <form name={name}>
-        <div className='form-fields my05'>{renderedChildren}</div>
+        <div className='form-fields'>{renderedChildren}</div>
         { submitComponent }
         { isInvalid ? 
-            <span className='form-error t6 my05'>Check the fields for errors</span> : null
+            <span className='form-error'>Check the fields for errors</span> : null
         }
     </form>
 }
