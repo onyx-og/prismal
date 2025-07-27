@@ -37,7 +37,6 @@ const Select: React.FC<SelectProps> = ( props ) => {
         value: string;
         selected?: boolean;
     }) => {
-        console.log("prismal-design: doSelection", {el, selected: selectRef.current?.value});
         // Update hidden input (mirror)
         if (
             selectRef.current &&
@@ -46,7 +45,6 @@ const Select: React.FC<SelectProps> = ( props ) => {
             selectRef.current.value = el.value;
             // Update surface component
             el.selected = true;
-            console.log("doSelection: setting selection to", el);
             setSelected(el);
         };
         // Remove focus from surface component
@@ -61,7 +59,6 @@ const Select: React.FC<SelectProps> = ( props ) => {
 
     React.useEffect( () => {
         if ( selected && onChange ) {
-            console.log("triggering onChange for selection:", selected);
             onChange(selected)
         };
     }, [selected, dropdownRef]);

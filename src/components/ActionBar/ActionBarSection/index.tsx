@@ -5,8 +5,6 @@ import ActionBarItem, { ActionBarItemRef, ActionBarItemProps } from 'components/
 import Button from 'components/Button';
 import useSidebar from 'hooks/useSidebar';
 
-import logger from 'utils/logger';
-
 import './index.scss';
 
 interface ActionBarAltSectionProps {
@@ -152,7 +150,6 @@ const ActionBarSection: React.FC<AcctionBarSectionProps> = ( props: AcctionBarSe
 
         // The section items length is used to set the siblingWeight, used for the item scaling function
         // TODO: It would be better to supply a specific weight based on the element size
-        if (sectionItems.length) logger.debug(`section at ${type} has n. items`, sectionItems.length);
         return sectionItems
             .map( element => {
                 return <element.type
@@ -177,15 +174,12 @@ const ActionBarSection: React.FC<AcctionBarSectionProps> = ( props: AcctionBarSe
         const totalItemsWidth = Object.values( _itemList).reduce( (total, element) => {
             return total + (element?.offsetWidth || 0);
         }, 0);
-        logger.debug({sectionWidth, totalItemsWidth, scaling}, 'ActionBarSection - calculating whether it should scale')
         if ( !scaling.value && totalItemsWidth && sectionWidth && totalItemsWidth >= sectionWidth) {
-            logger.debug({sectionWidth, totalItemsWidth}, 'ActionBarSection - should scale');
             setScaling({
                 value: true,
                 itemsWidth: totalItemsWidth
             });
         } else if ( scaling.value && scaling.itemsWidth && sectionWidth && scaling.itemsWidth < sectionWidth ) {
-            logger.debug({sectionWidth, itemsWidth: scaling.itemsWidth}, 'ActionBarSection - should not scale');
             setScaling({
                 value: false,
                 itemsWidth: 0

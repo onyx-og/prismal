@@ -3,7 +3,6 @@ import './index.scss';
 
 import ActionBarAltItem from 'components/ActionBar/ActionBarAltItem';
 import useElementWidth from 'hooks/useElementWidth';
-import logger from 'utils/logger';
 
 export interface ActionBarItemProps {
     item: JSX.Element;
@@ -62,14 +61,11 @@ const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
 
     // If scaling is enabled and configured correctly, checks if it should switch to scaled form
     React.useLayoutEffect( () => {
-        logger.debug({item: uniqueKey, sectionWidth, originalWidth, siblingWeight}, 'ActionBarItem - calculating for scaling');
         if ( scale && scaleFactor && sectionWidth && siblingWeight && originalWidth ) {
             if ( !scaling.value && originalWidth * scaleFactor > sectionWidth / siblingWeight ) {
-                logger.debug({scaling},`ActionBarItem - item '${uniqueKey}' original width exceeds sectionRef's`);
                 setScaled({value: true, width: 0});
             } else if ( (scaling.value || scaling.value == null) && originalWidth * scaleFactor <= sectionWidth / siblingWeight ) {
                 setScaled({value: false, width: 0})
-                logger.debug({ originalWidth, sectionWidth: sectionWidth, item: uniqueKey}, 'ActionBarItem - disabling scaling');
             } 
         } else if ( !scale ) {
             setScaled({value: false, width: 0})
@@ -85,7 +81,6 @@ const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
     React.useEffect( () => {
         const width = ref.current?.clientWidth || 0;
         if ( (scaling.value === true || scaling.value === false) && scaling.width !== width ) {
-            logger.debug({width, element: ref.current}, 'ActionBarItem - scaling changed, updating width');
             setScaled({ value: scaling.value, width });
         }
     }, [scaling, ref]);
