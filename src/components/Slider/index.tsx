@@ -1,7 +1,9 @@
 import React from 'react';
+import ComponentProps from '../Component';
 import './index.scss';
+import { setAccentStyle } from 'utils/colors';
 
-type SliderProcProps = {
+interface SliderProcProps extends ComponentProps {
     type: "process";
     id?: number;
     slides: any[];
@@ -14,7 +16,7 @@ type SliderProcProps = {
     labelEl?: JSX.Element;
 }
 
-type SliderRawProps = {
+interface SliderRawProps extends ComponentProps {
     type: "raw";
     id?: number;
     spacing?: number;
@@ -26,12 +28,22 @@ type SliderRawProps = {
     labelEl?: JSX.Element;
 }
 
-const Slider: React.FC<SliderProcProps | SliderRawProps> = ( props ) => {
+export type SliderProps = SliderProcProps | SliderRawProps;
+
+const Slider: React.FC<SliderProps> = ( props ) => {
     const { 
         id = Math.random().toString(36).substring(2, 12),
         spacing = 5, 
         size = "l",
     } = props;
+
+    const { className } = props;
+    let sliderClass = "prismal-slider-outer-container";
+    if (className) sliderClass = `${sliderClass} ${className}`;
+
+    const { accent, accentLight, accentDark } = props;    
+    let style: {[key: string]: any} = {};
+    style = setAccentStyle(style, {accent, accentLight, accentDark});
 
     // [TODO] Add autostart and timed slide
 
@@ -217,7 +229,7 @@ const Slider: React.FC<SliderProcProps | SliderRawProps> = ( props ) => {
             }
         `
 
-        return <div className="prismal-slider-outer-container">
+        return <div className={sliderClass} style={style}>
             <style>{slideshowStyle}</style>
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>
@@ -363,7 +375,7 @@ const Slider: React.FC<SliderProcProps | SliderRawProps> = ( props ) => {
             }
         `
 
-        return <div className="prismal-slider-outer-container">
+        return <div className={sliderClass} style={style}>
             <style>{slideshowStyle}</style>
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>
