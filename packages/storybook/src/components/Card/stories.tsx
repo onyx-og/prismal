@@ -9,6 +9,8 @@ export default {
         accent: { control: 'color' },
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
+        cornerRadius: { control: 'select', options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"] },
+        padding: { control: 'select', options: ['xs', "s", 'm', 'l'] }
     }
   } as ComponentMeta<typeof Card>;
   

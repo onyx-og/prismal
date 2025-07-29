@@ -13,31 +13,20 @@
     height: 100%;
     width: 100%;
     font-family: vars.$font-body;
+    border-radius: var(--border-radius);
     &:hover {
        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
-    &.card-br-s {
-        border-radius: 0.25rem;
-    }
-    &.card-br-m {
-        border-radius: 0.5rem;
-    }
-    &.card-br-l {
-        border-radius: 0.75rem;
-    }
-    &.card-br-xl {
-        border-radius: 1rem;
-    }
-    &.card-p-xs .card-content {
+    &.card-p-xs .prismal-card-content {
         padding: 0.25rem;
     }
-    &.card-p-s .card-content {
+    &.card-p-s .prismal-card-content {
         padding: 0.5rem;
     }
-    &.card-p-m .card-content {
+    &.card-p-m .prismal-card-content {
         padding: 0.75rem;
     }
-    &.card-p-l .card-content {
+    &.card-p-l .prismal-card-content {
         padding: 1rem;
     }
 }
