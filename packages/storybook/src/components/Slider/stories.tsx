@@ -24,3 +24,43 @@ Default.args = {
     children: [<div className='slide-container'>Lorem ipsum</div>, 
         <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
 };
+
+export const Processed = Template.bind({});
+Processed.args = {
+  type: 'process',
+  slides: [1,2,3],
+  slideWrapper: (slide) => {
+    return <div className='slide-container'>{`Lorem ipsum ${slide}`}</div>
+  }
+};
+
+export const SlideSizeXL = Template.bind({});
+SlideSizeXL.args = {
+    type: "raw",
+    spacing: 1,
+    size: "xl",
+    children: [<div className='slide-container'>Lorem ipsum</div>, 
+        <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
+};
+
+export const SlideSizeS = Template.bind({});
+SlideSizeS.args = {
+    type: "process",
+    spacing: 1,
+    size: "s",
+    slides: [1,2,3,4,5,6],
+    slideWrapper: (slide) => {
+        return <div className='slide-container'>{`Lorem ipsum ${slide}`}</div>
+    }
+};
+
+export const SlideSizeM = Template.bind({});
+SlideSizeM.args = {
+    type: "process",
+    spacing: 1,
+    size: "m",
+    slides: [1,2,3,4,5,6],
+    slideWrapper: (slide) => {
+        return <div className='slide-container'>{`Lorem ipsum ${slide}`}</div>
+    }
+};
