@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import Page from './page';
+import Page, { ListProcessor } from './page';
 import ComponentProps from 'components/Component';
 import ActionBar from "components/ActionBar";
 import Button from 'components/Button';
@@ -11,7 +11,9 @@ import { setAccentStyle } from 'utils/colors';
  * when moving between pages
  */
 
-export interface ListProps extends ComponentProps {
+
+
+export interface ProcessedListProps extends ComponentProps {
     data: any[];
     pageSize?: number;
     page?: number;
@@ -22,16 +24,32 @@ export interface ListProps extends ComponentProps {
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
-    listProcessor: (arg: any[]) => {
-        processed?: any;
-        elements: JSX.Element[]
-    },
+    listProcessor: ListProcessor,
     onProcessEnd?: (arg: any) => void;
-    type?: 'list';
+    view?: 'list';
+    type: 'process';
     padding?: 's' | 'm' | 'l';
 }
 
-export interface GridProps extends ComponentProps {
+export interface RawListProps extends ComponentProps {
+    pageSize?: number;
+    page?: number;
+    infiniteScroll?: boolean;
+    header?: React.ReactNode;
+    headerClassName?: string;
+    footer?: React.ReactNode;
+    footerClassName?: string;
+    showPageCtrl?: boolean;
+    showExtremesCtrl?: boolean;
+    children: React.ReactNode[];
+    view?: 'list';
+    type: 'raw';
+    padding?: 's' | 'm' | 'l';
+}
+
+export type ListProps = ProcessedListProps | RawListProps;
+
+export interface ProcessedGridProps extends ComponentProps {
     data: any[];
     pageSize?: number;
     page?: number;
@@ -42,12 +60,10 @@ export interface GridProps extends ComponentProps {
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
-    listProcessor: (arg: any[]) => {
-        processed?: any;
-        elements: JSX.Element[]
-    },
+    listProcessor: ListProcessor;
     onProcessEnd?: (arg: any) => void;
-    type: 'grid';
+    view?: 'grid';
+    type: 'process';
     padding?: 's' | 'm' | 'l';
     cols?: number;
     xsCols?: number;
@@ -57,11 +73,35 @@ export interface GridProps extends ComponentProps {
     xlCols?: number;
 }
 
+export interface RawGridProps extends ComponentProps {
+    pageSize?: number;
+    page?: number;
+    infiniteScroll?: boolean;
+    header?: React.ReactNode;
+    headerClassName?: string;
+    footer?: React.ReactNode;
+    footerClassName?: string;
+    showPageCtrl?: boolean;
+    showExtremesCtrl?: boolean;
+    children: React.ReactNode[];
+    view?: 'grid';
+    type: 'raw';
+    padding?: 's' | 'm' | 'l';
+    cols?: number;
+    xsCols?: number;
+    smCols?: number;
+    mdCols?: number;
+    lgCols?: number;
+    xlCols?: number;
+}
+
+export type GridProps = ProcessedGridProps | RawGridProps;
+
 export type ListComponentProps = ListProps | GridProps;
 
 const List: React.FC<ListComponentProps> = ( props ) => {
     const { 
-        data, pageSize = 24,
+        pageSize = 24,
         page = 1,
         header,
         headerClassName,
@@ -69,9 +109,9 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         footerClassName,
         showPageCtrl = true,
         showExtremesCtrl = false,
-        type = 'list',
+        view = 'list',
+        type = 'raw',
         padding = 's',
-        listProcessor, onProcessEnd,
     } = props;
 
     const {
@@ -79,12 +119,12 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         accent, accentLight, accentDark
     } = props;
 
-    let className_ = `prismal-list prismal-list-type-${type}`;
+    let className_ = `prismal-list prismal-list-type-${view}`;
     if (className) className_ = `${className_} ${className}`;
 
     let style = setAccentStyle({}, {accent, accentLight, accentDark});
 
-    if (props.type == 'grid') {
+    if (props.view == 'grid') {
         const {
             cols = 4, 
             xlCols = cols, 
@@ -108,6 +148,19 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         setPage(page);
     },[page]);
 
+
+    
+
+    const data = React.useMemo(() => {
+        let res: any[] | React.ReactNode[];
+        if (props.type == "raw") {
+            res = props.children;
+        } else {
+            res = props.data;
+        }
+        return res;
+    }, [props.type]);
+
     const listSubSet = React.useMemo(() => {
         let subset = data.slice( currentPage * pageSize - pageSize, currentPage * pageSize );
         return subset;
@@ -115,16 +168,31 @@ const List: React.FC<ListComponentProps> = ( props ) => {
     
     let listWrapperClass = `prismal-list-wrapper`;
 
+    let listProcessor_: ListProcessor,
+        onProcessEnd_: ((arg: any) => void) | undefined;
+
+    if (props.type == "process") {
+        const { listProcessor, onProcessEnd } = props;
+        listProcessor_ = listProcessor;
+        onProcessEnd_ = onProcessEnd;
+    } else {
+        listProcessor_ = (elements) => {
+            return {
+                elements: elements
+            }
+        }
+    }
+
     const pageContainer = React.useMemo(() => {
         return <div className={listWrapperClass}>
             <div className={`prismal-page-container padding-${padding}`}>
                 <Page list={listSubSet} 
-                    listProcessor={listProcessor}
-                    onProcessEnd={onProcessEnd}
+                    listProcessor={listProcessor_}
+                    onProcessEnd={onProcessEnd_}
                 />
             </div>
         </div>
-    },[listWrapperClass, padding, listSubSet, listProcessor, onProcessEnd]);
+    },[listWrapperClass, padding, listSubSet, listProcessor_, onProcessEnd_]);
 
     let headerClassName_ = "prismal-list-header";
     if (headerClassName) headerClassName_ = `${headerClassName_} ${headerClassName}`;

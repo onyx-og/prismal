@@ -32,26 +32,47 @@ ProcessedList.args = {
   page: 1,
   showPageCtrl: true,
   showExtremesCtrl: true,
+  type: 'process',
   listProcessor: (list) => {
     return {
-      processed: null,
       elements: list.map((el) => <Card>{`Element ${el}`}</Card>)
     }
   }
 };
 
+export const RawList = Template.bind({});
+RawList.args = {
+  pageSize: 5,
+  page: 1,
+  showPageCtrl: true,
+  showExtremesCtrl: true,
+  type: 'raw',
+  children: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28].map((el) => <Card>{`Element ${el}`}</Card>)
+};
+
 export const ProcessedGrid = Template.bind({});
 ProcessedGrid.args = {
   data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
-  type: "grid",
+  view: "grid",
   pageSize: 5,
   page: 1,
   cols: 5,
   showPageCtrl: true,
+  type: 'process',
   listProcessor: (list) => {
     return {
-      processed: null,
       elements: list.map((el) => <Card>{`Element ${el}`}</Card>)
     }
   }
+};
+
+export const RawGrid = Template.bind({});
+RawGrid.args = {
+  view: "grid",
+  pageSize: 5,
+  page: 1,
+  cols: 5,
+  showPageCtrl: true,
+  type: 'raw',
+  children: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28].map((el) => <Card>{`Element ${el}`}</Card>)
 };
