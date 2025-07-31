@@ -27,10 +27,39 @@ export interface ListProps extends ComponentProps {
         elements: JSX.Element[]
     },
     onProcessEnd?: (arg: any) => void;
-    type?: 'list' | 'grid';
+    type?: 'list';
     padding?: 's' | 'm' | 'l';
 }
-const List: React.FC<ListProps> = ( props ) => {
+
+export interface GridProps extends ComponentProps {
+    data: any[];
+    pageSize?: number;
+    page?: number;
+    infiniteScroll?: boolean;
+    header?: React.ReactNode;
+    headerClassName?: string;
+    footer?: React.ReactNode;
+    footerClassName?: string;
+    showPageCtrl?: boolean;
+    showExtremesCtrl?: boolean;
+    listProcessor: (arg: any[]) => {
+        processed?: any;
+        elements: JSX.Element[]
+    },
+    onProcessEnd?: (arg: any) => void;
+    type: 'grid';
+    padding?: 's' | 'm' | 'l';
+    cols?: number;
+    xsCols?: number;
+    smCols?: number;
+    mdCols?: number;
+    lgCols?: number;
+    xlCols?: number;
+}
+
+export type ListComponentProps = ListProps | GridProps;
+
+const List: React.FC<ListComponentProps> = ( props ) => {
     const { 
         data, pageSize = 24,
         page = 1,
@@ -53,8 +82,25 @@ const List: React.FC<ListProps> = ( props ) => {
     let className_ = `prismal-list prismal-list-type-${type}`;
     if (className) className_ = `${className_} ${className}`;
 
-    let style: {[key: string]: any} = {};
-    style = setAccentStyle(style, {accent, accentLight, accentDark});
+    let style = setAccentStyle({}, {accent, accentLight, accentDark});
+
+    if (props.type == 'grid') {
+        const {
+            cols = 4, 
+            xlCols = cols, 
+            lgCols = xlCols-1 > 0 ? xlCols-1 : 1,
+            mdCols = lgCols-1 > 0 ? lgCols-1 : 1, 
+            smCols = mdCols-1 > 0 ? mdCols-1 : 1,
+            xsCols = smCols-1 > 0 ? smCols-1 : 1, 
+        } = props;
+
+        style["--grid-colums-xs"] = xsCols;
+        style["--grid-colums-sm"] = smCols;
+        style["--grid-colums-md"] = mdCols;
+        style["--grid-colums-lg"] = lgCols;
+        style["--grid-colums-xl"] = xlCols;
+        style["--grid-colums"] = cols;
+    }
 
     const [currentPage, setPage] = React.useState<number>(page);
 

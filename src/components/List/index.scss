@@ -40,20 +40,21 @@
         .prismal-list-wrapper > .prismal-page-container {
             display: grid;
             grid-auto-rows: 12em;
+            grid-template-columns: var(--grid-colums);
             @include utils.mq_min(xs) {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(var(--grid-colums-xs), 1fr);
             }
             @include utils.mq_min(sm) {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(var(--grid-colums-sm), 1fr);
             }
             @include utils.mq_min(md) {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(var(--grid-colums-md), 1fr);
             }
             @include utils.mq_min(lg) {
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: repeat(var(--grid-colums-lg), 1fr);
             }
             @include utils.mq_min(xl) {
-                grid-template-columns: repeat(12, 1fr);
+                grid-template-columns: repeat(var(--grid-colums-xl), 1fr);
             }
         }
     }
