@@ -9,26 +9,12 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    .list-wrapper {
+    .prismal-list-wrapper {
         height:100%;
         @include layout.column(9);
         @include layout.column(12, lg);
-        .page-container {
+        .prismal-page-container {
             width: 100%;
-        }
-    }
-
-    &.list {
-        .list-wrapper > .page-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-    }
-    &.grid {
-        .list-wrapper > .page-container {
-            display: grid;
-            grid-auto-rows: 12em;
             &.padding-s {
                 gap: 1rem;
             }
@@ -38,6 +24,23 @@
             &.padding-l {
                 gap: 3rem;
             }
+        }
+    }
+    .prismal-list-footer {
+        width: 100%;
+    }
+
+    &.prismal-list-type-list {
+        .prismal-list-wrapper > .prismal-page-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+    &.prismal-list-type-grid {
+        .prismal-list-wrapper > .prismal-page-container {
+            display: grid;
+            grid-auto-rows: 12em;
             @include utils.mq_min(xs) {
                 grid-template-columns: repeat(2, 1fr);
             }
