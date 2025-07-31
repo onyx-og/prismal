@@ -13,6 +13,7 @@ export default {
         accentLight: { control: 'color' },
         pageSize: { control: { type: 'number', min:1, max:30, step: 1 } },
         page: { control: { type: 'number', min:1, max:5, step: 1 } },
+        showPageCtrl: { control: 'boolean' },
         showExtremesCtrl: { control: 'boolean' }
     }
   } as ComponentMeta<typeof List>;
@@ -29,6 +30,7 @@ Processed.args = {
   data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
   pageSize: 5,
   page: 1,
+  showPageCtrl: true,
   showExtremesCtrl: true,
   listProcessor: (list) => {
     return {

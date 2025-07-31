@@ -1,10 +1,17 @@
 import React from 'react';
 import './index.scss';
 import Page from './page';
+import ComponentProps from 'components/Component';
 import ActionBar from "components/ActionBar";
 import Button from 'components/Button';
+import { setAccentStyle } from 'utils/colors';
 
-export interface ListProps {
+/**
+ * [TODO] Add infinity scroll and pagination back-to-top behaviour
+ * when moving between pages
+ */
+
+export interface ListProps extends ComponentProps {
     data: any[];
     pageSize?: number;
     page?: number;
@@ -38,6 +45,17 @@ const List: React.FC<ListProps> = ( props ) => {
         listProcessor, onProcessEnd,
     } = props;
 
+    const {
+        className,
+        accent, accentLight, accentDark
+    } = props;
+
+    let className_ = `prismal-list prismal-list-type-${type}`;
+    if (className) className_ = `${className_} ${className}`;
+
+    let style: {[key: string]: any} = {};
+    style = setAccentStyle(style, {accent, accentLight, accentDark});
+
     const [currentPage, setPage] = React.useState<number>(page);
 
     React.useEffect(() => {
@@ -49,13 +67,27 @@ const List: React.FC<ListProps> = ( props ) => {
         return subset;
     }, [data, currentPage, pageSize]);
     
-    let listClass = `prismal-list prismal-list-type-${type}`,
-    listWrapprerClass = `prismal-list-wrapper`;
+    let listWrapperClass = `prismal-list-wrapper`;
+
+    const pageContainer = React.useMemo(() => {
+        return <div className={listWrapperClass}>
+            <div className={`prismal-page-container padding-${padding}`}>
+                <Page list={listSubSet} 
+                    listProcessor={listProcessor}
+                    onProcessEnd={onProcessEnd}
+                />
+            </div>
+        </div>
+    },[listWrapperClass, padding, listSubSet, listProcessor, onProcessEnd]);
 
     let headerClassName_ = "prismal-list-header";
     if (headerClassName) headerClassName_ = `${headerClassName_} ${headerClassName}`;
     let footerClassName_ = "prismal-list-footer";
     if (footerClassName) footerClassName_ = `${footerClassName_} ${footerClassName}`;
+
+    const header_ = React.useMemo(() => {
+        return <div className={headerClassName_}>{header}</div>
+    },[header, headerClassName]);
 
     const pageBackwards = React.useCallback(() => {
         setPage(currentPage-1);
@@ -105,29 +137,30 @@ const List: React.FC<ListProps> = ( props ) => {
         }
     },[showExtremesCtrl,currentPage,lastPage]);
 
-    const component = React.useMemo(() => {
-        return <div className={listClass}>
-            <div className={headerClassName_}>{header}</div>
-            <div className={listWrapprerClass}>
-                <div className={`prismal-page-container padding-${padding}`}>
-                    <Page list={listSubSet} 
-                        listProcessor={listProcessor}
-                        onProcessEnd={onProcessEnd}
-                    />
-                </div>
-            </div>
-            <div className={footerClassName_}>
-                {showPageCtrl ? <ActionBar items={[
-                    { item: <>{leftExtreme}</>, position: "left", key: "leftExtreme"},
-                    { item: <Button onClick={pageBackwards} disabled={currentPage==1}>Back</Button>, position: "left", key: "back"},
-                    { item: <>{pageJumpCtrl}</>, position:"center", key: "pageJumpCtrl"},
-                    { item: <Button onClick={pageForward} disabled={currentPage==lastPage}>Next</Button>, position: "right", key: "next"},
-                    { item: <>{rightExtreme}</>, position: "right", key: "rightExtrme"}
-                ]} position='bottom' /> : <></>}
-                {footer}
-            </div>
+    const pageCtrl = React.useMemo(() => {
+        return <ActionBar items={[
+            { item: <>{leftExtreme}</>, position: "left", key: "leftExtreme"},
+            { item: <Button onClick={pageBackwards} disabled={currentPage==1}>Back</Button>, position: "left", key: "back"},
+            { item: <>{pageJumpCtrl}</>, position:"center", key: "pageJumpCtrl"},
+            { item: <Button onClick={pageForward} disabled={currentPage==lastPage}>Next</Button>, position: "right", key: "next"},
+            { item: <>{rightExtreme}</>, position: "right", key: "rightExtrme"}
+        ]} position='bottom' />
+    },[leftExtreme,pageBackwards,currentPage,pageJumpCtrl,pageForward,lastPage,rightExtreme]);
+
+    const footer_ = React.useMemo(() => {
+        return <div className={footerClassName_}>
+            {showPageCtrl ? pageCtrl : <></>}
+            {footer}
         </div>
-    },[currentPage]);
+    },[showPageCtrl, footerClassName_, pageCtrl, footer])
+
+    const component = React.useMemo(() => {
+        return <div className={className_} style={style}>
+            {header_}
+            {pageContainer}
+            {footer_}
+        </div>
+    },[currentPage,lastPage, header_, , className_, listWrapperClass, listSubSet, footer_]);
 
     return component;
 }
