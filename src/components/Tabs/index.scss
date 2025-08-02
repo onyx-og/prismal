@@ -5,10 +5,10 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        background-color: vars.$primary-color-light;
+        background-color: vars.$light-color;
         gap: 1rem;
         justify-content: space-evenly;
-        overflow-x: scroll;
+        overflow-x: auto;
         overflow-y: clip;
         border-radius: var(--border-radius);
         font-family: vars.$font-body;
@@ -38,6 +38,7 @@
                 
                 &.selected {
                     color: vars.$primary-color;
+                    font-weight: bold;
                 }
 
                 &.selected::after {

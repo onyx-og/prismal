@@ -4,6 +4,16 @@ import ComponentProps from "../Component";
 import {setAccentStyle, setBorderRadius} from "../../utils"
 import Icon from "../Icon";
 
+
+export type TabConfig = {
+    name: string | number,
+    iconName?: string,
+    label: string,
+    disabled?: boolean,
+    default?: boolean,
+    className?: string,
+    [otherProp: string]: any
+}
 interface TabProps extends TabConfig {
     selected: boolean;
 }
@@ -40,61 +50,78 @@ const TabContainer: React.FC<TabContainerProps> = (props) => {
         {tabRenderer(config, index, isSelected)}
     </div>
 }
-type TabConfig = {
-    name: string | number,
-    iconName?: string,
-    label: string,
-    disabled?: boolean,
-    default?: boolean,
-    className?: string,
-    [otherProp: string]: any
+interface TabContentProps {
+  'data-tab': string | number;
 }
 export interface TabsProps extends ComponentProps {
-    tabs: TabConfig[];
+    data: TabConfig[];
     tabRenderer?: TabContainerProps["tabRenderer"];
+    // [TODO] Try to specify that the elements must have attr/prop "data-tab" set
+    children?: React.ReactElement<TabContentProps>[];
     content?: {
-        [tabKey: string]: React.ReactNode;
+        [tabName: string]: React.ReactNode;
     }
-    tabClassName?: string;
+    contentRenderer?: (tabName: string | number) => React.ReactNode;
+    tabsClass?: string;
+    tabContentClass?: string;
+    tabClass?: string;
+}
+export type TabRef = {
+    name: string | number;
 }
 // TODO: Consider accepting children prop that represent tabs
-const Tabs = React.forwardRef<TabConfig["name"] | undefined, TabsProps>((props, ref) => {
+const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
     const {
-        tabs: tabsConfig, tabRenderer = defaultRenderer,
-        content, className, tabClassName,
+        data, tabRenderer = defaultRenderer,
+        className, tabClass, tabsClass, tabContentClass,
         accent, accentDark, accentLight,
-        borderRadius, elevation
+        borderRadius, elevation,
+        children, content, contentRenderer
     } = props;
     // Select the first tab if no default is provided
     const [selected, setSelected] = React.useState(
-        tabsConfig.find(t => t.default)?.name ||
-            (tabsConfig.length > 0) ? tabsConfig[0].name : undefined
+        data.find(t => t.default)?.name ||
+            (data.length > 0) ? data[0].name : undefined
     )
-    React.useImperativeHandle(ref, () => selected, [selected])
+    React.useImperativeHandle(ref, () => ({name: selected!}), [selected])
 
-    let tabsClass = "prismal-tabs";
-    if (className) tabsClass = `${tabsClass} ${className}`;
+    let tabsClass_ = "prismal-tabs";
+    if (tabsClass) tabsClass_ = `${tabsClass_} ${tabsClass}`;
+
+    let className_ = "prismal-tabs-container";
+    if (className) className_ = `${className_} ${className}`;
+
+    let tabContentClass_ = "prismal-tab-content";
+    if (tabContentClass) tabContentClass_ = `${tabContentClass_} ${tabContentClass}`;
 
     const tabs = React.useMemo(() => {
-        return tabsConfig.map((tabConfig, index) => {
+        return data.map((tabConfig, index) => {
             let isSelected = selected == tabConfig.name;
-            return <TabContainer index={index} isSelected={isSelected} setSelected={setSelected} config={tabConfig}
-                key={tabConfig.name} className={tabClassName}
+            return <TabContainer index={index} isSelected={isSelected} setSelected={() => setSelected(tabConfig.name)} config={tabConfig}
+                key={tabConfig.name} className={tabClass}
                 tabRenderer={tabRenderer}
             />
         });
-    }, [tabsConfig, selected, tabClassName, tabRenderer, setSelected]);
+    }, [data, selected, tabClass, tabRenderer, setSelected]);
 
     const tabContent = React.useMemo(() => {
-        if (content && selected) {
+        if (selected && children) {
+            return children.find((el) => {
+                return el.props["data-tab"] == selected
+            })
+        }
+        else if (selected && contentRenderer) {
+            return contentRenderer(selected)
+        }
+        else if (selected && content) {
             const selectedContent = content[selected];
             // TODO: Consider adding a fallback content
-            return <div className="prismal-tab-content">
+            return <div className={tabContentClass_}>
                 {selectedContent}
             </div>
         }
         return <></> // consider a 404
-    }, [selected, content]);
+    }, [selected, content, tabContentClass_, children, contentRenderer]);
 
     const style: { [key: string]: any } = React.useMemo(() => {
         let _style: { [key: string]: any } = {}
@@ -103,8 +130,8 @@ const Tabs = React.forwardRef<TabConfig["name"] | undefined, TabsProps>((props, 
         return _style;
     }, [accent, accentLight, accentDark, borderRadius]);
 
-    return <div style={style} className={"prismal-tabs-container"}>
-        <div className={tabsClass}>{tabs}</div>
+    return <div style={style} className={className_}>
+        <div className={tabsClass_}>{tabs}</div>
         {tabContent}
     </div>
 })
