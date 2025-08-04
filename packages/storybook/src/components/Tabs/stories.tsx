@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Tabs from 'components/Tabs';
+import Card from 'components/Card';
 
 export default {
     title: 'Commons/Tabs',
@@ -23,15 +24,15 @@ Default.args = {
         { name: "tab3", label: "Tab 3" },
     ],
     children: [
-        <div key="c1" data-tab="tab1">
+        <Card elevation={0} key="c1" data-tab="tab1">
             First tab content
-        </div>,
-        <div key="c2" data-tab="tab2">
+        </Card>,
+        <Card elevation={0} key="c2" data-tab="tab2">
             Second tab content
-        </div>,
-        <div key="c3" data-tab="tab3">
+        </Card>,
+        <Card elevation={0} key="c3" data-tab="tab3">
             Third tab content
-        </div>,
+        </Card>,
     ]
 };
 

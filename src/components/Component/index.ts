@@ -4,6 +4,7 @@ interface ComponentProps extends AccentConfig {
     className?: string;
     elevation?: Elevation;
     borderRadius?: BorderRadius;
+    style?: React.CSSProperties;
 };
 
 export default ComponentProps;

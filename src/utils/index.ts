@@ -1,12 +1,78 @@
 export * from "./colors";
-export type Elevation = 0 | 1 | 2 | 3 | 4 | 5
+export type Elevation = 0 | 1 | 2 | 3 | 4 // | 5
 export const setElevation = (className: string, elevation: Elevation = 0 ) => {
     let _className = `${className}  elevation-${
         elevation < 6 ? elevation : 5
     }`
     return _className;
 }
+export const setPadding = (
+    style: {[key: string]: any},
+    padding: "xs" | "s" | "m" | "l" | "xl"
+) => {
+    let style_ : {[key: string]: any} = {},
+        padding_: string;
+    
+    switch(padding) {
+        case "xs":
+            padding_ = "0.25rem";
+            break;
+        case "s":
+            padding_ = "0.5rem";
+            break;
+        case "m":
+            padding_ = "0.75rem";
+            break;
+        case "l":
+            padding_ = "1rem";
+            break;
+        default:
+            padding_ = "0.25rem";
+    }
+    style_['--box-padding'] = padding_;
 
+    return Object.assign(style, style_);
+}
+export const setBoxElevation = (
+    style: {[key: string]: any},
+    elevation: Elevation = 0
+) => {
+    let _style: {[key: string]: any} = {},
+        boxElevation: string = "0",
+        boxElevationHover: string = "0";
+    switch(elevation) {
+        case 0:
+           boxElevation = "0"
+           boxElevationHover = "0"
+            break;
+        case 1:
+           boxElevation = "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px";
+           boxElevationHover = "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px";
+           break;
+        case 2:
+           boxElevation = "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+           boxElevationHover = "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+           break;
+        case 3:
+           boxElevation = "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+           boxElevationHover = "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
+           break;
+        case 4:
+           boxElevation = "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
+           boxElevationHover = "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"
+           break;
+        // case 5:
+        //    boxElevation = "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"
+        //    break;
+        default:
+            boxElevation = "0";
+    }
+
+    _style['--box-elevation'] = boxElevation;
+    _style['--box-elevation-hover'] = boxElevationHover;
+
+    return Object.assign(style, _style);
+}
 export type BorderRadius = "none" | "extra-small" | "small" | "medium" 
     | "large" | "extra-large" | "full";
 
