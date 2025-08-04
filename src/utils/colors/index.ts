@@ -6,28 +6,28 @@ export interface AccentConfig {
 }
 
 const setAccentStyle = (style: {[key: string]: any}, conf: AccentConfig ) => {
-    return Object.assign(style, accentStyle(conf));
-}
-
-const accentStyle = (conf: AccentConfig) => {
     const { accent, accentLight, accentDark } = conf;
-    let style: {[key: string]: any} = {};
+    let style_: {[key: string]: any} = {};
 
     if (accent) {
-        style['--color-primary'] = accent;
-        style['--color-primary-light'] = lighten(accent, 0.15);
-        style['--color-primary-dark'] = darken(accent, 0.15)
+        style_['--color-primary'] = accent;
+        style_['--color-primary-light'] = lighten(accent, 0.15);
+        style_['--color-primary-dark'] = darken(accent, 0.15)
     }
 
     if (accentLight) {
-        style['--color-primary-light'] = accentLight
+        style_['--color-primary-light'] = accentLight
     }
 
     if (accentDark) {
-        style['--color-primary-dark'] = accentDark;
+        style_['--color-primary-dark'] = accentDark;
     }
 
-    return style;
+    return Object.assign(style, style_);
+}
+
+const accentStyle = (conf: AccentConfig) => {
+    
 }
 
 /** 
