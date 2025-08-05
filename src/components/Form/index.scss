@@ -8,14 +8,14 @@ form {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        @extend .my05;
+        @extend %my05;
     }
     .form-error {
         color: vars.$error-color;
-        @extend .t6;
-        @extend .my05;
+        @extend %t6;
+        @extend %my05;
     }
     .form-submit {
-        @extend .f-right;
+        @extend %f-right;
     }
 }
