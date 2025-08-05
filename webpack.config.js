@@ -122,7 +122,7 @@ const config = {
                 test: /\.(ts|tsx)$/i,
                 loader: 'ts-loader',
                 options: {
-                    configFile: 'tsconfig.json'
+                    configFile: 'build.tsconfig.json'
                 },
                 exclude: ['/node_modules/'],
             },
