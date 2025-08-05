@@ -36,7 +36,7 @@ const defaultRenderer = (tab: TabConfig, index: number, isSelected: boolean) => 
 interface TabContainerProps {
     index: number;
     isSelected: boolean;
-    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean) => React.ReactNode;
+    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number)=>void) => React.ReactNode;
     config: TabConfig;
     className?: string;
     setSelected: (selected: TabConfig["name"]) => void;
@@ -47,7 +47,7 @@ const TabContainer: React.FC<TabContainerProps> = (props) => {
     let tabContainerClass = `prismal-tab-container`;
     if (className)`${tabContainerClass} ${className}`;
     return <div onClick={() => setSelected(config.name)} className={tabContainerClass}>
-        {tabRenderer(config, index, isSelected)}
+        {tabRenderer(config, index, isSelected, setSelected)}
     </div>
 }
 interface TabContentProps {
@@ -97,7 +97,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
     const tabs = React.useMemo(() => {
         return data.map((tabConfig, index) => {
             let isSelected = selected == tabConfig.name;
-            return <TabContainer index={index} isSelected={isSelected} setSelected={() => setSelected(tabConfig.name)} config={tabConfig}
+            return <TabContainer index={index} isSelected={isSelected} setSelected={setSelected} config={tabConfig}
                 key={tabConfig.name} className={tabClass}
                 tabRenderer={tabRenderer}
             />
@@ -116,9 +116,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         else if (selected && content) {
             const selectedContent = content[selected];
             // TODO: Consider adding a fallback content
-            return <div className={tabContentClass_}>
-                {selectedContent}
-            </div>
+            return selectedContent;
         }
         return <></> // consider a 404
     }, [selected, content, tabContentClass_, children, contentRenderer]);
@@ -132,7 +130,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
 
     return <div style={style} className={className_}>
         <div className={tabsClass_}>{tabs}</div>
-        {tabContent}
+        <div className={tabContentClass_}>{tabContent}</div>
     </div>
 })
 

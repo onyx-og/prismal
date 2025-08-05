@@ -102,7 +102,7 @@ const Stack: React.FC<StackProps> = (props) => {
                 itemData={elData} index={index} key={elData.name}
                 itemRenderer={render} setActive={setActive} gap={gap}
                 isActive={index == activeIndex} borderRadius={borderRadius}
-                elevation={index < 6 ? index as Elevation : 5}
+                elevation={index < 5 ? index as Elevation : 4}
             />
         });
     }, [
