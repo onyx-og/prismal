@@ -11,6 +11,7 @@ export interface CardProps extends ComponentProps  {
     footerClass?: string;
     children?: React.ReactNode; // Card content
     bodyClass?: string;
+    orientation?: "vertical" | "horizontal";
     cornerRadius?: BorderRadius;
     padding?: 'xs' | "s" | 'm' | 'l';
 }
@@ -22,12 +23,14 @@ const Card: React.FC<CardProps> = ( props ) => {
         accent, accentDark, accentLight,
         className, style = {},
         children, bodyClass,
+        orientation = "vertical",
         cornerRadius = 'extra-small', padding = 's',
         elevation = 1
     } = props;
 
     let cardClass = `prismal-card`;
     if (className) cardClass = `${cardClass} ${className}`;
+    cardClass = `${cardClass} prismal-card-${orientation[0]}`;
 
     let style_: {[key: string]: any} = {...style};
     setAccentStyle(style_, {accent, accentLight, accentDark});
