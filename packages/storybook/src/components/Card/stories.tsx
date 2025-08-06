@@ -3,6 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Card from 'components/Card';
 import Button from 'components/Button';
 
+import "./stories.scss";
+
 export default {
     title: 'Commons/Card',
     component: Card,
@@ -47,4 +49,35 @@ HeaderAndFooter.args = {
     children: <div>Lorem ipsum</div>,
     footer: <Button>Launch</Button>,
     elevation: 2
+};
+
+export const HorizontallyOriented = Template.bind({});
+HorizontallyOriented.args = {
+    style: {
+        maxWidth: "30rem"
+    },
+    header: <h3>Card title</h3>,
+    children: <div>Lorem ipsum</div>,
+    footer: <Button>Launch</Button>,
+    orientation: "horizontal"
+};
+
+export const Advanced = Template.bind({});
+Advanced.args = {
+    style: {
+        maxWidth: "30rem"
+    },
+    header: <Card style={{
+        position: 'absolute',
+        top: -10,
+        left: -10,
+        width: "5rem",
+        backgroundColor: "var(--color-primary-light)"
+    }} elevation={2}>
+        <span>Card title</span>
+    </Card>,
+    headerClass: "card-header-advanced",
+    children: <div>Lorem ipsum</div>,
+    footer: <Button>Launch</Button>,
+    orientation: "horizontal"
 };

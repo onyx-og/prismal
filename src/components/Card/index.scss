@@ -4,25 +4,60 @@
 
 // [TODO] Set elevation and elevation-hover to box-shadow and :hover's box-shadow
 .prismal-card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    overflow: clip;
     background: white;
     // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     box-shadow: var(--box-elevation);
     grid-area: var(--card-size);
     cursor: pointer;
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
     font-family: vars.$font-body;
     border-radius: var(--border-radius);
+
     &:hover {
         box-shadow: var(--box-elevation-hover);
-    //    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        //    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
-    .prismal-card-header, .prismal-card-body, .prismal-card-footer {
+
+    .prismal-card-body {
+        flex: 1
+    }
+
+    .prismal-card-header,
+    .prismal-card-body,
+    .prismal-card-footer {
         display: flex;
         padding: var(--box-padding);
     }
-}
 
+    &.prismal-card-h {
+        flex-direction: row;
+
+        .prismal-card-header {
+            border-top-left-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
+        }
+
+        .prismal-card-footer {
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+    }
+
+    &.prismal-card-v {
+        flex-direction: column;
+
+        .prismal-card-header {
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+        }
+
+        .prismal-card-footer {
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+    }
+}
