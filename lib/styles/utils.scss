@@ -1,4 +1,6 @@
 @use "@sass-collective/strip-unit";
+@use "sass:map";
+@use "sass:string";
 
 @mixin google-font($family) {
   @import url(https://fonts.googleapis.com/css?family=#{$family});
@@ -44,7 +46,7 @@ $font-lock-max: 1000px !default;
   position: $pos;
 }
 @mixin responsive-ratio($x,$y, $pseudo: false) {
-  $padding: unquote( ( calc($y / $x) ) * 100 + '%' );
+  $padding: string.unquote( ( calc($y / $x) ) * 100 + '%' );
   @if $pseudo {
       &:before {
           @include pseudo($pos: relative);
@@ -115,10 +117,10 @@ $breakpoints: (
 @mixin mq_max($breakpoint) {
 
   // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
 
     // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
 
     // Write the media query.
     @media (max-width: ($breakpoint-value - 1)) {
@@ -136,10 +138,10 @@ $breakpoints: (
 @mixin mq_min($breakpoint) {
 
   // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
 
     // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
 
     // Write the media query.
     @media (min-width: ($breakpoint-value - 1)) {

@@ -1,15 +1,7 @@
 import React from "react";
 import "./index.scss";
 import ComponentProps from "../Component";
-interface TabContainerProps {
-    index: number;
-    isSelected: boolean;
-    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean) => React.ReactNode;
-    config: TabConfig;
-    className?: string;
-    setSelected: (selected: TabConfig["name"]) => void;
-}
-type TabConfig = {
+export type TabConfig = {
     name: string | number;
     iconName?: string;
     label: string;
@@ -18,13 +10,31 @@ type TabConfig = {
     className?: string;
     [otherProp: string]: any;
 };
-export interface TabsProps extends ComponentProps {
-    tabs: TabConfig[];
-    tabRenderer?: TabContainerProps["tabRenderer"];
-    content?: {
-        [tabKey: string]: React.ReactNode;
-    };
-    tabClassName?: string;
+interface TabContainerProps {
+    index: number;
+    isSelected: boolean;
+    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number) => void) => React.ReactNode;
+    config: TabConfig;
+    className?: string;
+    setSelected: (selected: TabConfig["name"]) => void;
 }
-declare const Tabs: React.ForwardRefExoticComponent<TabsProps & React.RefAttributes<string | number | undefined>>;
+interface TabContentProps {
+    'data-tab': string | number;
+}
+export interface TabsProps extends ComponentProps {
+    data: TabConfig[];
+    tabRenderer?: TabContainerProps["tabRenderer"];
+    children?: React.ReactElement<TabContentProps>[];
+    content?: {
+        [tabName: string]: React.ReactNode;
+    };
+    contentRenderer?: (tabName: string | number) => React.ReactNode;
+    tabsClass?: string;
+    tabContentClass?: string;
+    tabClass?: string;
+}
+export type TabRef = {
+    name: string | number;
+};
+declare const Tabs: React.ForwardRefExoticComponent<TabsProps & React.RefAttributes<TabRef | undefined>>;
 export default Tabs;

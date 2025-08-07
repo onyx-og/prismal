@@ -10,9 +10,7 @@ declare const setAccentStyle: (style: {
 } & {
     [key: string]: any;
 };
-declare const accentStyle: (conf: AccentConfig) => {
-    [key: string]: any;
-};
+declare const accentStyle: (conf: AccentConfig) => void;
 /**
  * Takes a 3 or 6-digit hex color code,
  * and an optional loating-point number representing the alpha value (0-1)

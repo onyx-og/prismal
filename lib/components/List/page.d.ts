@@ -1,10 +1,11 @@
 import React from 'react';
-interface PageProps {
+export type ListProcessor = (arg: any[]) => {
+    processed?: any[];
+    elements: React.ReactNode[];
+};
+export interface PageProps {
     list: any[];
-    listProcessor: (arg: any) => {
-        processed?: any;
-        elements: JSX.Element[];
-    };
+    listProcessor: ListProcessor;
     onProcessEnd?: (arg: any) => void;
 }
 declare const Page: React.FC<PageProps>;
