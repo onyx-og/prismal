@@ -8,24 +8,29 @@
     // font-family: vars.$font-heading;
     cursor: pointer;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
     height: 2.5rem;
     min-width: 2.5rem;
     border-radius: var(--border-radius);
+    box-shadow: var(--box-elevation-secondary);
     box-sizing: border-box;
     width: fit-content;
-    &.anim-pulse {
+    &.btn-anim {
         @include animations.anim-pulse;
+    }
+    &:active {
+        box-shadow: var(--box-elevation-primary);
     }
 
     &.btn-default {
-        border: solid thin vars.$primary-color;
+        border: solid .1em vars.$primary-color;
         color: vars.$primary-color;
         &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
             background-color: vars.$primary-color-light;
-            border: solid thin vars.$primary-color-light;
+            border: solid .1em vars.$primary-color-light;
             color: vars.$primary-color-dark;
         }
         &.btn-disabled {
@@ -34,11 +39,11 @@
     }
 
     &.btn-primary {
-        border: solid thin vars.$primary-color;
+        border: solid .1em vars.$primary-color;
         background-color: vars.$primary-color;
         color: vars.$light-color;
         &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
-            border: solid thin vars.$primary-color-dark;
+            border: solid .1em vars.$primary-color-dark;
             background-color: vars.$primary-color-dark;
             color: vars.$primary-color-light;
         }
@@ -49,9 +54,9 @@
     
     &.btn-text {
         color: vars.$primary-color;
-        border: solid thin transparent;
+        border: solid .1em transparent;
         &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
-            border: solid thin vars.$primary-color;
+            border: solid .1em vars.$primary-color;
         }
         &.btn-disabled {
             filter: opacity(0.15);

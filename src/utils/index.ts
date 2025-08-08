@@ -39,27 +39,27 @@ export const setBoxElevation = (
 ) => {
     let _style: {[key: string]: any} = {},
         boxElevation: string = "0",
-        boxElevationHover: string = "0";
+        boxElevationSecondary: string = "0";
     switch(elevation) {
         case 0:
            boxElevation = "0"
-           boxElevationHover = "0"
+           boxElevationSecondary = "0"
             break;
         case 1:
            boxElevation = "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px";
-           boxElevationHover = "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px";
+           boxElevationSecondary = "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px";
            break;
         case 2:
            boxElevation = "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
-           boxElevationHover = "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+           boxElevationSecondary = "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
            break;
         case 3:
            boxElevation = "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
-           boxElevationHover = "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
+           boxElevationSecondary = "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
            break;
         case 4:
            boxElevation = "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
-           boxElevationHover = "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"
+           boxElevationSecondary = "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"
            break;
         // case 5:
         //    boxElevation = "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"
@@ -68,8 +68,8 @@ export const setBoxElevation = (
             boxElevation = "0";
     }
 
-    _style['--box-elevation'] = boxElevation;
-    _style['--box-elevation-hover'] = boxElevationHover;
+    _style['--box-elevation-primary'] = boxElevation;
+    _style['--box-elevation-secondary'] = boxElevationSecondary;
 
     return Object.assign(style, _style);
 }

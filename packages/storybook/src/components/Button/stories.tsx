@@ -26,6 +26,13 @@ Primary.args = {
   children: 'Button',
 };
 
+export const Elevated = Template.bind({});
+Elevated.args = {
+  type: 'primary',
+  children: 'Button',
+  elevation: 1,
+};
+
 export const Text = Template.bind({});
 Text.args = {
   type: 'text',
