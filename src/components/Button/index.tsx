@@ -8,11 +8,11 @@ import { setBorderRadius, setBoxElevation } from '../../utils';
 export interface ButtonProps extends ComponentProps {
     name?: string;
     iconName?: string;
-    title?: string;
+    text?: string;
     onClick?: (arg: any) => void;
     disabled?: boolean;
     type?: 'default' | 'primary' | 'text';
-    children?: string;
+    children?: React.ReactNode;
     shape?: 'default-shape' | 'circle';
 }
 
@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         children,
         type = 'default',
         shape = 'default-shape',
-        title,
+        text,
         className, style,
         accent, accentDark, accentLight,
         elevation = 0, borderRadius
@@ -46,10 +46,10 @@ const Button: React.FC<ButtonProps> = (props) => {
         role='button'
         data-testid={name ? `button-${name}` : undefined}
         style={style_}
-        title={title} onClick={onClick} className={btnClass}
+        onClick={onClick} className={btnClass}
     >
         { iconName && <Icon name={iconName}/>}
-        { children }
+        { text || children }
     </div>
 }
 
