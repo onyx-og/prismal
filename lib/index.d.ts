@@ -1,5 +1,6 @@
 import Icon from "./components/Icon";
 import Button from "./components/Button";
+import ButtonGroup from "components/ButtonGroup";
 import Select, { SelectOption } from "./components/Form/Select";
 import TextInput from "./components/Form/TextInput";
 import List from "./components/List";
@@ -19,6 +20,7 @@ export type { SelectOption };
 export { ActionBar };
 export type { ActionBarItemConfig };
 export type { CardProps };
+export { ButtonGroup };
 export { Icon, Card, Button, TextInput, List, Modal, Alert, SearchBar, Sidebar };
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
