@@ -23,7 +23,7 @@ const ActionBarAltItem: React.FC<ActionBarAltItem> = ( props ) => {
         // TODO: Consider the use case in which the alternative element already has an onClick,
         // should it be fired too?
         onClick={openModal} 
-    /> : <Button title={title} shape='circle' iconName='ellipsis-h' onClick={openModal}/>
+    /> : <Button shape='circle' iconName='ellipsis-h' onClick={openModal}>{title}</Button>
 
     return <>
         { trigger }
