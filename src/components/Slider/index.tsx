@@ -42,8 +42,8 @@ const Slider: React.FC<SliderProps> = ( props ) => {
     if (className) sliderClass = `${sliderClass} ${className}`;
 
     const { accent, accentLight, accentDark } = props;    
-    let style: {[key: string]: any} = {};
-    style = setAccentStyle(style, {accent, accentLight, accentDark});
+    let style_: {[key: string]: any} = {};
+    setAccentStyle(style_, {accent, accentLight, accentDark});
 
     // [TODO] Add autostart and timed slide
 
@@ -229,7 +229,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         `
 
-        return <div className={sliderClass} style={style}>
+        return <div className={sliderClass} style={style_}>
             <style>{slideshowStyle}</style>
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>
@@ -375,7 +375,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         `
 
-        return <div className={sliderClass} style={style}>
+        return <div className={sliderClass} style={style_}>
             <style>{slideshowStyle}</style>
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>
