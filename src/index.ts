@@ -11,6 +11,7 @@ import ActionBar, {ActionBarItemConfig} from "./components/ActionBar";
 import Alert from "./components/Alert";
 import { setAccentStyle, hex2rgba } from "./utils/colors";
 import Card, {CardProps} from "./components/Card";
+import Slider from "components/Slider";
 
 import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
@@ -23,6 +24,7 @@ export { ActionBar };
 export type { ActionBarItemConfig };
 export type { CardProps };
 export { ButtonGroup };
+export { Slider };
 export {Icon, Card, Button, TextInput, List, Modal, Alert, SearchBar, Sidebar};
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
