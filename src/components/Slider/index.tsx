@@ -14,6 +14,7 @@ interface SliderProcProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    autoPlay?: false | number;
 }
 
 interface SliderRawProps extends ComponentProps {
@@ -26,6 +27,7 @@ interface SliderRawProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    autoPlay?: false | number;
 }
 
 export type SliderProps = SliderProcProps | SliderRawProps;
@@ -35,6 +37,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         id = Math.random().toString(36).substring(2, 12),
         spacing = 5, 
         size = "l",
+        autoPlay = false
     } = props;
 
     const { className } = props;
@@ -95,11 +98,19 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             slideshowClass = `${slideshowClass} prismal-slider-slides-xl`;
     }
 
+    const inputCtrlList = React.useRef<(HTMLInputElement)[]>([]);
+
+    const storeInput = (node: HTMLInputElement | null, index: number) => {
+        if (node) {
+            inputCtrlList.current[index] = node;
+        }
+    }
+
     const renderInputCtrl = React.useCallback( ( i: number ) => {
-        if ( i === 0 ) return <input key={i} type="radio" name={`slider-${id}`} className={`prismal-slider-radio${i}`}
+        if ( i === 0 ) return <input ref={(n)=> storeInput(n, i)} key={i} type="radio" name={`slider-${id}`} className={`prismal-slider-radio${i}`}
         defaultChecked hidden id={`slider_${i}-${id}`}>
             </input>
-        else return <input key={i} type="radio" name={`slider-${id}`} className={`prismal-slider-radio${i}`}
+        else return <input ref={(n)=> storeInput(n, i)} key={i} type="radio" name={`slider-${id}`} className={`prismal-slider-radio${i}`}
             hidden id={`slider_${i}-${id}`}>
             </input>
     }, [id]);
@@ -132,7 +143,36 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         }, [slideWrapper, renderInputCtrl, renderLabel, renderNavArrow, slides, slideWrapper]);
 
-        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements()
+        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements();
+
+        const [slideNumber, setSlide] = React.useState<number>(0);
+
+        React.useEffect(() => {
+            if (inputCtrlList.current[slideNumber]) {
+                inputCtrlList.current[slideNumber].checked = true;
+            } else {
+                console.log("Error, slide non existing", {list: inputCtrlList.current, slideNumber})
+            }
+        },[slideNumber])
+
+        React.useEffect( () => {
+            let interval: NodeJS.Timeout;
+            // When the reference of the last input is added, start autoplay
+            if (inputCtrlList.current.length == inputCtrls.length && autoPlay) {
+                interval = setInterval(() => {
+                    if (slideNumber < (inputCtrlList.current.length-1)) {
+                        setSlide(slideNumber+1)
+                    } else {
+                        setSlide(0)
+                    }
+                }, autoPlay);
+            }
+            return () => {
+                if (interval) {
+                    clearInterval(interval)
+                }
+            }
+        }, [inputCtrlList.current.length, slideNumber, autoPlay]);
 
         const slideshowStyle = `
             #prismal-slider-${id} .prismal-slider-slides{
@@ -265,7 +305,6 @@ const Slider: React.FC<SliderProps> = ( props ) => {
                 navArrowsPrevious.push( renderNavArrow(i, 'previous') );
                 navArrowsNext.push( renderNavArrow(i, 'next') );
                 inputCtrls.push( renderInputCtrl(i) );
-
                 return <div key={i} className="prismal-slider-slide-container" id={`slide-${i}`}>
                     {slide}
                 </div>;
@@ -278,7 +317,36 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         }, [children, renderInputCtrl, renderLabel, renderNavArrow, children]);
 
-        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements()
+        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements();
+
+        const [slideNumber, setSlide] = React.useState<number>(0);
+
+        React.useEffect(() => {
+            if (inputCtrlList.current[slideNumber]) {
+                inputCtrlList.current[slideNumber].checked = true;
+            } else {
+                console.log("Error, slide non existing", {list: inputCtrlList.current, slideNumber})
+            }
+        },[slideNumber])
+
+        React.useEffect( () => {
+            let interval: NodeJS.Timeout;
+            // When the reference of the last input is added, start autoplay
+            if (inputCtrlList.current.length == inputCtrls.length && autoPlay) {
+                interval = setInterval(() => {
+                    if (slideNumber < (inputCtrlList.current.length-1)) {
+                        setSlide(slideNumber+1)
+                    } else {
+                        setSlide(0)
+                    }
+                }, autoPlay);
+            }
+            return () => {
+                if (interval) {
+                    clearInterval(interval)
+                }
+            }
+        }, [inputCtrlList.current.length, slideNumber, autoPlay]);
 
         const slideshowStyle = `
             #prismal-slider-${id} .prismal-slider-slides{

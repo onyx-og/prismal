@@ -20,6 +20,7 @@ const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 export const Default = Template.bind({});
 Default.args = {
     type: "raw",
+    autoPlay: 2000,
     spacing: 1,
     children: [<div className='slide-container'>Lorem ipsum</div>, 
         <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
@@ -29,6 +30,7 @@ export const Processed = Template.bind({});
 Processed.args = {
   type: 'process',
   slides: [1,2,3],
+  autoPlay: 3000,
   slideWrapper: (slide) => {
     return <div className='slide-container'>{`Lorem ipsum ${slide}`}</div>
   }

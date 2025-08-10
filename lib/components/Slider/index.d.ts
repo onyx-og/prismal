@@ -12,6 +12,7 @@ interface SliderProcProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    autoPlay?: false | number;
 }
 interface SliderRawProps extends ComponentProps {
     type: "raw";
@@ -23,6 +24,7 @@ interface SliderRawProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    autoPlay?: false | number;
 }
 export type SliderProps = SliderProcProps | SliderRawProps;
 declare const Slider: React.FC<SliderProps>;
