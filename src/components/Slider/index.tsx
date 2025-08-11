@@ -14,6 +14,7 @@ interface SliderProcProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    showNavBar?: boolean;
     autoPlay?: false | number;
 }
 
@@ -27,6 +28,7 @@ interface SliderRawProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    showNavBar?: boolean;
     autoPlay?: false | number;
 }
 
@@ -37,7 +39,8 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         id = Math.random().toString(36).substring(2, 12),
         spacing = 5, 
         size = "l",
-        autoPlay = false
+        autoPlay = false,
+        showNavBar = true
     } = props;
 
     const { className } = props;
@@ -274,11 +277,11 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>
                 { inputCtrls }
-                <div className="prismal-slider-pagination-outer">
+                { showNavBar ? <div className="prismal-slider-pagination-outer">
                     <div className="prismal-slider-pagination-inner">
                         { labels }
                     </div>
-                </div>
+                </div> : null}
                 <div className="ctrl-next prismal-slider-ctrl">
                     { navArrowsNext }
                 </div>
@@ -448,11 +451,11 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>
                 { inputCtrls }
-                <div className="prismal-slider-pagination-outer">
+                {showNavBar ? <div className="prismal-slider-pagination-outer">
                     <div className="prismal-slider-pagination-inner">
                         { labels }
                     </div>
-                </div>
+                </div> : null}
                 <div className="ctrl-next prismal-slider-ctrl">
                     { navArrowsNext }
                 </div>

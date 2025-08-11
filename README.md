@@ -1,7 +1,7 @@
 ![Logo](assets/logo_v0.svg) 
 # @prismal/react
 
-**Breaking down complex UIs into fundamental React components.**
+**Breaking down complex UIs into React components.**
 
 [![npm version](https://badge.fury.io/js/%40prismal%2Freact.svg)](https://www.npmjs.com/package/@prismal/react)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/CC%20BY--SA%204.0-pink)](LICENSE.md)
@@ -36,7 +36,7 @@ npm install @prismal/react
 
 In the meantime you can install the latest version of the library from the repo:
 ```bash
-npm i --save onyx-og/prismal-react
+npm install onyx-og/prismal-react
 ```
 
 ## 💡 Usage
@@ -44,7 +44,9 @@ Prismal react components are designed to be imported individually, allowing for 
 
 ```jsx
 import React from 'react';
-import { Button } from '@prismal/react'; // Import specific components
+// Import specific components and stylesheets
+import { Button } from '@prismal/react';
+import "@prismal/react/lib/styles/button.css";
 
 function MyComponent() {
   return (

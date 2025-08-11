@@ -12,6 +12,7 @@ interface SliderProcProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    showNavBar?: boolean;
     autoPlay?: false | number;
 }
 interface SliderRawProps extends ComponentProps {
@@ -24,6 +25,7 @@ interface SliderRawProps extends ComponentProps {
     navElForward?: JSX.Element;
     labelClass?: string;
     labelEl?: JSX.Element;
+    showNavBar?: boolean;
     autoPlay?: false | number;
 }
 export type SliderProps = SliderProcProps | SliderRawProps;

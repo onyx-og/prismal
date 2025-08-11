@@ -11,6 +11,7 @@ export default {
         accent: { control: 'color' },
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
+        showNavBar: { control: 'boolean', defaultValue: 'true'}
     }
   } as ComponentMeta<typeof Slider>;
   
