@@ -31,8 +31,12 @@ This library is built with:
 While the package is not yet published, once it is, installation will be straightforward:
 
 ```bash
-# Using npm
 npm install @prismal/react
+```
+
+In the meantime you can install the latest version of the library from the repo:
+```bash
+npm i --save onyx-og/prismal-react
 ```
 
 ## 💡 Usage
