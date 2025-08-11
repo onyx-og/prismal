@@ -1,3 +1,4 @@
+![Logo](assets/logo_v0.svg) 
 # @prismal/react
 
 **Breaking down complex UIs into fundamental React components.**
