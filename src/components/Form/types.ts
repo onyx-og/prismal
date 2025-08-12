@@ -1,12 +1,15 @@
 import ComponentProps from '../Component';
 
 export interface InputProps extends ComponentProps {
-    name: string;
+    id?: string;
+    name?: string;
     label?: string;
+    labelClass?: string;
+    labelSeparator?: string;
+    labelPosition?: "after" | "before";
     placeholder?: string;
     inline?: boolean;
     disabled?: boolean;
-    labelSeparator?: string;
     required?: boolean;
     value?: string | number;
     // TODO: check argument types

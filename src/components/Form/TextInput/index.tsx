@@ -12,8 +12,7 @@ export interface TextInputProps extends InputProps {
 }
 const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.ForwardedRef<InputRefType> ) => {
     const { 
-        name,
-        label,
+        name, id,
         size = 'm',
         type,
         onChange,
@@ -21,10 +20,11 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         validator,
         required = false,
         placeholder,
+        label,
         inline = false,
         labelSeparator = ':',
         value,
-        className,
+        className, style,
         disabled = false,
         accent, accentDark, accentLight,
     } = props;
@@ -96,12 +96,13 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
     ), [isInvalid]);
 
-    let style: {[key: string]: any} = {};
-    style = setAccentStyle(style, {accent, accentLight, accentDark});
+    let style_: {[key: string]: any} = {...style};
+    setAccentStyle(style_, {accent, accentLight, accentDark});
 
+    // [TODO] Separate distinct blocks into single useMemo and return out of the hook
     return React.useMemo( () => <div
         className={inputClass}
-        style={style}
+        style={style_}
     >
         <div className={inputWrapperClass}>
             { label ? 
@@ -124,7 +125,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
                 { renderedErrors }
             </ul> : <></>}
         </div>
-    </div>, [name, type, disabled, onValueChange, onKeyUp, placeholder, value, required, isInvalid, renderedErrors ]);
+    </div>, [name, style_, type, disabled, onValueChange, onKeyUp, placeholder, value, required, isInvalid, renderedErrors ]);
 });
 
 export default TextInput;
