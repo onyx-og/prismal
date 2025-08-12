@@ -37,20 +37,21 @@ const Button: React.FC<ButtonProps> = (props) => {
     else if ( elevation ) btnClass = `${btnClass} btn-elevated`;
     else btnClass = `${btnClass} btn-anim`;
 
-    let style_: {[key: string]: any} = {...style};
+    let style_: {[key: string]: any} = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
     setBoxElevation(style_, elevation);
+    // Merge and override with provided style
+    style_ = {...style_, ...style};
 
-    return <div
-        role='button'
+    return <button
         data-testid={name ? `button-${name}` : undefined}
         style={style_}
         onClick={onClick} className={btnClass}
     >
         { iconName && <Icon name={iconName}/>}
         { text || children }
-    </div>
+    </button>
 }
 
 export default Button;

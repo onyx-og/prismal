@@ -24,10 +24,11 @@ const ButtonGroup: React.FC<ButtonGroupProps> = (props) => {
     if (className) componentClass = `${componentClass} ${className}`;
     componentClass = `${componentClass} prismal-btn-group-${orientation}`;
 
-    let style_: { [key: string]: any } = { ...style };
+    let style_: { [key: string]: any } = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
     setBorderRadius(style_, borderRadius);
-    // setBoxElevation(style_, elevation);
+    // Merge and override with provided style
+    style_ = {...style_, ...style};
 
     const childrenWithProps = React.Children.map(children, child => {
         // Check if the child is a valid React element before cloning

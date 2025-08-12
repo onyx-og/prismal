@@ -2,6 +2,8 @@
 @use '../../styles/animations';
 
 .prismal-btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     padding: 0.25em 0.5em;
     user-select: none;
     font-family: vars.$font-body;
@@ -18,21 +20,36 @@
     box-shadow: var(--box-elevation-secondary);
     box-sizing: border-box;
     width: fit-content;
+
     &.btn-anim {
         @include animations.anim-pulse;
     }
+
     &:active {
         box-shadow: var(--box-elevation-primary);
     }
 
     &.btn-default {
+        background-color: transparent;
         border: solid .1em vars.$primary-color;
         color: vars.$primary-color;
-        &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
+
+        &:hover:not(.btn-disabled) {
             background-color: vars.$primary-color-light;
             border: solid .1em vars.$primary-color-light;
             color: vars.$primary-color-dark;
         }
+
+        &:focus:not(.btn-disabled)::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: var(--border-radius);
+            /* Apply the animation */
+            animation: at-ripple 0.6s linear infinite;
+        }
+
         &.btn-disabled {
             filter: opacity(0.15);
         }
@@ -42,22 +59,47 @@
         border: solid .1em vars.$primary-color;
         background-color: vars.$primary-color;
         color: vars.$light-color;
-        &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
+
+        &:hover:not(.btn-disabled) {
             border: solid .1em vars.$primary-color-dark;
             background-color: vars.$primary-color-dark;
             color: vars.$primary-color-light;
         }
+
+        &:focus:not(.btn-disabled)::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: var(--border-radius);
+            /* Apply the animation */
+            animation: at-ripple 0.6s linear infinite;
+        }
+
         &.btn-disabled {
             filter: opacity(0.15);
         }
     }
-    
+
     &.btn-text {
+        background-color: transparent;
         color: vars.$primary-color;
         border: solid .1em transparent;
-        &:hover:not(.btn-disabled), &:focus:not(.btn-disabled) {
+
+        &:hover:not(.btn-disabled) {
             border: solid .1em vars.$primary-color;
         }
+
+        &:focus:not(.btn-disabled)::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: var(--border-radius);
+            /* Apply the animation */
+            animation: at-ripple 0.6s linear infinite;
+        }
+
         &.btn-disabled {
             filter: opacity(0.15);
         }
@@ -67,9 +109,23 @@
         border-radius: 100%;
         width: 2.5rem;
         height: 2.5rem;
+
+        &:focus:not(.btn-disabled)::after {
+            border-radius: 100%;
+        }
     }
 
     &.btn-disabled {
         cursor: not-allowed;
+    }
+
+    @keyframes at-ripple {
+        0% {
+            box-shadow: 0 4px 10px rgba(var(--color-primary-light_), 0.1), 0 0 0 0 rgba(var(--color-primary-light_), 0.1), 0 0 0 5px rgba(var(--color-primary-light_), 0.1), 0 0 0 10px rgba(var(--color-primary-light_), 0.1);
+        }
+
+        100% {
+            box-shadow: 0 4px 10px rgba(var(--color-primary-light_), 0.1), 0 0 0 5px rgba(var(--color-primary-light_), 0.1), 0 0 0 10px rgba(var(--color-primary-light_), 0.1), 0 0 0 20px rgba(var(--color-primary-light_), 0);
+        }
     }
 }
