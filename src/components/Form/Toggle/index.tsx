@@ -4,9 +4,7 @@ import { setAccentStyle } from 'utils/colors';
 import { setBorderRadius, setBoxElevation } from 'utils/';
 import "./index.scss";
 
-/**
- * @credits Inspired by Aaron Iker Switch and checkbox
- */
+
 
 // [TODO] Disabled and required can be applied through selector
 // change behaviour for other inputs
@@ -19,7 +17,9 @@ export interface ToggleProps extends InputProps {
     inline: never;
     onChange?: (value: boolean) => any;
 }
-
+/**
+ * @credits Inspired by Aaron Iker switch/checkbox
+ */
 const Toggle = (props: ToggleProps): ReactElement => {
     const {
         type = "checkbox",
