@@ -19,7 +19,7 @@ import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
 import useElementHeight from "./hooks/useElementHeight";
 import useElementWidth from "./hooks/useElementWidth";
-import useScrollPosition from "hooks/useScrollPosition";
+import useScrollPosition, {useScrollElPosition} from "hooks/useScrollPosition";
 
 export type { SelectOption };
 export { ActionBar };
@@ -32,4 +32,4 @@ export {Icon, Card, List, Modal, Alert, SearchBar, Sidebar};
 export {Select, TextInput, Toggle};
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
-export { useElementHeight, useElementWidth, useScrollPosition };
+export { useElementHeight, useElementWidth, useScrollPosition, useScrollElPosition };

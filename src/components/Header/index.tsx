@@ -3,7 +3,7 @@ import ComponentProps from "components/Component";
 import "./index.scss";
 import { setAccentStyle } from "utils/colors";
 import { setBorderRadius } from "utils/";
-import useScrollPosition from "hooks/useScrollPosition";
+import {useScrollElPosition} from "hooks/useScrollPosition";
 
 export interface HeaderProps extends ComponentProps {
     navClass?: string;
@@ -30,12 +30,10 @@ const Header = (props: HeaderProps) => {
     let className_ = "prismal-header";
     if (className) className_ = `${className_} ${className}`;
 
-
-
     let placeHolderClass_ = "prismal-header-placeholder";
     if (navClass) placeHolderClass_ = `${placeHolderClass_} ${placeHolderClass}`;
 
-    const headerRef = React.useRef<HTMLDivElement | null>();
+    const headerRef = React.useRef<HTMLDivElement>();
     const [headerRefSet, markHeaderRefSet] = React.useState<boolean>(false);
     const setRef = React.useCallback((node: HTMLDivElement) => {
         if (headerRef.current) {
@@ -47,16 +45,7 @@ const Header = (props: HeaderProps) => {
         }
     }, []);
 
-    const [headerTopDistance, setHeaderTopDistance] = React.useState<number>(0);
-
-    // Get header distance from the top of the page
-    React.useEffect(() => {
-        if (headerRefSet && headerRef.current) {
-            setHeaderTopDistance(headerRef.current.getBoundingClientRect().top);
-        }
-    }, [headerRefSet]);
-
-    const thresholdTrigger = useScrollPosition(headerTopDistance);
+    const thresholdTrigger = useScrollElPosition(headerRef, headerRefSet);
 
     React.useEffect(() => {
         if (thresholdTrigger) {
