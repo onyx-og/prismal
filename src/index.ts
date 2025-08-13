@@ -13,11 +13,13 @@ import Alert from "./components/Alert";
 import { setAccentStyle, hex2rgba } from "./utils/colors";
 import Card, {CardProps} from "./components/Card";
 import Slider from "components/Slider";
+import Header from "components/Header";
 
 import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
 import useElementHeight from "./hooks/useElementHeight";
 import useElementWidth from "./hooks/useElementWidth";
+import useScrollPosition from "hooks/useScrollPosition";
 
 export type { SelectOption };
 export { ActionBar };
@@ -25,8 +27,9 @@ export type { ActionBarItemConfig };
 export type { CardProps };
 export { ButtonGroup, Button };
 export { Slider };
+export { Header };
 export {Icon, Card, List, Modal, Alert, SearchBar, Sidebar};
 export {Select, TextInput, Toggle};
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
-export { useElementHeight, useElementWidth };
+export { useElementHeight, useElementWidth, useScrollPosition };
