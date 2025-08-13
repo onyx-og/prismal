@@ -2,6 +2,7 @@
 @use '../../styles/animations';
 
 .prismal-btn {
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     padding: 0.25em 0.5em;

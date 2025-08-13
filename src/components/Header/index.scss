@@ -1,0 +1,20 @@
+@use '../../styles/vars';
+
+.prismal-header {
+    position: relative;
+    width: 100%;
+    min-height: 3rem;
+
+    .prismal-header-nav {
+        position: relative;
+        min-height: 3rem;
+        width: 100%;
+        font-family: vars.$font-body;
+
+        &.prismal-header-nav-flyout {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    }
+}
