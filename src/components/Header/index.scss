@@ -1,4 +1,5 @@
 @use '../../styles/vars';
+@use '../../styles/layers';
 
 .prismal-header {
     position: relative;
@@ -12,6 +13,7 @@
         font-family: vars.$font-body;
 
         &.prismal-header-nav-flyout {
+            @extend %z2;
             position: fixed;
             top: 0;
             left: 0;

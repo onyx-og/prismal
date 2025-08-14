@@ -304,14 +304,18 @@ const Slider: React.FC<SliderProps> = ( props ) => {
                 inputCtrls: JSX.Element[] = [];
                 
             let slideList = children.map( (slide, i) => {
-                labels.push( renderLabel(i) );
-                navArrowsPrevious.push( renderNavArrow(i, 'previous') );
-                navArrowsNext.push( renderNavArrow(i, 'next') );
-                inputCtrls.push( renderInputCtrl(i) );
-                return <div key={i} className="prismal-slider-slide-container" id={`slide-${i}`}>
-                    {slide}
-                </div>;
+                if (slide) {
+                    labels.push( renderLabel(i) );
+                    navArrowsPrevious.push( renderNavArrow(i, 'previous') );
+                    navArrowsNext.push( renderNavArrow(i, 'next') );
+                    inputCtrls.push( renderInputCtrl(i) );
+                    return <div key={i} className="prismal-slider-slide-container" id={`slide-${i}`}>
+                        {slide}
+                    </div>;
+                }
             });
+
+            slideList.filter( el => !!el );
 
             return {
                 labels, inputCtrls,
