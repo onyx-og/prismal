@@ -295,6 +295,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         </div>
     } else {
         const { children } = props;
+        const children_ = children.filter(el => !!el);
 
         const renderElements = React.useCallback( () => {
 
@@ -303,16 +304,14 @@ const Slider: React.FC<SliderProps> = ( props ) => {
                 navArrowsNext: JSX.Element[] = [],
                 inputCtrls: JSX.Element[] = [];
                 
-            let slideList = children.map( (slide, i) => {
-                if (slide) {
-                    labels.push( renderLabel(i) );
-                    navArrowsPrevious.push( renderNavArrow(i, 'previous') );
-                    navArrowsNext.push( renderNavArrow(i, 'next') );
-                    inputCtrls.push( renderInputCtrl(i) );
-                    return <div key={i} className="prismal-slider-slide-container" id={`slide-${i}`}>
-                        {slide}
-                    </div>;
-                }
+            let slideList = children_.map( (slide, i) => {
+                labels.push( renderLabel(i) );
+                navArrowsPrevious.push( renderNavArrow(i, 'previous') );
+                navArrowsNext.push( renderNavArrow(i, 'next') );
+                inputCtrls.push( renderInputCtrl(i) );
+                return <div key={i} className="prismal-slider-slide-container" id={`slide-${i}`}>
+                    {slide}
+                </div>;
             });
 
             slideList.filter( el => !!el );
@@ -322,7 +321,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
                 navArrowsNext, navArrowsPrevious,
                 slideList
             }
-        }, [children, renderInputCtrl, renderLabel, renderNavArrow, children]);
+        }, [children_, renderInputCtrl, renderLabel, renderNavArrow, children_]);
 
         const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements();
 
@@ -406,9 +405,9 @@ const Slider: React.FC<SliderProps> = ( props ) => {
                 }
             }
             /* Slideshow pager arrow events */
-            ${ [...Array(children.length).keys()].map( i => {
-                let next = ( i + 1 === children.length ) ? 0 : i + 1;
-                let previous = ( i - 1 < 0 ) ? children.length - 1 : i - 1;
+            ${ [...Array(children_.length).keys()].map( i => {
+                let next = ( i + 1 === children_.length ) ? 0 : i + 1;
+                let previous = ( i - 1 < 0 ) ? children_.length - 1 : i - 1;
                 return `
                     #prismal-slider-${id} .prismal-slider-radio${i}:checked ~ .ctrl-next .numb${next}, 
                     #prismal-slider-${id} .prismal-slider-radio${i}:checked ~ .ctrl-previous .numb${previous} {
@@ -418,14 +417,14 @@ const Slider: React.FC<SliderProps> = ( props ) => {
                 `
             }).join('') }
             /* Slider Pager event */
-            ${ [...Array(children.length).keys()].map( i => {
-                if ( i !== (children.length-1) ) return `#prismal-slider-${id} .prismal-slider-radio${i}:checked ~ .prismal-slider-pagination-outer .page${i},`
-                else return `#prismal-slider-${id} .prismal-slider-radio${(children.length-1)}:checked ~ .prismal-slider-pagination-outer .page${(children.length-1)} {
+            ${ [...Array(children_.length).keys()].map( i => {
+                if ( i !== (children_.length-1) ) return `#prismal-slider-${id} .prismal-slider-radio${i}:checked ~ .prismal-slider-pagination-outer .page${i},`
+                else return `#prismal-slider-${id} .prismal-slider-radio${(children_.length-1)}:checked ~ .prismal-slider-pagination-outer .page${(children_.length-1)} {
                     background: rgba(255,255,255,1);
                 }`
             }).join('') }
             /* Slide effect */
-            ${ [...Array(children.length).keys()].map( i => {
+            ${ [...Array(children_.length).keys()].map( i => {
                 let transformRule: string;
                 if ( i === 0 ) {
                     transformRule = `transform: translateX(0%);`
