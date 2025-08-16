@@ -40,21 +40,21 @@ export const useElScrollPosition = (
     elementRef: React.MutableRefObject<HTMLElement | undefined>,
     refTrigger: boolean | string | number
 ) => {
-    const [isScrolledAbove, setIsScrolledAbove] = useState(false);
+    const [isScrolledPast, setIsScrolledPast] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             if (refTrigger && elementRef.current) {
                 let threshold = elementRef.current.getBoundingClientRect().top
-                    + elementRef.current.clientHeight/2;
+                    + elementRef.current.clientHeight;
                 // Check if the current scroll position is at or past the threshold
-                if (scrollY < threshold) {
-                    setIsScrolledAbove(true);
+                if (scrollY > threshold) {
+                    setIsScrolledPast(true);
                 } else {
-                    setIsScrolledAbove(false);
+                    setIsScrolledPast(false);
                 }
             } else {
-                setIsScrolledAbove(false);
+                setIsScrolledPast(false);
             }
         };
 
@@ -67,7 +67,7 @@ export const useElScrollPosition = (
         };
     }, [refTrigger]); // Re-run effect if the threshold changes
 
-    return isScrolledAbove;
+    return isScrolledPast;
 }
 
 export default useScrollPosition;
