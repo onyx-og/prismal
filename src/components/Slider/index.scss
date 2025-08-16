@@ -1,5 +1,6 @@
 @use '../../styles/vars';
 @use '../../styles/globals';
+@use '../../styles/layers';
 
 .prismal-slider-outer-container {
     width: 100%;
@@ -67,7 +68,7 @@
         bottom: 0;
         left: 0;
         text-align: center;
-        z-index: 1000;
+        @extend %z1;
     }
 
     /* Next and Prev arrow */

@@ -11,7 +11,7 @@
         min-height: 3rem;
         width: 100%;
         font-family: vars.$font-body;
-
+        @extend %z1;
         &.prismal-header-nav-flyout {
             @extend %z2;
             position: fixed;
