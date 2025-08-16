@@ -46,7 +46,7 @@ export const useElScrollPosition = (
         const handleScroll = () => {
             if (refTrigger && elementRef.current) {
                 let threshold = elementRef.current.getBoundingClientRect().top
-                    + elementRef.current.clientHeight;
+                    + elementRef.current.clientHeight/2;
                 // Check if the current scroll position is at or past the threshold
                 if (scrollY > threshold) {
                     setIsScrolledPast(true);
