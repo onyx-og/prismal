@@ -3,7 +3,7 @@ import ComponentProps from "components/Component";
 import "./index.scss";
 import { setAccentStyle } from "utils/colors";
 import { setBorderRadius } from "utils/";
-import {useScrollElPosition} from "hooks/useScrollPosition";
+import {useElScrollPosition} from "hooks/useScrollPosition";
 
 export interface HeaderProps extends ComponentProps {
     navClass?: string;
@@ -45,7 +45,7 @@ const Header = (props: HeaderProps) => {
         }
     }, []);
 
-    const thresholdTrigger = useScrollElPosition(headerRef, headerRefSet);
+    const thresholdTrigger = useElScrollPosition(headerRef, headerRefSet);
 
     React.useEffect(() => {
         if (thresholdTrigger) {

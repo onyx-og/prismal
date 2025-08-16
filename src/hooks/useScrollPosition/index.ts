@@ -36,7 +36,7 @@ const useScrollPosition = (threshold: number) => {
  * @param refTrigger required to manage the reference presence and its mutation
  * @returns boolean
  */
-export const useScrollElPosition = (
+export const useElScrollPosition = (
     elementRef: React.MutableRefObject<HTMLElement | undefined>,
     refTrigger: boolean | string | number
 ) => {
@@ -47,7 +47,7 @@ export const useScrollElPosition = (
             if (refTrigger && elementRef.current) {
                 let threshold = elementRef.current.getBoundingClientRect().top;
                 // Check if the current scroll position is at or past the threshold
-                if (threshold <= 0) {
+                if (threshold < elementRef.current.clientHeight) {
                     setIsScrolledToTop(true);
                 } else {
                     setIsScrolledToTop(false);
