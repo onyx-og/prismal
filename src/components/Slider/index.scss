@@ -47,6 +47,7 @@
         @extend %f;
         @extend %jcc;
         @extend %my05;
+        @extend %z1;
         .prismal-slider-pagination-inner {
             @extend %px1;
             @extend %py025;
@@ -68,14 +69,13 @@
         bottom: 0;
         left: 0;
         text-align: center;
-        @extend %z1;
     }
 
     /* Next and Prev arrow */
     .prismal-slider-ctrl {
+        @extend %z1;
         position: absolute;
         top: calc(50% - 35px);
-        z-index: 55;
 
         label {
             z-index: 0;
@@ -127,7 +127,6 @@
         position: absolute;
         top: 60%;
         margin-top: -24px;
-        z-index: 55;
         label svg {
             width: 32px;
             height: 32px;
