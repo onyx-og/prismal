@@ -1,13 +1,4 @@
-import React from 'react';
-import { ActionBarItemConfig } from 'components/ActionBar';
+import type { AcctionBarSectionProps } from '../types';
 import './index.scss';
-interface AcctionBarSectionProps {
-    type: 'left' | 'center' | 'right';
-    items: (ActionBarItemConfig | null)[];
-}
-export type ActionBarSectionRef = {
-    width: number;
-    element: HTMLElement | null;
-};
-declare const ActionBarSection: React.FC<AcctionBarSectionProps>;
+declare const ActionBarSection: (props: AcctionBarSectionProps) => import("react/jsx-runtime").JSX.Element;
 export default ActionBarSection;

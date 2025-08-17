@@ -5,7 +5,9 @@ import { ModalProps } from 'components/Modal';
  * This allows to provide the Modal component with headers, footers or content that can already alter that state
  * Also to ease the management of the state from other components outside the Modal.
  */
-declare const useModal: (areaId?: string) => {
+declare const useModal: (config?: {
+    areaId?: string;
+}) => {
     Modal: React.FC<ModalProps>;
     state: boolean;
     open: () => void;

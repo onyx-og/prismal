@@ -30,7 +30,7 @@ const useModal = (
 
     // Alter the component to keep the props that will be passed
     // but the visibility will be managed from open, state and close
-    const _Modal: React.FC<ModalProps> = ( props ) => <Modal areaId={config.areaId} visible={state} closeModal={close} {...props}/>
+    const _Modal: React.FC<ModalProps> = ( props ) => <Modal areaId={config?.areaId} visible={state} closeModal={close} {...props}/>
 
     return { Modal: _Modal, state, open, close }
 }

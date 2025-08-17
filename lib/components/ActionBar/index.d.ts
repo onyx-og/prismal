@@ -1,18 +1,4 @@
 import './index.scss';
-import React from 'react';
-import ComponentProps from '../Component';
-export interface ActionBarItemConfig {
-    item: JSX.Element;
-    position: "left" | "center" | "right";
-    title?: string;
-    key: string;
-    scale?: boolean;
-    alt?: JSX.Element;
-}
-export interface ActionBarProps extends ComponentProps {
-    position: string;
-    items: (ActionBarItemConfig | null)[];
-    type?: 'default' | 'primary' | 'secondary';
-}
-declare const ActionBar: React.ForwardRefExoticComponent<ActionBarProps & React.RefAttributes<HTMLDivElement>>;
+import type { ActionBarProps } from './types';
+declare const ActionBar: (props: ActionBarProps) => import("react/jsx-runtime").JSX.Element;
 export default ActionBar;

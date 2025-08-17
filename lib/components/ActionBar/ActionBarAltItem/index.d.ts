@@ -1,9 +1,5 @@
 import React from 'react';
-interface ActionBarAltItem {
-    item: JSX.Element;
-    title?: string;
-    alt?: JSX.Element;
-}
+import type { ActionBarAltItem } from "../types";
 /**
  * @description By default, the alternative item for actionbar item is a button with icon as '...',
  * when clicked, it show's a modal with the original item as content.

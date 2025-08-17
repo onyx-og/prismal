@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 export interface SidebarProps {
-    areaId: string;
+    areaId?: string;
     closeSidebar?: () => void;
     header?: JSX.Element;
     footer?: JSX.Element;

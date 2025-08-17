@@ -4,7 +4,7 @@ import Modal from 'components/Modal';
 import ReactDOM from 'react-dom';
 
 export interface SidebarProps {
-    areaId: string;
+    areaId?: string;
     closeSidebar?: () => void;
     header?: JSX.Element;
     footer?: JSX.Element;

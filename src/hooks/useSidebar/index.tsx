@@ -6,9 +6,9 @@ import Sidebar, { SidebarProps } from 'components/Sidebar';
  * This allows to provide the Sidebar component with headers, footers or content that can already alter that state
  * Also to ease the management of the state from other components outside the Sidebar.
  */
-const useSidebar = (config?: {
-    areaId?: string
-}) => {
+const useSidebar = (
+    config?: {areaId?: string}
+)  => {
     const [ state, setState ] = React.useState(false);
     
     /**

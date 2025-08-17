@@ -258,7 +258,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
             { item: <>{pageJumpCtrl}</>, position:"center", key: "pageJumpCtrl"},
             { item: <Button onClick={pageForward} disabled={currentPage==lastPage}>Next</Button>, position: "right", key: "next"},
             { item: <>{rightExtreme}</>, position: "right", key: "rightExtrme"}
-        ]} position='bottom' />
+        ]} />
     },[leftExtreme,pageBackwards,currentPage,pageJumpCtrl,pageForward,lastPage,rightExtreme]);
 
     const footer_ = React.useMemo(() => {

@@ -5,7 +5,9 @@ import { SidebarProps } from 'components/Sidebar';
  * This allows to provide the Sidebar component with headers, footers or content that can already alter that state
  * Also to ease the management of the state from other components outside the Sidebar.
  */
-declare const useSidebar: () => {
+declare const useSidebar: (config?: {
+    areaId?: string;
+}) => {
     Sidebar: React.FC<SidebarProps>;
     state: boolean;
     open: () => void;
