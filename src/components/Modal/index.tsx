@@ -1,6 +1,6 @@
 import './index.scss';
 
-import ActionBar, { ActionBarItemConfig } from 'components/ActionBar';
+import ActionBar from 'components/ActionBar';
 import Button from 'components/Button';
 import ReactDOM from 'react-dom';
 import ComponentProps from '../Component';
@@ -46,7 +46,7 @@ const Modal: React.FC<ModalProps> = (props) => {
     const modalArea = areaId ? document.getElementById(areaId) : undefined;
 
     const {
-        header = <ActionBar position='top'
+        header = <ActionBar
             items={[
                 { item: <span>{title}</span>, position: 'center', key: 'modal-title', scale: false } ,
                 showClose ? {

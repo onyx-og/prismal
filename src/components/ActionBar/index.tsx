@@ -2,51 +2,69 @@ import './index.scss';
 
 import React from 'react';
 import ActionBarSection from './ActionBarSection';
-import ComponentProps from '../Component';
 
 import { setAccentStyle } from 'utils/colors';
-export interface ActionBarItemConfig {
-    item: JSX.Element;
-    position: "left" | "center" | "right";
-    title?: string;
-    key: string;
-    scale?: boolean;
-    alt?: JSX.Element;
-}
+import type { ActionBarItemConfig, ActionBarProps } from './types';
 
-export interface ActionBarProps extends ComponentProps {
-    position: string;
-    items: (ActionBarItemConfig | null)[];
-    type?: 'default' | 'primary' | 'secondary';
-};
-
-const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(( props, ref ) => {
+const ActionBar = ( props: ActionBarProps ) => {
     const { 
-        position ='top',
         items = [],
+        children, defaultPosition = "right",
         type = 'default',
         accent, accentLight, accentDark,
-        className
+        className, style,
+        modalAreaId
     } = props;
-    let actionBarClass = `prismal-actionbar ${type} ${position}`;
+    let actionBarClass = `prismal-actionbar prismal-actionbar-${type}`;
 
     // const actionBarRef = React.useRef<HTMLDivElement>(null);
     // console.log("Got actionbar ref", actionBarRef);
-    let style: {[key: string]: any} = {};
-    style = setAccentStyle(style, {accent, accentLight, accentDark});
+    let style_: {[key: string]: any} = {};
+    setAccentStyle(style_, {accent, accentLight, accentDark});
+    if (style) style_ = {...style_, ...style};
     
     if (className) actionBarClass = `${actionBarClass} ${className}`;
 
+    const processItem = React.useCallback((position: ActionBarItemConfig["position"]) => {
+        const items_ = items.filter((i) =>
+            i?.position == position
+        );
+        if (defaultPosition == position && children?.length) {
+            let childrenItems: ActionBarItemConfig[] = children.map((el, i) => {
+                return {
+                    item: el,
+                    position: position,
+                    key: `${position}-${i}`,
+                }
+            })
+
+            items_.push(...childrenItems);
+        }
+        return items_;
+    },[items, children, defaultPosition]);
+
+    const leftItems = React.useMemo(() => {
+        return processItem("left");
+    },[processItem]);
+
+    const centerItems = React.useMemo(() => {
+        return processItem("center");
+    },[processItem]);
+
+    const rightItems = React.useMemo(() => {
+        return processItem("right");
+    },[processItem]);
+
     return (
-        <div ref={ref}
+        <div
             className={actionBarClass}
-            style={style}
+            style={style_}
         >
-            <ActionBarSection type='left' items={items} />
-            <ActionBarSection type='center' items={items} />
-            <ActionBarSection type='right' items={items} />
+            <ActionBarSection modalAreaId={modalAreaId} type='left' items={leftItems} />
+            <ActionBarSection modalAreaId={modalAreaId} type='center' items={centerItems} />
+            <ActionBarSection modalAreaId={modalAreaId} type='right' items={rightItems} />
         </div>
     )
-});
+};
 
 export default ActionBar;

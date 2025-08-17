@@ -2,11 +2,7 @@ import React from 'react';
 import useModal from 'hooks/useModal';
 import Button from 'components/Button';
 
-interface ActionBarAltItem {
-    item: JSX.Element;
-    title?: string;
-    alt?: JSX.Element;
-}
+import type { ActionBarAltItem } from "../types";
 
 /** 
  * @description By default, the alternative item for actionbar item is a button with icon as '...',
@@ -14,9 +10,9 @@ interface ActionBarAltItem {
  * If provided, uses a specific element as 'trigger'
  */
 const ActionBarAltItem: React.FC<ActionBarAltItem> = ( props ) => {
-    const { item, title, alt } = props;
+    const { item, title, alt, modalAreaId } = props;
 
-    const { Modal, open: openModal } = useModal();
+    const { Modal, open: openModal } = useModal({areaId: modalAreaId});
 
     const trigger = alt ? <alt.type 
         {...alt.props}

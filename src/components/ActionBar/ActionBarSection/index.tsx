@@ -1,18 +1,14 @@
 import React from 'react';
 import useElementWidth from 'hooks/useElementWidth';
-import { ActionBarItemConfig } from 'components/ActionBar';
-import ActionBarItem, { ActionBarItemRef, ActionBarItemProps } from 'components/ActionBar/ActionBarItem';
+import type { ActionBarAltSectionProps, AcctionBarSectionProps,ActionBarItemRef } from '../types';
+import ActionBarItem from 'components/ActionBar/ActionBarItem';
 import Button from 'components/Button';
 import useSidebar from 'hooks/useSidebar';
 
 import './index.scss';
 
-interface ActionBarAltSectionProps {
-    items: JSX.Element[];
-    title?: string;
-}
 const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
-    const { items, title } = props;
+    const { items, title, modalAreaId } = props;
 
     // TODO: Since it is a reusable practice, consider exporting to somewhere else
     // Remember to accept as argument additional conditions for marking the ref presence
@@ -42,26 +38,19 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
         />
     }), [items]);
 
-    const { Sidebar, open: openSidebar } = useSidebar();
+    const { Sidebar, open: openSidebar } = useSidebar({areaId: modalAreaId});
 
     return <>
         <Button shape='circle' iconName='ellipsis-v' onClick={openSidebar}>{title}</Button>
-        <Sidebar areaId='sidebar-area'>
+        <Sidebar areaId={modalAreaId}>
             <div ref={refSetter} className='actionbar-section-content'>{_items}</div>
         </Sidebar>
     </>
 }
 
-interface AcctionBarSectionProps {
-    type: 'left' | 'center' | 'right';
-    items: (ActionBarItemConfig | null)[];
-}
-export type ActionBarSectionRef = {
-    width: number;
-    element: HTMLElement | null;
-}
-const ActionBarSection: React.FC<AcctionBarSectionProps> = ( props: AcctionBarSectionProps ) => {
-    const { type, items } = props;
+
+const ActionBarSection = ( props: AcctionBarSectionProps ) => {
+    const { type, items, modalAreaId } = props;
 
     // Reference to the html div containing this section
     const ref = React.useRef<HTMLDivElement | null>(null);
@@ -193,14 +182,15 @@ const ActionBarSection: React.FC<AcctionBarSectionProps> = ( props: AcctionBarSe
 
     // Shows an alternative version of the section when scaling value is set to true
     const renderedItem = React.useMemo( () => {
-        return !scaling.value ? _items : <ActionBarAltSection items={_items}/>;
-    }, [scaling, _items]);
+        return !scaling.value ? _items : <ActionBarAltSection modalAreaId={modalAreaId} items={_items}/>;
+    }, [scaling, _items, modalAreaId]);
 
     // Renders the component only if it has items of it's type,
     // or there are items in the center section
     return (_items.length || hasCenteredItems) ? <div className={actionBarSectionClass} ref={refSetter}>
         {renderedItem}
-    </div> : null;
+    </div> : <div className={actionBarSectionClass}>
+    </div>;
 }
 
 export default ActionBarSection;

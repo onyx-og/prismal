@@ -4,21 +4,8 @@ import './index.scss';
 import ActionBarAltItem from 'components/ActionBar/ActionBarAltItem';
 import useElementWidth from 'hooks/useElementWidth';
 
-export interface ActionBarItemProps {
-    item: JSX.Element;
-    title?: string;
-    siblingWeight?: number;
-    scale?: boolean;
-    scaleFactor?: number;
-    alt?: JSX.Element;
-    uniqueKey: string | number;
-    sectionRef: RefObject<HTMLDivElement | null | undefined>;
-    setReady?: ( arg: any ) => void;
-}
-export type ActionBarItemRef = {
-    element: HTMLDivElement | null;
-    key: string | number;
-}
+import type { ActionBarItemProps } from '../types';
+
 const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
     const {
         item, scale = true,

@@ -6,54 +6,45 @@
 
 .prismal-actionbar {
     width: 100%;
-    display: flex;
+    // display: flex;
+    display: grid;
+    grid-template-areas: "left-area center-area right-area";
+    grid-template-columns: minmax(100px, 1fr) auto minmax(100px, 1fr);
     flex-wrap: wrap;
     padding-top: .5rem;
     padding-bottom: .5rem;
     font-family: vars.$font-body;
-    &.primary {
+
+    &.prismal-actionbar-primary {
         background-color: vars.$primary-color;
         color: white;
     }
-    &.secondary {
+    &.prismal-actionbar-secondary {
         background-color: vars.$primary-color-light;
         color: vars.$primary-color-dark;
-    }
-
-    &.top {
-        align-self: top;
-    }
-
-    &.bottom {
-        align-self: bottom;
     }
 
     .actionbar-left,
     .actionbar-right,
     .actionbar-center {
-        align-items: center;
+        display: flex;
         // TODO: Change accordingly to prismal-actionbar children number
-        min-width: 33%;
         box-sizing: border-box;
         align-items: center;
         padding: 0 0.5rem;
     }
     .actionbar-left {
-        flex: 0.5;
-        display: flex;
+        grid-area: left-area;
         justify-content: start;
     }
 
     .actionbar-center {
-        flex: 0.5;
-        display: flex;
+        grid-area: center-area;
         place-content: center;
     }
 
     .actionbar-right {
-        flex: 0.5;
-        display: flex;
+        grid-area: right-area;
         place-content: end;
-        margin-left: auto;
     }
 }

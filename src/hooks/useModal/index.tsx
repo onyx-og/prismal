@@ -7,7 +7,7 @@ import Modal, { ModalProps } from 'components/Modal';
  * Also to ease the management of the state from other components outside the Modal.
  */
 const useModal = (
-    areaId?: string
+    config?: {areaId?: string}
 ) => {
     const [ state, setState ] = React.useState(false);
     
@@ -30,7 +30,7 @@ const useModal = (
 
     // Alter the component to keep the props that will be passed
     // but the visibility will be managed from open, state and close
-    const _Modal: React.FC<ModalProps> = ( props ) => <Modal areaId={areaId} visible={state} closeModal={close} {...props}/>
+    const _Modal: React.FC<ModalProps> = ( props ) => <Modal areaId={config.areaId} visible={state} closeModal={close} {...props}/>
 
     return { Modal: _Modal, state, open, close }
 }

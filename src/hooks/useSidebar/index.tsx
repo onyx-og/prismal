@@ -6,7 +6,9 @@ import Sidebar, { SidebarProps } from 'components/Sidebar';
  * This allows to provide the Sidebar component with headers, footers or content that can already alter that state
  * Also to ease the management of the state from other components outside the Sidebar.
  */
-const useSidebar = () => {
+const useSidebar = (config?: {
+    areaId?: string
+}) => {
     const [ state, setState ] = React.useState(false);
     
     /**
@@ -22,13 +24,13 @@ const useSidebar = () => {
     const open = React.useCallback( () => {
         setState(true)
     }, []);
-
+    
     // NOTE: the 'state' boolean may not be needed to exported since it is already
     // used internally in Sidebar component 
 
     // Alter the component to keep the props that will be passed
     // but the visibility will be managed from open, state and close
-    const _Sidebar: React.FC<SidebarProps> = ( props ) => <Sidebar {...props} visible={state} closeSidebar={close}/>
+    const _Sidebar: React.FC<SidebarProps> = ( props ) => <Sidebar areaId={config?.areaId} {...props} visible={state} closeSidebar={close}/>
 
     return { Sidebar: _Sidebar, state, open, close }
 }

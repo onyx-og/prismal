@@ -18,7 +18,22 @@ const Template: ComponentStory<typeof ActionBar> = (args) => <ActionBar {...args
 export const Default = Template.bind({});
 Default.args = {
   type: 'primary',
-  position: 'top',
+  items: [
+    {item: <span>Test</span>, position: 'center', key: '1'},
+    {item: <Button iconName="search" type='primary'/>, position: 'right', key: '2'}
+  ]
+};
+
+export const Wrapper = Template.bind({});
+Wrapper.args = {
+  type: 'primary',
+  modalAreaId: "root",
+  children: [
+    <Button iconName="star" type='primary'/>,
+    <span>Contact</span>,
+    <Button iconName="clock-o" type='primary'/>,
+    <Button iconName="inbox" type='primary'/>,
+  ],
   items: [
     {item: <span>Test</span>, position: 'center', key: '1'},
     {item: <Button iconName="search" type='primary'/>, position: 'right', key: '2'}
