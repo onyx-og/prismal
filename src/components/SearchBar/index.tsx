@@ -14,6 +14,8 @@ export interface SearchBarProps extends ComponentProps {
     placeholder?: string;
     value?: string;
     onSearch?: (query: string) => void;
+    btnPosition?: "outer-after" | "outer-before" | "inner-after" | "inner-before";
+    type?: "default" | "primary";
 }
 const SearchBar: React.FC<SearchBarProps> = ( props ) => {
     const {
@@ -23,25 +25,34 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
         onSearch,
         className,
         accent, accentDark, accentLight,
+        type = "default",
+        btnPosition = "outer-after"
     } = props;
 
-    let searchbarClass = 'prismal-searchbar';
-    if (className) searchbarClass = `${searchbarClass} ${className}`;
+    let componentClass = 'prismal-searchbar';
+    if (className) componentClass = `${componentClass} ${className}`;
+    componentClass = `${componentClass} prismal-search-btn-${btnPosition}`;
+    componentClass = `${componentClass} prismal-search-${type}`;
+
 
     const inputRef = React.useRef<InputRefType | null>(null)
     const [ query, setQuery ] = React.useState<string | undefined>(value);
     const [ btnDisabled, setDisableState ] = React.useState(true);
 
-    const timeoutId = React.useRef<number | undefined>(undefined);
+    const timeoutId = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
     const prepareSearch = React.useCallback( (value?: string) => {
         // enable button
-        setDisableState(false)
-        if (timeoutId.current) window.clearTimeout(timeoutId.current);
+        // setDisableState(false)
+        if ( !!!value ) setDisableState(true)
+        else setDisableState(false)
         if ( value !== query ) {
-            timeoutId.current = window.setTimeout( () => {
+            timeoutId.current = setTimeout( () => {
                 setQuery(value)
             }, 1500)
+        }
+        return () => {
+            if (timeoutId.current) clearTimeout(timeoutId.current);
         }
     }, [query]);
 
@@ -56,18 +67,30 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
     }, [inputRef]);
 
     React.useEffect( () => {
-        if (!query || query === '') {
-            setDisableState(true);
+        if (!query || query == '') {
+           // setDisableState(true);
         } else if (onSearch) {
-            setDisableState(false);
+           // setDisableState(false);
             onSearch(query);
         }
-    }, [query, onSearch])
+    }, [query, onSearch]);
+
+    const searchBtn = React.useMemo(() => <Button
+        iconName='search'
+        onClick={doSearch}
+        type={btnPosition.startsWith("inner") ? 'text' : type}
+        disabled={btnDisabled}
+        accent={accent}
+        accentDark={accentDark}
+        accentLight={accentLight}
+    />,[doSearch, btnDisabled, type, accent, accentDark, accentLight, btnPosition]);
     
-    return React.useMemo( () => <div className={searchbarClass}>
-        <TextInput type='text'
+    return <div className={componentClass}>
+        {btnPosition == "outer-before" ? searchBtn : undefined}
+        <TextInput htmlType='text'
             ref={inputRef}
             // disabled={disabled} // TODO
+            type={type}
             value={query}
             size='l'
             name='searchbar'
@@ -75,18 +98,13 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
             onChange={prepareSearch}
             onPressEnter={doSearch}
             accent={accent}
+            after={btnPosition == "inner-after" ? searchBtn : undefined}
+            before={btnPosition == "inner-before" ? searchBtn : undefined}
             accentDark={accentDark}
             accentLight={accentLight}
         />
-        <Button
-            iconName='search'
-            onClick={doSearch}
-            disabled={btnDisabled}
-            accent={accent}
-            accentDark={accentDark}
-            accentLight={accentLight}
-        />
-    </div>, [searchbarClass, query, btnDisabled, accent, accentDark, accentLight, placeholder])
+        {btnPosition == "outer-after" ? searchBtn : undefined}
+    </div>
 }
 
 export default SearchBar;

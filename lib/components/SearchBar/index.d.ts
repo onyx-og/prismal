@@ -6,6 +6,8 @@ export interface SearchBarProps extends ComponentProps {
     placeholder?: string;
     value?: string;
     onSearch?: (query: string) => void;
+    btnPosition?: "outer-after" | "outer-before" | "inner-after" | "inner-before";
+    type?: "default" | "primary";
 }
 declare const SearchBar: React.FC<SearchBarProps>;
 export default SearchBar;

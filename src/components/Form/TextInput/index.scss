@@ -38,11 +38,43 @@
             background-color: white;
             padding: 0.5rem 1rem;
             font-size: inherit;
-            border: solid thin grey;
-            // width: 100%;
+            border: none;
+            background-color: transparent;
+            border-radius: var(--border-radius);
+            width: 100%;
             flex: 1;
             &:focus-visible {
-                outline: 2px solid vars.$primary-color;
+                outline: 0;
+            }
+        }
+        .prismal-input {
+            display: flex;
+            position: relative;
+            border-radius: var(--border-radius);
+            &.prismal-input-default:has(> input) {
+                //background-color: transparent;
+                // background-color: rgba(var(--color-primary-light_), 0.25);
+                border: solid thin grey;
+            }
+            &.prismal-input-primary:has(> input) {
+                //background-color: transparent;
+                background-color: rgba(var(--color-primary-light_), 0.25);
+                // border: solid thin grey;
+            }
+            &:has(> input:focus-visible) {
+                background-color: rgba(var(--color-primary-light_), 0.25);
+                border-color: var(--color-primary);
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    bottom: 0;
+                    background-color: var(--color-primary-light);
+                }
+            }
+            &:hover {
+                border-color: var(--color-primary);
             }
         }
     

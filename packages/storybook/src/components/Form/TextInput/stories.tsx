@@ -6,7 +6,7 @@ export default {
     title: 'Commons/Form/TextInput',
     component: TextInput,
     argTypes: {
-        type: { control: { type: 'select', options: ['text', 'email', 'password'] } },
+        htmlType: { control: { htmlType: 'select', options: ['text', 'email', 'password'] } },
         accent: { control: 'color' },
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
@@ -18,22 +18,24 @@ const Template: ComponentStory<typeof TextInput> = (args) => <TextInput {...args
 export const Default = Template.bind({});
 Default.args = {
     name: 'story',
-    type: 'text',
+    htmlType: 'text',
     label: 'Your favorite color',
     placeholder: 'emerald red'
 };
 
-export const Email = Template.bind({});
-Email.args = {
+export const Primary = Template.bind({});
+Primary.args = {
     name: 'story',
-    type: 'email',
-    label: 'Your email address',
+    htmlType: 'text',
+    type: 'primary',
+    label: 'Your favorite color',
+    placeholder: 'emerald red'
 };
 
 export const Password = Template.bind({});
-Email.args = {
+Password.args = {
     name: 'password',
-    type: 'password',
+    htmlType: 'password',
     label: 'Password',
     placeholder: '*******'
 };
@@ -43,7 +45,7 @@ export const Inline = Template.bind({});
 Inline.args = {
     name: 'inline-input',
     label: 'Your favorite color',
-    type: 'text',
+    htmlType: 'text',
     inline: true,
     labelSeparator: ''
 };
@@ -51,7 +53,7 @@ Inline.args = {
 export const Required = Template.bind({});
 Required.args = {
     name: 'story',
-    type: 'text',
+    htmlType: 'text',
     label: 'Your favorite color',
     required: true,
 };

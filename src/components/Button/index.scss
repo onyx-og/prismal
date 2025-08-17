@@ -88,7 +88,16 @@
         border: solid .1em transparent;
 
         &:hover:not(.btn-disabled) {
-            border: solid .1em vars.$primary-color;
+            &::before {
+                content: '';
+                position: absolute;
+                // bottom: .5rem;
+                bottom: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--color-primary);
+            }
+            // border: solid .1em vars.$primary-color;
         }
 
         &:focus:not(.btn-disabled)::after {

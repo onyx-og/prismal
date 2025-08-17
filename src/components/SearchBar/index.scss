@@ -1,15 +1,51 @@
 @use '../../styles/vars';
 
-.prismal-searchbar  {
+.prismal-searchbar {
     display: flex;
     flex-direction: row;
-    align-items: center;
     width: fit-content;
     min-width: 12rem;
 
     .input-wrapper {
-        margin-right: 0 !important;
+
+        .prismal-input {
+            height: 100%;
+        }
+        .prismal-input, input {
+            // border-top-right-radius: 0;
+            // border-bottom-right-radius: 0;
+        }
     }
+
+    &.prismal-search-btn-outer-after {
+        .input-wrapper {
+            margin-right: 0 !important;
+
+            .prismal-input, input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+        .prismal-btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    &.prismal-search-btn-outer-before {
+        .input-wrapper {
+            margin-left: 0 !important;
+            .prismal-input, input {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+        .prismal-btn {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
 
     .prismal-btn {
         margin-left: auto;
