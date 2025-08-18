@@ -2,7 +2,7 @@ import type ComponentProps from "components/Component";
 import { MutableRefObject, RefObject } from 'react';
 
 export interface ActionBarItemConfig {
-    item: React.ReactElement;
+    item: React.ReactNode;
     position: "left" | "center" | "right";
     title?: string;
     key: string;
@@ -46,7 +46,7 @@ export interface ActionBarAltSectionProps {
 }
 
 export interface ActionBarItemProps {
-    item: JSX.Element;
+    item: React.ReactNode;
     title?: string;
     siblingWeight?: number;
     scale?: boolean;
@@ -63,7 +63,7 @@ export type ActionBarItemRef = {
 }
 
 export interface ActionBarAltItem {
-    item: JSX.Element;
+    item: React.ReactNode;
     title?: string;
     alt?: JSX.Element;
     modalAreaId?: string;

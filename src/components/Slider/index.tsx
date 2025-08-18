@@ -295,7 +295,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         </div>
     } else {
         const { children } = props;
-        const children_ = children.filter(el => !!el);
+        const children_ = React.Children.toArray(children).filter(el => !!el);
 
         const renderElements = React.useCallback( () => {
 

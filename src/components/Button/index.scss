@@ -91,11 +91,13 @@
             &::before {
                 content: '';
                 position: absolute;
-                // bottom: .5rem;
                 bottom: 0;
-                width: 100%;
-                height: 2px;
-                background-color: var(--color-primary);
+                height: 50%;
+                border-color: var(--color-primary);
+                border-bottom: solid;
+                border-radius: 50% / 0 0 100% 100%;
+                border-left: solid;
+                border-right: solid;
             }
             // border: solid .1em vars.$primary-color;
         }

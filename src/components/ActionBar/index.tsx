@@ -31,7 +31,8 @@ const ActionBar = ( props: ActionBarProps ) => {
             i?.position == position
         );
         if (defaultPosition == position && children?.length) {
-            let childrenItems: ActionBarItemConfig[] = children.map((el, i) => {
+            let children_ = React.Children.toArray(children);
+            let childrenItems: ActionBarItemConfig[] = children_.map((el, i) => {
                 return {
                     item: el,
                     position: position,
