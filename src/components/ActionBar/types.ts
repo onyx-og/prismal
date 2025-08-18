@@ -10,16 +10,20 @@ export interface ActionBarItemConfig {
     alt?: JSX.Element;
 }
 
+export type ActionbarAltSectionBtn = {
+    iconName: string;
+    type: "default" | "primary" | "text"
+}
 export interface ActionBarProps extends ComponentProps {
     items: (ActionBarItemConfig | null)[];
     type?: 'default' | 'primary' | 'secondary';
     children?: React.ReactElement[];
     defaultPosition?: "left" | "center" | "right";
     modalAreaId?: string;
-    sectionIcons?: {
-        left?: string,
-        center?: string,
-        right?: string
+    sectionAlt?: {
+        left?: ActionbarAltSectionBtn,
+        center?: ActionbarAltSectionBtn
+        right?: ActionbarAltSectionBtn
     }
 };
 
@@ -27,7 +31,7 @@ export interface AcctionBarSectionProps {
     type: 'left' | 'center' | 'right';
     items: (ActionBarItemConfig | null)[];
     modalAreaId?: string;
-    altIcon?: string;
+    altIcon?: ActionbarAltSectionBtn;
 }
 export type ActionBarSectionRef = {
     width: number;
@@ -38,7 +42,7 @@ export interface ActionBarAltSectionProps {
     items: JSX.Element[];
     title?: string;
     modalAreaId?: string;
-    iconName?: string;
+    button?: ActionbarAltSectionBtn;
 }
 
 export interface ActionBarItemProps {

@@ -11,7 +11,7 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
     const {
         items, title,
         modalAreaId,
-        iconName = 'ellipsis-v'
+        button = {iconName: 'ellipsis-v', type: "default"}
     } = props;
 
     // TODO: Since it is a reusable practice, consider exporting to somewhere else
@@ -45,7 +45,7 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
     const { Sidebar, open: openSidebar } = useSidebar({areaId: modalAreaId});
 
     return <>
-        <Button shape='circle' iconName={iconName} onClick={openSidebar}>{title}</Button>
+        <Button shape='circle' iconName={button.iconName} type={button.type} onClick={openSidebar}>{title}</Button>
         <Sidebar areaId={modalAreaId}>
             <div ref={refSetter} className='actionbar-section-content'>{_items}</div>
         </Sidebar>
@@ -191,7 +191,7 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
 
     // Shows an alternative version of the section when scaling value is set to true
     const renderedItem = React.useMemo( () => {
-        return !scaling.value ? _items : <ActionBarAltSection iconName={altIcon} modalAreaId={modalAreaId} items={_items}/>;
+        return !scaling.value ? _items : <ActionBarAltSection button={altIcon} modalAreaId={modalAreaId} items={_items}/>;
     }, [scaling, _items, modalAreaId, altIcon]);
 
     // Renders the component only if it has items of it's type,

@@ -14,7 +14,7 @@ const ActionBar = ( props: ActionBarProps ) => {
         accent, accentLight, accentDark,
         className, style,
         modalAreaId,
-        sectionIcons
+        sectionAlt
     } = props;
     let actionBarClass = `prismal-actionbar prismal-actionbar-${type}`;
 
@@ -61,9 +61,9 @@ const ActionBar = ( props: ActionBarProps ) => {
             className={actionBarClass}
             style={style_}
         >
-            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionIcons?.left} type='left' items={leftItems} />
-            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionIcons?.center} type='center' items={centerItems} />
-            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionIcons?.right} type='right' items={rightItems} />
+            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionAlt?.left} type='left' items={leftItems} />
+            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionAlt?.center} type='center' items={centerItems} />
+            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionAlt?.right} type='right' items={rightItems} />
         </div>
     )
 };
