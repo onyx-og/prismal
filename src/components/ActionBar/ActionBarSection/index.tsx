@@ -8,7 +8,11 @@ import useSidebar from 'hooks/useSidebar';
 import './index.scss';
 
 const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
-    const { items, title, modalAreaId } = props;
+    const {
+        items, title,
+        modalAreaId,
+        btnElement = <Button shape='circle' iconName='ellipsis-v'/>
+    } = props;
 
     // TODO: Since it is a reusable practice, consider exporting to somewhere else
     // Remember to accept as argument additional conditions for marking the ref presence
@@ -41,7 +45,9 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
     const { Sidebar, open: openSidebar } = useSidebar({areaId: modalAreaId});
 
     return <>
-        <Button shape='circle' iconName='ellipsis-v' onClick={openSidebar}>{title}</Button>
+        <div className="prismal-actionbar-altsection-trigger" onClick={openSidebar}>
+            {btnElement}
+        </div>
         <Sidebar areaId={modalAreaId}>
             <div ref={refSetter} className='actionbar-section-content'>{_items}</div>
         </Sidebar>

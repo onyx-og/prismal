@@ -1,15 +1,11 @@
 @use '../../styles/vars';
 
-:root {
-    @include vars.theme;
-}
-
 .prismal-actionbar {
     width: 100%;
     // display: flex;
     display: grid;
     grid-template-areas: "left-area center-area right-area";
-    grid-template-columns: minmax(100px, 1fr) auto minmax(100px, 1fr);
+    grid-template-columns: minmax(10px, 1fr) auto minmax(10px, 1fr);
     flex-wrap: wrap;
     padding-top: .5rem;
     padding-bottom: .5rem;

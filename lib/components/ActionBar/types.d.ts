@@ -28,6 +28,7 @@ export interface ActionBarAltSectionProps {
     items: JSX.Element[];
     title?: string;
     modalAreaId?: string;
+    btnElement?: JSX.Element;
 }
 export interface ActionBarItemProps {
     item: JSX.Element;
