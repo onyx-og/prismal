@@ -14,11 +14,17 @@ export interface ActionBarProps extends ComponentProps {
     children?: React.ReactElement[];
     defaultPosition?: "left" | "center" | "right";
     modalAreaId?: string;
+    sectionIcons?: {
+        left?: string;
+        center?: string;
+        right?: string;
+    };
 }
 export interface AcctionBarSectionProps {
     type: 'left' | 'center' | 'right';
     items: (ActionBarItemConfig | null)[];
     modalAreaId?: string;
+    altIcon?: string;
 }
 export type ActionBarSectionRef = {
     width: number;
@@ -28,7 +34,7 @@ export interface ActionBarAltSectionProps {
     items: JSX.Element[];
     title?: string;
     modalAreaId?: string;
-    btnElement?: JSX.Element;
+    iconName?: string;
 }
 export interface ActionBarItemProps {
     item: JSX.Element;

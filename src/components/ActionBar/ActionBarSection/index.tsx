@@ -11,7 +11,7 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
     const {
         items, title,
         modalAreaId,
-        btnElement = <Button shape='circle' iconName='ellipsis-v'/>
+        iconName = 'ellipsis-v'
     } = props;
 
     // TODO: Since it is a reusable practice, consider exporting to somewhere else
@@ -45,9 +45,7 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
     const { Sidebar, open: openSidebar } = useSidebar({areaId: modalAreaId});
 
     return <>
-        <div className="prismal-actionbar-altsection-trigger" onClick={openSidebar}>
-            {btnElement}
-        </div>
+        <Button shape='circle' iconName={iconName} onClick={openSidebar}>{title}</Button>
         <Sidebar areaId={modalAreaId}>
             <div ref={refSetter} className='actionbar-section-content'>{_items}</div>
         </Sidebar>
@@ -56,7 +54,12 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
 
 
 const ActionBarSection = ( props: AcctionBarSectionProps ) => {
-    const { type, items, modalAreaId } = props;
+    const {
+        type,
+        items,
+        modalAreaId,
+        altIcon
+    } = props;
 
     // Reference to the html div containing this section
     const ref = React.useRef<HTMLDivElement | null>(null);
@@ -188,8 +191,8 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
 
     // Shows an alternative version of the section when scaling value is set to true
     const renderedItem = React.useMemo( () => {
-        return !scaling.value ? _items : <ActionBarAltSection modalAreaId={modalAreaId} items={_items}/>;
-    }, [scaling, _items, modalAreaId]);
+        return !scaling.value ? _items : <ActionBarAltSection iconName={altIcon} modalAreaId={modalAreaId} items={_items}/>;
+    }, [scaling, _items, modalAreaId, altIcon]);
 
     // Renders the component only if it has items of it's type,
     // or there are items in the center section
