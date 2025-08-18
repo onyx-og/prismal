@@ -45,6 +45,7 @@ const components = {
         globals: ['./src/styles/globals.scss', './src/styles/theme.scss'],
         button: ['./src/components/Button/index.scss', './src/styles/theme.scss'],
         buttonGroup: ['./src/components/ButtonGroup/index.scss', './src/styles/theme.scss'],
+        icons: ['./src/styles/icons.scss'],
         card: ['./src/components/Card/index.scss', './src/styles/theme.scss'],
         alert: ['./src/components/Alert/index.scss', './src/styles/theme.scss'],
         list: ['./src/components/List/index.scss', './src/styles/theme.scss'],
