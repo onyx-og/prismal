@@ -1,4 +1,4 @@
-import type ComponentProps from "components/Component";
+import type ComponentProps from "../Component";
 import { MutableRefObject, RefObject } from 'react';
 
 export interface ActionBarItemConfig {
