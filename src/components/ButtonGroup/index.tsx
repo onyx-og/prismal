@@ -34,7 +34,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = (props) => {
         // Check if the child is a valid React element before cloning
         if (React.isValidElement(child)) {
             // Use React.cloneElement to add the new prop to each child
-            return React.cloneElement(child, { type, elevation });
+            return React.cloneElement(child, { type, elevation, borderRadius });
         }
         return child;
     });

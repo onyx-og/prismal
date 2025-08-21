@@ -10,6 +10,10 @@ export default {
         accent: { control: 'color' },
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
+        borderRadius: {
+            control: 'select',
+            options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
+        }
     }
 } as ComponentMeta<typeof ButtonGroup>;
 
