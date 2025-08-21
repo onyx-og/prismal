@@ -54,7 +54,7 @@
             &.prismal-input-default:has(> input) {
                 //background-color: transparent;
                 // background-color: rgba(var(--color-primary-light_), 0.25);
-                border: solid thin grey;
+                border: 1px solid #dddddd;
             }
             &.prismal-input-primary:has(> input) {
                 //background-color: transparent;

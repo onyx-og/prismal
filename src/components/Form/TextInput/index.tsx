@@ -12,7 +12,8 @@ export interface TextInputProps extends InputProps {
     size?: 's' | 'm' | 'l';
     after?: React.ReactNode;
     before?: React.ReactNode;
-    type?: 'default' | 'primary'
+    type?: 'default' | 'primary';
+    placeholder?: string;
 }
 const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.ForwardedRef<InputRefType> ) => {
     const { 

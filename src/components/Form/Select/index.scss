@@ -1,88 +1,103 @@
-@use '../../../styles/vars';
-@use '../../../styles/animations';
+@use 'styles/vars';
 
-.prismal-select {
-    display: flex;
-    align-items: center;
-    .dropdown-label {
-        margin-right: 1rem;
+.prismal-input-select {
+    font-family: vars.$font-body;
+    * {
+        box-sizing: border-box;
     }
-    
+    label {
+        width: fit-content;
+        align-self: center;
+    }
     select {
-        display: none;
-    }
-    
-    .dropdown-select {
-        background-color: white;
-        cursor: pointer;
-        user-select: none;
-        color: black;
-        padding: .5rem 2rem .5rem 1rem;
-        border-style: none;
-        border-radius: 0.2rem;
-        filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
-        &.anim-pulse {
-            @include animations.anim-pulse;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            position: absolute;
-            left: 0;
-            margin-top: 0.5em;
-            li {
-                display: none;
-                cursor: pointer;
-                margin: 0.5rem 0;
-                border-radius: 0.2rem;
-                padding: 0.5rem 1rem;
-                background-color: white;
-                transition: all 200ms cubic-bezier(.47,1.64,.41,.8);
+        flex: 1;
+        appearance: base-select;
+        border: 1px solid #dddddd;
+        border-radius: var(--border-radius);
+        background: transparent;
+        padding: 0.5rem 1rem;
+        transition: 0.4s;
 
-                &:hover {
-                    transform: translateX(0.5em);
-                }
-            }
-            
-            
-        }
-
-        .button {
-            position: absolute;
-            color: white;
-            background-color: vars.$primary-color;
-            height: 100%;
-            top: 0;
-            width: 1.5rem;
-            border-radius: 0 0.25rem 0.25rem 0;
-            right: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            &::before {
-                content: '▼';
-                font-size: 0.5em;
-            }
-        }
-        span {
-            margin-right: 1.5rem;
-        }
-        
+        &:hover,
         &:focus {
-            z-index: vars.$zindex-0;
-            ul li {
-                display: block !important;
+            background: #dddddd;
+        }
+
+        &::picker-icon {
+            color: #999999;
+            transition: 0.4s rotate;
+        }
+        &:open::picker-icon {
+            rotate: 180deg;
+        }
+
+        option {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+
+            border: 1px solid #dddddd;
+            background: rgba(var(--color-primary-light_), 0.25);
+            padding: 0.5rem 1rem;
+            transition: 0.4s;
+
+            &:first-of-type {
+                border-radius: var(--border-radius) var(--border-radius) 0 0;
             }
-            .button {
-                background-color: vars.$primary-color-dark;
-                &::before {
-                    content: '▲';
-                    font-size: 0.5em;
-                }
+            &:last-of-type {
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
             }
+            &:not(option:last-of-type) {
+                border-bottom: none;
+            }
+            &:nth-of-type(odd) {
+                background: white;
+            }
+            &:hover, &:focus {
+                background: var(--color-primary-light);
+                border-color: transparent;
+            }
+            &:checked {
+                background: var(--color-primary);
+                color: white;
+                // font-weight: bold;
+            }
+            &::checkmark {
+                order: 1;
+                margin-left: auto;
+                content: "";
+                display: block;
+                left: 0;
+                top: 0;
+                width: 5px;
+                height: 9px;
+                border: 2px solid white;
+                border-top: 0;
+                border-left: 0;
+                transform: matrix(0.731354, 0.681998, -0.681998, 0.731354, 0, 0);
+            }
+        }
+    }
+    ::picker(select) {
+        appearance: base-select;
+        border: none;
+        opacity: 0;
+        transition: all 0.4s allow-discrete;
+        top: calc(anchor(bottom) + 1px);
+        left: anchor(10%);
+        &:popover-open {
+            opacity: 1;
+        }
+    }
+    @starting-style {
+        ::picker(select):popover-open {
+            opacity: 0;
         }
     }
 }
+
+// option .icon {
+//     font-size: 1.6rem;
+//     text-box: trim-both cap alphabetic;
+// }
 

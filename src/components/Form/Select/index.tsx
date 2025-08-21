@@ -1,107 +1,100 @@
-import React from 'react';
-import ComponentProps from '../../Component';
+import React from "react";
+import { InputProps } from "components/Form/types";
 import { setAccentStyle } from 'utils/colors';
-import './index.scss';
-    
-export type SelectOption = {
-    label: string;
+import "./index.scss";
+import { setBorderRadius } from "utils/";
+
+export interface SelectOption {
     value: string;
+    element: React.ReactNode;
     selected?: boolean;
-}
-export interface SelectProps extends ComponentProps {
+} 
+export interface SelectProps extends InputProps {
+    multiple: boolean;
     options: SelectOption[];
-    name: string;
-    label?: string;
     placeholder?: string | JSX.Element;
-    onChange?: ( arg: SelectOption ) => void;
+    onChange?: (arg: string | string[]) => void;
 }
-const Select: React.FC<SelectProps> = ( props ) => {
+const Select = (props: SelectProps) => {
     const {
-        options,
-        name,
-        label,
-        placeholder,
-        onChange,
-        className,
-        accent, accentLight, accentDark
+        className, style,
+        accent, accentLight, accentDark,
+        borderRadius,
+        id, name, title,
+        label, placeholder,
+        required = false,
+        disabled = false,
+        multiple = false,
+        onChange, validator,
+        options
     } = props;
-    const [ selected, setSelected ] = React.useState<SelectOption | undefined>(
-        undefined
-    );
-    const selectRef = React.useRef<HTMLSelectElement | null>(null);
 
-    const dropdownRef = React.useRef<HTMLDivElement | null>(null);
+    const [selected, setSelected] = React.useState<string | string[]>();
 
-    const doSelection = React.useCallback( (el: {
-        label: string;
-        value: string;
-        selected?: boolean;
-    }) => {
-        // Update hidden input (mirror)
-        if (
-            selectRef.current &&
-            selectRef.current.value !== el.value
-        ) {
-            selectRef.current.value = el.value;
-            // Update surface component
-            el.selected = true;
-            setSelected(el);
-        };
-        // Remove focus from surface component
-        dropdownRef.current?.blur();
-    }, [selectRef]);
+    React.useEffect( ()=> {
+        let selected_ = options
+            .filter((i) => i.selected)
+            .map((i) => i.value);
+        if (multiple) {
+            setSelected(selected_);
+        } else if (selected_.length) {
+            setSelected(selected_[0])
+        }
+    },[options, multiple]);
 
-    let style: {[key: string]: any} = {};
-    style = setAccentStyle(style, {accent, accentLight, accentDark});
+    const setSelection = React.useCallback( (value: string) => {
+        if (!multiple) setSelected(value);
+        else if (typeof selected == "object" && selected.includes(value)) {
+            let selection = [...selected];
+            selection = [
+                ...selection.slice(0, selected.indexOf(value)),
+                ...selection.slice(selected.indexOf(value)+1, selection.length)
+            ];
+            setSelected(selection)
+        } else if (typeof selected == "object") {
+            let selection = [...selected];
+            selection.push(value);
+            setSelected(selection);
+        }
+    },[selected, multiple])
 
-    let selectClass = 'prismal-select';
-    if (className) selectClass = `${selectClass} ${className}`;
+    const options_ = React.useMemo(() => {
+        return options.map((e, i) => {
+            return <option key={i}
+                value={e.value}
+                onClick={() => setSelection(e.value)}
+                selected={selected?.includes(e.value)}>
+                {e.element}
+            </option>
+        })
+    },[options, selected]);
+
+    let className_ = "prismal-input-select";
+    if (className) className_ = `${className_} ${className}`;
+
+    let style_ = {};
+    setAccentStyle(style_, {accent, accentLight, accentDark});
+    setBorderRadius(style_, borderRadius);
+
+    if (style) style_ = {...style_, style};
 
     React.useEffect( () => {
         if ( selected && onChange ) {
             onChange(selected)
         };
-    }, [selected, dropdownRef]);
+    }, [selected]);
 
-    const selector = React.useMemo(() => {
-        if (placeholder != null && typeof placeholder !== "string" ) {
-            return <div className="prismal-select-selector">{placeholder}</div>;
-        } else return <span>{ selected?.label || placeholder || 'Select...'}</span>
-    }, [placeholder, selected?.label])
-
-    return <div 
-        className={selectClass}
-        style={style}
-    >
-        { label && <label className='dropdown-label' htmlFor={name}>{label}</label>}
-        <div tabIndex={0} className='dropdown-select anim-pulse' ref={dropdownRef}>
-            {selector}
-            <div className='button'></div>
-            <ul>
-                {options.map( (el, i) => <li 
-                    key={i}
-                    onClick={(e) => {doSelection(el)}}
-                >
-                    {el.label}
-                </li>)}
-            </ul>
-        </div>
-        
-        <select
-            ref={selectRef}
-            name={name}
-            defaultValue={selected?.value || "__placeholder"}
-        >   
-            <option key={"__placeholder"} value={"__placeholder"}></option>
-            {options.map( (el, i) => <option 
-                key={i}
-                value={el.value}
-            >
-                    {el.label}
-            </option>)}
+    return <div className={className_} style={style_}>
+        <label htmlFor={id}>{label}</label>
+        <select id={id} title={title}
+            multiple={multiple}
+            required={required}
+            disabled={disabled}
+        >
+            <option value="">{placeholder}</option>
+            {options_}
         </select>
     </div>
-        
 }
 
 export default Select;
