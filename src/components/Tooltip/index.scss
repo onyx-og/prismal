@@ -1,0 +1,36 @@
+@use "components/Dropdown/index.scss";
+
+.prismal-tooltip {
+
+    .prismal-dropdown-select {
+        .prismal-dropdown-toggle-btn {
+            display: none;
+        }
+
+        .prismal-dropdown-content {
+            width: max-content;
+        }
+
+        &:hover {
+            .prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+
+                &:hover {
+                    transform:initial;
+                }
+            }
+
+            .prismal-dropdown-content:has(*:only-child) {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+
+                &:hover {
+                    transform: initial;
+                }
+            }
+
+            .prismal-dropdown-content:has(* + *)>* {}
+        }
+    }
+}

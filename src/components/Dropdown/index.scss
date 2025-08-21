@@ -1,0 +1,128 @@
+@use 'styles/vars';
+@use 'styles/animations';
+
+.prismal-dropdown {
+    display: flex;
+    align-items: center;
+    font-family: vars.$font-body;
+
+    .prismal-dropdown-select {
+        background-color: white;
+        cursor: pointer;
+        user-select: none;
+        color: black;
+        padding: .5rem 2rem .5rem 1rem;
+        border-style: none;
+        border-radius: var(--border-radius);
+        filter: url();
+
+        &.anim-pulse {
+            @include animations.anim-pulse;
+        }
+
+        .prismal-dropdown-content {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            left: 0;
+            margin-top: 0.5em;
+
+            &:not(:has(*:only-child)):not(:has(* + *)) {
+                display: none;
+                cursor: pointer;
+                margin: 0.5rem 0;
+                border: none;
+                border-radius: var(--border-radius);
+                padding: 0.5rem 1rem;
+                background-color: white;
+                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
+                &:hover {
+                    transform: translateX(0.5em);
+                }
+            }
+
+            &:has(*:only-child) {
+                display: none;
+                cursor: pointer;
+                margin: 0.5rem 0;
+                border: none;
+                border-radius: var(--border-radius);
+                padding: 0.5rem 1rem;
+                background-color: white;
+                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
+                &:hover {
+                    transform: translateX(0.5em);
+                }
+            }
+
+            &:has(* + *)>* {
+                display: none;
+                cursor: pointer;
+                margin: 0.5rem 0;
+                border: none;
+                border-radius: var(--border-radius);
+                padding: 0.5rem 1rem;
+                background-color: white;
+                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
+                &:hover {
+                    transform: translateX(0.5em);
+                }
+            }
+
+
+            
+
+
+        }
+
+        .prismal-dropdown-toggle-btn {
+            position: absolute;
+            color: var(--color-primary);
+            background-color: transparent;
+            height: 100%;
+            top: 0;
+            width: 1.5rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &::before {
+                content: '▼';
+                font-size: 0.5em;
+            }
+        }
+
+        span {
+            margin-right: 1.5rem;
+        }
+
+        &:focus-within {
+            z-index: vars.$zindex-0;
+
+            .prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            }
+
+            .prismal-dropdown-content:has(*:only-child) {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            }
+
+            .prismal-dropdown-content:has(* + *)>* {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            }
+
+            .prismal-dropdown-toggle-btn {
+                &::before {
+                    content: '▲';
+                    font-size: 0.5em;
+                }
+            }
+        }
+    }
+}
