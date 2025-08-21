@@ -18,9 +18,12 @@
         padding: 0.5rem 1rem;
         transition: 0.4s;
 
-        &:hover,
+        &:hover {
+            border-color: var(--color-primary);
+        }
+
         &:focus {
-            background: #dddddd;
+            background: rgba(var(--color-primary-light_), 0.25);
         }
 
         &::picker-icon {

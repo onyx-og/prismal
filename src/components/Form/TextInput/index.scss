@@ -61,6 +61,9 @@
                 background-color: rgba(var(--color-primary-light_), 0.25);
                 // border: solid thin grey;
             }
+            &:has(> input:hover) {
+                border-color: var(--color-primary);
+            }
             &:has(> input:focus-visible) {
                 background-color: rgba(var(--color-primary-light_), 0.25);
                 border-color: var(--color-primary);
@@ -72,9 +75,6 @@
                     bottom: 0;
                     background-color: var(--color-primary-light);
                 }
-            }
-            &:hover {
-                border-color: var(--color-primary);
             }
         }
     
