@@ -14,7 +14,7 @@
         padding: .5rem 2rem .5rem 1rem;
         border-style: none;
         border-radius: var(--border-radius);
-        filter: url();
+        filter: url("#");
 
         &.anim-pulse {
             @include animations.anim-pulse;
