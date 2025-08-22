@@ -1,4 +1,5 @@
 import './index.scss';
-import type { ActionBarProps } from './types';
-declare const ActionBar: (props: ActionBarProps) => import("react/jsx-runtime").JSX.Element;
+import React from 'react';
+import type { ActionBarProps, ActionBarRef } from './types';
+declare const ActionBar: React.ForwardRefExoticComponent<ActionBarProps & React.RefAttributes<ActionBarRef>>;
 export default ActionBar;

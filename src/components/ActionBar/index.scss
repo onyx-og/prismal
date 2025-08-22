@@ -11,6 +11,10 @@
     padding-bottom: .5rem;
     font-family: vars.$font-body;
 
+    .prismal-actionbar-child-wref {
+        display: contents;
+    }
+
     &.prismal-actionbar-primary {
         background-color: vars.$primary-color;
         color: white;

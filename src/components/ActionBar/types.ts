@@ -10,6 +10,14 @@ export interface ActionBarItemConfig {
     alt?: JSX.Element;
 }
 
+export interface ActionBarRef {
+    lowNode: (HTMLDivElement | undefined)[], // lowest managed DOM node(s)
+    highNode: HTMLDivElement | undefined;
+}
+export interface ActionBarItemWithRefProps {
+    children?: React.ReactNode;
+}
+
 export type ActionbarAltSectionBtn = {
     iconName: string;
     type: "default" | "primary" | "text"
