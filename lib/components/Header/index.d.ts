@@ -8,5 +8,5 @@ export interface HeaderProps extends ComponentProps {
     sticky?: boolean;
     stickyClass?: string;
 }
-declare const Header: (props: HeaderProps) => import("react/jsx-runtime").JSX.Element;
+declare const Header: React.ForwardRefExoticComponent<HeaderProps & React.RefAttributes<unknown>>;
 export default Header;

@@ -44,9 +44,14 @@ const Template: ComponentStory<typeof Header> = (args) => <>
     </div>
 </>;
 
+const handleRef = (ref: any) => {
+    console.log("This component expose a ref with its highest and lowest managed nodes",{ref})
+};
+
 export const Default = Template.bind({});
 Default.args = {
     navClass: "sticky-header-nav",
+    ref: handleRef,
     children: <div style={{
         display: "flex",
         flexDirection: "column",

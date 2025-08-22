@@ -9,6 +9,7 @@ export interface TextInputProps extends InputProps {
     after?: React.ReactNode;
     before?: React.ReactNode;
     type?: 'default' | 'primary';
+    placeholder?: string;
 }
 declare const TextInput: React.ForwardRefExoticComponent<TextInputProps & React.RefAttributes<InputRefType>>;
 export default TextInput;

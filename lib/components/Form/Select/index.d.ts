@@ -1,17 +1,16 @@
-import React from 'react';
-import ComponentProps from '../../Component';
-import './index.scss';
-export type SelectOption = {
-    label: string;
+import React from "react";
+import { InputProps } from "components/Form/types";
+import "./index.scss";
+export interface SelectOption {
     value: string;
+    element: React.ReactNode;
     selected?: boolean;
-};
-export interface SelectProps extends ComponentProps {
-    options: SelectOption[];
-    name: string;
-    label?: string;
-    placeholder?: string | JSX.Element;
-    onChange?: (arg: SelectOption) => void;
 }
-declare const Select: React.FC<SelectProps>;
+export interface SelectProps extends InputProps {
+    multiple: boolean;
+    options: SelectOption[];
+    placeholder?: string | JSX.Element;
+    onChange?: (arg: string | string[]) => void;
+}
+declare const Select: (props: SelectProps) => import("react/jsx-runtime").JSX.Element;
 export default Select;

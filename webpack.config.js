@@ -56,6 +56,8 @@ const components = {
         select: ['./src/components/Form/Select/index.scss', './src/styles/theme.scss'],
         textInput: ['./src/components/Form/TextInput/index.scss', './src/styles/theme.scss'],
         toggle: ['./src/components/Form/Toggle/index.scss', './src/styles/theme.scss'],
+        dropdown: ['./src/components/Dropdown/index.scss', './src/styles/theme.scss'],
+        tooltip: ['./src/components/Tooltip/index.scss', './src/styles/theme.scss'],
         header: ['./src/components/Header/index.scss', './src/styles/theme.scss'],
         actionBar: ['./src/components/ActionBar/index.scss', './src/styles/theme.scss'],
         stack: ['./src/components/Stack/index.scss', './src/styles/theme.scss'],

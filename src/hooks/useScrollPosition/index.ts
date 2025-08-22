@@ -38,17 +38,20 @@ const useScrollPosition = (threshold: number) => {
  */
 export const useElScrollPosition = (
     elementRef: React.MutableRefObject<HTMLElement | undefined>,
-    refTrigger: boolean | string | number
+    refTrigger: boolean | string | number,
+    offset?: number,
 ) => {
     const [isScrolledPast, setIsScrolledPast] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             if (refTrigger && elementRef.current) {
+                // let threshold = elementRef.current.getBoundingClientRect().top
+                //     + elementRef.current.clientHeight/2;
                 let threshold = elementRef.current.getBoundingClientRect().top
-                    + elementRef.current.clientHeight/2;
+                    + (offset || 0);
                 // Check if the current scroll position is at or past the threshold
-                if (scrollY > threshold) {
+                if (threshold <= 0) {
                     setIsScrolledPast(true);
                 } else {
                     setIsScrolledPast(false);

@@ -12,7 +12,7 @@ export interface HeaderProps extends ComponentProps {
     sticky?: boolean;
     stickyClass?: string;
 }
-const Header = (props: HeaderProps) => {
+const Header = React.forwardRef((props: HeaderProps, ref) => {
     const {
         className, style,
         navClass, placeHolderClass,
@@ -21,6 +21,8 @@ const Header = (props: HeaderProps) => {
         children,
         sticky = true, stickyClass
     } = props;
+
+
 
     let style_: React.CSSProperties = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
@@ -35,7 +37,7 @@ const Header = (props: HeaderProps) => {
 
     const headerRef = React.useRef<HTMLDivElement>();
     const [headerRefSet, markHeaderRefSet] = React.useState<boolean>(false);
-    const setRef = React.useCallback((node: HTMLDivElement) => {
+    const setHeaderRef = React.useCallback((node: HTMLDivElement) => {
         if (headerRef.current) {
             return;
         }
@@ -45,7 +47,28 @@ const Header = (props: HeaderProps) => {
         }
     }, []);
 
-    const thresholdTrigger = useElScrollPosition(headerRef, headerRefSet);
+    const lowNode = React.useRef<HTMLDivElement>();
+    const [lowNodeSet, marklowNodeSet] = React.useState<boolean>(false);
+
+    const setLowNodeRef = React.useCallback((node: HTMLDivElement) => {
+        if (lowNode.current) {
+            return;
+        }
+        if (node) {
+            lowNode.current = node;
+            marklowNodeSet(true);
+        }
+    }, []);
+
+    React.useImperativeHandle(ref, () => ({
+        lowNode: lowNode.current, // lowest managed DOM node
+        highNode: headerRef.current, // highest managed DOM node
+    }), [headerRefSet, lowNodeSet]);
+
+    const thresholdTrigger = useElScrollPosition(
+        headerRef, headerRefSet, 
+        (headerRef.current?.clientHeight || 0)/2
+    );
 
     React.useEffect(() => {
         if (thresholdTrigger) {
@@ -63,15 +86,15 @@ const Header = (props: HeaderProps) => {
             }
         }
 
-        return <div className={navClass_}>
+        return <div ref={setLowNodeRef} className={navClass_}>
             {children}
         </div>
     }, [thresholdTrigger, children, sticky, stickyClass]);
 
-    return <header style={style_} ref={setRef} className={className_}>
+    return <header style={style_} ref={setHeaderRef} className={className_}>
         {nav}
     </header>
-}
+});
 
 export default Header;
 

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import ComponentProps from '../Component';
 export interface InputProps extends ComponentProps {
     id?: string;
@@ -6,7 +7,8 @@ export interface InputProps extends ComponentProps {
     labelClass?: string;
     labelSeparator?: string;
     labelPosition?: "after" | "before";
-    placeholder?: string;
+    placeholder?: string | JSX.Element;
+    title?: string;
     inline?: boolean;
     disabled?: boolean;
     required?: boolean;
