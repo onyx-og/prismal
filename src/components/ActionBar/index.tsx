@@ -14,7 +14,7 @@ const ActionBar = ( props: ActionBarProps ) => {
         accent, accentLight, accentDark,
         className, style,
         modalAreaId,
-        sectionAlt
+        sectionAlt, "data-id": dataId
     } = props;
     let actionBarClass = `prismal-actionbar prismal-actionbar-${type}`;
 
@@ -58,7 +58,7 @@ const ActionBar = ( props: ActionBarProps ) => {
     },[processItem]);
 
     return (
-        <div
+        <div data-id={dataId}
             className={actionBarClass}
             style={style_}
         >

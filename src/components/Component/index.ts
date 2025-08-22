@@ -5,6 +5,7 @@ interface ComponentProps extends AccentConfig {
     elevation?: Elevation;
     borderRadius?: BorderRadius;
     style?: React.CSSProperties;
+    "data-id"?: string | number;
 };
 
 export default ComponentProps;

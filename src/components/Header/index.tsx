@@ -14,7 +14,7 @@ export interface HeaderProps extends ComponentProps {
 }
 const Header = React.forwardRef((props: HeaderProps, ref) => {
     const {
-        className, style,
+        "data-id": dataId, className, style,
         navClass, placeHolderClass,
         accent, accentLight, accentDark,
         borderRadius,
@@ -91,7 +91,7 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
         </div>
     }, [thresholdTrigger, children, sticky, stickyClass]);
 
-    return <header style={style_} ref={setHeaderRef} className={className_}>
+    return <header data-id={dataId} style={style_} ref={setHeaderRef} className={className_}>
         {nav}
     </header>
 });
