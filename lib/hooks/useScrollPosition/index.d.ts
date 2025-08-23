@@ -10,5 +10,5 @@ declare const useScrollPosition: (threshold: number) => boolean;
  * @param refTrigger required to manage the reference presence and its mutation
  * @returns boolean
  */
-export declare const useElScrollPosition: (elementRef: React.MutableRefObject<HTMLElement | undefined>, refTrigger: boolean | string | number, offset?: number) => boolean;
+export declare const useElScrollPosition: (elementRef: React.MutableRefObject<HTMLElement | undefined>, refTrigger: boolean | string | number, offset?: number, scrollEl?: HTMLElement | Document) => boolean;
 export default useScrollPosition;

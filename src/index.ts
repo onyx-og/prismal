@@ -19,12 +19,14 @@ import Slider from "components/Slider";
 import Header from "components/Header";
 import Table from "components/Table";
 import Form from "components/Form";
+import LazyItem from "components/LazyItem";
 
 import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
 import useElementHeight from "./hooks/useElementHeight";
 import useElementWidth from "./hooks/useElementWidth";
 import useScrollPosition, {useElScrollPosition} from "hooks/useScrollPosition";
+import {useIntersectionObserver} from "hooks/";
 
 export type { SelectOption };
 export { ActionBar };
@@ -37,6 +39,7 @@ export { Table };
 export {Icon, Card, List, Modal, Alert, SearchBar, Sidebar};
 export { Form, Select, TextInput, Toggle };
 export { Dropdown, Tooltip };
+export { LazyItem };
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
 export { useElementHeight, useElementWidth, useScrollPosition, useElScrollPosition };

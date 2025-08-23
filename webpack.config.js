@@ -61,6 +61,7 @@ const components = {
         header: ['./src/components/Header/index.scss', './src/styles/theme.scss'],
         actionBar: ['./src/components/ActionBar/index.scss', './src/styles/theme.scss'],
         stack: ['./src/components/Stack/index.scss', './src/styles/theme.scss'],
+        lazyItem: ['./src/components/LazyItem/index.scss'],
         form: ['./src/components/Form/index.scss', './src/styles/theme.scss'],
     },
     output: {
