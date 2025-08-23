@@ -1,0 +1,43 @@
+.prismal-lazy-item {
+    &.prismal-lazy-item-fade {
+        opacity: 0;
+        transition: opacity 3s ease-in-out;
+
+        &.prismal-lazy-item-view {
+            opacity: 1;
+        }
+    }
+
+    &.prismal-lazy-item-slide-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+        &.prismal-lazy-item-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &.prismal-lazy-item-slide-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+
+        &.prismal-lazy-item-view {
+        opacity: 1;
+        transform: translateX(0);
+        }
+    }
+
+    &.prismal-lazy-item-pop-in {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        &.prismal-lazy-item-view {
+        opacity: 1;
+        transform: scale(1);
+        }
+    }
+}

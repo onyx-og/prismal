@@ -40,6 +40,7 @@ export const useElScrollPosition = (
     elementRef: React.MutableRefObject<HTMLElement | undefined>,
     refTrigger: boolean | string | number,
     offset?: number,
+    scrollEl: HTMLElement | Document = document,
 ) => {
     const [isScrolledPast, setIsScrolledPast] = useState(false);
 
@@ -62,13 +63,13 @@ export const useElScrollPosition = (
         };
 
         // Add the event listener when the component mounts
-        window.addEventListener('scroll', handleScroll);
+        scrollEl.addEventListener('scroll', handleScroll);
 
         // Clean up the event listener when the component unmounts
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            scrollEl.removeEventListener('scroll', handleScroll);
         };
-    }, [refTrigger]); // Re-run effect if the threshold changes
+    }, [refTrigger]); // Re-run when trigger changes
 
     return isScrolledPast;
 }

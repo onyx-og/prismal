@@ -1,6 +1,6 @@
 # Components showcase for @prismal/react
 
-This project utilizes Node workspaces to manage its internal packages, including the Storybook instance located at `packages/storybook`. The `packages/storybook/src` folder contains the Storybook stories (`stories.tsx` files) for most of the UI-kit components, with more showcases currently in development.
+This project features the Storybook instance located at `packages/storybook`. The `packages/storybook/src` folder contains the Storybook stories (`stories.tsx` files) for most of the UI-kit components, with more showcases currently in development.
 
 ## 🛠️ Getting Started (Local Development)
 
@@ -10,10 +10,10 @@ This `storybook` package is part of a larger monorepo. To ensure all necessary d
 
 1.  **Clone the main repository.**
 2.  **Navigate to the root directory of the monorepo.**
-3.  **Install all monorepo dependencies:** This command will install dependencies for *all* packages within the workspace, including this `storybook` package and the `@prismal/react` library itself.
+3.  **Install all monorepo dependencies:** This command will install dependencies for *all* packages within the workspace, including this `storybook` package.
 
     ```bash
-    npm install
+    npm install --legacy-peer-deps
     ```
 
 ### Running Storybook Live View

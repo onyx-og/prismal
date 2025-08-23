@@ -66,7 +66,7 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
     }), [headerRefSet, lowNodeSet]);
 
     const thresholdTrigger = useElScrollPosition(
-        headerRef, headerRefSet, 
+        headerRef, headerRefSet,
         (headerRef.current?.clientHeight || 0)/2
     );
 
