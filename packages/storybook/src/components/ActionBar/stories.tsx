@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import ActionBar from 'components/ActionBar';
 import Button from 'components/Button';
 
-export default {
+const meta = {
     title: 'Commons/ActionBar',
     component: ActionBar,
     argTypes: {
@@ -11,11 +11,12 @@ export default {
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
     }
-  } as ComponentMeta<typeof ActionBar>;
+  }  as Meta<typeof ActionBar >;
 
-const Template: ComponentStory<typeof ActionBar> = (args) => <ActionBar {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+export const Default: Story = {};
 Default.args = {
   type: 'primary',
   items: [
@@ -24,7 +25,7 @@ Default.args = {
   ]
 };
 
-export const Wrapper = Template.bind({});
+export const Wrapper: Story = {};
 Wrapper.args = {
   type: 'primary',
   modalAreaId: "root",

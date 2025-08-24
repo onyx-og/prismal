@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Tabs from 'components/Tabs';
 import Card from 'components/Card';
 
-export default {
+const meta = {
     title: 'Commons/Tabs',
     component: Tabs,
     argTypes: {
@@ -11,13 +11,13 @@ export default {
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
     }
-} as ComponentMeta<typeof Tabs>;
-  
+}  as Meta<typeof Tabs >;
 
-const Template: ComponentStory<typeof Tabs> = (args) => <Tabs {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {
+export default meta;
+
+export const Default: Story = {args: {
     data: [
         { name: "tab1", label: "Tab 1" },
         { name: "tab2", label: "Tab 2" },
@@ -34,9 +34,9 @@ Default.args = {
             Third tab content
         </Card>,
     ]
-};
+}};
 
-export const TabsOnly = Template.bind({});
+export const TabsOnly: Story = {};
 TabsOnly.args = {
     data: [
         { name: "tab1", label: "Tab 1" },

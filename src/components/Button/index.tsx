@@ -44,10 +44,15 @@ const Button: React.FC<ButtonProps> = (props) => {
     // Merge and override with provided style
     style_ = {...style_, ...style};
 
+    const onClick_ = React.useCallback(() => {
+        if (!disabled) return;
+        return onClick_;
+    }, [onClick, disabled]);
+
     return <button
         data-testid={name ? `button-${name}` : undefined}
         style={style_}
-        onClick={onClick} className={btnClass}
+        onClick={onClick_} className={btnClass}
     >
         { iconName && <Icon name={iconName}/>}
         { title || children }

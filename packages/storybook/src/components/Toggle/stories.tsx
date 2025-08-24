@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Toggle from 'components/Form/Toggle';
 
-export default {
+const meta = {
     title: 'Commons/Form/Toggle',
     component: Toggle,
     argTypes: {
@@ -14,14 +14,17 @@ export default {
         disabled: { control: 'boolean' },
         required: { control: 'boolean' },
     }
-} as ComponentMeta<typeof Toggle>;
+} as Meta<typeof Toggle>;
 
-const Template: ComponentStory<typeof Toggle> = (args) => <Toggle {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {
-    id: 'default',
-    name: 'default',
-    type: 'switch',
-    label: 'Puffed rice',
-};
+export default meta;
+
+export const Default: Story = {
+    args: {
+        id: 'default',
+        name: 'default',
+        type: 'switch',
+        label: 'Puffed rice',
+    }
+}

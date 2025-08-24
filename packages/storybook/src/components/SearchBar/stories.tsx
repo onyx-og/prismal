@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import SearchBar from 'components/SearchBar';
 
-export default {
+const meta = {
     title: 'Commons/SearchBar',
     component: SearchBar,
     argTypes: {
@@ -20,23 +20,24 @@ export default {
             ]
         }
     }
-} as ComponentMeta<typeof SearchBar>;
+} as Meta<typeof SearchBar >;
 
+type Story = StoryObj<typeof meta>;
 
-const Template: ComponentStory<typeof SearchBar> = (args) => <SearchBar {...args} />;
+export default meta;
 
-export const Default = Template.bind({});
+export const Default: Story = {};
 Default.args = {
     placeholder: 'Search',
 };
 
-export const InnerAfter = Template.bind({});
+export const InnerAfter: Story = {};
 InnerAfter.args = {
     placeholder: 'test',
     btnPosition: "inner-after"
 };
 
-export const Primary = Template.bind({});
+export const Primary: Story = {};
 Primary.args = {
     placeholder: 'test',
     type: "primary"

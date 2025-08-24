@@ -1,11 +1,11 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Card from 'components/Card';
 import Button from 'components/Button';
 
 import "./stories.scss";
 
-export default {
+const meta = {
     title: 'Commons/Card',
     component: Card,
     argTypes: {
@@ -16,12 +16,13 @@ export default {
         padding: { control: 'select', options: ['xs', "s", 'm', 'l'] },
         elevation: { control: 'select', options: [0, 1, 2, 3, 4] }
     }
-  } as ComponentMeta<typeof Card>;
-  
+} as Meta<typeof Card >;
 
-const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
     style: {
         maxWidth: "10rem"
@@ -30,7 +31,7 @@ Default.args = {
     elevation: 1
 };
 
-export const WithHeader = Template.bind({});
+export const WithHeader: Story = {};
 WithHeader.args = {
     style: {
         maxWidth: "10rem"
@@ -40,7 +41,7 @@ WithHeader.args = {
     elevation: 1
 };
 
-export const HeaderAndFooter = Template.bind({});
+export const HeaderAndFooter: Story = {};
 HeaderAndFooter.args = {
     style: {
         maxWidth: "10rem"
@@ -51,7 +52,7 @@ HeaderAndFooter.args = {
     elevation: 2
 };
 
-export const HorizontallyOriented = Template.bind({});
+export const HorizontallyOriented: Story = {};
 HorizontallyOriented.args = {
     style: {
         maxWidth: "30rem"
@@ -62,7 +63,7 @@ HorizontallyOriented.args = {
     orientation: "horizontal"
 };
 
-export const Advanced = Template.bind({});
+export const Advanced: Story = {};
 Advanced.args = {
     style: {
         maxWidth: "30rem"

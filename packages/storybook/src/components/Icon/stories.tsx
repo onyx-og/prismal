@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Icon from 'components/Icon';
 
-export default {
+const meta = {
     title: 'Commons/Icon',
     component: Icon,
     argTypes: {
@@ -688,11 +688,13 @@ export default {
 
         },
     }
-} as ComponentMeta<typeof Icon>;
+} as Meta<typeof Icon >;
 
-const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
     name: 'close',
 };

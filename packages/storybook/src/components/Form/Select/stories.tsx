@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Select from 'components/Form/Select';
 
-export default {
+const meta = {
     title: 'Commons/Form/Select',
     component: Select,
     argTypes: {
@@ -14,11 +14,13 @@ export default {
             options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
         }
     }
-} as ComponentMeta<typeof Select>;
+}  as Meta<typeof Select >;
 
-const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
     placeholder: 'Choose your favorite cuisine',
     options: [

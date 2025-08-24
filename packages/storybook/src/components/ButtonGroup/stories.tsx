@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import ButtonGroup from 'components/ButtonGroup';
 import Button from 'components/Button';
 
-export default {
+const meta = {
     title: 'Commons/ButtonGroup',
     component: ButtonGroup,
     argTypes: {
@@ -15,11 +15,13 @@ export default {
             options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
         }
     }
-} as ComponentMeta<typeof ButtonGroup>;
+} as Meta<typeof ButtonGroup >;
 
-const Template: ComponentStory<typeof ButtonGroup> = (args) => <ButtonGroup {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
     children: [
         <Button>First</Button>,
@@ -28,7 +30,7 @@ Default.args = {
     ],
 };
 
-export const Primary = Template.bind({});
+export const Primary: Story = {};
 Primary.args = {
     type: "primary",
     children: [
@@ -38,7 +40,7 @@ Primary.args = {
     ],
 };
 
-export const Vertical = Template.bind({});
+export const Vertical: Story = {};
 Vertical.args = {
     orientation: "column",
     children: [
@@ -48,7 +50,7 @@ Vertical.args = {
     ],
 };
 
-export const Elevated = Template.bind({});
+export const Elevated: Story = {};
 Elevated.args = {
     orientation: "column",
     type: 'primary',

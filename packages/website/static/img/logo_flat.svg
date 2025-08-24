@@ -1,0 +1,37 @@
+<svg viewBox="45 37.26 110 125.48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7ec8e3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#005566;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7ec8e3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#005566;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7ec8e3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#005566;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad4" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#7ec8e3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#005566;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradBack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4682b4;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#003366;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Back faces -->
+  <path d="M100,42.26 L50,100 L150,100 Z" fill="url(#gradBack)" stroke="black" stroke-width="1" />
+  <path d="M100,42.26 L150,100 L71.13,100 Z" fill="url(#gradBack)" stroke="black" stroke-width="1" />
+  <path d="M100,42.26 L71.13,100 L50,100 Z" fill="url(#gradBack)" stroke="black" stroke-width="1" />
+  <path d="M100,42.26 L128.87,100 L150,100 Z" fill="url(#gradBack)" stroke="black" stroke-width="1" />
+  <path d="M100,42.26 L50,100 L128.87,100 Z" fill="url(#gradBack)" stroke="black" stroke-width="1" />
+
+  <!-- Front faces -->
+  <path d="M100,157.74 L50,100 L71.13,100 Z" fill="url(#grad1)" stroke="black" stroke-width="1" />
+  <path d="M100,157.74 L71.13,100 L150,100 Z" fill="url(#grad2)" stroke="black" stroke-width="1" />
+  <path d="M100,157.74 L150,100 L128.87,100 Z" fill="url(#grad3)" stroke="black" stroke-width="1" />
+  <path d="M100,157.74 L128.87,100 L50,100 Z" fill="url(#grad4)" stroke="black" stroke-width="1" />
+</svg>

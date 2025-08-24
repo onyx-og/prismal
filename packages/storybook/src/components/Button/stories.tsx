@@ -1,8 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Button from 'components/Button';
+import 'components/Button/index.scss';
 
-export default {
+const meta = {
   title: 'Commons/Button',
   component: Button,
   argTypes: {
@@ -14,36 +15,38 @@ export default {
       options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
     }
   }
-} as ComponentMeta<typeof Button>;
+}  as Meta<typeof Button >;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
   type: 'default',
   children: 'Button',
 };
 
-export const Primary = Template.bind({});
+export const Primary: Story = {};
 Primary.args = {
   type: 'primary',
   children: 'Button',
 };
 
-export const Elevated = Template.bind({});
+export const Elevated: Story = {};
 Elevated.args = {
   type: 'primary',
   children: 'Button',
   elevation: 1,
 };
 
-export const Text = Template.bind({});
+export const Text: Story = {};
 Text.args = {
   type: 'text',
   children: 'Button',
 };
 
-export const Icon = Template.bind({});
+export const Icon: Story = {};
 Icon.args = {
   type: 'primary',
   iconName: 'info',

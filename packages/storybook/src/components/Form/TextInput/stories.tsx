@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import TextInput from 'components/Form/TextInput';
 
-export default {
+const meta = {
     title: 'Commons/Form/TextInput',
     component: TextInput,
     argTypes: {
@@ -11,11 +11,13 @@ export default {
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
     }
-} as ComponentMeta<typeof TextInput>;
+}  as Meta<typeof TextInput >;
 
-const Template: ComponentStory<typeof TextInput> = (args) => <TextInput {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
     name: 'story',
     htmlType: 'text',
@@ -23,7 +25,7 @@ Default.args = {
     placeholder: 'emerald red'
 };
 
-export const Primary = Template.bind({});
+export const Primary: Story = {};
 Primary.args = {
     name: 'story',
     htmlType: 'text',
@@ -32,7 +34,7 @@ Primary.args = {
     placeholder: 'emerald red'
 };
 
-export const Password = Template.bind({});
+export const Password: Story = {};
 Password.args = {
     name: 'password',
     htmlType: 'password',
@@ -41,7 +43,7 @@ Password.args = {
 };
 
 
-export const Inline = Template.bind({});
+export const Inline: Story = {};
 Inline.args = {
     name: 'inline-input',
     label: 'Your favorite color',
@@ -50,7 +52,7 @@ Inline.args = {
     labelSeparator: ''
 };
 
-export const Required = Template.bind({});
+export const Required: Story = {};
 Required.args = {
     name: 'story',
     htmlType: 'text',

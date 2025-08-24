@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Dropdown from 'components/Dropdown';
 
-export default {
+const meta = {
     title: 'Commons/Dropdown',
     component: Dropdown,
     argTypes: {
@@ -14,17 +14,19 @@ export default {
             options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
         }
     }
-} as ComponentMeta<typeof Dropdown>;
+} as Meta<typeof Dropdown >;
 
-const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
     toggleElement: <h2>test dropdown</h2>,
     children: <div>Hello</div>
 };
 
-export const Multiple = Template.bind({});
+export const Multiple: Story = {};
 Multiple.args = {
     toggleElement: <h2>test dropdown</h2>,
     children:

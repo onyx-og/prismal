@@ -1,8 +1,7 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Modal from 'components/Modal';
 
-export default {
+const meta = {
     title: 'Commons/Modal',
     component: Modal,
     argTypes: {
@@ -12,12 +11,12 @@ export default {
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
     }
-  } as ComponentMeta<typeof Modal>;
-  
+} as Meta<typeof Modal >;
 
-const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+export const Default: Story = {};
 Default.args = {
     title: 'test',
     visible: true,

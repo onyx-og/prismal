@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Tooltip from 'components/Tooltip';
 
-export default {
+const meta = {
     title: 'Commons/Tooltip',
     component: Tooltip,
     argTypes: {
@@ -14,11 +14,13 @@ export default {
             options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
         }
     }
-} as ComponentMeta<typeof Tooltip>;
+} as Meta<typeof Tooltip >;
 
-const Template: ComponentStory<typeof Tooltip> = (args) => <Tooltip {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+
+export const Default: Story = {};
 Default.args = {
     children: <div>Hello</div>,
     text: "Did you just hover me?"

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import Table from 'components/Table';
 
-export default {
+const meta = {
     title: 'Commons/Table',
     component: Table,
     argTypes: {
@@ -14,11 +14,12 @@ export default {
             options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
         }
     }
-} as ComponentMeta<typeof Table>;
+}  as Meta<typeof Table >;
 
-const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
+export default meta;
+export const Default: Story = {};
 Default.args = {
     data: {
         "Q1 2023": {
