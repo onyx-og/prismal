@@ -2,7 +2,7 @@
 
 > **Form**(`props`): `Element`
 
-Defined in: [components/Form/index.tsx:12](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Form/index.tsx#L12)
+Defined in: [components/Form/index.tsx:12](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Form/index.tsx#L12)
 
 ## Parameters
 

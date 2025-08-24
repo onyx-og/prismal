@@ -1,6 +1,6 @@
 # Interface: CardProps
 
-Defined in: [components/Card/index.tsx:7](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L7)
+Defined in: [components/Card/index.tsx:7](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L7)
 
 ## Extends
 
@@ -12,7 +12,7 @@ Defined in: [components/Card/index.tsx:7](https://github.com/onyx-og/prismal-rea
 
 > `optional` **accent**: `string`
 
-Defined in: [utils/colors/index.ts:3](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/utils/colors/index.ts#L3)
+Defined in: [utils/colors/index.ts:3](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/utils/colors/index.ts#L3)
 
 #### Inherited from
 
@@ -24,7 +24,7 @@ Defined in: [utils/colors/index.ts:3](https://github.com/onyx-og/prismal-react/b
 
 > `optional` **accentDark**: `string`
 
-Defined in: [utils/colors/index.ts:5](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/utils/colors/index.ts#L5)
+Defined in: [utils/colors/index.ts:5](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/utils/colors/index.ts#L5)
 
 #### Inherited from
 
@@ -36,7 +36,7 @@ Defined in: [utils/colors/index.ts:5](https://github.com/onyx-og/prismal-react/b
 
 > `optional` **accentLight**: `string`
 
-Defined in: [utils/colors/index.ts:4](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/utils/colors/index.ts#L4)
+Defined in: [utils/colors/index.ts:4](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/utils/colors/index.ts#L4)
 
 #### Inherited from
 
@@ -48,7 +48,7 @@ Defined in: [utils/colors/index.ts:4](https://github.com/onyx-og/prismal-react/b
 
 > `optional` **bodyClass**: `string`
 
-Defined in: [components/Card/index.tsx:13](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L13)
+Defined in: [components/Card/index.tsx:13](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L13)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [components/Card/index.tsx:13](https://github.com/onyx-og/prismal-re
 
 > `optional` **borderRadius**: `BorderRadius`
 
-Defined in: [components/Component/index.ts:6](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Component/index.ts#L6)
+Defined in: [components/Component/index.ts:6](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Component/index.ts#L6)
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ Defined in: [components/Component/index.ts:6](https://github.com/onyx-og/prismal
 
 > `optional` **children**: `ReactNode`
 
-Defined in: [components/Card/index.tsx:12](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L12)
+Defined in: [components/Card/index.tsx:12](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L12)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [components/Card/index.tsx:12](https://github.com/onyx-og/prismal-re
 
 > `optional` **className**: `string`
 
-Defined in: [components/Component/index.ts:4](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Component/index.ts#L4)
+Defined in: [components/Component/index.ts:4](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Component/index.ts#L4)
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ Defined in: [components/Component/index.ts:4](https://github.com/onyx-og/prismal
 
 > `optional` **cornerRadius**: `BorderRadius`
 
-Defined in: [components/Card/index.tsx:15](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L15)
+Defined in: [components/Card/index.tsx:15](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L15)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [components/Card/index.tsx:15](https://github.com/onyx-og/prismal-re
 
 > `optional` **data-id**: `string` \| `number`
 
-Defined in: [components/Component/index.ts:8](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Component/index.ts#L8)
+Defined in: [components/Component/index.ts:8](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Component/index.ts#L8)
 
 #### Inherited from
 
@@ -108,7 +108,7 @@ Defined in: [components/Component/index.ts:8](https://github.com/onyx-og/prismal
 
 > `optional` **elevation**: `Elevation`
 
-Defined in: [components/Component/index.ts:5](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Component/index.ts#L5)
+Defined in: [components/Component/index.ts:5](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Component/index.ts#L5)
 
 #### Inherited from
 
@@ -120,7 +120,7 @@ Defined in: [components/Component/index.ts:5](https://github.com/onyx-og/prismal
 
 > `optional` **footer**: `ReactNode`
 
-Defined in: [components/Card/index.tsx:10](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L10)
+Defined in: [components/Card/index.tsx:10](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L10)
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: [components/Card/index.tsx:10](https://github.com/onyx-og/prismal-re
 
 > `optional` **footerClass**: `string`
 
-Defined in: [components/Card/index.tsx:11](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L11)
+Defined in: [components/Card/index.tsx:11](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L11)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: [components/Card/index.tsx:11](https://github.com/onyx-og/prismal-re
 
 > `optional` **header**: `ReactNode`
 
-Defined in: [components/Card/index.tsx:8](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L8)
+Defined in: [components/Card/index.tsx:8](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L8)
 
 ***
 
@@ -144,7 +144,7 @@ Defined in: [components/Card/index.tsx:8](https://github.com/onyx-og/prismal-rea
 
 > `optional` **headerClass**: `string`
 
-Defined in: [components/Card/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L9)
+Defined in: [components/Card/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L9)
 
 ***
 
@@ -152,7 +152,7 @@ Defined in: [components/Card/index.tsx:9](https://github.com/onyx-og/prismal-rea
 
 > `optional` **orientation**: `"horizontal"` \| `"vertical"`
 
-Defined in: [components/Card/index.tsx:14](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L14)
+Defined in: [components/Card/index.tsx:14](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L14)
 
 ***
 
@@ -160,7 +160,7 @@ Defined in: [components/Card/index.tsx:14](https://github.com/onyx-og/prismal-re
 
 > `optional` **padding**: `"s"` \| `"xs"` \| `"m"` \| `"l"`
 
-Defined in: [components/Card/index.tsx:16](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Card/index.tsx#L16)
+Defined in: [components/Card/index.tsx:16](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Card/index.tsx#L16)
 
 ***
 
@@ -168,7 +168,7 @@ Defined in: [components/Card/index.tsx:16](https://github.com/onyx-og/prismal-re
 
 > `optional` **style**: `CSSProperties`
 
-Defined in: [components/Component/index.ts:7](https://github.com/onyx-og/prismal-react/blob/58f2a21f9ad6834702d56e0dc3c10bd54a012008/src/components/Component/index.ts#L7)
+Defined in: [components/Component/index.ts:7](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Component/index.ts#L7)
 
 #### Inherited from
 
