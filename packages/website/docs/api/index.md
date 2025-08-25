@@ -1,4 +1,4 @@
-![Logo](_media/logo_3d.svg) 
+![Logo](_media/logo_banner.svg) 
 # @prismal/react
 
 **Breaking down complex UIs into React components.**

@@ -1,5 +1,5 @@
 {
-  "name": "storybook-prismal-react",
+  "name": "@prismal/showcase-react",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,7 @@
     "@chromatic-com/storybook": "^3.2.7",
     "@mdx-js/react": "^3.0.1",
     "@storybook/addon-docs": "8.4.7",
+    "@storybook/addon-google-analytics": "^6.2.9",
     "@storybook/addon-storysource": "^8.6.14",
     "@storybook/addon-webpack5-compiler-babel": "^3.0.6",
     "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
@@ -30,6 +31,6 @@
   },
   "scripts": {
     "start": "storybook dev -p 6006",
-    "build": "storybook build -o ../website/static/preview"
+    "build": "storybook build -o ../website/static/showcase"
   }
 }

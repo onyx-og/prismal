@@ -2,7 +2,7 @@
 
 > **useSidebar**(`config?`): `object`
 
-Defined in: [hooks/useSidebar/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/hooks/useSidebar/index.tsx#L9)
+Defined in: [hooks/useSidebar/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/4de964c33b6496e718d9735afb715c0a69193872/src/hooks/useSidebar/index.tsx#L9)
 
 Custom hook meant to export a Sidebar component and the methods to manage its state
 This allows to provide the Sidebar component with headers, footers or content that can already alter that state

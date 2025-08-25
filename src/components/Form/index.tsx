@@ -39,7 +39,8 @@ const Form = ( props: FormProps ) => {
         {...child.props} />
     }), [_children]);
     
-    const submitForm = () => {
+    const submitForm = (e: Event) => {
+        e.preventDefault();
         let validity = [],
             /* formData is an object with field's mapped to their values
              */
@@ -70,11 +71,11 @@ const Form = ( props: FormProps ) => {
     
     const submitComponent = !submit ? <Button 
         type='primary' 
-        className='form-submit' onClick={() => submitForm()}>
+        className='form-submit' onClick={(e) => submitForm(e)}>
             Submit
-    </Button> : <submit.type {...submit.props} onClick={() => {
+    </Button> : <submit.type {...submit.props} onClick={(e: Event) => {
         submit.props.onClick && submit.props.onClick();
-        submitForm();
+        submitForm(e);
     }}/>
 
     return <form name={name}>

@@ -78,6 +78,10 @@ const config: Config = {
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
         },
+        gtag: {
+          trackingID: 'G-E5KWBPH17H',
+          anonymizeIP: false,
+        },
         theme: {
           customCss: ['./src/styles/custom.scss', '../../src/styles/theme.scss'],
         },
@@ -114,7 +118,7 @@ const config: Config = {
           label: 'Components'
         },
         {to: '/blog', label: 'Blog', position: 'left'},
-        {href: 'pathname:///preview/index.html', label: 'Preview', position: 'right'},
+        {href: 'pathname:///showcase/index.html', label: 'Showcase', position: 'right'},
         {
           href: 'https://github.com/onyx-og/prismal-react',
           label: 'GitHub',

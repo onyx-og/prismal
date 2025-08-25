@@ -1,6 +1,6 @@
 # Interface: SelectOption
 
-Defined in: [components/Form/Select/index.tsx:7](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Form/Select/index.tsx#L7)
+Defined in: [components/Form/Select/index.tsx:7](https://github.com/onyx-og/prismal-react/blob/4de964c33b6496e718d9735afb715c0a69193872/src/components/Form/Select/index.tsx#L7)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [components/Form/Select/index.tsx:7](https://github.com/onyx-og/pris
 
 > **element**: `ReactNode`
 
-Defined in: [components/Form/Select/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Form/Select/index.tsx#L9)
+Defined in: [components/Form/Select/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/4de964c33b6496e718d9735afb715c0a69193872/src/components/Form/Select/index.tsx#L9)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [components/Form/Select/index.tsx:9](https://github.com/onyx-og/pris
 
 > `optional` **selected**: `boolean`
 
-Defined in: [components/Form/Select/index.tsx:10](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Form/Select/index.tsx#L10)
+Defined in: [components/Form/Select/index.tsx:10](https://github.com/onyx-og/prismal-react/blob/4de964c33b6496e718d9735afb715c0a69193872/src/components/Form/Select/index.tsx#L10)
 
 ***
 
@@ -24,4 +24,4 @@ Defined in: [components/Form/Select/index.tsx:10](https://github.com/onyx-og/pri
 
 > **value**: `string`
 
-Defined in: [components/Form/Select/index.tsx:8](https://github.com/onyx-og/prismal-react/blob/f611b276376e5e5dfd4621937c01a0c007234c7b/src/components/Form/Select/index.tsx#L8)
+Defined in: [components/Form/Select/index.tsx:8](https://github.com/onyx-og/prismal-react/blob/4de964c33b6496e718d9735afb715c0a69193872/src/components/Form/Select/index.tsx#L8)

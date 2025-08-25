@@ -17,6 +17,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-storysource',
     "@storybook/addon-webpack5-compiler-swc",
+    "@storybook/addon-google-analytics",
     "@chromatic-com/storybook"
   ],
 
