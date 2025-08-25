@@ -3,3 +3,4 @@ jest.config.mjs
 tests/
 tsconfig.json
 packages
+docs/
