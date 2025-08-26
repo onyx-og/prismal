@@ -22,7 +22,7 @@
     "build": "rimraf --glob lib/* && webpack --node-env=production && rimraf --glob ./lib/styles/*.js",
     "test": "jest"
   },
-  "author": "Onyx <hello@onyx.ac> (https://onxy.ac)",
+  "author": "Onyx <hello@onyx.ac> (https://onyx.ac)",
   "contributors": [
     "Onyx <hello@onyx.ac> (https://onyx.ac)"
   ],

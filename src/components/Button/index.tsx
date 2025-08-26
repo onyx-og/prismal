@@ -45,7 +45,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     style_ = {...style_, ...style};
 
     const onClick_ = React.useCallback(() => {
-        if (!disabled) return;
+        if (disabled) return;
         return onClick_;
     }, [onClick, disabled]);
 
