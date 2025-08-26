@@ -9,7 +9,7 @@ export interface ButtonProps extends ComponentProps {
     name?: string;
     iconName?: string;
     title?: string;
-    onClick?: (arg: any) => void;
+    onClick?: () => void;
     disabled?: boolean;
     type?: 'default' | 'primary' | 'text';
     children?: React.ReactNode;
@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 
     const onClick_ = React.useCallback(() => {
         if (disabled) return;
-        return onClick_;
+        if (onClick) onClick();
     }, [onClick, disabled]);
 
     return <button

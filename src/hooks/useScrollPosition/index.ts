@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
  * @param {number} threshold - The vertical scroll position in pixels to trigger the state update.
  * @returns {boolean} - True if the scroll position is at or past the threshold, false otherwise.
  */
-const useScrollPosition = (threshold: number) => {
+export const useScrollThreshold = (threshold: number) => {
     const [isScrolledPast, setIsScrolledPast] = useState(false);
 
     useEffect(() => {
@@ -36,10 +36,11 @@ const useScrollPosition = (threshold: number) => {
  * @param refTrigger required to manage the reference presence and its mutation
  * @returns boolean
  */
-export const useElScrollPosition = (
+export const useElScrollThreshold = (
     elementRef: React.MutableRefObject<HTMLElement | undefined>,
     refTrigger: boolean | string | number,
-    offset?: number,
+    offset: number = 0,
+    threshold: number = 0, // top of the viewport
     scrollEl: HTMLElement | Document = document,
 ) => {
     const [isScrolledPast, setIsScrolledPast] = useState(false);
@@ -49,10 +50,10 @@ export const useElScrollPosition = (
             if (refTrigger && elementRef.current) {
                 // let threshold = elementRef.current.getBoundingClientRect().top
                 //     + elementRef.current.clientHeight/2;
-                let threshold = elementRef.current.getBoundingClientRect().top
-                    + (offset || 0);
+                let elPos = elementRef.current.getBoundingClientRect().top
+                    + (offset);
                 // Check if the current scroll position is at or past the threshold
-                if (threshold <= 0) {
+                if (elPos <= threshold) {
                     setIsScrolledPast(true);
                 } else {
                     setIsScrolledPast(false);
@@ -74,4 +75,28 @@ export const useElScrollPosition = (
     return isScrolledPast;
 }
 
-export default useScrollPosition;
+export const useElScrollPosition = (
+    elementRef: React.MutableRefObject<HTMLElement | undefined>,
+    refTrigger: boolean | string | number,
+    scrollEl: HTMLElement | Document = document,
+) => {
+    const [scrollPosition, setScrollPosition] = useState<number>();
+
+    useEffect( () => {
+        const handleScroll = () => {
+            if (refTrigger && elementRef.current) {
+                let elPos = elementRef.current.getBoundingClientRect().top;
+                setScrollPosition(elPos);
+            }
+        }
+
+        scrollEl.addEventListener('scroll', handleScroll);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            scrollEl.removeEventListener('scroll', handleScroll);
+        };
+    }, [refTrigger]);
+
+    return scrollPosition;
+}

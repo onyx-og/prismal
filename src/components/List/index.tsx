@@ -228,7 +228,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
             numbers_ = numbers_.slice(currentPage - 2, currentPage + 1)
         }
         numbers_ = numbers_.map((n) => 
-            <Button type={n==currentPage ? 'primary' : 'text'} onClick={()=>setPage(n)} disabled={n==currentPage}>{n}</Button>
+            <Button key={n} type={n==currentPage ? 'primary' : 'text'} onClick={()=>setPage(n)} disabled={n==currentPage}>{n}</Button>
         )
         return numbers_;
     },[showExtremesCtrl, lastPage, currentPage]);
@@ -254,9 +254,9 @@ const List: React.FC<ListComponentProps> = ( props ) => {
     const pageCtrl = React.useMemo(() => {
         return <ActionBar items={[
             { item: <>{leftExtreme}</>, position: "left", key: "leftExtreme"},
-            { item: <Button onClick={pageBackwards} disabled={currentPage==1}>Back</Button>, position: "left", key: "back"},
+            { item: <Button key={"backwards"} onClick={pageBackwards} disabled={currentPage==1}>Back</Button>, position: "left", key: "back"},
             { item: <>{pageJumpCtrl}</>, position:"center", key: "pageJumpCtrl"},
-            { item: <Button onClick={pageForward} disabled={currentPage==lastPage}>Next</Button>, position: "right", key: "next"},
+            { item: <Button key={"forward"} onClick={pageForward} disabled={currentPage==lastPage}>Next</Button>, position: "right", key: "next"},
             { item: <>{rightExtreme}</>, position: "right", key: "rightExtrme"}
         ]} />
     },[leftExtreme,pageBackwards,currentPage,pageJumpCtrl,pageForward,lastPage,rightExtreme]);
