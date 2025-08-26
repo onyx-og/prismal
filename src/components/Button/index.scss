@@ -86,8 +86,19 @@
         background-color: transparent;
         color: vars.$primary-color;
         border: solid .1em transparent;
-
+        
         &:hover:not(.btn-disabled) {
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                border-color: var(--color-primary);
+                border-bottom: solid;
+            }
+        }
+
+        &.btn-circle:hover:not(.btn-disabled) {
             &::before {
                 content: '';
                 position: absolute;
@@ -102,6 +113,7 @@
             }
             // border: solid .1em vars.$primary-color;
         }
+
 
         &:focus:not(.btn-disabled)::after {
             content: '';
