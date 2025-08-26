@@ -10,10 +10,10 @@ export interface SelectOption {
     selected?: boolean;
 } 
 export interface SelectProps extends InputProps {
-    multiple: boolean;
+    multiple?: boolean;
     options: SelectOption[];
     placeholder?: string | JSX.Element;
-    onChange?: (arg: string | string[]) => void;
+    onChange?: ((arg: string) => void) & ((arg: string[]) => void);
 }
 const Select = (props: SelectProps) => {
     const {
@@ -21,7 +21,7 @@ const Select = (props: SelectProps) => {
         accent, accentLight, accentDark,
         borderRadius,
         id, name, title,
-        label, placeholder,
+        label, placeholder = "Select..",
         required = false,
         disabled = false,
         multiple = false,
@@ -80,9 +80,15 @@ const Select = (props: SelectProps) => {
 
     React.useEffect( () => {
         if ( selected && onChange ) {
-            onChange(selected)
+            if (multiple){
+                let selected_ = selected as string[]
+                onChange(selected_);
+            } else {
+                let selected_ = selected as string;
+                onChange(selected_);
+            }
         };
-    }, [selected]);
+    }, [selected, multiple]);
 
     return <div className={className_} style={style_}>
         <label htmlFor={id}>{label}</label>

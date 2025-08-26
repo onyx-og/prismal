@@ -1,3 +1,5 @@
+// [TODO] Avoid using aliases here.
+
 import Icon from "./components/Icon";
 import Button from "./components/Button";
 import ButtonGroup from "components/ButtonGroup";

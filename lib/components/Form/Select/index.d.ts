@@ -7,10 +7,10 @@ export interface SelectOption {
     selected?: boolean;
 }
 export interface SelectProps extends InputProps {
-    multiple: boolean;
+    multiple?: boolean;
     options: SelectOption[];
     placeholder?: string | JSX.Element;
-    onChange?: (arg: string | string[]) => void;
+    onChange?: ((arg: string) => void) & ((arg: string[]) => void);
 }
 declare const Select: (props: SelectProps) => import("react/jsx-runtime").JSX.Element;
 export default Select;
