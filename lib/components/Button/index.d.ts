@@ -5,7 +5,7 @@ export interface ButtonProps extends ComponentProps {
     name?: string;
     iconName?: string;
     title?: string;
-    onClick?: (arg: any) => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
     type?: 'default' | 'primary' | 'text';
     children?: React.ReactNode;

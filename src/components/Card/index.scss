@@ -27,6 +27,7 @@
     .prismal-card-body,
     .prismal-card-footer {
         display: flex;
+        flex-direction: column;
         padding: var(--box-padding);
     }
 

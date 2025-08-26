@@ -23,3 +23,4 @@ export declare const setBorderRadius: (style: {
 } & {
     [key: string]: any;
 };
+export declare const getRandId: () => string;

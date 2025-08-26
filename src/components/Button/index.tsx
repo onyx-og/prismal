@@ -9,7 +9,7 @@ export interface ButtonProps extends ComponentProps {
     name?: string;
     iconName?: string;
     title?: string;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
     type?: 'default' | 'primary' | 'text';
     children?: React.ReactNode;
@@ -44,9 +44,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     // Merge and override with provided style
     style_ = {...style_, ...style};
 
-    const onClick_ = React.useCallback(() => {
+    const onClick_ = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         if (disabled) return;
-        if (onClick) onClick();
+        if (onClick) onClick(e);
     }, [onClick, disabled]);
 
     return <button

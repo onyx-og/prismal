@@ -25,7 +25,7 @@ import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
 import useElementHeight from "./hooks/useElementHeight";
 import useElementWidth from "./hooks/useElementWidth";
-import useScrollPosition, {useElScrollPosition} from "hooks/useScrollPosition";
+import { useElScrollThreshold, useElScrollPosition, useScrollThreshold} from "hooks/useScrollPosition";
 import {useIntersectionObserver} from "hooks/";
 
 export type { SelectOption };
@@ -42,4 +42,5 @@ export { Dropdown, Tooltip };
 export { LazyItem };
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
-export { useElementHeight, useElementWidth, useScrollPosition, useElScrollPosition };
+export { useElementHeight, useElementWidth} 
+export { useElScrollThreshold, useElScrollPosition, useIntersectionObserver, useScrollThreshold };
