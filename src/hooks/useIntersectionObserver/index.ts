@@ -10,7 +10,6 @@ const useIntersectionObserver = (
     }
 ) => {
     const [isIntersecting, setIsIntersecting] = React.useState(false);
-    const isIntersecting_ = React.useDeferredValue(isIntersecting);
 
     const intersectionCallback: IntersectionObserverCallback = (entries) => {
         entries.forEach((entry) => {
@@ -34,7 +33,7 @@ const useIntersectionObserver = (
         }
     },[refTrigger])
 
-    return isIntersecting_;
+    return isIntersecting;
     
 }
 export default useIntersectionObserver;

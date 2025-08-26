@@ -110,3 +110,7 @@ export const setBorderRadius = (
 
     return Object.assign(style, _style);
 }
+
+export const getRandId = () => {
+    return Math.random().toString(36).substring(2);
+}

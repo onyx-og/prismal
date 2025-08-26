@@ -3,7 +3,7 @@ import ComponentProps from "components/Component";
 import "./index.scss";
 import { setAccentStyle } from "utils/colors";
 import { setBorderRadius } from "utils/";
-import {useElScrollPosition} from "hooks/useScrollPosition";
+import {useElScrollThreshold} from "hooks/useScrollPosition";
 
 export interface HeaderProps extends ComponentProps {
     navClass?: string;
@@ -65,7 +65,7 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
         highNode: headerRef.current, // highest managed DOM node
     }), [headerRefSet, lowNodeSet]);
 
-    const thresholdTrigger = useElScrollPosition(
+    const thresholdTrigger = useElScrollThreshold(
         headerRef, headerRefSet,
         (headerRef.current?.clientHeight || 0)/2
     );
