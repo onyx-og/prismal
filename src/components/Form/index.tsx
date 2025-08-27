@@ -2,18 +2,34 @@ import React from 'react';
 import './index.scss';
 import Button from '../Button';
 import { InputRefType } from './types';
+import ComponentProps from 'components/Component';
+import { setAccentStyle } from "utils/";
 
-interface FormProps {
+export interface FormProps extends ComponentProps {
     children: JSX.Element | JSX.Element[];
     name?: string;
     submit: JSX.Element;
     onSubmit?: ( formData: {[key:string]: any} ) => void;
 }
 const Form = ( props: FormProps ) => {
-    const { children, name, submit, onSubmit } = props;
+    const {
+        children, 
+        name, submit, onSubmit,
+        "data-id": dataId,
+        className, style,
+        accent, accentLight, accentDark
+    } = props;
     const inputsRef = React.useRef<(InputRefType)[]>([]);
     const [ isInvalid, markInvalid ] = React.useState(false);
 
+    let className_ = "prismal-form";
+    if (className) className_ = `${className_} ${className}`;
+
+    let style_ = {};
+    setAccentStyle(style_, {accent, accentLight, accentDark});
+    if (style) style_ = {...style_, ...style};
+
+    // [TODO] Consider changing into React.Children method
     // Assures that _children is an array, event when it's not
     const _children = ([] as JSX.Element[]).concat(children);
 
@@ -81,7 +97,7 @@ const Form = ( props: FormProps ) => {
         submitForm(e);
     }}/>
 
-    return <form name={name}>
+    return <form data-id={dataId} className={className_} style={style_} name={name}>
         <div className='form-fields'>{renderedChildren}</div>
         { submitComponent }
         { isInvalid ? 

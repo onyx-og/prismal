@@ -1,6 +1,7 @@
 /// <reference types="react" />
 import './index.scss';
-interface FormProps {
+import ComponentProps from 'components/Component';
+export interface FormProps extends ComponentProps {
     children: JSX.Element | JSX.Element[];
     name?: string;
     submit: JSX.Element;
