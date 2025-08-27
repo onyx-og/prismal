@@ -125,7 +125,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
             // TODO: Consider adding a fallback content
             return selectedContent;
         }
-        return <></> // consider a 404
+        return null // Missing content. Probably in use with onChange or ref
     }, [selected, content, tabContentClass_, children, contentRenderer]);
 
     const style: { [key: string]: any } = React.useMemo(() => {
@@ -137,7 +137,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
 
     return <div style={style} className={className_}>
         <div className={tabsClass_}>{tabs}</div>
-        <div className={tabContentClass_}>{tabContent}</div>
+        {tabContent != null ? <div className={tabContentClass_}>{tabContent}</div> : <></>}
     </div>
 })
 
