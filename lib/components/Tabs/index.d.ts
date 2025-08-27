@@ -24,6 +24,7 @@ interface TabContentProps {
 export interface TabsProps extends ComponentProps {
     data: TabConfig[];
     tabRenderer?: TabContainerProps["tabRenderer"];
+    onChange?: (currentTab: string | number) => void;
     children?: React.ReactElement<TabContentProps>[];
     content?: {
         [tabName: string]: React.ReactNode;

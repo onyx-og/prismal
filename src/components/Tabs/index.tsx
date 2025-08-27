@@ -56,6 +56,7 @@ interface TabContentProps {
 export interface TabsProps extends ComponentProps {
     data: TabConfig[];
     tabRenderer?: TabContainerProps["tabRenderer"];
+    onChange?: (currentTab: string | number) => void;
     // [TODO] Try to specify that the elements must have attr/prop "data-tab" set
     children?: React.ReactElement<TabContentProps>[];
     content?: {
@@ -75,7 +76,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         data, tabRenderer = defaultRenderer,
         className, tabClass, tabsClass, tabContentClass,
         accent, accentDark, accentLight,
-        borderRadius, elevation,
+        borderRadius, elevation, onChange,
         children, content, contentRenderer
     } = props;
     // Select the first tab if no default is provided
@@ -83,7 +84,13 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         data.find(t => t.default)?.name ||
             (data.length > 0) ? data[0].name : undefined
     )
-    React.useImperativeHandle(ref, () => ({name: selected!}), [selected])
+    React.useImperativeHandle(ref, () => ({name: selected!}), [selected]);
+
+    React.useEffect(() => {
+        if (onChange && selected) {
+            onChange(selected);
+        }
+    }, [selected, onChange]);
 
     let tabsClass_ = "prismal-tabs";
     if (tabsClass) tabsClass_ = `${tabsClass_} ${tabsClass}`;
