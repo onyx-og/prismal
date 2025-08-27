@@ -23,8 +23,8 @@ import Table from "components/Table";
 import Form from "components/Form";
 import LazyItem from "components/LazyItem";
 
-export * from "./components/Pie";
-export * from "./components/Tabs";
+import Pie from "./components/Pie";
+import Tabs from "./components/Tabs";
 
 import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
@@ -33,6 +33,7 @@ import useElementWidth from "./hooks/useElementWidth";
 import { useElScrollThreshold, useElScrollPosition, useScrollThreshold} from "hooks/useScrollPosition";
 import {useIntersectionObserver} from "hooks/";
 
+export {Tabs, Pie};
 export type { SelectOption };
 export { ActionBar };
 export type { ActionBarItemConfig };
