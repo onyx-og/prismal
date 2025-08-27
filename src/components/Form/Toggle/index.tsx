@@ -12,9 +12,9 @@ import "./index.scss";
 export interface ToggleProps extends InputProps {
     type?: "checkbox" | "switch";
     checked?: boolean;
-    placeholder: never;
-    value: never;
-    inline: never;
+    placeholder?: never;
+    value?: never;
+    inline?: never;
     onChange?: (value: boolean) => any;
 }
 /**
