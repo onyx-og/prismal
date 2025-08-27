@@ -90,6 +90,9 @@ const Select = (props: SelectProps) => {
         };
     }, [selected, multiple]);
 
+    // [TODO] Render placeholder conditionally
+    // if no placeholder is provided and no defaultSelected 
+    // mark as selected the first option
     return <div className={className_} style={style_}>
         <label htmlFor={id}>{label}</label>
         <select id={id} title={title}

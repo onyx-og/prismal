@@ -23,6 +23,9 @@ import Table from "components/Table";
 import Form from "components/Form";
 import LazyItem from "components/LazyItem";
 
+export * from "./components/Pie";
+export * from "./components/Tabs";
+
 import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
 import useElementHeight from "./hooks/useElementHeight";
