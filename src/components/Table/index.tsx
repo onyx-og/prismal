@@ -55,7 +55,11 @@ const Table = (props: TableProps) => {
     },[]);
 
     const keysY = React.useMemo(()=> {
-        return Object.keys(data);
+        let keys = Object.keys(data);
+        if (setKeysY) {
+            setKeysY(keys);
+        };
+        return keys;
     },[data]);
 
     const keysX = React.useMemo(()=> {
@@ -67,7 +71,12 @@ const Table = (props: TableProps) => {
         return keys_;
     },[data]);
 
-    const [keysY_, setKeysY] = React.useState(keysY);
+   const [keysY_, setKeysY] = React.useState(Object.keys(data));
+
+    React.useEffect(() => {
+        // Only run this effect when `data` changes
+        setKeysY(Object.keys(data));
+    }, [data]);;
 
     const [orderBy, setOrder] = React.useState<[string, 'asc' | 'desc'] | null>();
 
@@ -86,7 +95,7 @@ const Table = (props: TableProps) => {
 
     const sort = React.useCallback((keyX: string, sortOrder: 'asc' | 'desc' = 'asc') => {
         let orderedList: [string, CellData][] = []
-        for (const i of keysY) {
+        for (const i of keysY_) {
             orderedList.push([i, data[i][keyX]]);
         }
         orderedList.sort((a, b) => {
@@ -116,7 +125,7 @@ const Table = (props: TableProps) => {
             return tuple[0]
         });
         setKeysY(sortedKeysY);
-    },[data, keysY, keysX]);
+    },[data, keysY_, keysX]);
 
     const columnHeaders = React.useMemo(()=> {
         const headers = keysX.map((k) => {
@@ -129,8 +138,8 @@ const Table = (props: TableProps) => {
 
     const rows = React.useMemo(()=> {
         const rows_: any[] = [];
-        keysY_.forEach((r) => {
-            rows_.push(<tr>
+        keysY_.forEach((r, i) => {
+            rows_.push(<tr key={i}>
                 <th scope="row">{r}</th>
                 {Array.from(keysX, (v, key) => (
                     cellRenderer({data: data[r][v], coords: [r, v]})
