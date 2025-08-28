@@ -21,6 +21,7 @@ import Slider from "components/Slider";
 import Header from "components/Header";
 import Table from "components/Table";
 import Form from "components/Form";
+import {InputRefType} from "components/Form/types";
 import LazyItem from "components/LazyItem";
 
 import Pie from "./components/Pie";
@@ -43,7 +44,7 @@ export { Slider };
 export { Header };
 export { Table };
 export {Icon, Card, List, Modal, Alert, SearchBar, Sidebar};
-export { Form, Select, TextInput, Toggle };
+export { Form, Select, TextInput, Toggle, InputRefType };
 export { Dropdown, Tooltip };
 export { LazyItem };
 export { setAccentStyle, hex2rgba };
