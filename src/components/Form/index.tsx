@@ -59,6 +59,8 @@ const Form = ( props: FormProps ) => {
             return <child.type key={i} 
                 ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
             {...child.props} />
+        } else {
+            console.log({data: child.props.ref})
         }
         return child;
     }), [_children]);
