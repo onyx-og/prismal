@@ -54,7 +54,8 @@ const Form = ( props: FormProps ) => {
      * when the child is a managed input
      */
     const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
-        if ([TextInput, Select, Toggle].includes(child.type)) {
+        if ([TextInput, Select, Toggle].includes(child.type) || child.props.ref?.current?.isInputRefType) {
+            console.log("Is input ref type?", child.props.ref?.current?.isInputRefType);
             return <child.type key={i} 
                 ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
             {...child.props} />
