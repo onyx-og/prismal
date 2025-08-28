@@ -19,7 +19,7 @@
   },
   "include": [
     "src",
-    "packages/storybook/src"
+    "packages/showcase/src"
   ],
   "exclude": [
     "src/**/*.test.ts",

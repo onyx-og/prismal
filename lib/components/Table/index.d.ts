@@ -1,7 +1,7 @@
 import React from "react";
 import ComponentProps from "components/Component";
 import "./index.scss";
-export type CellData = string | number | boolean;
+export type CellData = React.ReactNode;
 export interface TableProps extends ComponentProps {
     data: {
         [keyX: string]: {

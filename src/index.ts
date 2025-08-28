@@ -26,6 +26,7 @@ import LazyItem from "components/LazyItem";
 
 import Pie from "./components/Pie";
 import Tabs from "./components/Tabs";
+import Accordion from "./components/Accordion";
 
 import useModal from "./hooks/useModal";
 import useSidebar from "./hooks/useSidebar";
@@ -34,7 +35,8 @@ import useElementWidth from "./hooks/useElementWidth";
 import { useElScrollThreshold, useElScrollPosition, useScrollThreshold} from "hooks/useScrollPosition";
 import {useIntersectionObserver} from "hooks/";
 
-export {Tabs, Pie};
+export {Tabs, Accordion};
+export {Pie};
 export type { SelectOption };
 export { ActionBar };
 export type { ActionBarItemConfig };

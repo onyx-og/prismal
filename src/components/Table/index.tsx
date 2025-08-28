@@ -4,7 +4,7 @@ import ComponentProps from "components/Component";
 import "./index.scss";
 import { setAccentStyle } from "utils/";
 
-export type CellData = string | number | boolean;
+export type CellData = React.ReactNode;
 export interface TableProps extends ComponentProps {
     data: {[keyX: string]: {[keyY: string]: CellData}};
     caption?: React.ReactNode;
