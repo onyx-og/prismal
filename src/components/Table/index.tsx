@@ -116,7 +116,7 @@ const Table = (props: TableProps) => {
             return tuple[0]
         });
         setKeysY(sortedKeysY);
-    },[data, keysY,keysX]);
+    },[data, keysY, keysX]);
 
     const columnHeaders = React.useMemo(()=> {
         const headers = keysX.map((k) => {
@@ -138,7 +138,7 @@ const Table = (props: TableProps) => {
             </tr>)
         });
         return rows_;
-    },[keysY_, data]);
+    },[keysY_, keysX, data]);
 
     let style_: React.CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
