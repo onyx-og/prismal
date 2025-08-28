@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import './index.scss';
 import ComponentProps from 'components/Component';
 export interface FormProps extends ComponentProps {
@@ -9,5 +9,5 @@ export interface FormProps extends ComponentProps {
         [key: string]: any;
     }) => void;
 }
-declare const Form: (props: FormProps) => import("react/jsx-runtime").JSX.Element;
+declare const Form: React.FC<FormProps>;
 export default Form;

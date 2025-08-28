@@ -15,7 +15,7 @@ export interface FormProps extends ComponentProps {
     submit: JSX.Element;
     onSubmit?: ( formData: {[key:string]: any} ) => void;
 }
-const Form = ( props: FormProps ) => {
+const Form: React.FC<FormProps> = (props) => {
     const {
         children, 
         name, submit, onSubmit,
@@ -56,7 +56,8 @@ const Form = ( props: FormProps ) => {
      */
     const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
         if (![TextInput, Select, Toggle].includes(child.type)) {
-            console.warn(`Form ${name?.concat(' ')} has child that's not managed.`);
+            // [TODO] Add documentation link
+            console.warn(`Form ${name ? name.concat(' ') : ''}has child node that may not be managed.`);
         } 
         return <child.type key={i} 
             ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}

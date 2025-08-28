@@ -2,6 +2,7 @@ import React from "react";
 import ComponentProps from "components/Component";
 
 import "./index.scss";
+import { setAccentStyle } from "utils/";
 
 export type CellData = string | number | boolean;
 export interface TableProps extends ComponentProps {
@@ -41,7 +42,7 @@ const Table = (props: TableProps) => {
         cellRenderer = defaultCellRenderer
     } = props;
 
-    let className_ = `prismal-table`; 
+    let className_ = `prismal-table-container`; 
     if ( className ) className_ = `${className_} ${className}`;
 
     const caption_ = React.useMemo(() => {
@@ -139,23 +140,29 @@ const Table = (props: TableProps) => {
         return rows_;
     },[keysY_, data]);
 
-    return <table data-id={dataId} className={className_}>
-        {caption_}
-        <thead>
-            <tr>
-                {columnHeaders}
-            </tr>
-        </thead>
-        <tbody>
-            {rows}
-        </tbody>
-        {/* [TODO] <tfoot>
-            <tr>
-                <th scope="row" colSpan={2}>Average age</th>
-                <td>33</td>
-            </tr>
-        </tfoot> */}
-    </table>
+    let style_: React.CSSProperties = {};
+    setAccentStyle(style_, {accent, accentLight, accentDark});
+    if (style) style_ = {...style_, ...style};
+
+    return <div style={style_} data-id={dataId} className={className_} >
+        <table>
+            {caption_}
+            <thead>
+                <tr>
+                    {columnHeaders}
+                </tr>
+            </thead>
+            <tbody>
+                {rows}
+            </tbody>
+            {/* [TODO] <tfoot>
+                <tr>
+                    <th scope="row" colSpan={2}>Average age</th>
+                    <td>33</td>
+                </tr>
+            </tfoot> */}
+        </table>
+    </div>
 
 }
 export default Table;

@@ -1,6 +1,10 @@
 @use '../../styles/vars';
 
-table.prismal-table {
+.prismal-table-container {
+    overflow-x: auto;
+}
+
+.prismal-table-container table {
     font-family: vars.$font-body;
     border-collapse: collapse;
     border: 2px solid rgb(140 140 140);
