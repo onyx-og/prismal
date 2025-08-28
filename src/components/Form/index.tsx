@@ -55,7 +55,7 @@ const Form = ( props: FormProps ) => {
      * when the child is a managed input
      */
     const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
-        if ([TextInput, Select, Toggle].includes(child.type) || isForwardRef(child.type)) {
+        if ([TextInput, Select, Toggle].includes(child.type) || isForwardRef(child)) {
             console.log("Is managed input");
             return <child.type key={i} 
                 ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
