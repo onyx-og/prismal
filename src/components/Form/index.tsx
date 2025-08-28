@@ -55,16 +55,13 @@ const Form = ( props: FormProps ) => {
      * when the child is a managed input
      */
     const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
-        if ([TextInput, Select, Toggle].includes(child.type) || isForwardRef(child)) {
-            console.log("Is managed input");
-            return <child.type key={i} 
-                ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
-            {...child.props} />
-        } else {
-            console.warn("Form component has child that's not managed.");
-        }
-        return child;
-    }), [_children]);
+        if (![TextInput, Select, Toggle].includes(child.type)) {
+            console.warn(`Form ${name?.concat(' ')} has child that's not managed.`);
+        } 
+        return <child.type key={i} 
+            ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
+        {...child.props} />
+    }), [_children, name]);
     
     const submitForm = (e?: any) => {
         // i.e. provided with a <button> avoid default behaviour (post)
