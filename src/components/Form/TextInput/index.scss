@@ -59,7 +59,13 @@
             &.prismal-input-primary:has(> input) {
                 //background-color: transparent;
                 background-color: rgba(var(--color-primary-light_), 0.25);
+                border-color: rgba(var(--color-primary-light_), 0.25);
                 // border: solid thin grey;
+            }
+            &.prismal-input-default:has(>input:disabled), 
+            &.prismal-input-primary:has(>input:disabled) {
+                background-color: rgba(var(--color-primary-light_), 0.1);
+                border-color: rgba(var(--color-primary-light_), 0.1);
             }
             &:has(> input:hover) {
                 border-color: var(--color-primary);

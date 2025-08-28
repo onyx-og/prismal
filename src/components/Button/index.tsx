@@ -45,7 +45,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     style_ = {...style_, ...style};
 
     const onClick_ = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
         if (disabled) return;
         if (onClick) onClick(e);
     }, [onClick, disabled]);

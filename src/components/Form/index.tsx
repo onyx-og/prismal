@@ -1,4 +1,5 @@
 import React from 'react';
+import { isForwardRef } from 'react-is';
 import './index.scss';
 import Button from '../Button';
 import { InputRefType } from './types';
@@ -54,13 +55,13 @@ const Form = ( props: FormProps ) => {
      * when the child is a managed input
      */
     const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
-        if ([TextInput, Select, Toggle].includes(child.type) || child.props.ref?.current?.isInputRefType) {
-            console.log("Is input ref type?", child.props.ref?.current?.isInputRefType);
+        if ([TextInput, Select, Toggle].includes(child.type) || isForwardRef(child.type)) {
+            console.log("Is managed input");
             return <child.type key={i} 
                 ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
             {...child.props} />
         } else {
-            console.log({data: child.props.ref})
+            console.warn("Form component has child that's not managed.");
         }
         return child;
     }), [_children]);
