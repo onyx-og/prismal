@@ -4,6 +4,9 @@ import Button from '../Button';
 import { InputRefType } from './types';
 import ComponentProps from 'components/Component';
 import { setAccentStyle } from "utils/";
+import TextInput from './TextInput';
+import Toggle from "./Toggle";
+import Select from "./Select";
 
 export interface FormProps extends ComponentProps {
     children: JSX.Element | JSX.Element[];
@@ -47,15 +50,20 @@ const Form = ( props: FormProps ) => {
         }
     }
 
-    /* Renders all given child while using callback ref to dinamically populate ref array
+    /* Renders all given children, using callback ref to dinamically populate ref array
+     * when the child is a managed input
      */
     const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
-        return <child.type key={i} 
-            ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
-        {...child.props} />
+        if ([TextInput, Select, Toggle].includes(child.type)) {
+            return <child.type key={i} 
+                ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
+            {...child.props} />
+        }
+        return child;
     }), [_children]);
     
     const submitForm = (e?: any) => {
+        // i.e. provided with a <button> avoid default behaviour (post)
         if (e && typeof e.preventDefault === 'function') {
             e.preventDefault();
         }
