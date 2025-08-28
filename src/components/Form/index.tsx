@@ -99,14 +99,14 @@ const Form = ( props: FormProps ) => {
     
     const submitComponent = !submit ? <Button 
         type='primary' 
-        className='form-submit' onClick={(e) => submitForm(e)}>
+        className='form-submit' onClick={(e) => {e.stopPropagation(); submitForm(e)}}>
             Submit
     </Button> : <submit.type {...submit.props} onClick={(e: any) => {
         submit.props.onClick && submit.props.onClick();
         submitForm(e);
     }}/>
 
-    return <form data-id={dataId} className={className_} style={style_} name={name}>
+    return <form onSubmit={submitForm} data-id={dataId} className={className_} style={style_} name={name}>
         <div className='form-fields'>{renderedChildren}</div>
         { submitComponent }
         { isInvalid ? 
