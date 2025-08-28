@@ -54,13 +54,13 @@ const Table = (props: TableProps) => {
         return null;
     },[]);
 
-    const keysY = React.useMemo(()=> {
-        let keys = Object.keys(data);
-        if (setKeysY) {
-            setKeysY(keys);
-        };
-        return keys;
-    },[data]);
+    // const keysY = React.useMemo(()=> {
+    //     let keys = Object.keys(data);
+    //     if (setKeysY) {
+    //         setKeysY(keys);
+    //     };
+    //     return keys;
+    // },[data]);
 
     const keysX = React.useMemo(()=> {
         let keys: {[key: string]: null} = {};
@@ -74,12 +74,12 @@ const Table = (props: TableProps) => {
    const [keysY_, setKeysY] = React.useState(Object.keys(data));
 
     React.useEffect(() => {
-        // Only run this effect when `data` changes
         setKeysY(Object.keys(data));
-    }, [data]);;
+    }, [data]);
 
     const [orderBy, setOrder] = React.useState<[string, 'asc' | 'desc'] | null>();
 
+    // Defines sorting params
     const toggleOrder = React.useCallback( (keyX: string) => {
         if (orderBy && orderBy[0] == keyX) {
             if (orderBy[1] ==  'asc') setOrder([keyX, 'desc']);
@@ -87,11 +87,12 @@ const Table = (props: TableProps) => {
         } else setOrder([keyX, 'asc']);
     },[orderBy]);
 
+    // Applies sort when specified
     React.useEffect(() => {
         if (orderBy) {
             sort(orderBy[0], orderBy[1]);
         }
-    },[orderBy]);
+    },[orderBy, data]);
 
     const sort = React.useCallback((keyX: string, sortOrder: 'asc' | 'desc' = 'asc') => {
         let orderedList: [string, CellData][] = []
