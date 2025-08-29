@@ -14,6 +14,7 @@ export interface ButtonProps extends ComponentProps {
     type?: 'default' | 'primary' | 'text';
     children?: React.ReactNode;
     shape?: 'default-shape' | 'circle';
+    htmlType?: 'submit' | 'button';
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -28,7 +29,8 @@ const Button: React.FC<ButtonProps> = (props) => {
         title,
         className, style,
         accent, accentDark, accentLight,
-        elevation = 0, borderRadius
+        elevation = 0, borderRadius,
+        htmlType = 'button'
     } = props;
 
     let btnClass = `prismal-btn btn-${type} btn-${shape}`; 
@@ -50,6 +52,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     }, [onClick, disabled]);
 
     return <button
+        type={htmlType}
         data-testid={name ? `button-${name}` : undefined}
         style={style_}
         onClick={onClick_} className={btnClass}

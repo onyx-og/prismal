@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { AccentConfig } from 'utils/colors';
+import { AccentConfig } from '../../utils/colors';
 import { BorderRadius, Elevation } from "../../utils";
 interface ComponentProps extends AccentConfig {
     className?: string;

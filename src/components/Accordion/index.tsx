@@ -1,6 +1,6 @@
 import React from "react";
-import ComponentProps from "components/Component";
-import { setAccentStyle,getRandId } from "utils/";
+import ComponentProps from "../Component";
+import { setAccentStyle,getRandId } from "../../utils/";
 
 import "./index.scss";
 
