@@ -6,7 +6,7 @@ export default create({
   // Brand details
   brandTitle: 'Prismal UI',
   brandUrl: '/docs/',
-  brandImage: '/img/logo_3d.svg', // URL to your logo
+  brandImage: 'prismal-react/img/logo_banner.svg', // URL to your logo
   brandTarget: '_self', // opens in the same window,
   // Typography
 	fontBase:
@@ -36,7 +36,7 @@ export default create({
 
 	// Form colors
 	inputBg: '#ffffff',
-	inputBorder: '#10162F',
+	// inputBorder: '#10162F',
 	inputTextColor: '#10162F',
 	inputBorderRadius: 2,
 });
