@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 import { InputProps, InputRefType } from '../types';
 export interface TextInputProps extends InputProps {
-    htmlType: 'text' | 'email' | 'password';
+    htmlType?: 'text' | 'email' | 'password';
     onPressEnter?: (arg?: string | null) => void;
     onChange?: (arg?: string) => void;
     size?: 's' | 'm' | 'l';

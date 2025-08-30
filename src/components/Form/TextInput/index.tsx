@@ -5,7 +5,7 @@ import { InputProps, InputRefType } from '../types';
 import { setBorderRadius } from 'utils/';
 export interface TextInputProps extends InputProps {
     // TODO: Extend with other compatible types
-    htmlType: 'text' | 'email' | 'password';
+    htmlType?: 'text' | 'email' | 'password';
     onPressEnter?: (arg?: string | null) => void;
     onChange?: (arg?: string) => void;
     // TODO: Consider moving to InputProps
@@ -19,7 +19,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
     const { 
         name, id,
         size = 'm',
-        htmlType,
+        htmlType = 'text',
         onChange,
         onPressEnter,
         validator,

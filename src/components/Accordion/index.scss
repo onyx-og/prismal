@@ -11,26 +11,11 @@
 
     .prismal-accordion-title {
         cursor: pointer;
-        display: block;
+        display: flex;
+        align-items: center;
         padding: 0.5rem;
         position: relative;
     }
-    /*
-    .prismal-accordion-title::after {
-        border-style: solid;
-        border-width: 1px 1px 0 0;
-        content: " ";
-        display: inline-block;
-        float: right;
-        height: 10px;
-        // left: 2px;
-        position: absolute;
-        right: 0;
-        transform: rotate(135deg);
-        transition: 0.35s ease-in-out;
-        vertical-align: top;
-        width: 10px;
-    }*/
 
     .prismal-accordion-trigger:checked+.prismal-accordion-title+.prismal-accordion-content {
         max-height: inherit;

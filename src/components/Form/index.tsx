@@ -1,13 +1,14 @@
 import React from 'react';
-import { isForwardRef } from 'react-is';
+import { isForwardRef, typeOf } from 'react-is';
 import './index.scss';
 import Button from '../Button';
 import { InputRefType } from './types';
 import ComponentProps from 'components/Component';
 import { setAccentStyle } from "utils/";
-import TextInput from './TextInput';
-import Toggle from "./Toggle";
-import Select from "./Select";
+
+interface ElementWithRef extends React.ReactElement {
+    ref: React.RefAttributes<InputRefType>
+}
 
 export interface FormProps extends ComponentProps {
     children: JSX.Element | JSX.Element[];
@@ -38,6 +39,7 @@ const Form: React.FC<FormProps> = (props) => {
     const _children = ([] as JSX.Element[]).concat(children);
 
     // Clears inputs ref list when children changes
+    // Because ref is populated with .push
     React.useEffect( () => {
         inputsRef.current = inputsRef.current.slice(0, _children.length);
     }, [_children]);
@@ -45,24 +47,26 @@ const Form: React.FC<FormProps> = (props) => {
     /* Callback ref that filters, accepting only references
      * having isInputRefType as property, or rather InputRefTypes
      */
-    const addInputRef = (element: JSX.Element | InputRefType, i: number) => {
-        if ( element && element.hasOwnProperty('isInputRefType') ) {
-            return inputsRef.current[i] = element as InputRefType;
+    const addInputRef = (element: InputRefType | null) => {
+        if ( element && element.hasOwnProperty('isInputRefType') && element.isInputRefType) {
+            inputsRef.current.push(element);
+        } else {
+            console.warn(`Form ${name ? name.concat(' ') : ''}has child node that may not be managed.`);
         }
     }
 
     /* Renders all given children, using callback ref to dinamically populate ref array
      * when the child is a managed input
      */
-    const renderedChildren = React.useMemo( () => _children.map( (child, i) => {
-        if (![TextInput, Select, Toggle].includes(child.type)) {
-            // [TODO] Add documentation link
-            console.warn(`Form ${name ? name.concat(' ') : ''}has child node that may not be managed.`);
-        } 
-        return <child.type key={i} 
-            ref={(el: JSX.Element | InputRefType) => addInputRef(el,i)}
-        {...child.props} />
-    }), [_children, name]);
+    const renderedChildren = React.useMemo( () => {
+        return React.Children.toArray(_children).map( (child, i) => {
+            if (React.isValidElement(child)) {
+                return React.cloneElement(child as ElementWithRef, {
+                    ref: (el: InputRefType | null) => addInputRef(el)
+                });
+            } 
+        });
+    }, [_children, name]);
     
     const submitForm = (e?: any) => {
         // i.e. provided with a <button> avoid default behaviour (post)
@@ -78,7 +82,6 @@ const Form: React.FC<FormProps> = (props) => {
             } = {};
 
         for ( const inputRef of inputsRef.current ) {
-
             // Checks field's validity and adds error, if present
             let inputValidity = inputRef.checkValidity();
             if ( inputValidity.length ) validity.push(inputValidity);
