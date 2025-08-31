@@ -1,5 +1,5 @@
 import React from "react";
-import { InputProps, InputRefType } from "components/Form/types";
+import { InputProps, InputRefType } from "../types";
 import { setAccentStyle } from 'utils/colors';
 import "./index.scss";
 import { setBorderRadius } from "utils/";

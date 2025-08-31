@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import { ListProcessor } from './page';
-import ComponentProps from 'components/Component';
+import ComponentProps from '../Component';
 /**
  * [TODO] Add infinity scroll and pagination back-to-top behaviour
  * when moving between pages

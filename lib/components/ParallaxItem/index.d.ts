@@ -1,5 +1,5 @@
 import React from "react";
-import ComponentProps from "components/Component";
+import ComponentProps from "../Component";
 export interface ParallaxItemProps extends ComponentProps {
     children?: React.ReactNode;
     factor?: number;

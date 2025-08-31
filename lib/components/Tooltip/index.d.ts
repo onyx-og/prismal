@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import "./index.scss";
-import ComponentProps from "components/Component";
+import ComponentProps from "../Component";
 export interface TooltipProps extends ComponentProps {
     children?: React.ReactNode;
     text: string;

@@ -1,9 +1,8 @@
 import React from 'react';
-import { isForwardRef, typeOf } from 'react-is';
 import './index.scss';
 import Button from '../Button';
 import { InputRefType } from './types';
-import ComponentProps from 'components/Component';
+import ComponentProps from '../Component';
 import { setAccentStyle } from "utils/";
 
 interface ElementWithRef extends React.ReactElement {

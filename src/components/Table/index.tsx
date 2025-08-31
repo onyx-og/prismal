@@ -1,5 +1,5 @@
 import React from "react";
-import ComponentProps from "components/Component";
+import ComponentProps from "../Component";
 
 import "./index.scss";
 import { setAccentStyle } from "utils/";

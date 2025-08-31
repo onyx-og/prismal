@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import ComponentProps from 'components/Component';
+import ComponentProps from '../Component';
 export interface FormProps extends ComponentProps {
     children: JSX.Element | JSX.Element[];
     name?: string;

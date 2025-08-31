@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.scss';
 import Page, { ListProcessor } from './page';
-import ComponentProps from 'components/Component';
-import ActionBar from "components/ActionBar";
-import Button from 'components/Button';
+import ComponentProps from '../Component';
+import ActionBar from "../ActionBar";
+import Button from '../Button';
 import { setAccentStyle } from 'utils/colors';
 
 /**

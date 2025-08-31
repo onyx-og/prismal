@@ -1,5 +1,5 @@
 import React from "react";
-import { InputProps, InputRefType } from "components/Form/types";
+import { InputProps, InputRefType } from "../types";
 import "./index.scss";
 export interface SelectOption {
     value: string;

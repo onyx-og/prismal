@@ -1,5 +1,5 @@
 import React from "react";
-import ComponentProps from "components/Component";
+import ComponentProps from "../Component";
 import "./index.scss";
 export interface LazyItemProps extends ComponentProps {
     children: React.ReactNode;

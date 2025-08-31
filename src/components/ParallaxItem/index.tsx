@@ -1,5 +1,5 @@
 import React from "react";
-import ComponentProps from "components/Component";
+import ComponentProps from "../Component";
 import { setAccentStyle, getRandId } from "utils/";
 import { useElScrollPosition } from "hooks/useScrollPosition";
 
