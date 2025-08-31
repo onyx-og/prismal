@@ -20,40 +20,64 @@ export interface ToggleProps extends InputProps {
 /**
  * @credits Inspired by Aaron Iker switch/checkbox
  */
-const Toggle = (props: ToggleProps): ReactElement => {
+const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<InputRefType>): ReactElement => {
     const {
         type = "checkbox",
-        id, name, checked = false,
-        disabled = false, required,
+        id, name, className,
+        checked = false,
+        disabled = false,
+        required =  false,
+        readOnly = false,
         labelPosition = "after",
         label, labelSeparator, labelClass,
         style, accent, accentLight, accentDark,
-        borderRadius = "small", onChange
+        borderRadius = "small", onChange,
+        validator, 
     } = props;
-
-    const { className } = props;
-    let className_ = "prismal-toggle";
-    if (className) className_ = `${className_} ${className}`;
 
     let style_: {[key: string]: any} = {...style};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
 
-    const [checked_, setChecked] = React.useState<boolean>(false);
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-    // Propagate checked prop change to internal state
+    const [ isNotValid_, markNotValid ] = React.useState<(string | boolean)[]>([]);
+    const isNotValid = React.useRef<(string | boolean)[]>([]);
+
     React.useEffect(() => {
-        setChecked(checked)
-    }, [checked]);
+        isNotValid.current = isNotValid_;
+    }, [isNotValid_]);
 
-    // Trigger onChange method whenever checked state changes
-    React.useEffect(() => {
-        onChange && onChange(checked_);
-    },[checked_]);
+    const checkValidity = React.useCallback( () => {
+        const value = inputRef?.current?.checked;
+        let errorMessages = [];
+        // If provided, perform validator method
+        if (validator) {
+            let result = validator(value!);
+            // When the validator returns true or message
+            // is invalid
+            if (result) errorMessages.push(result);
+        }
+        // When field is required and is missing value, add the error
+        if (required && !value) errorMessages.push('This checkbox is mandatory');
+        markNotValid(errorMessages);
+        return errorMessages;
+    }, [validator, required]);
 
-    const toggleInput = React.useCallback(() => {
-        setChecked(!checked_);
-    }, [setChecked, checked_]);
+    React.useImperativeHandle(ref, () => ({
+        isInputRefType: true,
+        name,
+        checkValidity,
+        getValidity: () => isNotValid.current,
+        getValue: () => inputRef.current?.checked,
+        element: inputRef.current
+    }), [isNotValid, name]);
+
+    const doOnChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        const evtValue = event.currentTarget.checked;
+        checkValidity();
+        onChange && onChange(evtValue);
+    }, [onChange, checkValidity]);
 
     const label_ = React.useMemo(() => {
         if (label) {
@@ -77,19 +101,34 @@ const Toggle = (props: ToggleProps): ReactElement => {
         if (type == "switch") inputClass_ = `${inputClass_} prismal-toggle-switch`;
         else inputClass_ = `${inputClass_} prismal-toggle-checkbox`;
 
-        return <input onChange={toggleInput}
-            name={name} id={id} type="checkbox" checked={checked_}
+        return <input ref={inputRef} onChange={doOnChange}
+            name={name} id={id} type="checkbox" defaultChecked={checked}
             disabled={disabled} required={required}
-            className={inputClass_} readOnly={false}
+            className={inputClass_} readOnly={readOnly}
         />
-    }, [disabled, required, id, name, toggleInput, checked_, type]);
+    }, [disabled, required, readOnly, id, name, checked, doOnChange, type]);
 
+    const className_ = React.useMemo(() => {
+        let className_ = "prismal-toggle";
+        if (className) className_ = `${className_} ${className}`;
+        if (isNotValid_.length) className_ = `${className_} prismal-input-not-valid`;
+        return className_;
+    }, [className, isNotValid_]);
+
+    /** Transforms 'isNotvalid' array of errors into a list
+     */
+    const renderedErrors = React.useMemo( () => isNotValid_.map( (err, i) => 
+        <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
+    ), [isNotValid_]);
 
     return <div style={style_} className={className_}>
         {labelPosition == "after" ? <>{input}{label_}</>
             : <>{label_}{input}</>
         }
+        {renderedErrors.length ? <ul className='input-errors'>
+            { renderedErrors }
+        </ul> : <></>}
     </div>
-}
+});
 
 export default Toggle;

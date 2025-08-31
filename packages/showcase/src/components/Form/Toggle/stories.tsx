@@ -24,6 +24,24 @@ export const Default: Story = {
     args: {
         id: 'default',
         name: 'default',
+        label: 'Puffed rice',
+    }
+}
+
+export const Switch: Story = {
+    args: {
+        id: 'default',
+        name: 'default',
+        type: 'switch',
+        label: 'Puffed rice',
+    }
+}
+
+export const Required: Story = {
+    args: {
+        required: true,
+        id: 'default',
+        name: 'default',
         type: 'switch',
         label: 'Puffed rice',
     }

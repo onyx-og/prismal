@@ -8,6 +8,9 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    .prismal-list-header {
+        width: 100%;
+    }
     .prismal-list-wrapper {
         height:100%;
         @include layout.column(9);

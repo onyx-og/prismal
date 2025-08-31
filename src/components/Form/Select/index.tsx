@@ -1,5 +1,5 @@
 import React from "react";
-import { InputProps } from "components/Form/types";
+import { InputProps, InputRefType } from "components/Form/types";
 import { setAccentStyle } from 'utils/colors';
 import "./index.scss";
 import { setBorderRadius } from "utils/";
@@ -15,7 +15,7 @@ export interface SelectProps extends InputProps {
     placeholder?: string | JSX.Element;
     onChange?: ((arg: string) => void) & ((arg: string[]) => void);
 }
-const Select = (props: SelectProps) => {
+const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<InputRefType>) => {
     const {
         className, style,
         accent, accentLight, accentDark,
@@ -25,6 +25,7 @@ const Select = (props: SelectProps) => {
         required = false,
         disabled = false,
         multiple = false,
+        readOnly = false,
         onChange, validator,
         options
     } = props;
@@ -36,9 +37,17 @@ const Select = (props: SelectProps) => {
             .filter((i) => i.selected)
             .map((i) => i.value);
         if (multiple) {
+            // If multiple enabled
+            // all selections are good
             setSelected(selected_);
         } else if (selected_.length) {
+            // If not in multiple mode
+            // take the first selection
             setSelected(selected_[0])
+        } else if (!placeholder) {
+            // If no initial selection
+            // and no placeholder, set the first option as selected
+            setSelected(options[0].value)
         }
     },[options, multiple]);
 
@@ -69,9 +78,6 @@ const Select = (props: SelectProps) => {
         })
     },[options, selected]);
 
-    let className_ = "prismal-input-select";
-    if (className) className_ = `${className_} ${className}`;
-
     let style_ = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
@@ -90,12 +96,49 @@ const Select = (props: SelectProps) => {
         };
     }, [selected, multiple]);
 
-    // [TODO] Render placeholder conditionally
-    // if no placeholder is provided and no defaultSelected 
-    // mark as selected the first option
+    const inputRef = React.useRef<HTMLSelectElement>(null);
+    const [ isNotValid_, markNotValid ] = React.useState<(string | boolean)[]>([]);
+    const isNotValid = React.useRef<(string | boolean)[]>([]);
+
+    React.useEffect(() => {
+        isNotValid.current = isNotValid_;
+    }, [isNotValid_]);
+
+    const checkValidity = React.useCallback( () => {
+        const value = inputRef?.current?.value;
+        let errorMessages = [];
+        // If provided, perform validator method
+        if (validator) {
+            let result = validator(value!);
+            // When the validator returns true or message
+            // is invalid
+            if (result) errorMessages.push(result);
+        }
+        // When field is required and is missing value, add the error
+        if (required && !value) errorMessages.push('This field is mandatory');
+        markNotValid(errorMessages);
+        return errorMessages;
+    }, [inputRef.current, validator, required]);
+    
+    React.useImperativeHandle(ref, () => ({
+        isInputRefType: true,
+        name,
+        checkValidity,
+        getValidity: () => isNotValid.current,
+        getValue: () => inputRef.current?.value,
+        element: inputRef.current
+    }), [name]);
+
+    const className_ = React.useMemo(() => {
+        let className_ = "prismal-input-select";
+        if (className) className_ = `${className_} ${className}`;
+        if (isNotValid_.length) className_ = `${className_} prismal-input-not-valid`;
+        return className_;
+    }, [className, isNotValid_]);
+
     return <div className={className_} style={style_}>
         <label htmlFor={id}>{label}</label>
-        <select id={id} title={title}
+        <select name={name} ref={inputRef} id={id} title={title}
             multiple={multiple}
             required={required}
             disabled={disabled}
@@ -104,6 +147,6 @@ const Select = (props: SelectProps) => {
             {options_}
         </select>
     </div>
-}
+});
 
 export default Select;

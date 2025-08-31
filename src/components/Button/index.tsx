@@ -15,6 +15,7 @@ export interface ButtonProps extends ComponentProps {
     children?: React.ReactNode;
     shape?: 'default-shape' | 'circle';
     htmlType?: 'submit' | 'button';
+    readOnly?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -23,6 +24,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         iconName,
         onClick,
         disabled = false,
+        readOnly = false,
         children,
         type = 'default',
         shape = 'default-shape',
@@ -36,6 +38,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     let btnClass = `prismal-btn btn-${type} btn-${shape}`; 
     if ( className ) btnClass = `${btnClass} ${className}`;
     if ( disabled ) btnClass = `${btnClass} btn-disabled`;
+    if ( readOnly ) btnClass = `${btnClass} btn-readonly`;
     else if ( elevation ) btnClass = `${btnClass} btn-elevated`;
     else btnClass = `${btnClass} btn-anim`;
 

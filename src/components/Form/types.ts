@@ -5,13 +5,14 @@ export interface InputProps extends ComponentProps {
     name?: string;
     label?: string;
     labelClass?: string;
-    labelSeparator?: string;
+    labelSeparator?: string | null;
     labelPosition?: "after" | "before";
     placeholder?: string | JSX.Element;
     title?: string;
     inline?: boolean;
     disabled?: boolean;
     required?: boolean;
+    readOnly?: boolean;
     value?: string | number;
     // TODO: check argument types
     // should be string | number | undefined
@@ -25,14 +26,15 @@ export interface InputProps extends ComponentProps {
      */
     // TODO: check argument types
     // should be string | number | undefined
-    validator?: ( arg?: string | number ) => boolean | string;
+    validator?: ( arg?: string | number | boolean ) => boolean | string;
 }
 
 // TODO: Change name into InputRef
 export type InputRefType = {
     isInputRefType: boolean;
-    // TODO: change name to element
-    current: HTMLInputElement | HTMLTextAreaElement | null;
+    name?: string;
+    element: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
     checkValidity: () => (string | boolean)[];
     getValidity: () => (string | boolean)[];
+    getValue: (args?: any) => any;
 }

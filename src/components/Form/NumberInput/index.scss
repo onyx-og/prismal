@@ -2,7 +2,7 @@
 @use '../../../styles/typography';
 @use '../../../styles/layout';
 
-.prismal-input-text {
+.prismal-input-number {
     gap: 1rem;
     display: flex;
     align-items: flex-start;
@@ -20,6 +20,7 @@
     }
 
     input {
+        // width: 100%;
         background-color: white;
         padding: 0.5rem 1rem;
         font-size: inherit;
@@ -28,6 +29,11 @@
         border-radius: var(--border-radius);
         width: 100%;
         flex: 1;
+
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            // background-color: transparent;
+        }
 
         &:focus-visible {
             outline: 0;

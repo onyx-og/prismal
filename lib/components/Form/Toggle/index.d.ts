@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { InputProps } from '../types';
+import React from "react";
+import { InputProps, InputRefType } from '../types';
 import "./index.scss";
 export interface ToggleProps extends InputProps {
     type?: "checkbox" | "switch";
@@ -12,5 +12,5 @@ export interface ToggleProps extends InputProps {
 /**
  * @credits Inspired by Aaron Iker switch/checkbox
  */
-declare const Toggle: (props: ToggleProps) => ReactElement;
+declare const Toggle: React.ForwardRefExoticComponent<ToggleProps & React.RefAttributes<InputRefType>>;
 export default Toggle;

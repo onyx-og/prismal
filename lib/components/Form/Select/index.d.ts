@@ -1,5 +1,5 @@
 import React from "react";
-import { InputProps } from "components/Form/types";
+import { InputProps, InputRefType } from "components/Form/types";
 import "./index.scss";
 export interface SelectOption {
     value: string;
@@ -12,5 +12,5 @@ export interface SelectProps extends InputProps {
     placeholder?: string | JSX.Element;
     onChange?: ((arg: string) => void) & ((arg: string[]) => void);
 }
-declare const Select: (props: SelectProps) => import("react/jsx-runtime").JSX.Element;
+declare const Select: React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<InputRefType>>;
 export default Select;

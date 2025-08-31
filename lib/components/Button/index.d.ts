@@ -11,6 +11,7 @@ export interface ButtonProps extends ComponentProps {
     children?: React.ReactNode;
     shape?: 'default-shape' | 'circle';
     htmlType?: 'submit' | 'button';
+    readOnly?: boolean;
 }
 declare const Button: React.FC<ButtonProps>;
 export default Button;

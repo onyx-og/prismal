@@ -1,7 +1,6 @@
 @use '../../styles/vars';
 
 .prismal-accordion {
-    margin-bottom: 30px;
     font-family: vars.$font-body;
     .prismal-accordion-content {
         max-height: 0px;

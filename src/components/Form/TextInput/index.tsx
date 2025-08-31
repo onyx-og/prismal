@@ -39,7 +39,12 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
     
     const inputRef = React.useRef<HTMLInputElement>(null);
 
-    const [ isInvalid, markInvalid ] = React.useState<(string | boolean)[]>([]);
+    const [ isInvalid_, markInvalid ] = React.useState<(string | boolean)[]>([]);
+    const isInvalid = React.useRef<(string | boolean)[]>([]);
+
+    React.useEffect(() => {
+        isInvalid.current = isInvalid_;
+    }, [isInvalid_]);
 
     /* Adds new properties to the returned ref:
      * a method to know whether the component is valid or not.
@@ -47,23 +52,29 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
      */
     React.useImperativeHandle(ref, () => ({
         isInputRefType: true,
+        name: name,
         checkValidity,
-        getValidity: () => isInvalid,
-        current: inputRef.current
-    }), [isInvalid]);
+        getValidity: () => isInvalid.current,
+        getValue: () => inputRef.current?.value,
+        element: inputRef.current
+    }), [name]);
 
-    let componentClass = 'prismal-input-text',
-        inputWrapperClass = 'input-wrapper';
+    
 
-    if (className) componentClass = `${componentClass} ${className}`;
-    if ( required ) componentClass = `${componentClass} input-required`;
-    componentClass = `${componentClass} size-${size}`;
+    let className_ = React.useMemo(() => {
+        let className_ = 'prismal-input-text';
 
-    if ( inline ) inputWrapperClass = `${inputWrapperClass} inline`;
-    if ( isInvalid.length ) componentClass = `${componentClass} input-invalid`;
+        if (className) className_ = `${className_} ${className}`;
+        if ( required ) className_ = `${className_} input-required`;
+        className_ = `${className_} size-${size}`;
+        if ( isInvalid_.length ) className_ = `${className_} input-invalid`;
+        if ( inline ) className_ = `${className_} inline`;
+
+        return className_
+    }, [className, required, isInvalid_, inline]);
 
     let inputClass = "prismal-input";
-    inputClass = `${inputClass} prismal-input-${type}`
+    inputClass = `${inputClass} prismal-input-${type}`;
 
     const checkValidity = React.useCallback( () => {
         const value = inputRef?.current?.value;
@@ -79,7 +90,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         if (required && !value) errorMessages.push('This field is mandatory');
         markInvalid(errorMessages);
         return errorMessages;
-    }, [inputRef.current, validator, required]);
+    }, [validator, required]);
 
     const onValueChange = React.useCallback( () => {
         if (!disabled) {
@@ -98,47 +109,45 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         }
     }, [onPressEnter, disabled])
 
-    /* Transforms 'isInvalid' array of errors into a list
+    /** Transforms 'isNotvalid' array of errors into a list
      */
-    const renderedErrors = React.useMemo( () => isInvalid.map( (err, i) => 
+    const renderedErrors = React.useMemo( () => isInvalid_.map( (err, i) => 
         <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
-    ), [isInvalid]);
+    ), [isInvalid_]);
 
     let style_: {[key: string]: any} = {...style};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
 
-    // [TODO] Separate distinct blocks into single useMemo and return out of the hook
-    return React.useMemo( () => <div
-        className={componentClass}
+    // [TODO] Separate distinct blocks
+    return <div
+        className={className_}
         style={style_}
     >
-        <div className={inputWrapperClass}>
-            { label ? 
-                <label className='input-text-label' htmlFor={name}>{`${label}${labelSeparator}`}</label>
-                : <></>
-            }
-            <div className={inputClass}>
-                {before}
-                <input ref={inputRef}
-                    name={name}
-                    type={htmlType}
-                    disabled={disabled}
-                    onChange={onValueChange}
-                    onKeyUp={onKeyUp}
-                    placeholder={placeholder}
-                    defaultValue={value}
-                    required={required}
-                    role='textbox'
-                    aria-required={required}
-                />
-                { after }
-            </div>
-            { isInvalid.length ? <ul className='input-errors'>
-                { renderedErrors }
-            </ul> : <></>}
+        { label ? 
+            <label className='input-text-label' htmlFor={name}>{`${label}${labelSeparator}`}</label>
+            : <></>
+        }
+        <div className={inputClass}>
+            {before}
+            <input ref={inputRef}
+                name={name}
+                type={htmlType}
+                disabled={disabled}
+                onChange={onValueChange}
+                onKeyUp={onKeyUp}
+                placeholder={placeholder}
+                defaultValue={value}
+                required={required}
+                role='textbox'
+                aria-required={required}
+            />
+            {after}
         </div>
-    </div>, [name, style_, htmlType, disabled, onValueChange, onKeyUp, placeholder, value, required, isInvalid, renderedErrors ]);
+        { renderedErrors.length ? <ul className='input-errors'>
+            { renderedErrors }
+        </ul> : <></>}
+    </div>;
 });
 
 export default TextInput;

@@ -57,12 +57,12 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
     }, [query]);
 
     const doSearch = React.useCallback( () => {
-        if (inputRef.current?.current) {
+        if (inputRef.current?.element) {
             // Clearing timeout started from the prepareSearch method
             // is just for tidyiness (since the query state change won't trigger for same values)
             if (timeoutId.current) window.clearTimeout(timeoutId.current);
 
-            setQuery(inputRef.current.current.value);
+            setQuery(inputRef.current.element.value);
         }
     }, [inputRef]);
 

@@ -24,7 +24,7 @@ const Form: React.FC<FormProps> = (props) => {
         className, style,
         accent, accentLight, accentDark
     } = props;
-    const inputsRef = React.useRef<(InputRefType)[]>([]);
+    const inputsRef = React.useRef<{[key: string]: InputRefType}>({});
     const [ isInvalid, markInvalid ] = React.useState(false);
 
     let className_ = "prismal-form";
@@ -36,20 +36,20 @@ const Form: React.FC<FormProps> = (props) => {
 
     // [TODO] Consider changing into React.Children method
     // Assures that _children is an array, event when it's not
-    const _children = ([] as JSX.Element[]).concat(children);
+    const _children = React.useMemo(()=> ([] as JSX.Element[]).concat(children), [children]);
 
-    // Clears inputs ref list when children changes
+    // [DEPRECATED] Clears inputs ref list when children changes
     // Because ref is populated with .push
-    React.useEffect( () => {
-        inputsRef.current = inputsRef.current.slice(0, _children.length);
-    }, [_children]);
+    // React.useEffect( () => {
+    //     inputsRef.current = inputsRef.current.slice(0, _children.length);
+    // }, [_children]);
 
     /* Callback ref that filters, accepting only references
      * having isInputRefType as property, or rather InputRefTypes
      */
-    const addInputRef = (element: InputRefType | null) => {
-        if ( element && element.hasOwnProperty('isInputRefType') && element.isInputRefType) {
-            inputsRef.current.push(element);
+    const addInputRef = (inputRef: InputRefType | null) => {
+        if ( inputRef && inputRef.hasOwnProperty('isInputRefType') && inputRef.isInputRefType) {
+            if (inputRef.name) inputsRef.current[inputRef.name] = inputRef;
         } else {
             console.warn(`Form ${name ? name.concat(' ') : ''}has child node that may not be managed.`);
         }
@@ -81,14 +81,15 @@ const Form: React.FC<FormProps> = (props) => {
                 [fieldName: string]: string | undefined
             } = {};
 
-        for ( const inputRef of inputsRef.current ) {
+        for ( const [name, inputRef] of Object.entries(inputsRef.current) ) {
             // Checks field's validity and adds error, if present
             let inputValidity = inputRef.checkValidity();
             if ( inputValidity.length ) validity.push(inputValidity);
 
             // Append field's data to form's data
-            if (inputRef.current?.name)
-                formData[inputRef.current?.name] = inputRef.current?.value;
+            if (name) {
+                formData[name] = inputRef.getValue();
+            }
         }
 
         // Marks the form as invalid when there is at least one field error
@@ -101,16 +102,33 @@ const Form: React.FC<FormProps> = (props) => {
         }
     }
     
-    const submitComponent = !submit ? <Button 
-        type='primary' 
-        className='form-submit' onClick={(e) => {e.stopPropagation(); submitForm(e)}}>
-            Submit
-    </Button> : <submit.type {...submit.props} onClick={(e: any) => {
-        submit.props.onClick && submit.props.onClick();
-        submitForm(e);
-    }}/>
+    const submitComponent = React.useMemo( () => {
+        if (submit) {
+            return React.cloneElement(submit, {
+                onClick: (e: any) => {
+                    submit.props.onClick && submit.props.onClick();
+                    submitForm(e);
+                }
+            });
+            // return <submit.type {...submit.props} onClick={(e: any) => {
+            //     submit.props.onClick && submit.props.onClick();
+            //     submitForm(e);
+            // }}/>
+        } else if (onSubmit) {
+            return <Button 
+                type='primary' 
+                className='form-submit' onClick={(e) => {e.stopPropagation(); submitForm(e)}}>
+                    Submit
+            </Button>
+        } else {
+            // No onSubmit method, no submit button
+        }
+    }, [submit, submitForm, onSubmit]);
 
-    return <form onSubmit={submitForm} data-id={dataId} className={className_} style={style_} name={name}>
+    return <form data-id={dataId} name={name} 
+        onSubmit={submitForm}
+        className={className_} style={style_}
+    >
         <div className='form-fields'>{renderedChildren}</div>
         { submitComponent }
         { isInvalid ? 
