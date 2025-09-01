@@ -4,9 +4,10 @@
 form.prismal-form {
     font-family: vars.$font-body;
     .form-fields {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: grid;
+        // display: flex;
+        // flex-direction: row;
+        // flex-wrap: wrap;
         justify-content: space-between;
         @extend %my05;
     }

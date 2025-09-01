@@ -1,6 +1,6 @@
 import Dropdown from "components/Dropdown";
 import "./index.scss";
-import ComponentProps from "components/Component";
+import ComponentProps from "../Component";
 import { setBorderRadius } from 'utils/';
 
 export interface TooltipProps extends ComponentProps {

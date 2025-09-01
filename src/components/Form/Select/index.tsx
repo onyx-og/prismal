@@ -27,7 +27,7 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         multiple = false,
         readOnly = false,
         onChange, validator,
-        options
+        options, gridPlacement
     } = props;
 
     const [selected, setSelected] = React.useState<string | string[]>();
@@ -78,11 +78,20 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         })
     },[options, selected]);
 
-    let style_ = {};
+    let style_: React.CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
 
-    if (style) style_ = {...style_, style};
+    if (style) style_ = {...style_, ...style};
+
+    if (gridPlacement) {
+        if (typeof gridPlacement == "string") {
+            style_["gridArea"] = gridPlacement;
+        } else if (typeof gridPlacement == "object") {
+            if (gridPlacement.column) style_["gridColumn"] = gridPlacement.column;
+            if (gridPlacement.row) style_["gridRow"] = gridPlacement.row;
+        }
+    }
 
     React.useEffect( () => {
         if ( selected && onChange ) {

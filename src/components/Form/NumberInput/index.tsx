@@ -30,12 +30,23 @@ const NumberInput = React.forwardRef((props: NumberInputProps, ref: React.Forwar
         value, step =  0,
         className, style,
         accent, accentDark, accentLight,
-        borderRadius
+        borderRadius, gridPlacement
     } = props;
 
-    let style_: {[key: string]: any} = {...style};
+    let style_: React.CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
+
+    if (style) style_ = {...style_, ...style};
+
+    if (gridPlacement) {
+        if (typeof gridPlacement == "string") {
+            style_["gridArea"] = gridPlacement;
+        } else if (typeof gridPlacement == "object") {
+            if (gridPlacement.column) style_["gridColumn"] = gridPlacement.column;
+            if (gridPlacement.row) style_["gridRow"] = gridPlacement.row;
+        }
+    }
 
     const inputRef = React.useRef<HTMLInputElement>(null);
 

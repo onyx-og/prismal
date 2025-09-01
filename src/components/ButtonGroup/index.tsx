@@ -1,6 +1,6 @@
 import React from "react";
-import Button, { ButtonProps } from "components/Button";
-import ComponentProps from "components/Component";
+import Button, { ButtonProps } from "../Button";
+import ComponentProps from "../Component";
 import { setAccentStyle } from 'utils/colors';
 import { setBorderRadius, setBoxElevation, setElevation } from '../../utils';
 

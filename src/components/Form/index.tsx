@@ -14,6 +14,10 @@ export interface FormProps extends ComponentProps {
     name?: string;
     submit: JSX.Element;
     onSubmit?: ( formData: {[key:string]: any} ) => void;
+    gridTemplate?: {
+        cols: React.CSSProperties["gridTemplateColumns"];
+        rows:React.CSSProperties["gridTemplateRows"];
+    } | React.CSSProperties["gridTemplate"];
 }
 const Form: React.FC<FormProps> = (props) => {
     const {
@@ -21,7 +25,8 @@ const Form: React.FC<FormProps> = (props) => {
         name, submit, onSubmit,
         "data-id": dataId,
         className, style,
-        accent, accentLight, accentDark
+        accent, accentLight, accentDark,
+        gridTemplate
     } = props;
     const inputsRef = React.useRef<{[key: string]: InputRefType}>({});
     const [ isInvalid, markInvalid ] = React.useState(false);
@@ -124,11 +129,28 @@ const Form: React.FC<FormProps> = (props) => {
         }
     }, [submit, submitForm, onSubmit]);
 
+    const formFields = React.useMemo(() => {
+        const style: React.CSSProperties = {
+            display: "grid",
+        };
+        console.log("formFields", {type: typeof gridTemplate});
+        if (typeof gridTemplate == "object") {
+            style["gridTemplateColumns"] = gridTemplate.cols;
+            style.gridTemplateRows = gridTemplate.rows;
+        } else if (typeof gridTemplate == "string") {
+            style["gridTemplate"] = gridTemplate;
+        }
+
+        return <div style={style} className='form-fields'>
+            {renderedChildren}
+        </div>
+    }, [renderedChildren, gridTemplate]);
+
     return <form data-id={dataId} name={name} 
         onSubmit={submitForm}
         className={className_} style={style_}
     >
-        <div className='form-fields'>{renderedChildren}</div>
+        { formFields }
         { submitComponent }
         { isInvalid ? 
             <span className='form-error'>Check the fields for errors</span> : null

@@ -16,6 +16,10 @@ export interface InputProps extends ComponentProps {
     value?: string | number;
     onChange?: (arg?: any) => void;
     validator?: (arg?: string | number | boolean) => boolean | string;
+    gridPlacement?: {
+        column?: React.CSSProperties["gridColumn"];
+        row?: React.CSSProperties["gridRow"];
+    } | React.CSSProperties["gridArea"];
 }
 export type InputRefType = {
     isInputRefType: boolean;

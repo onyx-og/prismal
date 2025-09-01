@@ -8,6 +8,10 @@ export interface FormProps extends ComponentProps {
     onSubmit?: (formData: {
         [key: string]: any;
     }) => void;
+    gridTemplate?: {
+        cols: React.CSSProperties["gridTemplateColumns"];
+        rows: React.CSSProperties["gridTemplateRows"];
+    } | React.CSSProperties["gridTemplate"];
 }
 declare const Form: React.FC<FormProps>;
 export default Form;

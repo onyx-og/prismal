@@ -34,7 +34,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         after, before,
         accent, accentDark, accentLight,
         borderRadius,
-        type = 'default'
+        type = 'default', gridPlacement
     } = props;
     
     const inputRef = React.useRef<HTMLInputElement>(null);
@@ -58,8 +58,6 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         getValue: () => inputRef.current?.value,
         element: inputRef.current
     }), [name]);
-
-    
 
     let className_ = React.useMemo(() => {
         let className_ = 'prismal-input-text';
@@ -115,9 +113,18 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
     ), [isInvalid_]);
 
-    let style_: {[key: string]: any} = {...style};
+    let style_: React.CSSProperties = {...style};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
+
+    if (gridPlacement) {
+        if (typeof gridPlacement == "string") {
+            style_["gridArea"] = gridPlacement;
+        } else if (typeof gridPlacement == "object") {
+            if (gridPlacement.column) style_["gridColumn"] = gridPlacement.column;
+            if (gridPlacement.row) style_["gridRow"] = gridPlacement.row;
+        }
+    }
 
     // [TODO] Separate distinct blocks
     return <div

@@ -24,9 +24,10 @@ export default meta;
 export const Default: Story = {};
 Default.args = {
     onSubmit: (formData: {}) => console.log("Form story data", {data: formData}),
+    gridTemplate: "1fr 1fr",
     children: [
-        <div>An element</div>,
-        undefined,
-        <TextInput name="lastName" label='Last name' />
+        <TextInput name="firstName" label='First name' />,
+        <TextInput name="lastName" label='Last name' />,
+        <TextInput name="email" label='Email' />
     ],
 };
