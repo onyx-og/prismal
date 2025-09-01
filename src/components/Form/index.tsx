@@ -15,9 +15,13 @@ export interface FormProps extends ComponentProps {
     submit: JSX.Element;
     onSubmit?: ( formData: {[key:string]: any} ) => void;
     gridTemplate?: {
-        cols: React.CSSProperties["gridTemplateColumns"];
-        rows:React.CSSProperties["gridTemplateRows"];
+        cols?: React.CSSProperties["gridTemplateColumns"];
+        rows?: React.CSSProperties["gridTemplateRows"];
     } | React.CSSProperties["gridTemplate"];
+    gridGap?: {
+        column?: React.CSSProperties["columnGap"];
+        row?: React.CSSProperties["rowGap"];
+    } | React.CSSProperties["gap"];
 }
 const Form: React.FC<FormProps> = (props) => {
     const {
@@ -26,7 +30,7 @@ const Form: React.FC<FormProps> = (props) => {
         "data-id": dataId,
         className, style,
         accent, accentLight, accentDark,
-        gridTemplate
+        gridTemplate, gridGap = "0.5rem"
     } = props;
     const inputsRef = React.useRef<{[key: string]: InputRefType}>({});
     const [ isInvalid, markInvalid ] = React.useState(false);
@@ -130,15 +134,20 @@ const Form: React.FC<FormProps> = (props) => {
     }, [submit, submitForm, onSubmit]);
 
     const formFields = React.useMemo(() => {
-        const style: React.CSSProperties = {
-            display: "grid",
-        };
-        console.log("formFields", {type: typeof gridTemplate});
+        const style: React.CSSProperties = {};
+
         if (typeof gridTemplate == "object") {
-            style["gridTemplateColumns"] = gridTemplate.cols;
+            style.gridTemplateColumns = gridTemplate.cols;
             style.gridTemplateRows = gridTemplate.rows;
         } else if (typeof gridTemplate == "string") {
-            style["gridTemplate"] = gridTemplate;
+            style.gridTemplate = gridTemplate;
+        }
+
+        if (typeof gridGap == "object") {
+            style.columnGap = gridGap.column;
+            style.rowGap = gridGap.row;
+        } else if (typeof gridGap == "string") {
+            style.gap = gridGap;
         }
 
         return <div style={style} className='form-fields'>

@@ -9,9 +9,13 @@ export interface FormProps extends ComponentProps {
         [key: string]: any;
     }) => void;
     gridTemplate?: {
-        cols: React.CSSProperties["gridTemplateColumns"];
-        rows: React.CSSProperties["gridTemplateRows"];
+        cols?: React.CSSProperties["gridTemplateColumns"];
+        rows?: React.CSSProperties["gridTemplateRows"];
     } | React.CSSProperties["gridTemplate"];
+    gridGap?: {
+        column?: React.CSSProperties["columnGap"];
+        row?: React.CSSProperties["rowGap"];
+    } | React.CSSProperties["gap"];
 }
 declare const Form: React.FC<FormProps>;
 export default Form;
