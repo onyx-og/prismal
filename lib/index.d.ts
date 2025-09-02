@@ -1,4 +1,5 @@
 import Container from "./components/Container";
+import Text from "./components/Text";
 import Icon from "./components/Icon";
 import Button from "./components/Button";
 import ButtonGroup from "components/ButtonGroup";
@@ -32,7 +33,7 @@ import useElementHeight from "./hooks/useElementHeight";
 import useElementWidth from "./hooks/useElementWidth";
 import { useElScrollThreshold, useElScrollPosition, useScrollThreshold } from "hooks/useScrollPosition";
 import { useIntersectionObserver } from "hooks/";
-export { Container };
+export { Container, Text };
 export { Tabs, Accordion };
 export { Pie };
 export type { SelectOption };

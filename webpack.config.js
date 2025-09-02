@@ -44,6 +44,7 @@ const components = {
     entry: {
         globals: ['./src/styles/globals.scss', './src/styles/theme.scss'],
         container: ['./src/components/Container/index.scss', './src/styles/theme.scss'],
+        text: ['./src/components/Text/index.scss', './src/styles/theme.scss'],
         button: ['./src/components/Button/index.scss', './src/styles/theme.scss'],
         buttonGroup: ['./src/components/ButtonGroup/index.scss', './src/styles/theme.scss'],
         icons: ['./src/styles/icons.scss'],

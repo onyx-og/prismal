@@ -1,0 +1,26 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as TextStories from './stories';
+
+# Typography
+
+The `Text` component is used to display text with particular styles.
+## Heading
+By setting the property `type` to `heading` it features the classic headings (i.e. `h1`) ranging from level 1 to 6.
+
+<Canvas of={TextStories.Heading1} />
+<Canvas of={TextStories.Heading2} />
+<Canvas of={TextStories.Heading3} />
+<Canvas of={TextStories.Heading4} />
+<Canvas of={TextStories.Heading5} />
+<Canvas of={TextStories.Heading6} />
+
+## Body (variations)
+It's possibile to define specific sizes for different breakpoints:
+
+<Canvas of={TextStories.BodyExtraSmall} />
+<Canvas of={TextStories.BodySmall} />
+<Canvas of={TextStories.BodyMedium} />
+<Canvas of={TextStories.BodyLarge} />
+<Canvas of={TextStories.BodyExtraLarge} />
+<Canvas of={TextStories.BodyExtremelyLarge} />

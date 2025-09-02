@@ -1,0 +1,41 @@
+
+@use '../../styles/globals.scss';
+// TODO: Add responsive breakpointed classes
+.prismal-text {
+    @at-root h1#{&} {
+        @extend %h1;
+    }
+    @at-root h2#{&} {
+        @extend %h2;
+    }
+    @at-root h3#{&} {
+        @extend %h3;
+    }
+    @at-root h4#{&} {
+        @extend %h4;
+    }
+    @at-root h5#{&} {
+        @extend %h5;
+    }
+    @at-root h6#{&} {
+        @extend %h6;
+    }
+    &.prismal-text-xs {
+        font-size: 0.75rem;
+    }
+    &.prismal-text-sm {
+        font-size: 0.875rem;
+    }
+    &.prismal-text-md {
+        font-size: 1rem;
+    }
+    &.prismal-text-lg {
+        font-size: 1.5rem;
+    }
+    &.prismal-text-xl {
+        font-size: clamp(5rem, 4vw, 10rem);
+    }
+    &.prismal-text-xxl {
+        font-size: clamp(10rem, 8vw, 15rem);
+    }
+}

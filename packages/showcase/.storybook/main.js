@@ -48,6 +48,9 @@ module.exports = {
           },
         },
       ],
+    },{
+      test: /\.mdx$/,
+      use: ['@mdx-js/loader'],
     });
 
     config.resolve.alias = {
