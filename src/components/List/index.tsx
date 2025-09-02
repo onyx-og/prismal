@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 import Page, { ListProcessor } from './page';
 import ComponentProps from '../Component';
-import ActionBar from "../ActionBar";
+import ActionBar, { ActionBarItemConfig } from "../ActionBar";
 import Button from '../Button';
 import { setAccentStyle } from 'utils/colors';
 
@@ -215,7 +215,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         return Math.ceil(data.length / pageSize)
     },[data.length,pageSize]);
 
-    const pageJumpCtrl = React.useMemo(() => {
+    const pageJumpCtrl: ActionBarItemConfig[] = React.useMemo(() => {
         let numbers_ = Array(lastPage);
         for (let i = 1; i <= lastPage; i++) {
             numbers_[i-1] = i;
@@ -227,10 +227,15 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         } else {
             numbers_ = numbers_.slice(currentPage - 2, currentPage + 1)
         }
-        numbers_ = numbers_.map((n) => 
-            <Button key={n} type={n==currentPage ? 'primary' : 'text'} onClick={()=>setPage(n)} disabled={n==currentPage}>{n}</Button>
-        )
-        return numbers_;
+        const result: ActionBarItemConfig[] = numbers_.map((n, i) => {
+            return {
+                item: <Button key={n} type={n==currentPage ? 'primary' : 'text'} onClick={()=>setPage(n)} disabled={n==currentPage}>{n}</Button>,
+                position: 'center',
+                key: `page-jump-ctrl-${i}`
+            }
+                
+        })
+        return result;
     },[showExtremesCtrl, lastPage, currentPage]);
 
     const leftExtreme = React.useMemo(() => {
@@ -255,7 +260,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         return <ActionBar items={[
             { item: <>{leftExtreme}</>, position: "left", key: "leftExtreme"},
             { item: <Button key={"backwards"} onClick={pageBackwards} disabled={currentPage==1}>Back</Button>, position: "left", key: "back"},
-            { item: <>{pageJumpCtrl}</>, position:"center", key: "pageJumpCtrl"},
+            ...pageJumpCtrl,
             { item: <Button key={"forward"} onClick={pageForward} disabled={currentPage==lastPage}>Next</Button>, position: "right", key: "next"},
             { item: <>{rightExtreme}</>, position: "right", key: "rightExtrme"}
         ]} />

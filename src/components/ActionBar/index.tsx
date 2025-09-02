@@ -118,3 +118,4 @@ const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.Forwarded
 });
 
 export default ActionBar;
+export type { ActionBarItemConfig };

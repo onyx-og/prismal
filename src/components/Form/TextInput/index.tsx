@@ -82,7 +82,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
             let result = validator(value!);
             // When the validator returns true or message
             // is invalid
-            if (result) errorMessages.push(result);
+            if ( typeof result == "string" || result == false) errorMessages.push(result);
         }
         // When field is required and is missing value, add the error
         if (required && !value) errorMessages.push('This field is mandatory');
