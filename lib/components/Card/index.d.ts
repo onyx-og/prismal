@@ -11,7 +11,7 @@ export interface CardProps extends ComponentProps {
     bodyClass?: string;
     orientation?: "vertical" | "horizontal";
     cornerRadius?: BorderRadius;
-    padding?: 'xs' | "s" | 'm' | 'l';
+    padding?: "none" | 'xs' | "s" | 'm' | 'l';
 }
 declare const Card: React.FC<CardProps>;
 export default Card;

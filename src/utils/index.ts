@@ -8,12 +8,15 @@ export const setElevation = (className: string, elevation: Elevation = 0 ) => {
 }
 export const setPadding = (
     style: {[key: string]: any},
-    padding: "xs" | "s" | "m" | "l" | "xl"
+    padding: "none" | "xs" | "s" | "m" | "l" | "xl"
 ) => {
     let style_ : {[key: string]: any} = {},
         padding_: string;
     
     switch(padding) {
+        case "none":
+            padding_ = "0";
+            break;
         case "xs":
             padding_ = "0.25rem";
             break;

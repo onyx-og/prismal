@@ -3,7 +3,7 @@ export type Elevation = 0 | 1 | 2 | 3 | 4;
 export declare const setElevation: (className: string, elevation?: Elevation) => string;
 export declare const setPadding: (style: {
     [key: string]: any;
-}, padding: "xs" | "s" | "m" | "l" | "xl") => {
+}, padding: "none" | "xs" | "s" | "m" | "l" | "xl") => {
     [key: string]: any;
 } & {
     [key: string]: any;

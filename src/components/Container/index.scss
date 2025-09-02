@@ -1,0 +1,764 @@
+@use '../../styles/utils';
+@use '../../styles/globals.scss';
+
+.prismal-ratio-5-2 {
+    @include utils.responsive-ratio(5, 2, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-9-2 {
+    @include utils.responsive-ratio(9, 2, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-5-4 {
+    @include utils.responsive-ratio(5, 4, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-16-9 {
+    @include utils.responsive-ratio(16, 9, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-16-3 {
+    @include utils.responsive-ratio(16, 3, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-18-9 {
+    @include utils.responsive-ratio(18, 9, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-20-6 {
+    @include utils.responsive-ratio(20, 6, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-20-8 {
+    @include utils.responsive-ratio(20, 8, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-8-5 {
+    @include utils.responsive-ratio(8, 5, true);
+    @include utils.content-in-ratio;
+}
+
+.prismal-ratio-4-3 {
+    @include utils.responsive-ratio(4, 3, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+.prismal-ratio-4-5 {
+    @include utils.responsive-ratio(4, 5, true);
+    @include utils.content-in-ratio;
+    position: relative;
+}
+
+/* --------------------------------------------------------------XS--------------------------------------------------- */
+.prismal-ratio-xs-5-2 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(5, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-9-2 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(9, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-5-4 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(5, 4, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-16-9 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(16, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-16-3 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(16, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-18-9 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(18, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-20-6 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(20, 6, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-20-8 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(20, 8, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-8-5 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(8, 5, true);
+        @include utils.content-in-ratio;
+    }
+}
+
+.prismal-ratio-xs-4-3 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(4, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xs-4-5 {
+    @include utils.mq_max(xs) {
+        @include utils.responsive-ratio(4, 5, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+/* --------------------------------------------------------------SM--------------------------------------------------- */
+.prismal-ratio-sm-5-2 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(5, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-9-2 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(9, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-5-4 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(5, 4, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-16-9 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(16, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-16-3 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(16, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-18-9 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(18, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-20-6 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(20, 6, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-20-8 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(20, 8, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-8-5 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(8, 5, true);
+        @include utils.content-in-ratio;
+    }
+}
+
+.prismal-ratio-sm-4-3 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(4, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-sm-4-5 {
+    @include utils.mq_max(sm) {
+        @include utils.responsive-ratio(4, 5, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+/* --------------------------------------------------------------MD--------------------------------------------------- */
+.prismal-ratio-md-5-2 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(5, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-9-2 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(9, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-5-4 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(5, 4, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-16-9 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(16, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-16-3 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(16, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-18-9 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(18, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-20-6 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(20, 6, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-20-8 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(20, 8, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-8-5 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(8, 5, true);
+        @include utils.content-in-ratio;
+    }
+}
+
+.prismal-ratio-md-4-3 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(4, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-md-4-5 {
+    @include utils.mq_max(md) {
+        @include utils.responsive-ratio(4, 5, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+/* --------------------------------------------------------------LG--------------------------------------------------- */
+.prismal-ratio-lg-5-2 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(5, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-9-2 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(9, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-5-4 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(5, 4, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-16-9 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(16, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-16-3 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(16, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-18-9 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(18, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-20-6 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(20, 6, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-20-8 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(20, 8, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-8-5 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(8, 5, true);
+        @include utils.content-in-ratio;
+    }
+}
+
+.prismal-ratio-lg-4-3 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(4, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-lg-4-5 {
+    @include utils.mq_max(lg) {
+        @include utils.responsive-ratio(4, 5, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+/* --------------------------------------------------------------XL--------------------------------------------------- */
+.prismal-ratio-xl-5-2 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(5, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-9-2 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(9, 2, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-5-4 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(5, 4, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-16-9 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(16, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-16-3 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(16, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-18-9 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(18, 9, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-20-6 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(20, 6, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-20-8 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(20, 8, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-8-5 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(8, 5, true);
+        @include utils.content-in-ratio;
+    }
+}
+
+.prismal-ratio-xl-4-3 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(4, 3, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+.prismal-ratio-xl-4-5 {
+    @include utils.mq_max(xl) {
+        @include utils.responsive-ratio(4, 5, true);
+        @include utils.content-in-ratio;
+        position: relative;
+    }
+}
+
+/*----------------------------------------------------------SPAN----------------------------------------------------*/
+.prismal-span-1 {
+    @extend %col-1;
+}
+.prismal-span-2 {
+    @extend %col-2;
+}
+.prismal-span-3 {
+    @extend %col-3;
+}
+.prismal-span-4 {
+    @extend %col-4;
+}
+.prismal-span-5 {
+    @extend %col-5;
+}
+.prismal-span-6 {
+    @extend %col-6;
+}
+.prismal-span-7 {
+    @extend %col-7;
+}
+.prismal-span-8 {
+    @extend %col-8;
+}
+.prismal-span-9 {
+    @extend %col-9;
+}
+.prismal-span-10 {
+    @extend %col-10;
+}
+.prismal-span-11 {
+    @extend %col-11;
+}
+.prismal-span-12 {
+    @extend %col-12;
+}
+/*----------------------------------------------------------SPAN(XS)----------------------------------------------------*/
+.prismal-span-xs-1 {
+    @extend %col-xs-1;
+}
+.prismal-span-xs-2 {
+    @extend %col-xs-2;
+}
+.prismal-span-xs-3 {
+    @extend %col-xs-3;
+}
+.prismal-span-xs-4 {
+    @extend %col-xs-4;
+}
+.prismal-span-xs-5 {
+    @extend %col-xs-5;
+}
+.prismal-span-xs-6 {
+    @extend %col-xs-6;
+}
+.prismal-span-xs-7 {
+    @extend %col-xs-7;
+}
+.prismal-span-xs-8 {
+    @extend %col-xs-8;
+}
+.prismal-span-xs-9 {
+    @extend %col-xs-9;
+}
+.prismal-span-xs-10 {
+    @extend %col-xs-10;
+}
+.prismal-span-xs-11 {
+    @extend %col-xs-11;
+}
+.prismal-span-xs-12 {
+    @extend %col-xs-12;
+}
+/*----------------------------------------------------------SPAN(SM)----------------------------------------------------*/
+.prismal-span-sm-1 {
+    @extend %col-sm-1;
+}
+.prismal-span-sm-2 {
+    @extend %col-sm-2;
+}
+.prismal-span-sm-3 {
+    @extend %col-sm-3;
+}
+.prismal-span-sm-4 {
+    @extend %col-sm-4;
+}
+.prismal-span-sm-5 {
+    @extend %col-sm-5;
+}
+.prismal-span-sm-6 {
+    @extend %col-sm-6;
+}
+.prismal-span-sm-7 {
+    @extend %col-sm-7;
+}
+.prismal-span-sm-8 {
+    @extend %col-sm-8;
+}
+.prismal-span-sm-9 {
+    @extend %col-sm-9;
+}
+.prismal-span-sm-10 {
+    @extend %col-sm-10;
+}
+.prismal-span-sm-11 {
+    @extend %col-sm-11;
+}
+.prismal-span-sm-12 {
+    @extend %col-sm-12;
+}
+/*----------------------------------------------------------SPAN(MD)----------------------------------------------------*/
+.prismal-span-md-1 {
+    @extend %col-md-1;
+}
+.prismal-span-md-2 {
+    @extend %col-md-2;
+}
+.prismal-span-md-3 {
+    @extend %col-md-3;
+}
+.prismal-span-md-4 {
+    @extend %col-md-4;
+}
+.prismal-span-md-5 {
+    @extend %col-md-5;
+}
+.prismal-span-md-6 {
+    @extend %col-md-6;
+}
+.prismal-span-md-7 {
+    @extend %col-md-7;
+}
+.prismal-span-md-8 {
+    @extend %col-md-8;
+}
+.prismal-span-md-9 {
+    @extend %col-md-9;
+}
+.prismal-span-md-10 {
+    @extend %col-md-10;
+}
+.prismal-span-md-11 {
+    @extend %col-md-11;
+}
+.prismal-span-md-12 {
+    @extend %col-md-12;
+}
+/*----------------------------------------------------------SPAN(LG)----------------------------------------------------*/
+.prismal-span-lg-1 {
+    @extend %col-lg-1;
+}
+.prismal-span-lg-2 {
+    @extend %col-lg-2;
+}
+.prismal-span-lg-3 {
+    @extend %col-lg-3;
+}
+.prismal-span-lg-4 {
+    @extend %col-lg-4;
+}
+.prismal-span-lg-5 {
+    @extend %col-lg-5;
+}
+.prismal-span-lg-6 {
+    @extend %col-lg-6;
+}
+.prismal-span-lg-7 {
+    @extend %col-lg-7;
+}
+.prismal-span-lg-8 {
+    @extend %col-lg-8;
+}
+.prismal-span-lg-9 {
+    @extend %col-lg-9;
+}
+.prismal-span-lg-10 {
+    @extend %col-lg-10;
+}
+.prismal-span-lg-11 {
+    @extend %col-lg-11;
+}
+.prismal-span-lg-12 {
+    @extend %col-lg-12;
+}
+/*----------------------------------------------------------SPAN(XL)----------------------------------------------------*/
+.prismal-span-xl-1 {
+    @extend %col-xl-1;
+}
+.prismal-span-xl-2 {
+    @extend %col-xl-2;
+}
+.prismal-span-xl-3 {
+    @extend %col-xl-3;
+}
+.prismal-span-xl-4 {
+    @extend %col-xl-4;
+}
+.prismal-span-xl-5 {
+    @extend %col-xl-5;
+}
+.prismal-span-xl-6 {
+    @extend %col-xl-6;
+}
+.prismal-span-xl-7 {
+    @extend %col-xl-7;
+}
+.prismal-span-xl-8 {
+    @extend %col-xl-8;
+}
+.prismal-span-xl-9 {
+    @extend %col-xl-9;
+}
+.prismal-span-xl-10 {
+    @extend %col-xl-10;
+}
+.prismal-span-xl-11 {
+    @extend %col-xl-11;
+}
+.prismal-span-xl-12 {
+    @extend %col-xl-12;
+}
+/*---------------------------------------------------------HIDE---------------------------------------------------*/
+.prismal-hide {
+    display: none;
+}
+/*---------------------------------------------------------HIDE(XS)---------------------------------------------------*/
+.prismal-hide-xs {
+    @include utils.mq_max(xs) {
+        display: none;
+    }
+}
+/*---------------------------------------------------------HIDE(SM)---------------------------------------------------*/
+.prismal-hide-sm {
+    @include utils.mq_max(sm) {
+        display: none;
+    }
+}
+/*---------------------------------------------------------HIDE(MD)---------------------------------------------------*/
+.prismal-hide-md {
+    @include utils.mq_max(md) {
+        display: none;
+    }
+}
+/*---------------------------------------------------------HIDE(LG)---------------------------------------------------*/
+.prismal-hide-lg {
+    @include utils.mq_max(lg) {
+        display: none;
+    }
+}
+/*---------------------------------------------------------HIDE(XL)---------------------------------------------------*/
+.prismal-hide-xl {
+    @include utils.mq_max(xl) {
+        display: none;
+    }
+}
