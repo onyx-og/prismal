@@ -1,0 +1,960 @@
+/*
+|-------------------------------------------------------------------------------
+| globals.scss
+|-------------------------------------------------------------------------------
+|
+| This file serves as a central repository for **global placeholder selectors**.
+| Placeholders (prefixed with `%`) are a powerful Sass feature for defining
+| reusable sets of CSS rules that will ONLY be compiled into the final CSS
+| output if they are explicitly `@extend`ed by another selector.
+|
+| This makes them ideal for creating highly efficient, tree-shakable utility
+| styles and design system tokens that prevent unused CSS.
+|
+|-------------------------------------------------------------------------------
+| Usage Guide:
+|-------------------------------------------------------------------------------
+|
+| To utilize these global placeholders in your component or feature SCSS files:
+|
+| 1.  **Import this file** using the `@use` directive, preferably with an alias
+|     for conciseness:
+|     ```scss
+|     @use '../../styles/globals' as g; // Adjust path as needed
+|     ```
+|
+| 2.  **Extend the desired placeholder** within your component's selector:
+|     ```scss
+|     .my-component {
+|       @extend g.%ma;   // Extends the 'margin: auto' rules from globals
+|       @extend g.%p1;   // Extends the 'padding: 1em' rules
+|       // ... other component-specific styles
+|     }
+|     ```
+|
+|-------------------------------------------------------------------------------
+| Development Guidelines for this file:
+|-------------------------------------------------------------------------------
+|
+| 1.  **Only Placeholders:** This file should contain **only placeholder definitions**
+|     (selectors starting with `%`). Do NOT include regular CSS classes (`.class-name`),
+|     IDs (`#id`), element selectors (`div`), or mixins (`@mixin`) here.
+|     This maintains its dedicated purpose for tree-shakable utilities.
+|
+| 2.  **Granularity and Composition:**
+|     * Define the most granular styles first (e.g., `%mt0`, `%pb1`).
+|     * Compose shorthands and combined properties by `@extend`ing these
+|         granular placeholders (e.g., `%my0 extends %mt0 and %mb0`).
+|     * This reduces redundancy and improves maintainability.
+|
+| 3.  **Naming Convention:** Use a consistent and descriptive naming convention
+|     (e.g., `%[property][value]`, `%m05`, `%py1`).
+|
+| 4.  **No Direct HTML Usage:** Remember that placeholders are never meant to be
+|     used directly in your HTML markup (e.g., `<div class="%m0">`). They
+|     serve purely as Sass extend targets.
+|
+| 5.  **Maintain Alphabetical Order (Optional but Recommended):** For large
+|     sets of utilities, keeping definitions alphabetically ordered can help
+|     with navigation.
+|
+*/
+
+@use './vars.scss';
+@use './layout.scss';
+@use './typography.scss';
+@use './utils.scss';
+
+%text-uppercase {
+  text-transform: uppercase !important;
+}
+
+%t1 , %h1 {
+  @include typography.f1;
+}
+%t2 , %h2 {
+  @include typography.f2;
+}
+%t3 , %h3 {
+  @include typography.f3;
+}
+%t4 , %h4 {
+  @include typography.f4;
+}
+%t5 , %h5 {
+  @include typography.f5;
+}
+%t6 , %h6 {
+  @include typography.f6;
+}
+%h1, %h2, %h3 {
+  font-family: vars.$font-heading !important;
+}
+
+%h4, %h5 {
+  font-family: vars.$font-alt-heading !important;
+  letter-spacing: .1rem;
+}
+
+%show-lg,
+%show-md,
+%show-sm,
+%show-xl,
+%show-xs {
+  display: none !important
+}
+
+%columns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -.4rem;
+  margin-right: -.4rem
+}
+
+%columns.col-gapless {
+  margin-left: 0;
+  margin-right: 0
+}
+
+%columns.col-gapless>.column {
+  padding-left: 0;
+  padding-right: 0
+}
+
+%columns.col-oneline {
+  flex-wrap: nowrap;
+  overflow-x: auto
+}
+
+%column {
+  flex: 1;
+  max-width: 100%;
+  padding-left: .4rem;
+  padding-right: .4rem
+}
+
+%col-12 {
+  @include layout.column(12);
+}
+
+%col-11 {
+  @include layout.column(11);
+}
+
+%col-10 {
+  @include layout.column(10);
+}
+
+%col-9 {
+  @include layout.column(9);
+}
+
+%col-8 {
+  @include layout.column(8);
+}
+
+%col-7 {
+  @include layout.column(7);
+}
+
+%col-6 {
+  @include layout.column(6);
+}
+
+%col-5 {
+  @include layout.column(5);
+}
+
+%col-4 {
+  @include layout.column(4);
+}
+
+%col-3 {
+  @include layout.column(3);
+}
+
+%col-2 {
+  @include layout.column(2);
+}
+
+%col-1 {
+  @include layout.column(1);
+}
+
+%col-auto {
+  flex: 0 0 auto;
+  max-width: none;
+  width: auto
+}
+
+%col-mx-auto {
+  margin-right: auto
+}
+
+%col-ml-auto,
+%col-mx-auto {
+  margin-left: auto
+}
+
+%col-mr-auto {
+  margin-right: auto
+}
+
+%col-xl-12 {
+  @include layout.column(12, xl);
+}
+
+%col-xl-11 {
+  @include layout.column(11, xl);
+}
+
+%col-xl-10 {
+  @include layout.column(10, xl);
+}
+
+%col-xl-9 {
+  @include layout.column(9, xl);
+}
+
+%col-xl-8 {
+  @include layout.column(8, xl);
+}
+
+%col-xl-7 {
+  @include layout.column(7, xl);
+}
+
+%col-xl-6 {
+  @include layout.column(6, xl);
+}
+
+%col-xl-5 {
+  @include layout.column(5, xl);
+}
+
+%col-xl-4 {
+  @include layout.column(4, xl);
+}
+
+%col-xl-3 {
+  @include layout.column(3, xl);
+}
+
+%col-xl-2 {
+  @include layout.column(2, xl);
+}
+
+%col-xl-1 {
+  @include layout.column(1, xl);
+}
+%col-lg-12 {
+  @include layout.column(12, lg);
+}
+%col-lg-11 {
+  @include layout.column(11, lg);
+}
+%col-lg-10 {
+  @include layout.column(10, lg);
+}
+%col-lg-9 {
+  @include layout.column(9, lg);
+}
+%col-lg-8 {
+  @include layout.column(8, lg);
+}
+%col-lg-7 {
+  @include layout.column(7, lg);
+}
+%col-lg-6 {
+  @include layout.column(6, lg);
+}
+%col-lg-5 {
+  @include layout.column(5, lg);
+}
+%col-lg-4 {
+  @include layout.column(4, lg);
+}
+%col-lg-3 {
+  @include layout.column(3, lg);
+}
+%col-lg-2 {
+  @include layout.column(2, lg);
+}
+%col-lg-1 {
+  @include layout.column(1, lg);
+}
+
+%col-md-12 {
+  @include layout.column(12, md);
+}
+%col-md-11 {
+  @include layout.column(11, md);
+}
+%col-md-10 {
+  @include layout.column(10, md);
+}
+%col-md-9 {
+  @include layout.column(9, md);
+}
+%col-md-8 {
+  @include layout.column(8, md);
+}
+%col-md-7 {
+  @include layout.column(7, md);
+}
+%col-md-6 {
+  @include layout.column(6, md);
+}
+%col-md-5 {
+  @include layout.column(5, md);
+}
+%col-md-4 {
+  @include layout.column(4, md);
+}
+%col-md-3 {
+  @include layout.column(3, md);
+}
+%col-md-2 {
+  @include layout.column(2, md);
+}
+%col-md-1 {
+  @include layout.column(1, md);
+}
+
+%col-sm-12 {
+  @include layout.column(12, sm);
+}
+%col-sm-11 {
+  @include layout.column(11, sm);
+}
+%col-sm-10 {
+  @include layout.column(10, sm);
+}
+%col-sm-9 {
+  @include layout.column(9, sm);
+}
+%col-sm-8 {
+  @include layout.column(8, sm);
+}
+%col-sm-7 {
+  @include layout.column(7, sm);
+}
+%col-sm-6 {
+  @include layout.column(6, sm);
+}
+%col-sm-5 {
+  @include layout.column(5, sm);
+}
+%col-sm-4 {
+  @include layout.column(4, sm);
+}
+%col-sm-3 {
+  @include layout.column(3, sm);
+}
+%col-sm-2 {
+  @include layout.column(2, sm);
+}
+%col-sm-1 {
+  @include layout.column(1, sm);
+}
+
+%col-xs-12 {
+  @include layout.column(12, xs);
+}
+%col-xs-11 {
+  @include layout.column(11, xs);
+}
+%col-xs-10 {
+  @include layout.column(10, xs);
+}
+%col-xs-9 {
+  @include layout.column(9, xs);
+}
+%col-xs-8 {
+  @include layout.column(8, xs);
+}
+%col-xs-7 {
+  @include layout.column(7, xs);
+}
+%col-xs-6 {
+  @include layout.column(6, xs);
+}
+%col-xs-5 {
+  @include layout.column(5, xs);
+}
+%col-xs-4 {
+  @include layout.column(4, xs);
+}
+%col-xs-3 {
+  @include layout.column(3, xs);
+}
+%col-xs-2 {
+  @include layout.column(2, xs);
+}
+%col-xs-1 {
+  @include layout.column(1, xs);
+}
+
+%rel {
+  position: relative
+}
+
+%abs {
+  position: absolute
+}
+
+%fix {
+  position: fixed
+}
+
+%fill,
+%top {
+  top: 0
+}
+
+%bottom,
+%fill {
+  bottom: 0
+}
+
+%fill,
+%left {
+  left: 0
+}
+
+%fill,
+%right {
+  right: 0
+}
+
+%x {
+  width: 100%
+}
+
+%y {
+  height: 100%
+}
+
+%f {
+  display: flex
+}
+
+%fw {
+  flex-wrap: wrap
+}
+
+%ais {
+  align-items: flex-start
+}
+
+%aie {
+  align-items: flex-end
+}
+
+%aic {
+  align-items: center
+}
+
+%aib {
+  align-items: baseline
+}
+
+%jcs {
+  justify-content: flex-start
+}
+
+%jce {
+  justify-content: flex-end
+}
+
+%jcc {
+  justify-content: center
+}
+
+%jcb {
+  justify-content: space-between
+}
+
+%fa {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0
+}
+
+%al {
+  text-align: left
+}
+
+%ac {
+  text-align: center
+}
+
+%ar {
+  text-align: right
+}
+
+%aj {
+  text-align: justify
+}
+
+// Base auto margins
+%ml-auto { margin-left: auto; }
+%mr-auto { margin-right: auto; }
+%mt-auto { margin-top: auto; }
+%mb-auto { margin-bottom: auto; }
+
+// Combined auto margins
+%mxa {
+  @extend %ml-auto;
+  @extend %mr-auto;
+}
+%mya {
+  @extend %mt-auto;
+  @extend %mb-auto;
+}
+%ma { // Margin All Auto
+  @extend %mxa;
+  @extend %mya;
+}
+
+// --- Zero Values ---
+
+// Margin Zero (Individual Directions)
+%mt0 { margin-top: 0; }
+%mb0 { margin-bottom: 0; }
+%ml0 { margin-left: 0; }
+%mr0 { margin-right: 0; }
+
+// Margin Zero (Axis Shorthands)
+%my0 {
+  @extend %mt0;
+  @extend %mb0;
+}
+%mx0 {
+  @extend %ml0;
+  @extend %mr0;
+}
+%m0 { // Margin All Zero
+  @extend %mx0;
+  @extend %my0;
+}
+
+// Padding Zero (Individual Directions)
+%pt0 { padding-top: 0; }
+%pb0 { padding-bottom: 0; }
+%pl0 { padding-left: 0; }
+%pr0 { padding-right: 0; }
+
+// Padding Zero (Axis Shorthands)
+%py0 {
+  @extend %pt0;
+  @extend %pb0;
+}
+%px0 {
+  @extend %pl0;
+  @extend %pr0;
+}
+%p0 { // Padding All Zero
+  @extend %px0;
+  @extend %py0;
+}
+
+
+// --- 0.25em Values (using a helper map/function for scale if you had one) ---
+
+// Margin 0.25em (Individual Directions)
+%mt025 { margin-top: .25rem; }
+%mb025 { margin-bottom: .25rem; }
+%ml025 { margin-left: .25rem; }
+%mr025 { margin-right: .25rem; }
+
+// Margin 0.25em (Axis Shorthands)
+%my025 {
+  @extend %mt025;
+  @extend %mb025;
+}
+%mx025 {
+  @extend %ml025;
+  @extend %mr025;
+}
+%m025 { // Margin All 0.25em
+  @extend %mx025;
+  @extend %my025;
+}
+
+// Padding 0.25em (Individual Directions)
+%pt025 { padding-top: .25rem; }
+%pb025 { padding-bottom: .25rem; }
+%pl025 { padding-left: .25rem; }
+%pr025 { padding-right: .25rem; }
+
+// Padding 0.25em (Axis Shorthands)
+%py025 {
+  @extend %pt025;
+  @extend %pb025;
+}
+%px025 {
+  @extend %pl025;
+  @extend %pr025;
+}
+%p025 { // Padding All 0.25em
+  @extend %px025;
+  @extend %py025;
+}
+
+
+// --- 0.5em Values ---
+
+// Margin 0.5em (Individual Directions)
+%mt05 { margin-top: .5rem; }
+%mb05 { margin-bottom: .5rem; }
+%ml05 { margin-left: .5rem; }
+%mr05 { margin-right: .5rem; }
+
+// Margin 0.5em (Axis Shorthands)
+%my05 {
+  @extend %mt05;
+  @extend %mb05;
+}
+%mx05 {
+  @extend %ml05;
+  @extend %mr05;
+}
+%m05 { // Margin All 0.5em
+  @extend %mx05;
+  @extend %my05;
+}
+
+// Padding 0.5em (Individual Directions)
+%pt05 { padding-top: .5rem; }
+%pb05 { padding-bottom: .5rem; }
+%pl05 { padding-left: .5rem; }
+%pr05 { padding-right: .5rem; }
+
+// Padding 0.5em (Axis Shorthands)
+%py05 {
+  @extend %pt05;
+  @extend %pb05;
+}
+%px05 {
+  @extend %pl05;
+  @extend %pr05;
+}
+%p05 { // Padding All 0.5em
+  @extend %px05;
+  @extend %py05;
+}
+
+
+// --- 0.75em Values ---
+
+// Margin 0.75em (Individual Directions)
+%mt075 { margin-top: .75rem; }
+%mb075 { margin-bottom: .75rem; }
+%ml075 { margin-left: .75rem; }
+%mr075 { margin-right: .75rem; }
+
+// Margin 0.75em (Axis Shorthands)
+%my075 {
+  @extend %mt075;
+  @extend %mb075;
+}
+%mx075 {
+  @extend %ml075;
+  @extend %mr075;
+}
+%m075 { // Margin All 0.75em
+  @extend %mx075;
+  @extend %my075;
+}
+
+// Padding 0.75em (Individual Directions)
+%pt075 { padding-top: .75rem; }
+%pb075 { padding-bottom: .75rem; }
+%pl075 { padding-left: .75rem; }
+%pr075 { padding-right: .75rem; }
+
+// Padding 0.75em (Axis Shorthands)
+%py075 {
+  @extend %pt075;
+  @extend %pb075;
+}
+%px075 {
+  @extend %pl075;
+  @extend %pr075;
+}
+%p075 { // Padding All 0.75em
+  @extend %px075;
+  @extend %py075;
+}
+
+
+// --- 1em Values ---
+
+// Margin 1em (Individual Directions)
+%mt1 { margin-top: 1rem; }
+%mb1 { margin-bottom: 1rem; }
+%ml1 { margin-left: 1rem; }
+%mr1 { margin-right: 1rem; }
+
+// Margin 1em (Axis Shorthands)
+%my1 {
+  @extend %mt1;
+  @extend %mb1;
+}
+%mx1 {
+  @extend %ml1;
+  @extend %mr1;
+}
+%m1 { // Margin All 1em
+  @extend %mx1;
+  @extend %my1;
+}
+
+// Padding 1em (Individual Directions)
+%pt1 { padding-top: 1rem; }
+%pb1 { padding-bottom: 1rem; }
+%pl1 { padding-left: 1rem; }
+%pr1 { padding-right: 1rem; }
+
+// Padding 1em (Axis Shorthands)
+%py1 {
+  @extend %pt1;
+  @extend %pb1;
+}
+%px1 {
+  @extend %pl1;
+  @extend %pr1;
+}
+%p1 { // Padding All 1em
+  @extend %px1;
+  @extend %py1;
+}
+
+%fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  &.p-absolute {
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+  }
+}
+
+%fit {
+  object-fit: cover;
+}
+
+%p-relative {
+  position: relative;
+}
+
+%elevation-0 {
+  box-shadow: none;
+}
+%elevation-1 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+%elevation-2 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+%elevation-3 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+%elevation-4 {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;  
+}
+%elevation-5 {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+%p-fixed {
+  position: fixed;
+}
+
+%p-sticky {
+  position: sticky
+}
+
+%p-absolute {
+  position: absolute;
+
+  &.center {
+    top: 50%;
+    bottom: 50%;
+  }
+}
+
+%list-nostyle {
+  list-style: none
+}
+
+%a-nostyle {
+  text-decoration: none;
+}
+
+%f-left {
+  float: left;
+}
+
+%f-right {
+  float: right;
+}
+
+%fd-col {
+  flex-direction: column;
+}
+
+%fd-col-r {
+  flex-direction: column-reverse;
+}
+
+%fd-row {
+  flex-direction: row;
+}
+
+%fd-row-r {
+  flex-direction: row-reverse;
+}
+
+%ass {
+  align-self: flex-start
+}
+
+/* Naming conventions sure are bothersome */
+%asc {
+  align-self: center
+}
+
+%ase {
+  align-self: flex-end
+}
+
+// [TODO] Implement for other screen sizes
+%mfd-col {
+  @include utils.mq_max(sm) {
+    flex-direction: column;
+  }
+}
+
+%mfd-col-r {
+  @include utils.mq_max(sm) {
+    flex-direction: column-reverse;
+  }
+}
+
+%mfd-row {
+  @include utils.mq_max(sm) {
+    flex-direction: row;
+  }
+}
+
+%mfd-row-r {
+  @include utils.mq_max(sm) {
+    flex-direction: row-reverse;
+  }
+}
+
+%mfd-col {
+  @include utils.mq_max(sm) {
+    flex-direction: column;
+  }
+}
+
+%c-hand {
+  cursor: pointer;
+  /* fallback */
+  cursor: hand;
+}
+
+%text-nosel {
+  user-select: none;
+}
+
+%c-move {
+  cursor: move
+}
+
+%c-zoom-in {
+  cursor: zoom-in
+}
+
+%c-zoom-out {
+  cursor: zoom-out
+}
+
+%c-not-allowed {
+  cursor: not-allowed
+}
+
+%c-auto {
+  cursor: auto
+}
+
+%r-5-2 {
+  @include utils.responsive-ratio(5, 2, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-9-2 {
+  @include utils.responsive-ratio(9, 2, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-5-4 {
+  @include utils.responsive-ratio(5, 4, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-16-9 {
+  @include utils.responsive-ratio(16, 9, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-16-3 {
+  @include utils.responsive-ratio(16, 3, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-18-9 {
+  @include utils.responsive-ratio(18, 9, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-20-6 {
+  @include utils.responsive-ratio(20, 6, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-20-8 {
+  @include utils.responsive-ratio(20, 8, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-8-5 {
+  @include utils.responsive-ratio(8, 5, true);
+  @include utils.content-in-ratio;
+}
+
+%r-4-35 {
+  @include utils.responsive-ratio(4, 3, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}
+
+%r-4-5 {
+  @include utils.responsive-ratio(4, 5, true);
+  @include utils.content-in-ratio;
+  position: relative;
+}

@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-// TODO: export only useful!!
+// Exports as scss only useful stylesheets
 const styleUtils = {
     entry: {
         index: "./src/styles/index.scss",
@@ -40,6 +40,7 @@ const styleUtils = {
     }
 }
 
+// Component stylesheet modules (to enable single imports)
 const components = {
     entry: {
         globals: ['./src/styles/globals.scss', './src/styles/theme.scss'],
@@ -96,6 +97,7 @@ const components = {
     }
 }
 
+// Complete export (index)
 const config = {
     entry: './src/index.ts',
     experiments: {

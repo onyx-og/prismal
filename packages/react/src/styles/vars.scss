@@ -1,0 +1,62 @@
+@use 'sass:color';
+
+
+@mixin theme {
+    --font-default: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    --font-primary: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    --font-secondary: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    --color-primary: #6200EE;
+    --color-primary_: 98, 0, 238;
+    --color-primary-light: #B988FF;
+    --color-primary-light_: 185, 136, 255;
+    --color-primary-dark: #230055;
+    --color-primary-dark_: 35, 0, 85;
+    --color-white: 255, 255, 255;
+}
+
+// Core variables
+$version: "0.5.8";
+
+// Core features
+$rtl: false !default;
+
+$font-heading: var(--font-primary), 'Serif';
+$font-alt-heading: var(--font-secondary), 'Sans-serif';
+$font-body: var(--font-default), 'Sans-serif';
+$font-body-weight: 400;
+$font-body-style: normal;
+$font-alt-body: var(--font-default), 'Sans-serif';
+$font-alt-body-weight: 400;
+$font-alt-body-style: normal;
+
+// Core colors
+$primary-color: var(--color-primary);
+$primary-color-light: var(--color-primary-light);
+$primary-color-dark: var(--color-primary-dark);
+
+$secondary-color: var(--color-primary);
+$secondary-color-light: var(--color-primary);
+$secondary-color-dark: var(--color-primary);
+
+// Gray colors
+$dark-color: #212121;
+$light-color: #eeeeee;
+$grey-color: #333333;
+$light-grey-color: #CCCCCC;
+
+// Control colors
+$success-color: #32b643 !default;
+$warning-color: #ffb700 !default;
+$error-color: #e85600 !default;
+
+// Other colors
+$highlight-color: #ffe9b3 !default;
+
+$border-radius: 3%;
+
+// Z-index
+$zindex-0: 1 !default;
+$zindex-1: 100 !default;
+$zindex-2: 200 !default;
+$zindex-3: 300 !default;
+$zindex-4: 400 !default;

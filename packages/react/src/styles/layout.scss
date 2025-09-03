@@ -1,0 +1,17 @@
+@use './utils';
+
+@mixin column($num: 12, $breakpoint: null) {
+    @if $num > 0 and $num <= 12 {
+        @if $breakpoint {
+            @include utils.mq_max($breakpoint) {
+                flex: none;
+                width: calc( 8.33333% * $num );
+            }
+        } @else {
+            width: calc( 8.33333% * $num );
+        }
+        
+    } @else {
+        @warn 'Invalid column number: #{$num}.';
+    }
+}
