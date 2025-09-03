@@ -162,8 +162,11 @@ const List: React.FC<ListComponentProps> = ( props ) => {
     }, [props.type]);
 
     const listSubSet = React.useMemo(() => {
-        let subset = data.slice( currentPage * pageSize - pageSize, currentPage * pageSize );
-        return subset;
+        if (pageSize) {
+            let subset = data.slice( currentPage * pageSize - pageSize, currentPage * pageSize );
+            return subset;
+        }
+        return data;
     }, [data, currentPage, pageSize]);
     
     let listWrapperClass = `prismal-list-wrapper`;
