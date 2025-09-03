@@ -12,7 +12,7 @@
 
 ## 🌟 Overview
 
-`@prismal/react` is a foundational React component library designed to simplify the development of complex user interfaces. By providing a set of fundamental, well-designed, and highly reusable components, it empowers developers to build robust and consistent UIs with ease and efficiency.
+`@prismal/react` is a React component library designed to simplify the development of complex user interfaces. By providing a set of well-designed, and highly reusable components, it empowers developers to build robust and consistent UIs with ease and efficiency.
 
 This library is built with:
 * **React**: For building powerful and interactive UIs.
