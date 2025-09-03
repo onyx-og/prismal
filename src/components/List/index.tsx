@@ -215,7 +215,9 @@ const List: React.FC<ListComponentProps> = ( props ) => {
     },[setPage, currentPage]);
 
     const lastPage = React.useMemo(() => {
-        return Math.ceil(data.length / pageSize)
+        if (pageSize) {
+            return Math.ceil(data.length / pageSize);
+        } else return 1;
     },[data.length,pageSize]);
 
     const pageJumpCtrl: ActionBarItemConfig[] = React.useMemo(() => {
