@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Tabs from 'components/Tabs';
-import Card from 'components/Card';
+import {Tabs, Card} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Tabs',

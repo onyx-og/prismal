@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Select from 'components/Form/Select';
+import {Select} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Form/Select',

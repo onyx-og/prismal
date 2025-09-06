@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Tooltip from 'components/Tooltip';
+import {Tooltip} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Tooltip',

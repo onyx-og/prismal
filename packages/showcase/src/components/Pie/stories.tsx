@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Pie from '../../../../../src/components/Pie';
+import {Pie} from '@prismal/react';
 
 const meta = {
   title: 'Commons/Pie',

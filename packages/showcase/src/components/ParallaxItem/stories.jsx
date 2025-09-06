@@ -1,5 +1,6 @@
 import React from 'react';
-import ParallaxItem from 'components/ParallaxItem';
+import { Meta, StoryObj } from '@storybook/react';
+import {ParallaxItem} from '@prismal/react';
 import "./index.scss";
 
 
@@ -46,6 +47,11 @@ const meta = {
 };
 
 export default meta;
+
+
+const handleRef = (ref) => {
+    console.log("This component expose a ref with its highest and lowest managed nodes", { ref })
+};
 
 export const Default = {};
 Default.parameters = {

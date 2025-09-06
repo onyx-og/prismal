@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Icon from 'components/Icon';
+import {Icon} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Icon',

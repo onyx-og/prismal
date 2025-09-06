@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import NumberInput from 'components/Form/NumberInput';
-import Button from 'components/Button';
+import {NumberInput, Button} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Form/NumberInput',

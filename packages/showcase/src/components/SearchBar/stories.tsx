@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import SearchBar from 'components/SearchBar';
+import {SearchBar} from '@prismal/react';
 
 const meta = {
     title: 'Commons/SearchBar',

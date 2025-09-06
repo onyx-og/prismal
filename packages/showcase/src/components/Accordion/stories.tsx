@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Accordion from 'components/Accordion';
-import 'components/Accordion/index.scss';
+import {Accordion} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Accordion',

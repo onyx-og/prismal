@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Table from 'components/Table';
+import {Table} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Table',

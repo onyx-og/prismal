@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Card from 'components/Card';
-import Slider from 'components/Slider';
+import {Slider} from '@prismal/react';
 import "./stories.scss";
 
 const meta = {

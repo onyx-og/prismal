@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Card from 'components/Card';
-import Button from 'components/Button';
+import {Card, Button} from '@prismal/react';
 
 import "./stories.scss";
 

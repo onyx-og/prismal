@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Header from 'components/Header';
+import {Header} from '@prismal/react';
 import "./index.scss";
 
 

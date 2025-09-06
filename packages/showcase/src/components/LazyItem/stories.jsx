@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import LazyItem from 'components/LazyItem';
+import {LazyItem} from '@prismal/react';
 import "./index.scss";
 
 

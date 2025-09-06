@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Modal from 'components/Modal';
+import {Modal} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Modal',

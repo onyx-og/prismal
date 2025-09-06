@@ -1,8 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Text from 'components/Text';
-import 'components/Text/index.scss';
-
+import {Text} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Text',

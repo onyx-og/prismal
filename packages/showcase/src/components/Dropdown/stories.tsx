@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Dropdown from 'components/Dropdown';
+import {Dropdown} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Dropdown',
@@ -22,13 +22,13 @@ export default meta;
 
 export const Default: Story = {};
 Default.args = {
-    toggleElement: <h2>test dropdown</h2>,
+    toggleElement: <span>test dropdown</span>,
     children: <div>Hello</div>
 };
 
 export const Multiple: Story = {};
 Multiple.args = {
-    toggleElement: <h2>test dropdown</h2>,
+    toggleElement: <span>test dropdown</span>,
     children:
        [ <input type='date' />,
         <span>Save the date!</span> ]

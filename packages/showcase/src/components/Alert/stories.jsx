@@ -1,8 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Alert from 'components/Alert';
-import Icon from 'components/Icon';
-import Button from 'components/Button';
+import {Alert, Button, Icon} from '@prismal/react';
 
 const meta = {
 	title: 'Commons/Alert',

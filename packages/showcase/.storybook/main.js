@@ -44,7 +44,7 @@ module.exports = {
           loader: 'sass-loader',
           options: {
             // implementation: require('sass')
-            additionalData: `@use 'styles/theme.scss';`,
+            additionalData: `@use '@prismal/react/lib/styles/theme.scss';`,
           },
         },
       ],
@@ -55,10 +55,7 @@ module.exports = {
 
     config.resolve.alias = {
       ...config.resolve.alias,
-      'styles': path.resolve(__dirname, "../../../src/styles"),
-      'components': path.resolve(__dirname, "../../../src/components"),
-      'utils': path.resolve(__dirname, "../../../src/utils"),
-      'hooks': path.resolve(__dirname, "../../../src/hooks"),
+      '@prismal/react': path.resolve(__dirname, "../../react/"),
     }
 
     // Return the altered config

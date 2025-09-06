@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Form from 'components/Form';
-import TextInput from 'components/Form/TextInput';
+import {Form, TextInput, NumberInput} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Form',
@@ -28,6 +27,7 @@ Default.args = {
     children: [
         <TextInput name="firstName" label='First name' />,
         <TextInput name="lastName" label='Last name' />,
-        <TextInput name="email" label='Email' />
+        <TextInput name="email" label='Email' />,
+        <NumberInput name="age" label='Age' />
     ],
 };

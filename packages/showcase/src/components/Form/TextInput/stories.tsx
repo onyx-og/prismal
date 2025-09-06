@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import TextInput from 'components/Form/TextInput';
+import {TextInput} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Form/TextInput',

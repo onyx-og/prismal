@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Toggle from 'components/Form/Toggle';
+import {Toggle} from '@prismal/react';
 
 const meta = {
     title: 'Commons/Form/Toggle',

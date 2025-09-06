@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import ButtonGroup from 'components/ButtonGroup';
-import Button from 'components/Button';
+import {Button, ButtonGroup} from '@prismal/react';
 
 const meta = {
     title: 'Commons/ButtonGroup',
