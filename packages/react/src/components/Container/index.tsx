@@ -2,6 +2,8 @@ import React from "react";
 import ComponentProps from "../Component";
 import { setAccentStyle } from "utils/";
 import "./index.scss";
+import { useCursorPosition } from "hooks/useCursor";
+import Cursor from "components/Cursor";
 
 type Ratio = "5-2" | "9-2" | "5-4" | "16-9" | "16-3" | "18-9" | "20-6" | "20-8" | "8-5" | "4-3" | "4-5";
 export interface ContainerProps extends ComponentProps {
@@ -27,6 +29,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: boolean,
         xl?: boolean,
     } | boolean;
+    cursor?: "circle",
 }
 const Container: React.FC<ContainerProps> = (props) => {
     const {
@@ -93,9 +96,16 @@ const Container: React.FC<ContainerProps> = (props) => {
 
     if (style) style_ = {...style_, ...style};
 
-    return <div data-id={dataId} style={style_} 
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    const cursorPositionRef = useCursorPosition(containerRef);
+
+    const memoizedChildren = React.useMemo(() => children, [children]);
+
+    return <div ref={containerRef} data-id={dataId} style={style_} 
         className={className_}>
-            {children}
+            {memoizedChildren}
+            <Cursor positionRef={cursorPositionRef} />
     </div>
 };
 

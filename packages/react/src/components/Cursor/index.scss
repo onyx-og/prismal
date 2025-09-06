@@ -1,0 +1,29 @@
+@use "../../styles/layers";
+
+.prismal-cursor {
+    @extend %z4;
+    &.prismal-cursor-circle {
+        width: 30px;
+        height: 30px;
+        border: 2px solid var(--color-primary);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        mix-blend-mode: difference;
+        animation: cursor-pulse 1.5s infinite;
+
+        @keyframes cursor-pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    }
+}
