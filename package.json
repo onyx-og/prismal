@@ -1,10 +1,8 @@
 {
   "name": "prismal",
   "version": "0.0.1",
-  "description": "Breaking down complex UI",
-  "main": "index.js",
+  "description": "Full spectrum design system",
   "directories": {
-    "lib": "lib",
     "doc": "docs"
   },
   "private": true,
@@ -17,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onyx-og/prismal-react.git"
+    "url": "git+https://github.com/onyx-og/prismal.git"
   },
   "author": "Onyx <hello@onyx.ac> (https://onyx.ac)",
   "license": "CC-BY-SA-4.0",
   "bugs": {
-    "url": "https://github.com/onyx-og/prismal-react/issues"
+    "url": "https://github.com/onyx-og/prismal/issues"
   },
-  "homepage": "https://github.com/onyx-og/prismal-react#readme"
+  "homepage": "https://github.com/onyx-og/prismal#readme"
 }
