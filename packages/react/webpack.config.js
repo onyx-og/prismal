@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const styleUtils = {
     entry: {
         index: "./src/styles/index.scss",
+        theme: "./src/styles/theme.scss",
         globals: "./src/styles/globals.scss",
         vars: "./src/styles/vars.scss",
         utils: "/src/styles/utils.scss",

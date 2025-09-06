@@ -26,7 +26,7 @@ import Table from "components/Table";
 import Form from "components/Form";
 import {InputRefType} from "components/Form/types";
 import LazyItem from "components/LazyItem";
-
+import ParallaxItem from "./components/ParallaxItem";
 import Pie from "./components/Pie";
 import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
@@ -52,7 +52,7 @@ export { Table };
 export {Icon, Card, List, Modal, Alert, SearchBar, Sidebar};
 export { Form, Select, TextInput, Toggle, NumberInput, InputRefType };
 export { Dropdown, Tooltip };
-export { LazyItem };
+export { LazyItem, ParallaxItem };
 export { setAccentStyle, hex2rgba };
 export { useModal, useSidebar };
 export { useElementHeight, useElementWidth} 
