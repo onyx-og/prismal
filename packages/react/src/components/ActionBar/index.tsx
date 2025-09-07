@@ -104,17 +104,17 @@ const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.Forwarded
         highNode: highNode.current, // highest managed DOM node
     }), [highNodeSet, lowNodeSet]);
 
-    return (
-        <div data-id={dataId}
-            className={actionBarClass}
-            style={style_}
-            ref={setHighNodeRef}
-        >
-            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionAlt?.left} type='left' items={leftItems} />
-            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionAlt?.center} type='center' items={centerItems} />
-            <ActionBarSection modalAreaId={modalAreaId} altIcon={sectionAlt?.right} type='right' items={rightItems} />
-        </div>
-    )
+    return <div data-id={dataId}
+        className={actionBarClass}
+        style={style_}
+        ref={setHighNodeRef}>
+        <ActionBarSection modalClassName='section-left-alt' modalAreaId={modalAreaId} 
+            altIcon={sectionAlt?.left} type='left' items={leftItems} />
+        <ActionBarSection modalClassName='section-center-alt' modalAreaId={modalAreaId}
+            altIcon={sectionAlt?.center} type='center' items={centerItems} />
+        <ActionBarSection modalClassName='section-right-alt' modalAreaId={modalAreaId}
+            altIcon={sectionAlt?.right} type='right' items={rightItems} />
+    </div>
 });
 
 export default ActionBar;
