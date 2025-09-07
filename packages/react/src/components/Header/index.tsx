@@ -1,8 +1,7 @@
 import React from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
-import { setAccentStyle } from "utils/colors";
-import { setBorderRadius } from "utils/";
+import { setAccentStyle, setBorderRadius, setBoxElevation } from "utils/";
 import {useElScrollThreshold} from "hooks/useScrollPosition";
 
 export interface HeaderProps extends ComponentProps {
@@ -17,7 +16,7 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
         "data-id": dataId, className, style,
         navClass, placeHolderClass,
         accent, accentLight, accentDark,
-        borderRadius,
+        borderRadius, elevation,
         children,
         sticky = true, stickyClass
     } = props;
@@ -27,7 +26,8 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
     let style_: React.CSSProperties = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
     setBorderRadius(style_, borderRadius);
-    style_ = { ...style_, ...style };
+    setBoxElevation(style_, elevation);
+    if (style) style_ = { ...style_, ...style };
 
     let className_ = "prismal-header";
     if (className) className_ = `${className_} ${className}`;

@@ -76,12 +76,12 @@ export const setBoxElevation = (
 
     return Object.assign(style, _style);
 }
-export type BorderRadius = "none" | "extra-small" | "small" | "medium" 
-    | "large" | "extra-large" | "full";
+export type BorderRadius = "none" | "xs" | "sm" | "md" 
+    | "lg" | "xl" | "full";
 
 export const setBorderRadius = (
     style: {[key: string]: any},
-    borderRadius: BorderRadius = "extra-small"
+    borderRadius: BorderRadius = "xs"
 ) => {
     let _style: {[key: string]: any} = {},
         _borderRadius;
@@ -90,19 +90,19 @@ export const setBorderRadius = (
         case "none":
             _borderRadius = "0"
         break;
-        case "extra-small":
+        case "xs":
             _borderRadius = ".25rem"
         break;
-        case "small":
+        case "sm":
             _borderRadius = ".5rem"
         break;
-        case "medium":
+        case "md":
             _borderRadius = ".5rem"
         break;
-        case "large":
+        case "lg":
             _borderRadius = ".75rem"
         break;
-        case "extra-large":
+        case "xl":
             _borderRadius = "1rem"
         break;
         case "full":

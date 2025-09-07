@@ -11,6 +11,8 @@
         min-height: 3rem;
         width: 100%;
         font-family: vars.$font-body;
+        border-bottom-right-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
         @extend %z2;
         &.prismal-header-nav-flyout {
             @extend %z2;

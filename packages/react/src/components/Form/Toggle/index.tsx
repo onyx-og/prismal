@@ -31,7 +31,7 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
         labelPosition = "after",
         label, labelSeparator, labelClass,
         style, accent, accentLight, accentDark,
-        borderRadius = "small", onChange,
+        borderRadius = "sm", onChange,
         validator, gridPlacement
     } = props;
 

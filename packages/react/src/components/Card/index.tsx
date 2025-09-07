@@ -12,7 +12,6 @@ export interface CardProps extends ComponentProps  {
     children?: React.ReactNode; // Card content
     bodyClass?: string;
     orientation?: "vertical" | "horizontal";
-    cornerRadius?: BorderRadius;
     padding?: "none" | 'xs' | "s" | 'm' | 'l';
 }
 
@@ -24,7 +23,7 @@ const Card: React.FC<CardProps> = ( props ) => {
         className, style = {},
         children, bodyClass,
         orientation = "vertical",
-        cornerRadius = 'extra-small', padding = 's',
+        borderRadius = 'xs', padding = 's',
         elevation = 1
     } = props;
 
@@ -34,7 +33,7 @@ const Card: React.FC<CardProps> = ( props ) => {
 
     let style_: {[key: string]: any} = {...style};
     setAccentStyle(style_, {accent, accentLight, accentDark});
-    if (cornerRadius) setBorderRadius(style_, cornerRadius);
+    if (borderRadius) setBorderRadius(style_, borderRadius);
     setBoxElevation(style_, elevation);
     setPadding(style_, padding);
     

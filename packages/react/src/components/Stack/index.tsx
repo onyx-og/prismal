@@ -86,7 +86,7 @@ const Stack: React.FC<StackProps> = (props) => {
     const { render = defaultRenderer,
         data, direction = "vertical", gap = "20px",
         itemContainerClass, accent, accentDark, accentLight,
-        borderRadius = "extra-small", className
+        borderRadius = "xs", className
     } = props;
     const [activeIndex, setActive] = React.useState(data.length - 1);
     const [activeOffset, setOffset] = React.useState(0);
