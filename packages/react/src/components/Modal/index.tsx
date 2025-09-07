@@ -1,6 +1,6 @@
 import './index.scss';
-
-import ActionBar from 'components/ActionBar';
+import React from 'react';
+import ActionBar, { ActionBarItemConfig } from 'components/ActionBar';
 import Button from 'components/Button';
 import ReactDOM from 'react-dom';
 import ComponentProps from '../Component';
@@ -21,13 +21,14 @@ export interface ModalProps extends ComponentProps {
 
 const Modal: React.FC<ModalProps> = (props) => {
     const {
+        "data-id": dataId,
         areaId,
         title = "modal",
         children,
         visible = false,
         closeModal,
         showClose = true,
-        className,
+        className, style,
         accent, accentDark, accentLight,
         bgClassName, fgClassName
     } = props;
@@ -45,26 +46,31 @@ const Modal: React.FC<ModalProps> = (props) => {
 
     const modalArea = areaId ? document.getElementById(areaId) : undefined;
 
+    const headerActionBarItems = React.useMemo(() => {
+        let items: ActionBarItemConfig[] = [];
+        if (title) items.push({ item: <span>{title}</span>, position: 'center', key: 'modal-title', scale: false });
+        if (showClose) items.push({
+            item: <Button
+                shape='circle'
+                type="text"
+                onClick={closeModal} iconName='close'
+                accent={accent} accentDark={accentDark} accentLight={accentLight}
+            />,
+            position: 'right',
+            title: 'Close',
+            key: 'close-modal'
+        });
+        return items;
+    },[title, showClose, accent, accentLight, accentDark]);
+
     const {
         header = <ActionBar
-            items={[
-                { item: <span>{title}</span>, position: 'center', key: 'modal-title', scale: false } ,
-                showClose ? {
-                    item: <Button
-                        shape='circle'
-                        onClick={closeModal} iconName='close'
-                        accent={accent} accentDark={accentDark} accentLight={accentLight}
-                    />,
-                    position: 'right',
-                    title: 'Close',
-                    key: 'close-modal'
-                } : null
-            ]}
+            items={headerActionBarItems}
         />,
         footer
     } = props;
 
-    const component = <div className={modalClass}>
+    const component = <div data-id={dataId} className={modalClass}>
         <div className={modalBgClass} onClick={closeModal}></div>
         <Card className={modalFgClass}
             header={header} footer={footer}>

@@ -58,6 +58,7 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
         type,
         items,
         modalAreaId,
+        modalClassName,
         altIcon
     } = props;
 
@@ -191,8 +192,8 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
 
     // Shows an alternative version of the section when scaling value is set to true
     const renderedItem = React.useMemo( () => {
-        return !scaling.value ? _items : <ActionBarAltSection button={altIcon} modalAreaId={modalAreaId} items={_items}/>;
-    }, [scaling, _items, modalAreaId, altIcon]);
+        return !scaling.value ? _items : <ActionBarAltSection button={altIcon} modalClassName={modalClassName} modalAreaId={modalAreaId} items={_items}/>;
+    }, [scaling, _items, modalAreaId, modalClassName, altIcon]);
 
     // Renders the component only if it has items of it's type,
     // or there are items in the center section
