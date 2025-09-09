@@ -23,7 +23,7 @@ const Modal: React.FC<ModalProps> = (props) => {
     const {
         "data-id": dataId,
         areaId,
-        title = "modal",
+        title,
         children,
         visible = false,
         closeModal,

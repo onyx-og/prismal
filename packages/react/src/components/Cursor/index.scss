@@ -2,6 +2,7 @@
 
 .prismal-cursor {
     @extend %z4;
+    transform: var(--cursor-position);
     &.prismal-cursor-circle {
         width: 30px;
         height: 30px;
@@ -14,15 +15,15 @@
 
         @keyframes cursor-pulse {
             0% {
-                transform: scale(1);
+                transform: var(--cursor-position) scale(1);
             }
 
             50% {
-                transform: scale(1.5);
+                transform: var(--cursor-position) scale(1.5);
             }
 
             100% {
-                transform: scale(1);
+                transform: var(--cursor-position) scale(1);
             }
         }
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.scss';
-export interface SidebarProps {
+import ComponentProps from '../Component';
+export interface SidebarProps extends ComponentProps {
     areaId?: string;
     closeSidebar?: () => void;
     header?: JSX.Element;

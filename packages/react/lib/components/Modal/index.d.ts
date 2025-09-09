@@ -1,5 +1,5 @@
-/// <reference types="react" />
 import './index.scss';
+import React from 'react';
 import ComponentProps from '../Component';
 export interface ModalProps extends ComponentProps {
     areaId?: string;

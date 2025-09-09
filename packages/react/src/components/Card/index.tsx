@@ -17,6 +17,7 @@ export interface CardProps extends ComponentProps  {
 
 const Card: React.FC<CardProps> = ( props ) => {
     const {
+        "data-id": dataId,
         header, headerClass,
         footer, footerClass,
         accent, accentDark, accentLight,
@@ -76,7 +77,7 @@ const Card: React.FC<CardProps> = ( props ) => {
         return null;
     },[footer, footerClass]);
 
-    return <div 
+    return <div data-id={dataId}
         className={cardClass}
         style={style_}
     >

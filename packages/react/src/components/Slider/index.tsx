@@ -36,6 +36,7 @@ export type SliderProps = SliderProcProps | SliderRawProps;
 
 const Slider: React.FC<SliderProps> = ( props ) => {
     const { 
+        "data-id": dataId,
         id = Math.random().toString(36).substring(2, 12),
         spacing = 5, 
         size = "l",
@@ -272,7 +273,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         `
 
-        return <div className={sliderClass} style={style_}>
+        return <div data-id={dataId} className={sliderClass} style={style_}>
             <style>{slideshowStyle}</style>
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>
@@ -449,7 +450,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         `
 
-        return <div className={sliderClass} style={style_}>
+        return <div data-id={dataId} className={sliderClass} style={style_}>
             <style>{slideshowStyle}</style>
             
             <div id={`prismal-slider-${id}`} className={slideshowClass}>

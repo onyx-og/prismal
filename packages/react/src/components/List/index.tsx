@@ -100,7 +100,8 @@ export type GridProps = ProcessedGridProps | RawGridProps;
 export type ListComponentProps = ListProps | GridProps;
 
 const List: React.FC<ListComponentProps> = ( props ) => {
-    const { 
+    const {
+        "data-id": dataId,
         pageSize = 24,
         page = 1,
         header,
@@ -147,9 +148,6 @@ const List: React.FC<ListComponentProps> = ( props ) => {
     React.useEffect(() => {
         setPage(page);
     },[page]);
-
-
-    
 
     const data = React.useMemo(() => {
         let res: any[] | React.ReactNode[];
@@ -279,12 +277,12 @@ const List: React.FC<ListComponentProps> = ( props ) => {
     },[showPageCtrl, footerClassName_, pageCtrl, footer])
 
     const component = React.useMemo(() => {
-        return <div className={className_} style={style}>
+        return <div data-id={dataId} className={className_} style={style}>
             {header_}
             {pageContainer}
             {footer_}
         </div>
-    },[currentPage,lastPage, header_, , className_, listWrapperClass, listSubSet, footer_]);
+    },[dataId, pageContainer,header_, style, className_, footer_]);
 
     return component;
 }

@@ -1,3 +1,5 @@
+import React from "react";
+
 export * from "./colors";
 export type Elevation = 0 | 1 | 2 | 3 | 4 // | 5
 export const setElevation = (className: string, elevation: Elevation = 0 ) => {
@@ -116,4 +118,46 @@ export const setBorderRadius = (
 
 export const getRandId = () => {
     return Math.random().toString(36).substring(2);
+}
+
+/**
+ * Recursively traverses a component's children, finds elements of a specific type,
+ * and clones them with new props.
+ * @param {React.ReactNode} children The children to traverse.
+ * @param {React.ElementType} targetType The component type to target.
+ * @param {object} newProps The props to apply to the target components.
+ * @returns {React.ReactNode} The updated children tree.
+ */
+export const reCloneChildren = (
+    children: React.ReactNode, targetType: React.ElementType,
+    newProps: {[key: string]: any}
+): React.ReactNode => {
+  // Normalize children into an array to handle different input types (single, array, etc.)
+  return React.Children.map(children, (child) => {
+    // Check if the child is a valid React element and not a string, number, etc.
+    if (!React.isValidElement(child)) {
+      return child; // Return non-elements as they are
+    }
+
+    // Is this the component we're looking for?
+    if (child.type === targetType) {
+      return React.cloneElement(child, newProps);
+    }
+
+    // Does this child have its own nested children?
+    if (child.props.children) {
+      // Recursively call the function on the nested children
+      const newNestedChildren = reCloneChildren(
+        child.props.children,
+        targetType,
+        newProps
+      );
+
+      // Clone the current element, passing the newly processed children
+      return React.cloneElement(child, {}, newNestedChildren);
+    }
+
+    // If no match and no nested children to process, return the child as is
+    return child;
+  });
 }

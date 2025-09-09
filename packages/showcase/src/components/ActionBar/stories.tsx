@@ -40,3 +40,32 @@ Wrapper.args = {
         { item: <Button iconName="search" type='primary' />, position: 'right', key: '2' }
     ]
 };
+
+export const Responsiveness: Story = {};
+Responsiveness.parameters = {
+    viewport: {
+        viewports: {
+            iphone15: {
+                name: 'iPhone 15',
+                styles: {
+                    width: '393px',
+                    height: '852px',
+                },
+            },
+        },
+        defaultViewport: 'iphone15',
+    }
+}
+Responsiveness.args = {
+    modalAreaId: "root",
+    children: [
+        <Button iconName="star" type='primary' />,
+        <span>Source</span>,
+        <Button iconName="clock-o" type='primary' />,
+        <Button iconName="inbox" type='primary' />,
+    ],
+    items: [
+        { item: <span>ActionBar</span>, position: 'center', key: '1' },
+        { item: <Button iconName="search" type='primary' />, position: 'right', key: '2' }
+    ]
+}

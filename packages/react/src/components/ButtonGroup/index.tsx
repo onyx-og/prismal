@@ -2,7 +2,7 @@ import React from "react";
 import Button, { ButtonProps } from "../Button";
 import ComponentProps from "../Component";
 import { setAccentStyle } from 'utils/colors';
-import { setBorderRadius, setBoxElevation, setElevation } from '../../utils';
+import { reCloneChildren, setBorderRadius, setBoxElevation, setElevation } from '../../utils';
 
 import "./index.scss";
 
@@ -13,6 +13,7 @@ export interface ButtonGroupProps extends ComponentProps {
 }
 const ButtonGroup: React.FC<ButtonGroupProps> = (props) => {
     const {
+        "data-id": dataId,
         className, style,
         accent, accentLight, accentDark,
         borderRadius, elevation = 0,
@@ -34,12 +35,12 @@ const ButtonGroup: React.FC<ButtonGroupProps> = (props) => {
         // Check if the child is a valid React element before cloning
         if (React.isValidElement(child)) {
             // Use React.cloneElement to add the new prop to each child
-            return React.cloneElement(child, { type, elevation, borderRadius });
+            return reCloneChildren(child, Button,{ type, elevation, borderRadius });
         }
         return child;
     });
 
-    return <div className={componentClass}>
+    return <div data-id={dataId} className={componentClass}>
         {childrenWithProps}
     </div>
 }

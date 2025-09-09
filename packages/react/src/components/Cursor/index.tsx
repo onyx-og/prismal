@@ -39,14 +39,14 @@ const Cursor: React.FC<CursorProps> = (props) => {
         return () => cancelAnimationFrame(animationFrameId);
     }, [positionRef]);
 
-    let style_: React.CSSProperties = {
+    let style_: {[key: string]: any} = {
         pointerEvents: 'none',
-        transform: `translate(${position.x}px, ${position.y}px)`,
+        "--cursor-position": `translate(${position.x}px, ${position.y}px)`,
     };
     setAccentStyle(style_, { accent, accentLight, accentDark });
     if (style) style_ = { ...style_, ...style };
 
-    return <div
+    return <div data-id={dataId}
         className={className_}
         style={style_}
     >

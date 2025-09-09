@@ -35,6 +35,7 @@ export interface AcctionBarSectionProps {
     type: 'left' | 'center' | 'right';
     items: (ActionBarItemConfig | null)[];
     modalAreaId?: string;
+    modalClassName?: string;
     altIcon?: ActionbarAltSectionBtn;
 }
 export type ActionBarSectionRef = {
@@ -45,6 +46,7 @@ export interface ActionBarAltSectionProps {
     items: JSX.Element[];
     title?: string;
     modalAreaId?: string;
+    modalClassName?: string;
     button?: ActionbarAltSectionBtn;
 }
 export interface ActionBarItemProps {

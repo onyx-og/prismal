@@ -26,15 +26,6 @@ const ParallaxItem: React.FC<ParallaxItemProps> = (props) => {
         }
     }, []);
 
-    const dataId_ = React.useMemo( () => {
-        if (dataId) return dataId;
-        else return getRandId();
-    }, [dataId]);
-
-    let style_ = {};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
-    if (style) style_ = {...style_, ...style};
-
     const ref = React.useRef<HTMLDivElement>();
     const [refSet, markRefSet] = React.useState<boolean>(false);
 
@@ -50,17 +41,16 @@ const ParallaxItem: React.FC<ParallaxItemProps> = (props) => {
 
     const elScrollY =  useElScrollPosition(ref, refSet);
 
-    let inlineStyles = React.useMemo(() => {
-        return <style>
-            {`.prismal-item-parallax[data-id="${dataId_}"] {
-                transform: translateY(${factor * (elScrollY || 0)}px);
-            }`}
-        </style>
-    }, [dataId_, elScrollY, factor]);
-
+    const style_ = React.useMemo(() => {
+        let style_: {[key: string]: any} = {};
+        setAccentStyle(style_, {accent, accentLight, accentDark});
+        style_.transform = `translateY(${factor * (elScrollY || 0)}px)`;
+        if (style) style_ = {...style_, ...style};
+        return style_;
+    }, [style, accent, accentDark, accentLight, elScrollY, factor]);
+    
     return <>
-        {inlineStyles}
-        <div ref={refSetter} data-id={dataId_} className={className_} style={style_}>
+        <div ref={refSetter} data-id={dataId} className={className_} style={style_}>
             {children}
         </div>
     </>

@@ -19,12 +19,13 @@ export interface ContainerProps extends ComponentProps {
         xl?: number;
     } | number;
     hide?: {
-        xs?: true;
-        sm?: true;
-        md?: true;
-        lg?: true;
-        xl?: true;
-    } | true;
+        xs?: boolean;
+        sm?: boolean;
+        md?: boolean;
+        lg?: boolean;
+        xl?: boolean;
+    } | boolean;
+    cursor?: "circle";
 }
 declare const Container: React.FC<ContainerProps>;
 export default Container;
