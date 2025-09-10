@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_prismal_website_react=self.webpackChunk_prismal_website_react||[]).push([[1235],{8552:e=>{e.exports=JSON.parse('{"name":"docusaurus-plugin-content-pages","id":"default"}')}}]);
