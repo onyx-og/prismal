@@ -21,7 +21,7 @@ const ParallaxItem: React.FC<ParallaxItemProps> = (props) => {
     if (className) className_ = `${className_} ${className}`;
 
     React.useEffect(() => {
-        if (factor < 0 || factor > 1) {
+        if (factor < -1 || factor > 1) {
             throw new Error('ParallaxItem - Factor value must be between -1 and 1.');
         }
     }, []);

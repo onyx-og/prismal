@@ -7,8 +7,8 @@ const path = require('path');
 
 const config: Config = {
   title: 'Prismal',
-  tagline: 'Breaking down complex UIs into components',
-  favicon: 'img/logo_flat.svg',
+  tagline: 'Full spectrum design system',
+  favicon: 'img/logo.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -19,12 +19,12 @@ const config: Config = {
   url: 'https://onyx-og.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/prismal-react/',
+  baseUrl: '/prismal/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'onyx-og', // Usually your GitHub org/user name.
-  projectName: '@prismal/react', // Usually your repo name.
+  projectName: 'prismal', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -35,11 +35,19 @@ const config: Config = {
     [
       'docusaurus-plugin-typedoc',
       {
-        // TypeDoc options are passed directly here
-        entryPoints: ['../../src/index.ts'],
-        tsconfig: '../../tsconfig.json',
-        out: 'docs/api', // This is where the docs will be generated
-        // Additional options for typedoc-plugin-markdown can go here
+        id: 'react',
+        entryPoints: ['../react/src/index.ts'],
+        tsconfig: '../react/tsconfig.json',
+        out: 'docs/react',
+      },
+    ],
+    [
+      'docusaurus-plugin-typedoc',
+      {
+        id: 'native',
+        entryPoints: ['../react-native/src/index.ts'],
+        tsconfig: '../react-native/tsconfig.json',
+        out: 'docs/native',
       },
     ],
   ],
@@ -61,39 +69,48 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/onyx-og/prisaml-react/tree/main/packages/website/',
+            'https://github.com/onyx-og/prismal/tree/main/packages/website/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   feedOptions: {
+        //     type: ['rss', 'atom'],
+        //     xslt: true,
+        //   },
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     'https://github.com/onyx-og/prismal/tree/main/packages/website/',
+        //   // Useful options to enforce blogging best practices
+        //   onInlineTags: 'warn',
+        //   onInlineAuthors: 'warn',
+        //   onUntruncatedBlogPosts: 'warn',
+        // },
         gtag: {
           trackingID: 'G-E5KWBPH17H',
           anonymizeIP: false,
         },
         theme: {
-          customCss: ['./src/styles/custom.scss', '../../src/styles/theme.scss'],
+          customCss: ['./src/styles/custom.scss', '../react/src/styles/theme.scss'],
         },
       } satisfies Preset.Options,
     ],
   ],
 
+  // themes: [
+  //   '@prismal/docs-theme'
+  // ],
+
   themeConfig: {
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/prismal-social-card.jpg',
     navbar: {
-      title: 'Prismal UI',
+      title: 'Prismal',
       logo: {
         alt: 'Logo 3D',
         src: 'img/logo_3d.svg',
@@ -106,21 +123,43 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'api',
+          type: 'dropdown',
+          label: 'Framework',
           position: 'left',
-          label: 'API'
+          items: [
+            {
+              type: 'docSidebar',
+              sidebarId: 'react',
+              label: 'React',
+            },
+            {
+              type: 'docSidebar',
+              sidebarId: 'native',
+              label: 'React Native',
+            },
+          ],
         },
-         {
+        {
+          label: "Wordpress",
+          href: 'https://onyx.ac'
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'components',
           position: 'left',
           label: 'Components'
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {href: 'pathname:///showcase/index.html', label: 'Showcase', position: 'right'},
         {
-          href: 'https://github.com/onyx-og/prismal-react',
+          type: 'dropdown',
+          label: 'Showcase',
+          position: 'right',
+          items: [
+            {href: 'pathname:///showcase/index.html', label: 'React'},
+            // {href: 'pathname:///showcase-native/index.html', label: 'React Native'},
+          ],
+        },
+        {
+          href: 'https://github.com/onyx-og/prismal',
           label: 'GitHub',
           position: 'right',
         },
@@ -133,43 +172,43 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Intro',
               to: '/docs/intro',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Social',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Porfolio',
+              href: 'https://onyx.ac',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/in/onyx-og/',
             },
             {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/onyxOG_',
             },
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
+            // {
+            //   label: 'Blog',
+            //   to: '/blog',
+            // },
             {
               label: 'GitHub',
-              href: 'https://github.com/onyx=og/prismal-react',
+              href: 'https://github.com/onyx-og/prismal',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Onyx AC, LLC`,
     },
     prism: {
       theme: prismThemes.github,

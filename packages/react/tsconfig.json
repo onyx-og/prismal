@@ -19,7 +19,6 @@
   },
   "include": [
     "src",
-    "packages/showcase/src"
   ],
   "exclude": [
     "src/**/*.test.ts",

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "nodenext",
+    "jsx": "react-jsx",
+    "lib": ["esnext", "dom"],
+    "strict": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "outDir": "lib",
+    "baseUrl": "src",
+    "paths": {
+      "styles": ["styles/*"],
+      "components": ["components/*"],
+      "hooks": ["hooks/*"],
+      "utils": ["utils/*"]
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/setupTests.ts"
+  ]
+}

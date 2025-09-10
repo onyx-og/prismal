@@ -5,7 +5,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
-import Button from "../../../../src/components/Button";
+import Button from "../../../react/src/components/Button";
 
 import styles from './index.module.css';
 
@@ -20,8 +20,8 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           
-            <Button type="primary"><Link
-            to="/docs/intro">Docusaurus Tutorial - 5min ⏱️</Link></Button>
+            {/* <Button type="primary"><Link
+            to="/docs/intro">Docusaurus Tutorial - 5min ⏱️</Link></Button> */}
         </div>
       </div>
     </header>

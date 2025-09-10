@@ -1,12 +1,12 @@
-![Logo](packages/website/static/img/logo_banner.svg) 
+![Logo](../website/static/img/logo_banner.svg) 
 # @prismal/react
 
 **Breaking down complex UIs into React components.**
 
 [![npm version](https://badge.fury.io/js/%40prismal%2Freact.svg)](https://www.npmjs.com/package/@prismal/react)
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/CC%20BY--SA%204.0-pink)](LICENSE.md)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/CC%20BY--SA%204.0-pink)](./LICENSE.md)
 [![TypeScript](https://img.shields.io/badge/Written%20in-TypeScript-blue.svg)](https://www.typescriptlang.org/)
-[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://onyx-og.github.io/prismal-react/)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://onyx-og.github.io/prismal/showcase/)
 
 ---
 

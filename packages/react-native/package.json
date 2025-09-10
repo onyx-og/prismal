@@ -1,0 +1,56 @@
+{
+  "name": "@prismal/react-native",
+  "version": "0.0.1",
+  "description": "Breaking down complex UIs into react native components",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "src": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onyx-og/prismal-react-native.git"
+  },
+  "keywords": [
+    "material-design",
+    "md3",
+    "react-native",
+    "ui-kit",
+    "typescript",
+    "ui-library"
+  ],
+  "homepage": "https://onyx-og.github.io/prismal-react-native/",
+  "scripts": {
+    "build": "rimraf --glob lib/* && webpack --node-env=production && rimraf --glob ./lib/styles/*.js",
+    "test": "jest"
+  },
+  "author": "Onyx <hello@onyx.ac> (https://onxy.ac)",
+  "contributors": [
+    "Onyx <hello@onyx.ac> (https://onyx.ac)"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "react-native": ">=0.69.12"
+  },
+  "files": [
+    "lib",
+    "src",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react-native": "^11.4.0",
+    "@types/react": "^19.1.9",
+    "color2k": "^2.0.3",
+    "file-loader": "^6.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.2.1",
+    "jest-environment-jsdom": "^29.2.2",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.0.3",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

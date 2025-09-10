@@ -2,44 +2,46 @@ import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
-import Card from "../../../../../src/components/Card";
-import LazyItem from "../../../../../src/components/LazyItem";
+import Card from "../../../../react/src/components/Card";
+import LazyItem from "../../../../react/src/components/LazyItem";
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
 type FeatureItem = {
   title: string;
+  typography?: string,
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Unlocking Creativity',
+    typography: 'Unleash Your Creativity',
+    Svg: require('@site/static/img/undraw_design-team_51o5.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        This isn't just about rules; it's about possibilities.
+        With highly customizable components, you're free to build unique and expressive interfaces that stand out
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Engineered for Efficiency',
+    Svg: require('@site/static/img/undraw_lighthouse.svg').default,
+    typography: 'Efficiency in Practice',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Built with performance in mind: prioritizes a CSS-first approach to minimize runtime overhead. This library helps you develop and deploy your applications with speed and confidence.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Crafted for Responsiveness',
+    Svg: require('@site/static/img/undraw_responsiveness.svg').default,
+    typography: 'Seamless Responsiveness',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Components are crafted to adapt gracefully across various screen sizes and devices. The system ensures a consistent and seamless user experience, from desktop to mobile, making your interfaces feel native on any platform.
       </>
     ),
   },
