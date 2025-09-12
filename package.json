@@ -1,7 +1,7 @@
 {
   "name": "prismal",
   "version": "0.0.1",
-  "description": "Full spectrum design system",
+  "description": "Full-spectrum design system.",
   "directories": {
     "doc": "docs"
   },
@@ -9,6 +9,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "overrides": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

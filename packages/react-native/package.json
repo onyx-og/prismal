@@ -1,13 +1,13 @@
 {
   "name": "@prismal/react-native",
   "version": "0.0.1",
-  "description": "Breaking down complex UIs into react native components",
+  "description": "Full-spectrum design system.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "src": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onyx-og/prismal-react-native.git"
+    "url": "git+https://github.com/onyx-og/prismal.git"
   },
   "keywords": [
     "material-design",
@@ -17,7 +17,7 @@
     "typescript",
     "ui-library"
   ],
-  "homepage": "https://onyx-og.github.io/prismal-react-native/",
+  "homepage": "https://onyx-og.github.io/prismal/",
   "scripts": {
     "build": "rimraf --glob lib/* && webpack --node-env=production && rimraf --glob ./lib/styles/*.js",
     "test": "jest"
@@ -30,7 +30,7 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-native": ">=0.69.12"
+    "react-native": ">=0.59.8"
   },
   "files": [
     "lib",
@@ -39,7 +39,7 @@
   ],
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react-native": "^11.4.0",
+    "@testing-library/react-native": "^13.3.3",
     "@types/react": "^19.1.9",
     "color2k": "^2.0.3",
     "file-loader": "^6.2.0",
