@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import ComponentProps from '../Component';
 import { View, ViewStyle, StyleSheet, StyleProp } from "react-native";
 // import { setAccentStyle } from '../../utils/colors';
@@ -55,7 +55,7 @@ const Card = ( props: CardProps ) => {
 
     // let style: {[key: string]: any} = setAccentStyle({}, {accent, accentLight, accentDark});
 
-    const header_ = React.useMemo(() => {
+    const header_ = useMemo(() => {
         if (headerStyle) Object.assign(styles.header, headerStyle);
         if (header) {
             return <View style={styles.header}>
@@ -64,7 +64,7 @@ const Card = ( props: CardProps ) => {
         } else return null;
     },[header, styles.header]);
 
-    const footer_ = React.useMemo(() => {
+    const footer_ = useMemo(() => {
         if (footerStyle) Object.assign(styles.footer, footerStyle);
         if (footer) {
             return <View style={styles.footer}>
@@ -73,7 +73,7 @@ const Card = ( props: CardProps ) => {
         } else return null;
     },[footer, styles.footer]);
 
-    const body = React.useMemo(() => {
+    const body = useMemo(() => {
         if (bodyStyle) Object.assign(styles.body, bodyStyle);
         return <View style={styles.body}>{children}</View>;
     },[children, bodyStyle])

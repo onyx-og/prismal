@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 // import Icon from 'components/Icon';
 import { Text, Pressable, ViewStyle, PressableStateCallbackType, StyleProp } from 'react-native';
 import ComponentProps from '../Component';
@@ -65,7 +65,7 @@ const Button = (props: ButtonProps) => {
         // [TODO]
     }
 
-    const [isHovered, setIsHovered] = React.useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     const componentStyle: ((state: PressableStateCallbackType) => StyleProp<ViewStyle>) = ({pressed}) => {
         return [
@@ -91,7 +91,7 @@ const Button = (props: ButtonProps) => {
 
     if (style) Object.assign(styles.component, style);
 
-    const title_ = React.useMemo( () => {
+    const title_ = useMemo( () => {
         if (title) {
             return <Text>{title}</Text>
         } else return null

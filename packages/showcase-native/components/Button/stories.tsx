@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "storybook/test";
 import { View } from "react-native";
 import {Button} from "@prismal/react-native";
 
@@ -7,7 +6,8 @@ const meta = {
   title: "commons/Button",
   component: Button,
   args: {
-    title: "Hello world",
+    title: 'Hi',
+    // title: "Hello world",
     onPress: () => console.log("Pressed!")
   },
   decorators: [
@@ -25,6 +25,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    onPress: fn(),
+    title: "Hi",
   },
 };

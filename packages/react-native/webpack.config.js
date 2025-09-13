@@ -12,7 +12,7 @@ const config = {
         library: {
             type: 'module',
         },
-        libraryTarget: 'commonjs'
+        // libraryTarget: 'commonjs'
     },
     externals: {
         react: 'react',

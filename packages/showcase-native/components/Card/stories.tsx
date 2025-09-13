@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "storybook/test";
 import { View, Text } from "react-native";
 import {Card} from "@prismal/react-native";
 
