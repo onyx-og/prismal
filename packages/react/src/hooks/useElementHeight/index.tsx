@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import { RefObject, useState, useEffect } from 'react';
 
 /**
  * 
@@ -7,9 +7,9 @@ import React, { RefObject } from 'react';
 const useElementHeight = (ref: RefObject<HTMLElement>) => {
 // const useElementHeight = (element: HTMLElement | null) => {
 	// save current element width in the state object
-	const [height, setHeight] = React.useState(ref.current?.clientHeight || 0);
+	const [height, setHeight] = useState(ref.current?.clientHeight || 0);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		// let element = ref.current;
 		if (ref.current) {
 			// timeoutId for debounce mechanism
@@ -37,7 +37,7 @@ const useElementHeight = (ref: RefObject<HTMLElement>) => {
 	}, [ref])
 
 	// Tracks elemenet height also when changing in content size
-	React.useEffect(() => {
+	useEffect(() => {
 		setHeight(ref.current?.clientHeight || 0)
 	}, [ref.current?.clientHeight])
 

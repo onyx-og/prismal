@@ -1,5 +1,5 @@
 import ComponentProps from "../Component";
-import React, { useMemo, useRef, useState } from "react";
+import { useMemo, FC, useRef, useState, useCallback, ReactNode } from "react";
 
 /**
  * https://stackoverflow.com/a/79042186/1623725 for drawing pie slices
@@ -20,7 +20,7 @@ interface SliceLabelProps {
 	text: string,
 	bgPath: SVGPathElement,
 }
-const SliceLabel: React.FC<SliceLabelProps> = (props) => {
+const SliceLabel: FC<SliceLabelProps> = (props) => {
 	const { text, bgPath } = props;
 
 	let bbox = bgPath.getBBox();
@@ -38,12 +38,12 @@ interface SliceProps {
 	fromAngle: number, toAngle: number,
 	color: string
 }
-const Slice: React.FC<SliceProps> = (props) => {
+const Slice: FC<SliceProps> = (props) => {
 	const { labelText, cx, cy, radius, fromAngle, toAngle, color } = props;
-	const pathRef = useRef<SVGPathElement | null>(null)
+	const pathRef = useRef<SVGPathElement>(null)
 	const [refSet, markRefSet] = useState(false)
 
-	const refSetter = React.useCallback((node: SVGPathElement | null) => {
+	const refSetter = useCallback((node: SVGPathElement | null) => {
 		if (pathRef.current) {
 			//
 		}
@@ -81,7 +81,7 @@ const Slice: React.FC<SliceProps> = (props) => {
 		{label}
 	</>
 }
-const Pie: React.FC<PieChartProps> = (props) => {
+const Pie: FC<PieChartProps> = (props) => {
 	const { 
 		size = 220, data, className,
 		name
@@ -94,8 +94,8 @@ const Pie: React.FC<PieChartProps> = (props) => {
 	let pieClass = 'prismal-pie';
 	if (className) pieClass = `${pieClass} ${className}`
 
-	const slices = React.useMemo(() => {
-		const result: React.ReactNode[] = [];
+	const slices = useMemo(() => {
+		const result: ReactNode[] = [];
 		let fromAngle = 0;
 		for (var i = 0; i < data.length; i++) {
 			const { name = `slice-${i}`, percentage, color = "#eee", label } = data[i];

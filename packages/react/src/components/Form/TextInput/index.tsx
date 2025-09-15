@@ -1,4 +1,8 @@
-import React from 'react';
+import { 
+    forwardRef, ForwardedRef, useImperativeHandle, 
+    useState, useMemo, useCallback, useRef,
+    useEffect, ReactNode,KeyboardEvent, CSSProperties
+} from 'react';
 import './index.scss';
 import { setAccentStyle } from 'utils/colors';
 import { InputProps, InputRefType } from '../types';
@@ -10,12 +14,12 @@ export interface TextInputProps extends InputProps {
     onChange?: (arg?: string) => void;
     // TODO: Consider moving to InputProps
     size?: 's' | 'm' | 'l';
-    after?: React.ReactNode;
-    before?: React.ReactNode;
+    after?: ReactNode;
+    before?: ReactNode;
     type?: 'default' | 'primary';
     placeholder?: string;
 }
-const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.ForwardedRef<InputRefType> ) => {
+const TextInput = forwardRef( ( props: TextInputProps, ref: ForwardedRef<InputRefType> ) => {
     const { 
         name, id,
         size = 'm',
@@ -37,12 +41,12 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         type = 'default', gridPlacement
     } = props;
     
-    const inputRef = React.useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const [ isInvalid_, markInvalid ] = React.useState<(string | boolean)[]>([]);
-    const isInvalid = React.useRef<(string | boolean)[]>([]);
+    const [ isInvalid_, markInvalid ] = useState<(string | boolean)[]>([]);
+    const isInvalid = useRef<(string | boolean)[]>([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         isInvalid.current = isInvalid_;
     }, [isInvalid_]);
 
@@ -50,7 +54,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
      * a method to know whether the component is valid or not.
      * a method to trigger the field validation
      */
-    React.useImperativeHandle(ref, () => ({
+    useImperativeHandle(ref, () => ({
         isInputRefType: true,
         name: name,
         checkValidity,
@@ -59,7 +63,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         element: inputRef.current
     }), [name]);
 
-    let className_ = React.useMemo(() => {
+    let className_ = useMemo(() => {
         let className_ = 'prismal-input-text';
 
         if (className) className_ = `${className_} ${className}`;
@@ -74,7 +78,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
     let inputClass = "prismal-input";
     inputClass = `${inputClass} prismal-input-${type}`;
 
-    const checkValidity = React.useCallback( () => {
+    const checkValidity = useCallback( () => {
         const value = inputRef?.current?.value;
         let errorMessages = [];
         // If provided, perform validator method
@@ -90,7 +94,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         return errorMessages;
     }, [validator, required]);
 
-    const onValueChange = React.useCallback( () => {
+    const onValueChange = useCallback( () => {
         if (!disabled) {
             const value = inputRef?.current?.value;
             onChange && onChange(value);
@@ -98,7 +102,7 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
         }
     }, [onChange, disabled, checkValidity]);
 
-    const onKeyUp = React.useCallback( (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const onKeyUp = useCallback( (e: KeyboardEvent<HTMLInputElement>) => {
         if (disabled) {
             // avoid
         } else if ( e.key == 'Enter' && onPressEnter) {
@@ -109,11 +113,11 @@ const TextInput = React.forwardRef( ( props: TextInputProps, ref: React.Forwarde
 
     /** Transforms 'isNotvalid' array of errors into a list
      */
-    const renderedErrors = React.useMemo( () => isInvalid_.map( (err, i) => 
+    const renderedErrors = useMemo( () => isInvalid_.map( (err, i) => 
         <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
     ), [isInvalid_]);
 
-    let style_: React.CSSProperties = {...style};
+    let style_: CSSProperties = {...style};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
 

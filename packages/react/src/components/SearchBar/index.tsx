@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import './index.scss';
 
 import TextInput from 'components/Form/TextInput';
@@ -17,7 +17,7 @@ export interface SearchBarProps extends ComponentProps {
     btnPosition?: "outer-after" | "outer-before" | "inner-after" | "inner-before";
     type?: "default" | "primary";
 }
-const SearchBar: React.FC<SearchBarProps> = ( props ) => {
+const SearchBar: FC<SearchBarProps> = ( props ) => {
     const {
         disabled = false,
         placeholder = 'Search',
@@ -35,13 +35,13 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
     componentClass = `${componentClass} prismal-search-${type}`;
 
 
-    const inputRef = React.useRef<InputRefType | null>(null)
-    const [ query, setQuery ] = React.useState<string | undefined>(value);
-    const [ btnDisabled, setDisableState ] = React.useState(true);
+    const inputRef = useRef<InputRefType>(null)
+    const [ query, setQuery ] = useState<string | undefined>(value);
+    const [ btnDisabled, setDisableState ] = useState(true);
 
-    const timeoutId = React.useRef<NodeJS.Timeout | undefined>(undefined);
+    const timeoutId = useRef<NodeJS.Timeout>(null);
 
-    const prepareSearch = React.useCallback( (value?: string) => {
+    const prepareSearch = useCallback( (value?: string) => {
         // enable button
         // setDisableState(false)
         if ( !!!value ) setDisableState(true)
@@ -56,7 +56,7 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
         }
     }, [query]);
 
-    const doSearch = React.useCallback( () => {
+    const doSearch = useCallback( () => {
         if (inputRef.current?.element) {
             // Clearing timeout started from the prepareSearch method
             // is just for tidyiness (since the query state change won't trigger for same values)
@@ -66,7 +66,7 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
         }
     }, [inputRef]);
 
-    React.useEffect( () => {
+    useEffect( () => {
         if (!query || query == '') {
            // setDisableState(true);
         } else if (onSearch) {
@@ -75,7 +75,7 @@ const SearchBar: React.FC<SearchBarProps> = ( props ) => {
         }
     }, [query, onSearch]);
 
-    const searchBtn = React.useMemo(() => <Button
+    const searchBtn = useMemo(() => <Button
         iconName='search'
         onClick={doSearch}
         type={btnPosition.startsWith("inner") ? 'text' : type}

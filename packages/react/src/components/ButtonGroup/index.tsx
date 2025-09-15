@@ -1,4 +1,6 @@
-import React from "react";
+import {
+    ReactElement, FC, Children, isValidElement
+} from "react";
 import Button, { ButtonProps } from "../Button";
 import ComponentProps from "../Component";
 import { setAccentStyle } from 'utils/colors';
@@ -7,11 +9,11 @@ import { reCloneChildren, setBorderRadius, setBoxElevation, setElevation } from 
 import "./index.scss";
 
 export interface ButtonGroupProps extends ComponentProps {
-    children: React.ReactElement<ButtonProps>[] | React.ReactElement<ButtonProps>;
+    children: ReactElement<ButtonProps>[] | ReactElement<ButtonProps>;
     orientation?: "row" | "column";
     type?: 'default' | 'primary' | 'text';
 }
-const ButtonGroup: React.FC<ButtonGroupProps> = (props) => {
+const ButtonGroup: FC<ButtonGroupProps> = (props) => {
     const {
         "data-id": dataId,
         className, style,
@@ -31,10 +33,10 @@ const ButtonGroup: React.FC<ButtonGroupProps> = (props) => {
     // Merge and override with provided style
     style_ = {...style_, ...style};
 
-    const childrenWithProps = React.Children.map(children, child => {
+    const childrenWithProps = Children.map(children, child => {
         // Check if the child is a valid React element before cloning
-        if (React.isValidElement(child)) {
-            // Use React.cloneElement to add the new prop to each child
+        if (isValidElement(child)) {
+            // Use cloneElement to add the new prop to each child
             return reCloneChildren(child, Button,{ type, elevation, borderRadius });
         }
         return child;

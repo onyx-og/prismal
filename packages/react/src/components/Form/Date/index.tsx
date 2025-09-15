@@ -1,4 +1,6 @@
-import React from "react";
+import {
+    useMemo
+} from "react";
 import { InputProps } from "components/Form/types";
 import { setAccentStyle, setBorderRadius } from "utils/";
 import "./index.scss";
@@ -29,7 +31,7 @@ const Date = (props: DateProps) => {
 
     if (style) style_ = {...style_, ...style};
     
-    const label_ = React.useMemo(() => {
+    const label_ = useMemo(() => {
         return label;
     },[label, labelClass, labelPosition, labelSeparator]);
 

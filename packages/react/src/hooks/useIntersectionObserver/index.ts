@@ -1,7 +1,7 @@
 import React from "react";
 
 const useIntersectionObserver = (
-    elementRef: React.MutableRefObject<HTMLElement | undefined>,
+    elementRef: React.RefObject<HTMLElement | null>,
     refTrigger: boolean | string | number,
     observerOptions: IntersectionObserverInit = {
         root: null,

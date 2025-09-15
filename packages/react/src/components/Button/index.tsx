@@ -1,4 +1,6 @@
-import React from 'react';
+import {
+    MouseEvent, ReactNode, FC, useCallback
+} from 'react';
 import Icon from 'components/Icon';
 import ComponentProps from '../Component';
 import './index.scss';
@@ -9,16 +11,16 @@ export interface ButtonProps extends ComponentProps {
     name?: string;
     iconName?: string;
     title?: string;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
     type?: 'default' | 'primary' | 'text';
-    children?: React.ReactNode;
+    children?: ReactNode;
     shape?: 'default-shape' | 'circle';
     htmlType?: 'submit' | 'button';
     readOnly?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: FC<ButtonProps> = (props) => {
     const {
         name,
         iconName,
@@ -49,7 +51,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     // Merge and override with provided style
     style_ = {...style_, ...style};
 
-    const onClick_ = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const onClick_ = useCallback((e: MouseEvent<HTMLButtonElement>) => {
         if (disabled) return;
         if (onClick) onClick(e);
     }, [onClick, disabled]);

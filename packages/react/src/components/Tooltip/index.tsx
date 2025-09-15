@@ -2,16 +2,13 @@ import Dropdown from "components/Dropdown";
 import "./index.scss";
 import ComponentProps from "../Component";
 import { setBorderRadius } from 'utils/';
-
+import { ReactNode, FC } from "react";
 export interface TooltipProps extends ComponentProps {
-    children?: React.ReactNode; // content
+    children?: ReactNode; // content
     text: string;
-    accent?: never;
-    accentDark?: never;
-    accentLight?: never;
 }
 
-const Tooltip = (props: TooltipProps) => {
+const Tooltip: FC<TooltipProps> = (props) => {
     const {
         children,text,
         className, style,

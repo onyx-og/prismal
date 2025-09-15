@@ -1,13 +1,13 @@
-import React from "react";
+import {ReactNode, JSX, useMemo, useEffect, useCallback, useState, CSSProperties} from "react";
 import ComponentProps from "../Component";
 
 import "./index.scss";
 import { setAccentStyle } from "utils/";
 
-export type CellData = React.ReactNode;
+export type CellData = ReactNode;
 export interface TableProps extends ComponentProps {
     data: {[keyX: string]: {[keyY: string]: CellData}};
-    caption?: React.ReactNode;
+    caption?: ReactNode;
     cellRenderer?: (props: {data: CellData, mode?: string}) => JSX.Element
 }
 
@@ -45,7 +45,7 @@ const Table = (props: TableProps) => {
     let className_ = `prismal-table-container`; 
     if ( className ) className_ = `${className_} ${className}`;
 
-    const caption_ = React.useMemo(() => {
+    const caption_ = useMemo(() => {
         if (caption) {
             return <caption>
                 {caption}
@@ -54,7 +54,7 @@ const Table = (props: TableProps) => {
         return null;
     },[]);
 
-    // const keysY = React.useMemo(()=> {
+    // const keysY = useMemo(()=> {
     //     let keys = Object.keys(data);
     //     if (setKeysY) {
     //         setKeysY(keys);
@@ -62,7 +62,7 @@ const Table = (props: TableProps) => {
     //     return keys;
     // },[data]);
 
-    const keysX = React.useMemo(()=> {
+    const keysX = useMemo(()=> {
         let keys: {[key: string]: null} = {};
         Object.values(data).forEach(v => {
             Object.keys(v).forEach(k => keys[k] = null)
@@ -71,16 +71,16 @@ const Table = (props: TableProps) => {
         return keys_;
     },[data]);
 
-   const [keysY_, setKeysY] = React.useState(Object.keys(data));
+   const [keysY_, setKeysY] = useState(Object.keys(data));
 
-    React.useEffect(() => {
+    useEffect(() => {
         setKeysY(Object.keys(data));
     }, [data]);
 
-    const [orderBy, setOrder] = React.useState<[string, 'asc' | 'desc'] | null>();
+    const [orderBy, setOrder] = useState<[string, 'asc' | 'desc'] | null>();
 
     // Defines sorting params
-    const toggleOrder = React.useCallback( (keyX: string) => {
+    const toggleOrder = useCallback( (keyX: string) => {
         if (orderBy && orderBy[0] == keyX) {
             if (orderBy[1] ==  'asc') setOrder([keyX, 'desc']);
             else setOrder([keyX, 'asc']);
@@ -88,13 +88,13 @@ const Table = (props: TableProps) => {
     },[orderBy]);
 
     // Applies sort when specified
-    React.useEffect(() => {
+    useEffect(() => {
         if (orderBy) {
             sort(orderBy[0], orderBy[1]);
         }
     },[orderBy, data]);
 
-    const sort = React.useCallback((keyX: string, sortOrder: 'asc' | 'desc' = 'asc') => {
+    const sort = useCallback((keyX: string, sortOrder: 'asc' | 'desc' = 'asc') => {
         let orderedList: [string, CellData][] = []
         for (const i of keysY_) {
             orderedList.push([i, data[i][keyX]]);
@@ -128,7 +128,7 @@ const Table = (props: TableProps) => {
         setKeysY(sortedKeysY);
     },[data, keysY_, keysX]);
 
-    const columnHeaders = React.useMemo(()=> {
+    const columnHeaders = useMemo(()=> {
         const headers = keysX.map((k) => {
             return <HeaderCell label={k} toggleOrder={toggleOrder} 
                 setsOrdering={(orderBy && orderBy[0] == k) ? orderBy[1] : false}/>
@@ -137,7 +137,7 @@ const Table = (props: TableProps) => {
         return headers;
     },[keysX, orderBy]);
 
-    const rows = React.useMemo(()=> {
+    const rows = useMemo(()=> {
         const rows_: any[] = [];
         keysY_.forEach((r, i) => {
             rows_.push(<tr key={i}>
@@ -150,7 +150,7 @@ const Table = (props: TableProps) => {
         return rows_;
     },[keysY_, keysX, data]);
 
-    let style_: React.CSSProperties = {};
+    let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     if (style) style_ = {...style_, ...style};
 

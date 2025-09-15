@@ -1,4 +1,6 @@
-import React from "react";
+import {
+    ReactNode, FC, useMemo, CSSProperties, useRef
+} from "react";
 import ComponentProps from "../Component";
 import { setAccentStyle } from "utils/";
 import "./index.scss";
@@ -7,7 +9,7 @@ import Cursor from "components/Cursor";
 
 type Ratio = "5-2" | "9-2" | "5-4" | "16-9" | "16-3" | "18-9" | "20-6" | "20-8" | "8-5" | "4-3" | "4-5";
 export interface ContainerProps extends ComponentProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     ratio?: {
         xs?: Ratio,
         sm?: Ratio,
@@ -31,7 +33,7 @@ export interface ContainerProps extends ComponentProps {
     } | boolean;
     cursor?: "circle",
 }
-const Container: React.FC<ContainerProps> = (props) => {
+const Container: FC<ContainerProps> = (props) => {
     const {
         "data-id": dataId,
         className, style,
@@ -39,7 +41,7 @@ const Container: React.FC<ContainerProps> = (props) => {
         children, ratio, span, hide = false
     } = props;
 
-    const className_ = React.useMemo(() => {
+    const className_ = useMemo(() => {
         let className_ = "prismal-container";
         if (className) className_ = `${className_} ${className}`;
 
@@ -91,16 +93,16 @@ const Container: React.FC<ContainerProps> = (props) => {
         return className_;
     }, [className, ratio, span, hide]);
 
-    let style_: React.CSSProperties = {};
+    let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
 
     if (style) style_ = {...style_, ...style};
 
-    const containerRef = React.useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const cursorPositionRef = useCursorPosition(containerRef);
 
-    const memoizedChildren = React.useMemo(() => children, [children]);
+    const memoizedChildren = useMemo(() => children, [children]);
 
     return <div ref={containerRef} data-id={dataId} style={style_} 
         className={className_}>

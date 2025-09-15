@@ -1,4 +1,6 @@
-import React, { RefObject } from "react";
+import {
+    RefObject, FC, useState, useEffect
+} from "react";
 import ComponentProps from "../Component";
 import { setAccentStyle } from "utils/";
 
@@ -8,7 +10,7 @@ export interface CursorProps extends ComponentProps {
     positionRef: RefObject<{ x: number, y: number }>;
     type?: "circle" | "dot" | "dashed" | "two-dots" | "gooey";
 };
-const Cursor: React.FC<CursorProps> = (props) => {
+const Cursor: FC<CursorProps> = (props) => {
     const {
         "data-id": dataId,
         className, style,
@@ -20,9 +22,9 @@ const Cursor: React.FC<CursorProps> = (props) => {
     className_ = `${className_} prismal-cursor-${type}`;
     if (className) className_ = `${className_} ${className}`;
 
-    const [position, setPosition] = React.useState({ x: 0, y: 0 });
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    React.useEffect(() => {
+    useEffect(() => {
         // We need a subscription model to get updates from the ref
         let animationFrameId: number;
 

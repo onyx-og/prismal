@@ -1,4 +1,6 @@
-import React from 'react';
+import {
+    FC, ReactNode, useRef, useMemo
+} from 'react';
 import ComponentProps from '../Component';
 import { setAccentStyle } from 'utils/colors';
 import './index.scss';
@@ -10,10 +12,10 @@ export type SelectOption = {
     selected?: boolean;
 }
 export interface DropdownProps extends ComponentProps {
-    children: React.ReactNode;
-    toggleElement?: React.ReactNode;
+    children: ReactNode;
+    toggleElement?: ReactNode;
 }
-const Dropdown: React.FC<DropdownProps> = ( props ) => {
+const Dropdown: FC<DropdownProps> = ( props ) => {
     const {
         toggleElement,
         children,
@@ -22,7 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ( props ) => {
         borderRadius
     } = props;
     
-    const dropdownRef = React.useRef<HTMLDivElement | null>(null);
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
 
     let style_: {[key: string]: any} = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
@@ -33,7 +35,7 @@ const Dropdown: React.FC<DropdownProps> = ( props ) => {
     let className_ = 'prismal-dropdown';
     if (className) className_ = `${className_} ${className}`;
 
-    const toggleEl = React.useMemo(() => {
+    const toggleEl = useMemo(() => {
         if (toggleElement != null) {
             return <div className="prismal-dropdown-toggle">{toggleElement}</div>;
         }

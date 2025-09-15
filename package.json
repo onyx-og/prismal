@@ -17,9 +17,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^17.2.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:react": "npm run -w packages/react build",
+    "build:react-native": "npm run -w packages/react-native build"
   },
   "repository": {
     "type": "git",

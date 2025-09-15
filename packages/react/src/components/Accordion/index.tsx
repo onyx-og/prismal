@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactEventHandler } from "react";
+import { ReactNode, FC, ChangeEvent, useState, useMemo, useCallback } from "react";
 import ComponentProps from "../Component";
 import { setAccentStyle,getRandId } from "../../utils/";
 
@@ -6,11 +6,11 @@ import "./index.scss";
 import Icon from "components/Icon";
 
 export interface AccordionProps extends ComponentProps {
-    children: React.ReactNode;
-    header: React.ReactNode;
+    children: ReactNode;
+    header: ReactNode;
     defaultOpen?: boolean;
 }
-const Accordion: React.FC<AccordionProps> = (props) => {
+const Accordion: FC<AccordionProps> = (props) => {
     const {
         "data-id": dataId,
         className,
@@ -20,9 +20,9 @@ const Accordion: React.FC<AccordionProps> = (props) => {
         defaultOpen = false
     } = props;
 
-    const [enabled, setEnabled] = React.useState(defaultOpen);
+    const [enabled, setEnabled] = useState(defaultOpen);
 
-    const dataId_ = React.useMemo( () => {
+    const dataId_ = useMemo( () => {
         if (dataId) return `${dataId}`;
         else return getRandId();
     }, [dataId]);
@@ -34,11 +34,11 @@ const Accordion: React.FC<AccordionProps> = (props) => {
     setAccentStyle(style_, {accent, accentLight, accentDark});
     if (style) style_ = {...style_, ...style};
 
-    const onToggle = React.useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const onToggle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setEnabled(e.target.checked);
     }, []);
 
-    const indicator_ = React.useMemo(() => {
+    const indicator_ = useMemo(() => {
         if (enabled) return <Icon className="prismal-accordion-indicator" name="chevron-up" />
         return <Icon className="prismal-accordion-indicator" name="chevron-down" />
     },[enabled]);

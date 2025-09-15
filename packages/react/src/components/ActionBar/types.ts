@@ -1,5 +1,5 @@
 import type ComponentProps from "../Component";
-import { MutableRefObject, RefObject } from 'react';
+import { RefObject, JSX } from 'react';
 
 export interface ActionBarItemConfig {
     item: React.ReactNode;
@@ -11,8 +11,8 @@ export interface ActionBarItemConfig {
 }
 
 export interface ActionBarRef {
-    lowNode: (HTMLDivElement | undefined)[], // lowest managed DOM node(s)
-    highNode: HTMLDivElement | undefined;
+    lowNode: (HTMLDivElement | null)[], // lowest managed DOM node(s)
+    highNode: HTMLDivElement | null;
 }
 export interface ActionBarItemWithRefProps {
     children?: React.ReactNode;

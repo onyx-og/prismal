@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useCallback, FC } from 'react';
 import Sidebar, { SidebarProps } from 'components/Sidebar';
 
 /**
@@ -9,19 +9,19 @@ import Sidebar, { SidebarProps } from 'components/Sidebar';
 const useSidebar = (
     config?: {areaId?: string}
 )  => {
-    const [ state, setState ] = React.useState(false);
+    const [ state, setState ] = useState(false);
     
     /**
      * Closes the sidebar
      */
-    const close = React.useCallback( () => {
+    const close = useCallback( () => {
         setState(false)
     }, []);
 
     /**
      * Opens the sidebar
      */
-    const open = React.useCallback( () => {
+    const open = useCallback( () => {
         setState(true)
     }, []);
     
@@ -30,7 +30,7 @@ const useSidebar = (
 
     // Alter the component to keep the props that will be passed
     // but the visibility will be managed from open, state and close
-    const _Sidebar: React.FC<SidebarProps> = ( props ) => <Sidebar areaId={config?.areaId} {...props} visible={state} closeSidebar={close}/>
+    const _Sidebar: FC<SidebarProps> = ( props ) => <Sidebar areaId={config?.areaId} {...props} visible={state} closeSidebar={close}/>
 
     return { Sidebar: _Sidebar, state, open, close }
 }

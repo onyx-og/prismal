@@ -1,9 +1,9 @@
-import React from "react";
+import {ReactNode, FC, useRef, useMemo,useCallback, useEffect, useState} from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
 import {useIntersectionObserver} from "hooks/";
 export interface LazyItemProps extends ComponentProps {
-    children: React.ReactNode;
+    children: ReactNode;
     exitEffect?: boolean;
     /**
      * Customize the entrance animation by setting animation -> 'none'
@@ -13,7 +13,7 @@ export interface LazyItemProps extends ComponentProps {
     loadedClass?: string;
     offset?: number;
 }
-const LazyItem = (props: LazyItemProps) => {
+const LazyItem: FC<LazyItemProps> = (props) => {
     const {
         "data-id": dataId,
         className, style,
@@ -27,10 +27,10 @@ const LazyItem = (props: LazyItemProps) => {
     let style_ = {};
     style_ = {...style_, ...style};
 
-    const ref = React.useRef<HTMLDivElement>();
-    const [refSet, markRefSet] = React.useState<boolean>(false);
+    const ref = useRef<HTMLDivElement>(null);
+    const [refSet, markRefSet] = useState<boolean>(false);
 
-    const refSetter = React.useCallback((node: HTMLDivElement) => {
+    const refSetter = useCallback((node: HTMLDivElement) => {
         if (ref.current) {
             return
         }
@@ -42,10 +42,10 @@ const LazyItem = (props: LazyItemProps) => {
 
     const isIntersecting = useIntersectionObserver(ref, refSet);
 
-    const [isInView, setIsInView] = React.useState(false);
-    const [hasLoadedOnce, setHasLoadedOnce] =  React.useState(false);
+    const [isInView, setIsInView] = useState(false);
+    const [hasLoadedOnce, setHasLoadedOnce] =  useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         let timeout: NodeJS.Timeout;
         if (isIntersecting) {
             timeout = setTimeout(()=> {
@@ -63,14 +63,14 @@ const LazyItem = (props: LazyItemProps) => {
         }
     }, [isIntersecting, isInView, hasLoadedOnce, offset]);
 
-    const children_ = React.useMemo(() => {
+    const children_ = useMemo(() => {
         if (hasLoadedOnce) {
             return children;
         }
         return null;
     }, [children, loadedClass, hasLoadedOnce]);
 
-    const className_ = React.useMemo(() => {
+    const className_ = useMemo(() => {
         let className_ = `prismal-lazy-item prismal-lazy-item-${animation}`;
         if (className) className_ =  `${className_} ${className}`;
         if (isInView) {

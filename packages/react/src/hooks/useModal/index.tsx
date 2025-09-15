@@ -1,5 +1,7 @@
-import React from 'react';
-import Modal, { ModalProps } from 'components/Modal';
+import {
+    useState, useCallback, FC
+} from 'react';
+import Modal, { ModalProps } from '../../components/Modal';
 
 /**
  * Custom hook meant to export a Modal component and the methods to manage its state
@@ -9,19 +11,19 @@ import Modal, { ModalProps } from 'components/Modal';
 const useModal = (
     config?: {areaId?: string}
 ) => {
-    const [ state, setState ] = React.useState(false);
+    const [ state, setState ] = useState(false);
     
     /**
      * Closes the modal
      */
-    const close = React.useCallback( () => {
+    const close = useCallback( () => {
         setState(false)
     }, []);
 
     /**
      * Opens the modal
      */
-    const open = React.useCallback( () => {
+    const open = useCallback( () => {
         setState(true)
     }, []);
 
@@ -30,7 +32,7 @@ const useModal = (
 
     // Alter the component to keep the props that will be passed
     // but the visibility will be managed from open, state and close
-    const _Modal: React.FC<ModalProps> = ( props ) => <Modal areaId={config?.areaId} visible={state} closeModal={close} {...props}/>
+    const _Modal: FC<ModalProps> = ( props ) => <Modal areaId={config?.areaId} visible={state} closeModal={close} {...props}/>
 
     return { Modal: _Modal, state, open, close }
 }

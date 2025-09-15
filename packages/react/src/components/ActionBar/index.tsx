@@ -1,13 +1,16 @@
 import './index.scss';
 
-import React from 'react';
+import {
+    forwardRef, ForwardedRef, useRef, useState, useCallback,
+    useMemo, Children, useImperativeHandle, 
+} from 'react';
 import ActionBarSection from './ActionBarSection';
 
 import { setAccentStyle } from 'utils/colors';
 import type { ActionBarItemConfig, ActionBarProps, ActionBarItemWithRefProps, ActionBarRef } from './types';
 
 
-const ActionBarItemWithRef = React.forwardRef((props: ActionBarItemWithRefProps, ref: React.ForwardedRef<HTMLDivElement>) => {
+const ActionBarItemWithRef = forwardRef((props: ActionBarItemWithRefProps, ref: ForwardedRef<HTMLDivElement>) => {
     const { children } = props;
     const wrapperProps = {
         className: "prismal-actionbar-child-wref",
@@ -20,7 +23,7 @@ const ActionBarItemWithRef = React.forwardRef((props: ActionBarItemWithRefProps,
     );
 });
 
-const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.ForwardedRef<ActionBarRef>) => {
+const ActionBar = forwardRef((props: ActionBarProps, ref:  ForwardedRef<ActionBarRef>) => {
     const {
         items = [],
         children, defaultPosition = "right",
@@ -32,7 +35,7 @@ const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.Forwarded
     } = props;
     let actionBarClass = `prismal-actionbar prismal-actionbar-${type}`;
 
-    // const actionBarRef = React.useRef<HTMLDivElement>(null);
+    // const actionBarRef = useRef<HTMLDivElement>(null);
     // console.log("Got actionbar ref", actionBarRef);
     let style_: { [key: string]: any } = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
@@ -40,14 +43,14 @@ const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.Forwarded
 
     if (className) actionBarClass = `${actionBarClass} ${className}`;
 
-    const lowNode = React.useRef<HTMLDivElement[]>([]);
-    const [lowNodeSet, marklowNodeSet] = React.useState<boolean>(false);
+    const lowNode = useRef<HTMLDivElement[]>([]);
+    const [lowNodeSet, marklowNodeSet] = useState<boolean>(false);
 
-    const children_ = React.useMemo(() => {
-        return React.Children.toArray(children);
+    const children_ = useMemo(() => {
+        return Children.toArray(children);
     }, [children]);
 
-    const childrenRefCollector = React.useCallback((node: HTMLDivElement | null, i: number) => {
+    const childrenRefCollector = useCallback((node: HTMLDivElement | null, i: number) => {
         if (node) {
             lowNode.current[i] = node;
             if (children_.length-1 == i)  {
@@ -56,7 +59,7 @@ const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.Forwarded
         }
     }, [children_]);
 
-    const processItem = React.useCallback((position: ActionBarItemConfig["position"]) => {
+    const processItem = useCallback((position: ActionBarItemConfig["position"]) => {
         const items_ = items.filter((i) =>
             i?.position == position
         );
@@ -74,22 +77,22 @@ const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.Forwarded
         return items_;
     }, [items, children, defaultPosition]);
 
-    const leftItems = React.useMemo(() => {
+    const leftItems = useMemo(() => {
         return processItem("left");
     }, [processItem]);
 
-    const centerItems = React.useMemo(() => {
+    const centerItems = useMemo(() => {
         return processItem("center");
     }, [processItem]);
 
-    const rightItems = React.useMemo(() => {
+    const rightItems = useMemo(() => {
         return processItem("right");
     }, [processItem]);
 
-    const highNode = React.useRef<HTMLDivElement>();
-    const [highNodeSet, markhighNodeSet] = React.useState<boolean>(false);
+    const highNode = useRef<HTMLDivElement>(null);
+    const [highNodeSet, markhighNodeSet] = useState<boolean>(false);
 
-    const setHighNodeRef = React.useCallback((node: HTMLDivElement) => {
+    const setHighNodeRef = useCallback((node: HTMLDivElement) => {
         if (highNode.current) {
             return;
         }
@@ -99,7 +102,7 @@ const ActionBar = React.forwardRef((props: ActionBarProps, ref:  React.Forwarded
         }
     }, []);
 
-    React.useImperativeHandle(ref, () => ({
+    useImperativeHandle(ref, () => ({
         lowNode: lowNode.current, // lowest managed DOM node(s)
         highNode: highNode.current, // highest managed DOM node
     }), [highNodeSet, lowNodeSet]);

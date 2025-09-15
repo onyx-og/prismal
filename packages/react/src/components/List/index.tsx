@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC, JSX, ReactNode,useState, useMemo, useCallback, useEffect} from 'react';
 import './index.scss';
 import Page, { ListProcessor } from './page';
 import ComponentProps from '../Component';
@@ -18,9 +18,9 @@ export interface ProcessedListProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
@@ -35,13 +35,13 @@ export interface RawListProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
-    children: React.ReactNode[];
+    children: ReactNode[];
     view?: 'list';
     type: 'raw';
     padding?: 's' | 'm' | 'l';
@@ -54,9 +54,9 @@ export interface ProcessedGridProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
@@ -77,13 +77,13 @@ export interface RawGridProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
-    children: React.ReactNode[];
+    children: ReactNode[];
     view?: 'grid';
     type: 'raw';
     padding?: 's' | 'm' | 'l';
@@ -99,7 +99,7 @@ export type GridProps = ProcessedGridProps | RawGridProps;
 
 export type ListComponentProps = ListProps | GridProps;
 
-const List: React.FC<ListComponentProps> = ( props ) => {
+const List: FC<ListComponentProps> = ( props ) => {
     const {
         "data-id": dataId,
         pageSize = 24,
@@ -143,14 +143,14 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         style["--grid-colums"] = cols;
     }
 
-    const [currentPage, setPage] = React.useState<number>(page);
+    const [currentPage, setPage] = useState<number>(page);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setPage(page);
     },[page]);
 
-    const data = React.useMemo(() => {
-        let res: any[] | React.ReactNode[];
+    const data = useMemo(() => {
+        let res: any[] | ReactNode[];
         if (props.type == "raw") {
             res = props.children;
         } else {
@@ -159,7 +159,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         return res;
     }, [props.type]);
 
-    const listSubSet = React.useMemo(() => {
+    const listSubSet = useMemo(() => {
         if (pageSize) {
             let subset = data.slice( currentPage * pageSize - pageSize, currentPage * pageSize );
             return subset;
@@ -184,7 +184,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         }
     }
 
-    const pageContainer = React.useMemo(() => {
+    const pageContainer = useMemo(() => {
         return <div className={listWrapperClass}>
             <div className={`prismal-page-container padding-${padding}`}>
                 <Page list={listSubSet} 
@@ -200,25 +200,25 @@ const List: React.FC<ListComponentProps> = ( props ) => {
     let footerClassName_ = "prismal-list-footer";
     if (footerClassName) footerClassName_ = `${footerClassName_} ${footerClassName}`;
 
-    const header_ = React.useMemo(() => {
+    const header_ = useMemo(() => {
         return <div className={headerClassName_}>{header}</div>
     },[header, headerClassName]);
 
-    const pageBackwards = React.useCallback(() => {
+    const pageBackwards = useCallback(() => {
         setPage(currentPage-1);
     },[setPage, currentPage]);
 
-    const pageForward = React.useCallback(() => {
+    const pageForward = useCallback(() => {
         setPage(currentPage+1);
     },[setPage, currentPage]);
 
-    const lastPage = React.useMemo(() => {
+    const lastPage = useMemo(() => {
         if (pageSize) {
             return Math.ceil(data.length / pageSize);
         } else return 1;
     },[data.length,pageSize]);
 
-    const pageJumpCtrl: ActionBarItemConfig[] = React.useMemo(() => {
+    const pageJumpCtrl: ActionBarItemConfig[] = useMemo(() => {
         let numbers_ = Array(lastPage);
         for (let i = 1; i <= lastPage; i++) {
             numbers_[i-1] = i;
@@ -241,7 +241,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         return result;
     },[showExtremesCtrl, lastPage, currentPage]);
 
-    const leftExtreme = React.useMemo(() => {
+    const leftExtreme = useMemo(() => {
         if (showExtremesCtrl) {
             return <>
                 <Button type='text' disabled={currentPage==1} onClick={()=>setPage(1)}>First</Button>
@@ -250,7 +250,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         }
     },[showExtremesCtrl,currentPage,lastPage]);
 
-    const rightExtreme = React.useMemo(() => {
+    const rightExtreme = useMemo(() => {
         if (showExtremesCtrl) {
             return <>
                 {/* <Button type='text' disabled={true}>...</Button> */}
@@ -259,7 +259,7 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         }
     },[showExtremesCtrl,currentPage,lastPage]);
 
-    const pageCtrl = React.useMemo(() => {
+    const pageCtrl = useMemo(() => {
         return <ActionBar items={[
             { item: <>{leftExtreme}</>, position: "left", key: "leftExtreme"},
             { item: <Button key={"backwards"} onClick={pageBackwards} disabled={currentPage==1}>Back</Button>, position: "left", key: "back"},
@@ -269,14 +269,14 @@ const List: React.FC<ListComponentProps> = ( props ) => {
         ]} />
     },[leftExtreme,pageBackwards,currentPage,pageJumpCtrl,pageForward,lastPage,rightExtreme]);
 
-    const footer_ = React.useMemo(() => {
+    const footer_ = useMemo(() => {
         return <div className={footerClassName_}>
             {showPageCtrl ? pageCtrl : <></>}
             {footer}
         </div>
     },[showPageCtrl, footerClassName_, pageCtrl, footer])
 
-    const component = React.useMemo(() => {
+    const component = useMemo(() => {
         return <div data-id={dataId} className={className_} style={style}>
             {header_}
             {pageContainer}

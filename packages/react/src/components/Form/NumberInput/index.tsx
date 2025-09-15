@@ -1,5 +1,9 @@
 import { InputProps, InputRefType } from "../types";
-import React from "react";
+import {
+    ReactNode, CSSProperties, useState, useEffect,
+    useCallback, useMemo, useImperativeHandle,
+    forwardRef, ForwardedRef, useRef, ChangeEvent
+} from "react";
 import { setBorderRadius, setAccentStyle } from 'utils/';
 
 import "./index.scss";  
@@ -7,13 +11,13 @@ import "./index.scss";
 export interface NumberInputProps extends InputProps {
     onChange?: (arg?: number) => void;
     placeholder?: string;
-    after?: React.ReactNode;
-    before?: React.ReactNode;
+    after?: ReactNode;
+    before?: ReactNode;
     type?: 'default' | 'primary';
     step?: number;
     value?: number;
 }
-const NumberInput = React.forwardRef((props: NumberInputProps, ref: React.ForwardedRef<InputRefType>) => {
+const NumberInput = forwardRef((props: NumberInputProps, ref: ForwardedRef<InputRefType>) => {
     const {
         "data-id": dataId,
         name, id,
@@ -33,7 +37,7 @@ const NumberInput = React.forwardRef((props: NumberInputProps, ref: React.Forwar
         borderRadius, gridPlacement
     } = props;
 
-    let style_: React.CSSProperties = {};
+    let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
 
@@ -48,16 +52,16 @@ const NumberInput = React.forwardRef((props: NumberInputProps, ref: React.Forwar
         }
     }
 
-    const inputRef = React.useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const [ isNotValid_, markNotValid ] = React.useState<(string | boolean)[]>([]);
-    const isNotValid = React.useRef<(string | boolean)[]>([]);
+    const [ isNotValid_, markNotValid ] = useState<(string | boolean)[]>([]);
+    const isNotValid = useRef<(string | boolean)[]>([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         isNotValid.current = isNotValid_;
     }, [isNotValid_]);
 
-    const checkValidity = React.useCallback( () => {
+    const checkValidity = useCallback( () => {
         const value = inputRef?.current?.value;
         let errorMessages = [];
 
@@ -74,7 +78,7 @@ const NumberInput = React.forwardRef((props: NumberInputProps, ref: React.Forwar
         return errorMessages;
     }, [validator, required]);
     
-    React.useImperativeHandle(ref, () => ({
+    useImperativeHandle(ref, () => ({
         isInputRefType: true,
         name: name,
         checkValidity,
@@ -83,7 +87,7 @@ const NumberInput = React.forwardRef((props: NumberInputProps, ref: React.Forwar
         element: inputRef.current
     }), [name]);
 
-    const className_ = React.useMemo(() => {
+    const className_ = useMemo(() => {
         let className_ = "prismal-input-number";
         if (className) className_ = `${className_} ${className}`;
         if ( inline ) className_ = `${className_} inline`;
@@ -93,20 +97,20 @@ const NumberInput = React.forwardRef((props: NumberInputProps, ref: React.Forwar
 
     /** Transforms 'isNotvalid' array of errors into a list
      */
-    const renderedErrors = React.useMemo( () => isNotValid_.map( (err, i) => 
+    const renderedErrors = useMemo( () => isNotValid_.map( (err, i) => 
         <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
     ), [isNotValid_]);
 
     let inputClass = "prismal-input";
     inputClass = `${inputClass} prismal-input-${type}`;
 
-    const doOnChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const doOnChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         const evtValue = Number(event.currentTarget.value);
         checkValidity();
         onChange && onChange(evtValue);
     }, [onChange, checkValidity]);
 
-    const label_ = React.useMemo(() => {
+    const label_ = useMemo(() => {
         if (label) {
             if (labelPosition == "before") {
                 return <label htmlFor={id}>{label}{labelSeparator}</label>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { JSX, FC, ReactNode } from 'react';
 import './index.scss';
 import Modal from 'components/Modal';
 import ComponentProps from '../Component';
@@ -8,10 +8,10 @@ export interface SidebarProps extends ComponentProps {
     closeSidebar?: () => void;
     header?: JSX.Element;
     footer?: JSX.Element;
-    children?: React.ReactNode;
+    children?: ReactNode;
     visible?: boolean;
 }
-const Sidebar: React.FC<SidebarProps> = ( props ) => {
+const Sidebar: FC<SidebarProps> = ( props ) => {
     const {
         "data-id": dataId,
         className, style,

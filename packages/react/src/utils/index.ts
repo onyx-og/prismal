@@ -1,4 +1,4 @@
-import React from "react";
+import {isValidElement, cloneElement, Children } from "react";
 
 export * from "./colors";
 export type Elevation = 0 | 1 | 2 | 3 | 4 // | 5
@@ -133,28 +133,29 @@ export const reCloneChildren = (
     newProps: {[key: string]: any}
 ): React.ReactNode => {
   // Normalize children into an array to handle different input types (single, array, etc.)
-  return React.Children.map(children, (child) => {
+  return Children.map(children, (child) => {
     // Check if the child is a valid React element and not a string, number, etc.
-    if (!React.isValidElement(child)) {
+    if (!isValidElement(child)) {
       return child; // Return non-elements as they are
     }
 
     // Is this the component we're looking for?
     if (child.type === targetType) {
-      return React.cloneElement(child, newProps);
+      return cloneElement(child, newProps);
     }
 
     // Does this child have its own nested children?
-    if (child.props.children) {
+    const props = (child.props as {[key: string]: any});
+    if (props.children) {
       // Recursively call the function on the nested children
       const newNestedChildren = reCloneChildren(
-        child.props.children,
+        props.children,
         targetType,
         newProps
       );
 
       // Clone the current element, passing the newly processed children
-      return React.cloneElement(child, {}, newNestedChildren);
+      return cloneElement(child, {}, newNestedChildren);
     }
 
     // If no match and no nested children to process, return the child as is

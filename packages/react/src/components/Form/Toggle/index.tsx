@@ -1,4 +1,8 @@
-import React, { ReactElement } from "react";
+import {
+    ReactElement, useRef, useState, useCallback,
+    useMemo, useEffect, ForwardedRef, forwardRef,
+    CSSProperties, ChangeEvent, useImperativeHandle
+} from "react";
 import { InputProps, InputRefType } from '../types';
 import { setAccentStyle } from 'utils/colors';
 import { setBorderRadius, setBoxElevation } from 'utils/';
@@ -20,7 +24,7 @@ export interface ToggleProps extends InputProps {
 /**
  * @credits Inspired by Aaron Iker switch/checkbox
  */
-const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<InputRefType>): ReactElement => {
+const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>): ReactElement => {
     const {
         type = "checkbox",
         id, name, className,
@@ -35,7 +39,7 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
         validator, gridPlacement
     } = props;
 
-    let style_: React.CSSProperties = {};
+    let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
 
@@ -50,16 +54,16 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
         }
     }
 
-    const inputRef = React.useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const [ isNotValid_, markNotValid ] = React.useState<(string | boolean)[]>([]);
-    const isNotValid = React.useRef<(string | boolean)[]>([]);
+    const [ isNotValid_, markNotValid ] = useState<(string | boolean)[]>([]);
+    const isNotValid = useRef<(string | boolean)[]>([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         isNotValid.current = isNotValid_;
     }, [isNotValid_]);
 
-    const checkValidity = React.useCallback( () => {
+    const checkValidity = useCallback( () => {
         const value = inputRef?.current?.checked;
         let errorMessages = [];
         // If provided, perform validator method
@@ -75,7 +79,7 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
         return errorMessages;
     }, [validator, required]);
 
-    React.useImperativeHandle(ref, () => ({
+    useImperativeHandle(ref, () => ({
         isInputRefType: true,
         name,
         checkValidity,
@@ -84,13 +88,13 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
         element: inputRef.current
     }), [isNotValid, name]);
 
-    const doOnChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const doOnChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         const evtValue = event.currentTarget.checked;
         checkValidity();
         onChange && onChange(evtValue);
     }, [onChange, checkValidity]);
 
-    const label_ = React.useMemo(() => {
+    const label_ = useMemo(() => {
         if (label) {
             let labelClass_ = "prismal-toggle-label";
             if (labelClass) labelClass_ = `${labelClass_} ${labelClass}`;
@@ -107,7 +111,7 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
     }, [label, id, labelSeparator, labelPosition, labelClass]);
 
 
-    const input = React.useMemo(() => {
+    const input = useMemo(() => {
         let inputClass_ = "prismal-toggle-input";
         if (type == "switch") inputClass_ = `${inputClass_} prismal-toggle-switch`;
         else inputClass_ = `${inputClass_} prismal-toggle-checkbox`;
@@ -119,7 +123,7 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
         />
     }, [disabled, required, readOnly, id, name, checked, doOnChange, type]);
 
-    const className_ = React.useMemo(() => {
+    const className_ = useMemo(() => {
         let className_ = "prismal-toggle";
         if (className) className_ = `${className_} ${className}`;
         if (isNotValid_.length) className_ = `${className_} prismal-input-not-valid`;
@@ -128,7 +132,7 @@ const Toggle = React.forwardRef((props: ToggleProps, ref: React.ForwardedRef<Inp
 
     /** Transforms 'isNotvalid' array of errors into a list
      */
-    const renderedErrors = React.useMemo( () => isNotValid_.map( (err, i) => 
+    const renderedErrors = useMemo( () => isNotValid_.map( (err, i) => 
         <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
     ), [isNotValid_]);
 

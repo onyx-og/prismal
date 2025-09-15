@@ -1,12 +1,16 @@
-import React from 'react';
+import {
+    ReactElement, RefAttributes, JSX, CSSProperties,
+    FC, useRef, useState, useImperativeHandle, useMemo, Children, isValidElement,
+    cloneElement
+} from 'react';
 import './index.scss';
 import Button from '../Button';
 import { InputRefType } from './types';
 import ComponentProps from '../Component';
 import { setAccentStyle } from "utils/";
 
-interface ElementWithRef extends React.ReactElement {
-    ref: React.RefAttributes<InputRefType>
+interface ElementWithRef<T> extends JSX.Element {
+    ref: RefAttributes<T>
 }
 
 export interface FormProps extends ComponentProps {
@@ -15,15 +19,15 @@ export interface FormProps extends ComponentProps {
     submit: JSX.Element;
     onSubmit?: ( formData: {[key:string]: any} ) => void;
     gridTemplate?: {
-        cols?: React.CSSProperties["gridTemplateColumns"];
-        rows?: React.CSSProperties["gridTemplateRows"];
-    } | React.CSSProperties["gridTemplate"];
+        cols?: CSSProperties["gridTemplateColumns"];
+        rows?: CSSProperties["gridTemplateRows"];
+    } | CSSProperties["gridTemplate"];
     gridGap?: {
-        column?: React.CSSProperties["columnGap"];
-        row?: React.CSSProperties["rowGap"];
-    } | React.CSSProperties["gap"];
+        column?: CSSProperties["columnGap"];
+        row?: CSSProperties["rowGap"];
+    } | CSSProperties["gap"];
 }
-const Form: React.FC<FormProps> = (props) => {
+const Form: FC<FormProps> = (props) => {
     const {
         children, 
         name, submit, onSubmit,
@@ -32,8 +36,8 @@ const Form: React.FC<FormProps> = (props) => {
         accent, accentLight, accentDark,
         gridTemplate, gridGap = "0.5rem"
     } = props;
-    const inputsRef = React.useRef<{[key: string]: InputRefType}>({});
-    const [ isInvalid, markInvalid ] = React.useState(false);
+    const inputsRef = useRef<{[key: string]: InputRefType}>({});
+    const [ isInvalid, markInvalid ] = useState(false);
 
     let className_ = "prismal-form";
     if (className) className_ = `${className_} ${className}`;
@@ -42,13 +46,13 @@ const Form: React.FC<FormProps> = (props) => {
     setAccentStyle(style_, {accent, accentLight, accentDark});
     if (style) style_ = {...style_, ...style};
 
-    // [TODO] Consider changing into React.Children method
+    // [TODO] Consider changing into Children method
     // Assures that _children is an array, event when it's not
-    const _children = React.useMemo(()=> ([] as JSX.Element[]).concat(children), [children]);
+    const _children = useMemo(()=> ([] as JSX.Element[]).concat(children), [children]);
 
     // [DEPRECATED] Clears inputs ref list when children changes
     // Because ref is populated with .push
-    // React.useEffect( () => {
+    // useEffect( () => {
     //     inputsRef.current = inputsRef.current.slice(0, _children.length);
     // }, [_children]);
 
@@ -66,10 +70,11 @@ const Form: React.FC<FormProps> = (props) => {
     /* Renders all given children, using callback ref to dinamically populate ref array
      * when the child is a managed input
      */
-    const renderedChildren = React.useMemo( () => {
-        return React.Children.toArray(_children).map( (child, i) => {
-            if (React.isValidElement(child)) {
-                return React.cloneElement(child as ElementWithRef, {
+    const renderedChildren = useMemo( () => {
+        return Children.toArray(_children).map( (child, i) => {
+            if (isValidElement(child)) {
+                const child_ = child as ElementWithRef<InputRefType>;
+                return cloneElement(child_, {
                     ref: (el: InputRefType | null) => addInputRef(el)
                 });
             } 
@@ -110,9 +115,9 @@ const Form: React.FC<FormProps> = (props) => {
         }
     }
     
-    const submitComponent = React.useMemo( () => {
+    const submitComponent = useMemo( () => {
         if (submit) {
-            return React.cloneElement(submit, {
+            return cloneElement(submit, {
                 onClick: (e: any) => {
                     submit.props.onClick && submit.props.onClick();
                     submitForm(e);
@@ -133,8 +138,8 @@ const Form: React.FC<FormProps> = (props) => {
         }
     }, [submit, submitForm, onSubmit]);
 
-    const formFields = React.useMemo(() => {
-        const style: React.CSSProperties = {};
+    const formFields = useMemo(() => {
+        const style: CSSProperties = {};
 
         if (typeof gridTemplate == "object") {
             style.gridTemplateColumns = gridTemplate.cols;

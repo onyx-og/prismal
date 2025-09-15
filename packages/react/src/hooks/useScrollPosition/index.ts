@@ -37,7 +37,7 @@ export const useScrollThreshold = (threshold: number) => {
  * @returns boolean
  */
 export const useElScrollThreshold = (
-    elementRef: React.MutableRefObject<HTMLElement | undefined>,
+    elementRef: React.RefObject<HTMLElement | null>,
     refTrigger: boolean | string | number,
     offset: number = 0,
     threshold: number = 0, // top of the viewport
@@ -76,7 +76,7 @@ export const useElScrollThreshold = (
 }
 
 export const useElScrollPosition = (
-    elementRef: React.MutableRefObject<HTMLElement | undefined>,
+    elementRef: React.RefObject<HTMLElement | null>,
     refTrigger: boolean | string | number,
     scrollEl: HTMLElement | Document = document,
 ) => {

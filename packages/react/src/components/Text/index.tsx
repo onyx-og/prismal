@@ -1,4 +1,4 @@
-import React from "react";
+import {JSX, cloneElement} from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
 
@@ -75,7 +75,7 @@ const Text: React.FC<TextProps> = (props) => {
                 throw new Error(`Unexpected heading level provided: ${level}`);
         }
 
-        element = React.cloneElement(element, {
+        element = cloneElement(element, {
             className: className_,
             children: children,
             style: style_,

@@ -1,4 +1,6 @@
-import React from 'react';
+import {
+    JSX, FC, ReactNode, useState, useLayoutEffect, useEffect
+} from 'react';
 import './index.scss';
 import Button from 'components/Button';
 import ComponentProps from '../Component';
@@ -15,7 +17,7 @@ interface AlertBaseProps extends ComponentProps {
 }
 
 interface AlertCustomProps extends AlertBaseProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     message?: never;
     action?: never;
 }
@@ -28,7 +30,7 @@ interface AlertSimpleProps extends AlertBaseProps {
 
 export type AlertProps = AlertSimpleProps | AlertCustomProps;
 
-const Alert: React.FC<AlertProps> = (props) => {
+const Alert: FC<AlertProps> = (props) => {
     const {
         cover,
         visible = true,
@@ -44,8 +46,8 @@ const Alert: React.FC<AlertProps> = (props) => {
         accent, accentDark, accentLight
     } = props;
 
-    const [mounted, mount] = React.useState(false);
-    const [visibility, setVisibility] = React.useState(false);
+    const [mounted, mount] = useState(false);
+    const [visibility, setVisibility] = useState(false);
 
     let alertClass = 'prismal-alert';
     if (cornerRadius) alertClass = `${alertClass} corner-radius-${cornerRadius}`;
@@ -55,7 +57,7 @@ const Alert: React.FC<AlertProps> = (props) => {
 
     if (className) alertClass = `${alertClass} ${className}`;
 
-    React.useLayoutEffect(() => {
+    useLayoutEffect(() => {
         let unmountTimeoutId: number,
             visiblityTimeoutId: number;
         if (visible) {
@@ -79,7 +81,7 @@ const Alert: React.FC<AlertProps> = (props) => {
     /* Trace unmount of component to trigger, if provided,
      * fire onClose callback
      */
-    React.useEffect(() => {
+    useEffect(() => {
         if (!mounted && !visible) {
             onClose && onClose();
         }

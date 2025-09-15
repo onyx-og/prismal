@@ -1,4 +1,6 @@
-import React, { MutableRefObject, RefObject } from 'react';
+import { 
+    FC, useRef, useEffect, useState, useMemo, useLayoutEffect
+} from 'react';
 import './index.scss';
 
 import ActionBarAltItem from 'components/ActionBar/ActionBarAltItem';
@@ -6,7 +8,7 @@ import useElementWidth from 'hooks/useElementWidth';
 
 import type { ActionBarItemProps } from '../types';
 
-const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
+const ActionBarItem: FC<ActionBarItemProps> = ( props ) => {
     const {
         item, scale = true,
         scaleFactor = 1,
@@ -17,13 +19,13 @@ const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
         siblingWeight = scaleFactor,
         setReady,
     } = props;
-    const ref = React.useRef<HTMLDivElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     // Use alternative component only if provided
     const _alt = alt ? <ActionBarAltItem item={item} title={title} alt={alt} /> : null;
  
     // Describes whethere the item should be scaled or not
-    const [ scaling, setScaled ] = React.useState<{
+    const [ scaling, setScaled ] = useState<{
         value: boolean | null;
         width: number
     }>({
@@ -33,10 +35,10 @@ const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
 
     // Keeps track of original width before scaling
     // Needed to understand when it shoulg go back to original form
-    const [originalWidth, setOriginalWidth ] = React.useState(ref.current?.clientWidth || 0); 
+    const [originalWidth, setOriginalWidth ] = useState(ref.current?.clientWidth || 0); 
 
     // As soon as we get a hold of the div's reference, gets its width and store it
-    React.useEffect( () => { 
+    useEffect( () => { 
         if (ref.current?.clientWidth && !originalWidth ) {
             setOriginalWidth(ref.current.clientWidth);
         }
@@ -47,7 +49,7 @@ const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
     const sectionWidth = useElementWidth(sectionRef);
 
     // If scaling is enabled and configured correctly, checks if it should switch to scaled form
-    React.useLayoutEffect( () => {
+    useLayoutEffect( () => {
         if ( scale && scaleFactor && sectionWidth && siblingWeight && originalWidth ) {
             if ( !scaling.value && originalWidth * scaleFactor > sectionWidth / siblingWeight ) {
                 setScaled({value: true, width: 0});
@@ -61,18 +63,18 @@ const ActionBarItem: React.FC<ActionBarItemProps> = ( props ) => {
 
     // const currentWidth = useElementWidth(ref.current, 'offsetWidth');
 
-    const renderedItem = React.useMemo( () => {
+    const renderedItem = useMemo( () => {
         return !scaling.value ? item : (_alt || item);
     }, [scaling, item, _alt]);
 
-    React.useEffect( () => {
+    useEffect( () => {
         const width = ref.current?.clientWidth || 0;
         if ( (scaling.value === true || scaling.value === false) && scaling.width !== width ) {
             setScaled({ value: scaling.value, width });
         }
     }, [scaling, ref]);
 
-    React.useEffect( () => {
+    useEffect( () => {
         const customRef = {
             element: ref.current,
             key: uniqueKey

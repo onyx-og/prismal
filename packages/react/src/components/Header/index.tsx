@@ -1,4 +1,7 @@
-import React from "react";
+import {
+    CSSProperties, FC, useState, useCallback, useMemo, useRef, 
+    useEffect, ReactNode, forwardRef, useImperativeHandle
+} from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
 import { setAccentStyle, setBorderRadius, setBoxElevation } from "utils/";
@@ -7,11 +10,11 @@ import {useElScrollThreshold} from "hooks/useScrollPosition";
 export interface HeaderProps extends ComponentProps {
     navClass?: string;
     placeHolderClass?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     sticky?: boolean;
     stickyClass?: string;
 }
-const Header = React.forwardRef((props: HeaderProps, ref) => {
+const Header = forwardRef((props: HeaderProps, ref) => {
     const {
         "data-id": dataId, className, style,
         navClass, placeHolderClass,
@@ -23,7 +26,7 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
 
 
 
-    let style_: React.CSSProperties = {};
+    let style_: CSSProperties = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
     setBorderRadius(style_, borderRadius);
     setBoxElevation(style_, elevation);
@@ -35,9 +38,9 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
     let placeHolderClass_ = "prismal-header-placeholder";
     if (navClass) placeHolderClass_ = `${placeHolderClass_} ${placeHolderClass}`;
 
-    const headerRef = React.useRef<HTMLDivElement>();
-    const [headerRefSet, markHeaderRefSet] = React.useState<boolean>(false);
-    const setHeaderRef = React.useCallback((node: HTMLDivElement) => {
+    const headerRef = useRef<HTMLDivElement>(null);
+    const [headerRefSet, markHeaderRefSet] = useState<boolean>(false);
+    const setHeaderRef = useCallback((node: HTMLDivElement) => {
         if (headerRef.current) {
             return;
         }
@@ -47,10 +50,10 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
         }
     }, []);
 
-    const lowNode = React.useRef<HTMLDivElement>();
-    const [lowNodeSet, marklowNodeSet] = React.useState<boolean>(false);
+    const lowNode = useRef<HTMLDivElement>(null);
+    const [lowNodeSet, marklowNodeSet] = useState<boolean>(false);
 
-    const setLowNodeRef = React.useCallback((node: HTMLDivElement) => {
+    const setLowNodeRef = useCallback((node: HTMLDivElement) => {
         if (lowNode.current) {
             return;
         }
@@ -60,7 +63,7 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
         }
     }, []);
 
-    React.useImperativeHandle(ref, () => ({
+    useImperativeHandle(ref, () => ({
         lowNode: lowNode.current, // lowest managed DOM node
         highNode: headerRef.current, // highest managed DOM node
     }), [headerRefSet, lowNodeSet]);
@@ -70,13 +73,13 @@ const Header = React.forwardRef((props: HeaderProps, ref) => {
         (headerRef.current?.clientHeight || 0)/2
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (thresholdTrigger) {
             console.log("Scrolled past the top of the header");
         }
     }, [thresholdTrigger]);
 
-    const nav = React.useMemo(() => {
+    const nav = useMemo(() => {
         let navClass_ = "prismal-header-nav";
         if (navClass) navClass_ = `${navClass_} ${navClass}`;
         if (thresholdTrigger && sticky) {

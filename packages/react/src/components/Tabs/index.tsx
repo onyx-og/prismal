@@ -1,4 +1,7 @@
-import React from "react";
+import {
+    forwardRef, useState, FC, ReactElement, ReactNode,
+    useImperativeHandle, useEffect, useMemo
+} from "react";
 import "./index.scss";
 import ComponentProps from "../Component";
 import {setAccentStyle, setBorderRadius} from "../../utils"
@@ -17,7 +20,7 @@ export type TabConfig = {
 interface TabProps extends TabConfig {
     selected: boolean;
 }
-const Tab: React.FC<TabProps> = (props) => {
+const Tab: FC<TabProps> = (props) => {
     const { name, label, iconName, disabled, selected, className } = props;
 
     let tabClass = "prismal-tab";
@@ -36,12 +39,12 @@ const defaultRenderer = (tab: TabConfig, index: number, isSelected: boolean) => 
 interface TabContainerProps {
     index: number;
     isSelected: boolean;
-    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number)=>void) => React.ReactNode;
+    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number)=>void) => ReactNode;
     config: TabConfig;
     className?: string;
     setSelected: (selected: TabConfig["name"]) => void;
 }
-const TabContainer: React.FC<TabContainerProps> = (props) => {
+const TabContainer: FC<TabContainerProps> = (props) => {
     const { tabRenderer, index, isSelected, config, className, setSelected } = props;
 
     let tabContainerClass = `prismal-tab-container`;
@@ -58,11 +61,11 @@ export interface TabsProps extends ComponentProps {
     tabRenderer?: TabContainerProps["tabRenderer"];
     onChange?: (currentTab: string | number) => void;
     // [TODO] Try to specify that the elements must have attr/prop "data-tab" set
-    children?: React.ReactElement<TabContentProps>[];
+    children?: ReactElement<TabContentProps>[];
     content?: {
-        [tabName: string]: React.ReactNode;
+        [tabName: string]: ReactNode;
     }
-    contentRenderer?: (tabName: string | number) => React.ReactNode;
+    contentRenderer?: (tabName: string | number) => ReactNode;
     tabsClass?: string;
     tabContentClass?: string;
     tabClass?: string;
@@ -71,7 +74,7 @@ export type TabRef = {
     name: string | number;
 }
 // TODO: Consider accepting children prop that represent tabs
-const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
+const Tabs = forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
     const {
         data, tabRenderer = defaultRenderer,
         className, tabClass, tabsClass, tabContentClass,
@@ -80,13 +83,13 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         children, content, contentRenderer
     } = props;
     // Select the first tab if no default is provided
-    const [selected, setSelected] = React.useState(
+    const [selected, setSelected] = useState(
         data.find(t => t.default)?.name ||
             (data.length > 0) ? data[0].name : undefined
     )
-    React.useImperativeHandle(ref, () => ({name: selected!}), [selected]);
+    useImperativeHandle(ref, () => ({name: selected!}), [selected]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (onChange && selected) {
             onChange(selected);
         }
@@ -101,7 +104,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
     let tabContentClass_ = "prismal-tab-content";
     if (tabContentClass) tabContentClass_ = `${tabContentClass_} ${tabContentClass}`;
 
-    const tabs = React.useMemo(() => {
+    const tabs = useMemo(() => {
         return data.map((tabConfig, index) => {
             let isSelected = selected == tabConfig.name;
             return <TabContainer index={index} isSelected={isSelected} setSelected={setSelected} config={tabConfig}
@@ -111,7 +114,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         });
     }, [data, selected, tabClass, tabRenderer, setSelected]);
 
-    const tabContent = React.useMemo(() => {
+    const tabContent = useMemo(() => {
         if (selected && children) {
             return children.find((el) => {
                 return el.props["data-tab"] == selected
@@ -128,7 +131,7 @@ const Tabs = React.forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         return null // Missing content. Probably in use with onChange or ref
     }, [selected, content, tabContentClass_, children, contentRenderer]);
 
-    const style: { [key: string]: any } = React.useMemo(() => {
+    const style: { [key: string]: any } = useMemo(() => {
         let _style: { [key: string]: any } = {}
         _style = setAccentStyle(_style, { accent, accentLight, accentDark });
         _style = setBorderRadius(_style, borderRadius)

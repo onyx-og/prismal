@@ -1,4 +1,6 @@
-import React from 'react';
+import {
+    FC
+} from 'react';
 import useModal from 'hooks/useModal';
 import Button from 'components/Button';
 
@@ -9,7 +11,7 @@ import type { ActionBarAltItem } from "../types";
  * when clicked, it show's a modal with the original item as content.
  * If provided, uses a specific element as 'trigger'
  */
-const ActionBarAltItem: React.FC<ActionBarAltItem> = ( props ) => {
+const ActionBarAltItem: FC<ActionBarAltItem> = ( props ) => {
     const { item, title, alt, modalAreaId } = props;
 
     const { Modal, open: openModal } = useModal({areaId: modalAreaId});

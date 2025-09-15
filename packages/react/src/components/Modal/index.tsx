@@ -1,25 +1,25 @@
 import './index.scss';
-import React from 'react';
+import {ReactNode, FC, useMemo} from 'react';
 import ActionBar, { ActionBarItemConfig } from 'components/ActionBar';
 import Button from 'components/Button';
-import ReactDOM from 'react-dom';
+import {createPortal} from 'react-dom';
 import ComponentProps from '../Component';
 import Card from 'components/Card';
 
 export interface ModalProps extends ComponentProps {
     areaId?: string;
-    header?: React.ReactNode;
-    footer?: React.ReactNode;
+    header?: ReactNode;
+    footer?: ReactNode;
     bgClassName?: string;
     fgClassName?: string;
     title?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     visible?: boolean;
     closeModal?: () => void;
     showClose?: boolean;
 };
 
-const Modal: React.FC<ModalProps> = (props) => {
+const Modal: FC<ModalProps> = (props) => {
     const {
         "data-id": dataId,
         areaId,
@@ -46,7 +46,7 @@ const Modal: React.FC<ModalProps> = (props) => {
 
     const modalArea = areaId ? document.getElementById(areaId) : undefined;
 
-    const headerActionBarItems = React.useMemo(() => {
+    const headerActionBarItems = useMemo(() => {
         let items: ActionBarItemConfig[] = [];
         if (title) items.push({ item: <span>{title}</span>, position: 'center', key: 'modal-title', scale: false });
         if (showClose) items.push({
@@ -81,7 +81,7 @@ const Modal: React.FC<ModalProps> = (props) => {
     </div>
 
     if (visible) {
-        if (modalArea) return ReactDOM.createPortal(component, modalArea);
+        if (modalArea) return createPortal(component, modalArea);
         else return component;
     } else return <></>;
 }

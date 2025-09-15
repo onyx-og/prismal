@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import { RefObject, useState, useEffect } from 'react';
 
 /**
  * 
@@ -7,9 +7,9 @@ import React, { RefObject } from 'react';
 const useElementWidth = (ref: RefObject<HTMLElement | undefined | null>) => {
 // const useElementWidth = (element: HTMLElement | null) => {
 	// save current element width in the state object
-	const [width, setWidth] = React.useState(ref.current?.clientWidth || 0);
+	const [width, setWidth] = useState(ref.current?.clientWidth || 0);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		// let element = ref.current;
 		if (ref.current) {
 			// timeoutId for debounce mechanism
@@ -37,7 +37,7 @@ const useElementWidth = (ref: RefObject<HTMLElement | undefined | null>) => {
 	}, [ref])
 
 	// Tracks elemenet width also when changing in content size
-	React.useEffect(() => {
+	useEffect(() => {
 		setWidth(ref.current?.clientWidth || 0)
 	}, [ref.current?.clientWidth])
 

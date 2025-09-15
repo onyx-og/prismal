@@ -1,10 +1,10 @@
-import React  from 'react';
+import {RefObject, useEffect, useRef}  from 'react';
 
-export const useCursorPosition = (containerRef: React.RefObject<HTMLElement>) => {
+export const useCursorPosition = (containerRef: RefObject<HTMLElement | null>) => {
     // Use a ref to store the position, avoiding state updates and re-renders
-    const cursorPositionRef = React.useRef({ x: 0, y: 0 });
+    const cursorPositionRef = useRef({ x: 0, y: 0 });
 
-    React.useEffect(() => {
+    useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
 

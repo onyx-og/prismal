@@ -1,4 +1,6 @@
-import React from 'react';
+import {
+    FC, useState, useRef, useEffect, useCallback, useMemo, JSX
+} from 'react';
 import useElementWidth from 'hooks/useElementWidth';
 import type { ActionBarAltSectionProps, AcctionBarSectionProps,ActionBarItemRef } from '../types';
 import ActionBarItem from 'components/ActionBar/ActionBarItem';
@@ -7,7 +9,7 @@ import useSidebar from 'hooks/useSidebar';
 
 import './index.scss';
 
-const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
+const ActionBarAltSection: FC<ActionBarAltSectionProps> = ( props ) => {
     const {
         items, title,
         modalAreaId,
@@ -16,9 +18,9 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
 
     // TODO: Since it is a reusable practice, consider exporting to somewhere else
     // Remember to accept as argument additional conditions for marking the ref presence
-    const [ gotRef, markRefPresence ] = React.useState(false);     // Reference to the html div containing this section
-    const ref = React.useRef<HTMLDivElement | null>(null);
-    const refSetter = React.useCallback( (node: HTMLDivElement | null) => {
+    const [ gotRef, markRefPresence ] = useState(false);     // Reference to the html div containing this section
+    const ref = useRef<HTMLDivElement | null>(null);
+    const refSetter = useCallback( (node: HTMLDivElement | null) => {
         if (ref.current) {
             //
         }
@@ -33,7 +35,7 @@ const ActionBarAltSection: React.FC<ActionBarAltSectionProps> = ( props ) => {
 
 
     // Re-access and alter items list to change the section ref
-    const _items = React.useMemo( () => items.map( element => {
+    const _items = useMemo( () => items.map( element => {
         return <element.type
             key={element.key}
             {...element.props}
@@ -63,19 +65,19 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
     } = props;
 
     // Reference to the html div containing this section
-    const ref = React.useRef<HTMLDivElement | null>(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     // Reference that will get populated with the items of this section
-    const itemsList = React.useRef<{
+    const itemsList = useRef<{
         [key: string]: HTMLElement | null
     }>({});
 
     // State obj that mirrors above reference content, just because refs changes
     // can't be tracked in array of deps of react hooks, while a state update does
-    const [_itemsList, updateItemsList ] = React.useState(itemsList.current);
+    const [_itemsList, updateItemsList ] = useState(itemsList.current);
 
     // 
-    const [ scaling, setScaling ] = React.useState({
+    const [ scaling, setScaling ] = useState({
         value: false,
         itemsWidth: 0 // needed to track items total width before scaling
     });
@@ -88,16 +90,16 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
     const [ 
         hasCenteredItems, 
         markCenterItemPresence
-    ] = React.useState(false);
+    ] = useState(false);
 
     // TODO: Explain how refs alone can't be used in array deps
-    const [ gotRef, markRefPresence ] = React.useState(false); 
+    const [ gotRef, markRefPresence ] = useState(false); 
 
     const sectionWidth = useElementWidth(ref);
 
     const actionBarSectionClass = `actionbar-${type}`;
 
-    const addItemRef = React.useCallback( ( item: ActionBarItemRef | null) => {
+    const addItemRef = useCallback( ( item: ActionBarItemRef | null) => {
         if ( item && item.element && type !== 'center' ) {
             // The unique key was enforced to assure that the list object contains
             // unique elements
@@ -107,7 +109,7 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
         }
     }, []);
 
-    const refSetter = React.useCallback( (node: HTMLDivElement | null) => {
+    const refSetter = useCallback( (node: HTMLDivElement | null) => {
         if (ref.current) {
             //
         }
@@ -125,7 +127,7 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
      * Also populates the items ref list to track their sizes
      * and checks if there are items that belong to the 'center' section
      */
-    const _items = React.useMemo(() => {
+    const _items = useMemo(() => {
         // let trueIndex = -1;
 
         const sectionItems = items.map( i => {
@@ -160,14 +162,14 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
             
     }, [items]);
 
-    React.useEffect( () => {
+    useEffect( () => {
         itemsList.current = { ...itemsList.current };
     }, [_items]);
 
     // Given a list of items, uses their width to obain the total width
     // then, based on the current scaling state, the section's width and the total calculate
     // and descide whether it shouldv update scaling state 
-    const alterScaling = React.useCallback( (_itemList: {
+    const alterScaling = useCallback( (_itemList: {
         [key: string]: HTMLElement | null
     }) => {
         const totalItemsWidth = Object.values( _itemList).reduce( (total, element) => {
@@ -186,12 +188,12 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
         }
     }, [sectionWidth, scaling]);
 
-    React.useEffect( () => {
+    useEffect( () => {
         alterScaling(itemsList.current);
     }, [_itemsList, sectionWidth]);
 
     // Shows an alternative version of the section when scaling value is set to true
-    const renderedItem = React.useMemo( () => {
+    const renderedItem = useMemo( () => {
         return !scaling.value ? _items : <ActionBarAltSection button={altIcon} modalClassName={modalClassName} modalAreaId={modalAreaId} items={_items}/>;
     }, [scaling, _items, modalAreaId, modalClassName, altIcon]);
 

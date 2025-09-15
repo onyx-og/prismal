@@ -1,4 +1,4 @@
-import React from 'react';
+import {JSX, useMemo, useState, useEffect, useRef, FC, ReactNode, useCallback, Children} from 'react';
 import ComponentProps from '../Component';
 import './index.scss';
 import { setAccentStyle } from 'utils/colors';
@@ -23,7 +23,7 @@ interface SliderRawProps extends ComponentProps {
     id?: number;
     spacing?: number;
     size?: 'xl' | 'l' | 'm' | 's';
-    children: React.ReactNode[];
+    children: ReactNode[];
     navElBackward?: JSX.Element;
     navElForward?: JSX.Element;
     labelClass?: string;
@@ -34,7 +34,7 @@ interface SliderRawProps extends ComponentProps {
 
 export type SliderProps = SliderProcProps | SliderRawProps;
 
-const Slider: React.FC<SliderProps> = ( props ) => {
+const Slider: FC<SliderProps> = ( props ) => {
     const { 
         "data-id": dataId,
         id = Math.random().toString(36).substring(2, 12),
@@ -63,7 +63,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         </svg>
     } = props;
     
-    const renderNavArrow = React.useCallback( ( i: number, type: 'next' | 'previous') => {
+    const renderNavArrow = useCallback( ( i: number, type: 'next' | 'previous') => {
         let arrowEl = type === 'next' ? navElForward : navElBackward
         return <label key={i} htmlFor={`slider_${i}-${id}`} className={`numb${i}`}> 
             { arrowEl }
@@ -74,7 +74,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         labelClass, labelEl
     } = props;
 
-    const renderLabel = React.useCallback( ( i: number ) => {
+    const renderLabel = useCallback( ( i: number ) => {
         let labelClass_ = "prismal-slider-label",
             labelContent = <></>
         if (labelClass) labelClass_ = `${labelClass_} ${labelClass}`
@@ -102,7 +102,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             slideshowClass = `${slideshowClass} prismal-slider-slides-xl`;
     }
 
-    const inputCtrlList = React.useRef<(HTMLInputElement)[]>([]);
+    const inputCtrlList = useRef<(HTMLInputElement)[]>([]);
 
     const storeInput = (node: HTMLInputElement | null, index: number) => {
         if (node) {
@@ -110,7 +110,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         }
     }
 
-    const renderInputCtrl = React.useCallback( ( i: number ) => {
+    const renderInputCtrl = useCallback( ( i: number ) => {
         if ( i === 0 ) return <input ref={(n)=> storeInput(n, i)} key={i} type="radio" name={`slider-${id}`} className={`prismal-slider-radio${i}`}
         defaultChecked hidden id={`slider_${i}-${id}`}>
             </input>
@@ -122,7 +122,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
     if (props.type == "process") {
         const { slides, slideWrapper } = props;
 
-        const renderElements = React.useCallback( () => {
+        const renderElements = useCallback( () => {
 
             let labels: JSX.Element[] = [], 
                 navArrowsPrevious: JSX.Element[] = [],
@@ -149,9 +149,9 @@ const Slider: React.FC<SliderProps> = ( props ) => {
 
         const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements();
 
-        const [slideNumber, setSlide] = React.useState<number>(0);
+        const [slideNumber, setSlide] = useState<number>(0);
 
-        React.useEffect(() => {
+        useEffect(() => {
             if (inputCtrlList.current[slideNumber]) {
                 inputCtrlList.current[slideNumber].checked = true;
             } else {
@@ -159,7 +159,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         },[slideNumber])
 
-        React.useEffect( () => {
+        useEffect( () => {
             let interval: NodeJS.Timeout;
             // When the reference of the last input is added, start autoplay
             if (inputCtrlList.current.length == inputCtrls.length && autoPlay) {
@@ -296,9 +296,9 @@ const Slider: React.FC<SliderProps> = ( props ) => {
         </div>
     } else {
         const { children } = props;
-        const children_ = React.Children.toArray(children).filter(el => !!el);
+        const children_ = Children.toArray(children).filter(el => !!el);
 
-        const renderElements = React.useCallback( () => {
+        const renderElements = useCallback( () => {
 
             let labels: JSX.Element[] = [], 
                 navArrowsPrevious: JSX.Element[] = [],
@@ -326,9 +326,9 @@ const Slider: React.FC<SliderProps> = ( props ) => {
 
         const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements();
 
-        const [slideNumber, setSlide] = React.useState<number>(0);
+        const [slideNumber, setSlide] = useState<number>(0);
 
-        React.useEffect(() => {
+        useEffect(() => {
             if (inputCtrlList.current[slideNumber]) {
                 inputCtrlList.current[slideNumber].checked = true;
             } else {
@@ -336,7 +336,7 @@ const Slider: React.FC<SliderProps> = ( props ) => {
             }
         },[slideNumber])
 
-        React.useEffect( () => {
+        useEffect( () => {
             let interval: NodeJS.Timeout;
             // When the reference of the last input is added, start autoplay
             if (inputCtrlList.current.length == inputCtrls.length && autoPlay) {

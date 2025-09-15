@@ -1,4 +1,8 @@
-import React from "react";
+import {
+    ReactNode, forwardRef, ForwardedRef,CSSProperties,
+    useState, useEffect, useMemo, useCallback, useRef,
+    useImperativeHandle, JSX
+} from "react";
 import { InputProps, InputRefType } from "../types";
 import { setAccentStyle } from 'utils/colors';
 import "./index.scss";
@@ -6,7 +10,7 @@ import { setBorderRadius } from "utils/";
 
 export interface SelectOption {
     value: string;
-    element: React.ReactNode;
+    element: ReactNode;
     selected?: boolean;
 } 
 export interface SelectProps extends InputProps {
@@ -15,7 +19,7 @@ export interface SelectProps extends InputProps {
     placeholder?: string | JSX.Element;
     onChange?: ((arg: string) => void) & ((arg: string[]) => void);
 }
-const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<InputRefType>) => {
+const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) => {
     const {
         className, style,
         accent, accentLight, accentDark,
@@ -30,9 +34,9 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         options, gridPlacement
     } = props;
 
-    const [selected, setSelected] = React.useState<string | string[]>();
+    const [selected, setSelected] = useState<string | string[]>();
 
-    React.useEffect( ()=> {
+    useEffect( ()=> {
         let selected_ = options
             .filter((i) => i.selected)
             .map((i) => i.value);
@@ -51,7 +55,7 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         }
     },[options, multiple]);
 
-    const setSelection = React.useCallback( (value: string) => {
+    const setSelection = useCallback( (value: string) => {
         if (!multiple) setSelected(value);
         else if (typeof selected == "object" && selected.includes(value)) {
             let selection = [...selected];
@@ -67,7 +71,7 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         }
     },[selected, multiple])
 
-    const options_ = React.useMemo(() => {
+    const options_ = useMemo(() => {
         return options.map((e, i) => {
             return <option key={i}
                 value={e.value}
@@ -78,7 +82,7 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         })
     },[options, selected]);
 
-    let style_: React.CSSProperties = {};
+    let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     setBorderRadius(style_, borderRadius);
 
@@ -93,7 +97,7 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         }
     }
 
-    React.useEffect( () => {
+    useEffect( () => {
         if ( selected && onChange ) {
             if (multiple){
                 let selected_ = selected as string[]
@@ -105,15 +109,15 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         };
     }, [selected, multiple]);
 
-    const inputRef = React.useRef<HTMLSelectElement>(null);
-    const [ isNotValid_, markNotValid ] = React.useState<(string | boolean)[]>([]);
-    const isNotValid = React.useRef<(string | boolean)[]>([]);
+    const inputRef = useRef<HTMLSelectElement>(null);
+    const [ isNotValid_, markNotValid ] = useState<(string | boolean)[]>([]);
+    const isNotValid = useRef<(string | boolean)[]>([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         isNotValid.current = isNotValid_;
     }, [isNotValid_]);
 
-    const checkValidity = React.useCallback( () => {
+    const checkValidity = useCallback( () => {
         const value = inputRef?.current?.value;
         let errorMessages = [];
         // If provided, perform validator method
@@ -129,7 +133,7 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         return errorMessages;
     }, [inputRef.current, validator, required]);
     
-    React.useImperativeHandle(ref, () => ({
+    useImperativeHandle(ref, () => ({
         isInputRefType: true,
         name,
         checkValidity,
@@ -138,7 +142,7 @@ const Select = React.forwardRef((props: SelectProps, ref: React.ForwardedRef<Inp
         element: inputRef.current
     }), [name]);
 
-    const className_ = React.useMemo(() => {
+    const className_ = useMemo(() => {
         let className_ = "prismal-input-select";
         if (className) className_ = `${className_} ${className}`;
         if (isNotValid_.length) className_ = `${className_} prismal-input-not-valid`;

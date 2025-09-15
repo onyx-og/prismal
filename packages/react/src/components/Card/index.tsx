@@ -1,21 +1,23 @@
-import React from "react";
+import {
+    ReactNode, FC, useMemo
+} from "react";
 import './index.scss';
 import ComponentProps from '../Component';
 import { setAccentStyle } from 'utils/colors';
 import { setBorderRadius, BorderRadius, setPadding, setBoxElevation } from '../../utils';
 
 export interface CardProps extends ComponentProps  {
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClass?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClass?: string;
-    children?: React.ReactNode; // Card content
+    children?: ReactNode; // Card content
     bodyClass?: string;
     orientation?: "vertical" | "horizontal";
     padding?: "none" | 'xs' | "s" | 'm' | 'l';
 }
 
-const Card: React.FC<CardProps> = ( props ) => {
+const Card: FC<CardProps> = ( props ) => {
     const {
         "data-id": dataId,
         header, headerClass,
@@ -38,7 +40,7 @@ const Card: React.FC<CardProps> = ( props ) => {
     setBoxElevation(style_, elevation);
     setPadding(style_, padding);
     
-    const header_ = React.useMemo(() => {
+    const header_ = useMemo(() => {
         let headerClass_ = "prismal-card-header";
         if (headerClass) {
             headerClass_ = `${headerClass_} ${headerClass}`;
@@ -51,7 +53,7 @@ const Card: React.FC<CardProps> = ( props ) => {
         return null;
     },[header, headerClass]);
 
-    const body = React.useMemo(() => {
+    const body = useMemo(() => {
         let bodyClass_ = "prismal-card-body";
         if (bodyClass) {
             bodyClass_ = `${bodyClass_} ${bodyClass}`;
@@ -64,7 +66,7 @@ const Card: React.FC<CardProps> = ( props ) => {
         return null;
     },[children, bodyClass]);
 
-    const footer_ = React.useMemo(() => {
+    const footer_ = useMemo(() => {
         let footerClass_ = "prismal-card-footer";
         if (footerClass) {
             footerClass_ = `${footerClass_} ${footerClass}`;
