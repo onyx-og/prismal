@@ -6,7 +6,9 @@ import { setAccentStyle } from "utils/";
 
 export type CellData = ReactNode;
 export interface TableProps extends ComponentProps {
-    data: {[keyX: string]: {[keyY: string]: CellData}};
+    data: {[keyX: string]: {[keyY: string]: CellData}} | {
+        [keyX: string]: any;
+    }[];
     caption?: ReactNode;
     cellRenderer?: (props: {data: CellData, mode?: string}) => JSX.Element
 }
@@ -97,7 +99,11 @@ const Table = (props: TableProps) => {
     const sort = useCallback((keyX: string, sortOrder: 'asc' | 'desc' = 'asc') => {
         let orderedList: [string, CellData][] = []
         for (const i of keysY_) {
-            orderedList.push([i, data[i][keyX]]);
+            if (Array.isArray(data)) {
+                orderedList.push([i, data[Number(i)][keyX]]);
+            } else {
+                orderedList.push([i, data[i][keyX]]);
+            }
         }
         orderedList.sort((a, b) => {
             // Extract the CellData values from the second element of each tuple.
@@ -142,9 +148,12 @@ const Table = (props: TableProps) => {
         keysY_.forEach((r, i) => {
             rows_.push(<tr key={i}>
                 <th scope="row">{r}</th>
-                {Array.from(keysX, (v, key) => (
-                    cellRenderer({data: data[r][v], coords: [r, v]})
-                ))}
+                {Array.from(keysX, (v, key) => {
+                    if (Array.isArray(data)) {
+                        return cellRenderer({data: data[Number(r)][v], coords: [r, v]});
+                    }
+                    return cellRenderer({data: data[r][v], coords: [r, v]});
+                })}
             </tr>)
         });
         return rows_;

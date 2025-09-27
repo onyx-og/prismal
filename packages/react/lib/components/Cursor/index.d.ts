@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import { RefObject, FC } from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
 export interface CursorProps extends ComponentProps {
@@ -8,5 +8,5 @@ export interface CursorProps extends ComponentProps {
     }>;
     type?: "circle" | "dot" | "dashed" | "two-dots" | "gooey";
 }
-declare const Cursor: React.FC<CursorProps>;
+declare const Cursor: FC<CursorProps>;
 export default Cursor;

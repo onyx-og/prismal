@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { SidebarProps } from 'components/Sidebar';
 /**
  * Custom hook meant to export a Sidebar component and the methods to manage its state
@@ -8,7 +8,7 @@ import { SidebarProps } from 'components/Sidebar';
 declare const useSidebar: (config?: {
     areaId?: string;
 }) => {
-    Sidebar: React.FC<SidebarProps>;
+    Sidebar: FC<SidebarProps>;
     state: boolean;
     open: () => void;
     close: () => void;

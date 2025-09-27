@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX, FC, ReactNode } from 'react';
 import ComponentProps from '../Component';
 import './index.scss';
 interface SliderProcProps extends ComponentProps {
@@ -20,7 +20,7 @@ interface SliderRawProps extends ComponentProps {
     id?: number;
     spacing?: number;
     size?: 'xl' | 'l' | 'm' | 's';
-    children: React.ReactNode[];
+    children: ReactNode[];
     navElBackward?: JSX.Element;
     navElForward?: JSX.Element;
     labelClass?: string;
@@ -29,5 +29,5 @@ interface SliderRawProps extends ComponentProps {
     autoPlay?: false | number;
 }
 export type SliderProps = SliderProcProps | SliderRawProps;
-declare const Slider: React.FC<SliderProps>;
+declare const Slider: FC<SliderProps>;
 export default Slider;

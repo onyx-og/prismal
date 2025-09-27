@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactElement, ReactNode } from "react";
 import "./index.scss";
 import ComponentProps from "../Component";
 export type TabConfig = {
@@ -13,7 +13,7 @@ export type TabConfig = {
 interface TabContainerProps {
     index: number;
     isSelected: boolean;
-    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number) => void) => React.ReactNode;
+    tabRenderer: (tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number) => void) => ReactNode;
     config: TabConfig;
     className?: string;
     setSelected: (selected: TabConfig["name"]) => void;
@@ -25,11 +25,11 @@ export interface TabsProps extends ComponentProps {
     data: TabConfig[];
     tabRenderer?: TabContainerProps["tabRenderer"];
     onChange?: (currentTab: string | number) => void;
-    children?: React.ReactElement<TabContentProps>[];
+    children?: ReactElement<TabContentProps>[];
     content?: {
-        [tabName: string]: React.ReactNode;
+        [tabName: string]: ReactNode;
     };
-    contentRenderer?: (tabName: string | number) => React.ReactNode;
+    contentRenderer?: (tabName: string | number) => ReactNode;
     tabsClass?: string;
     tabContentClass?: string;
     tabClass?: string;
@@ -37,5 +37,5 @@ export interface TabsProps extends ComponentProps {
 export type TabRef = {
     name: string | number;
 };
-declare const Tabs: React.ForwardRefExoticComponent<TabsProps & React.RefAttributes<TabRef | undefined>>;
+declare const Tabs: import("react").ForwardRefExoticComponent<TabsProps & import("react").RefAttributes<TabRef | undefined>>;
 export default Tabs;

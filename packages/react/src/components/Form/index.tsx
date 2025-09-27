@@ -14,9 +14,9 @@ interface ElementWithRef<T> extends JSX.Element {
 }
 
 export interface FormProps extends ComponentProps {
-    children: JSX.Element | JSX.Element[];
+    children: ReactElement | ReactElement[];
     name?: string;
-    submit: JSX.Element;
+    submit?: JSX.Element;
     onSubmit?: ( formData: {[key:string]: any} ) => void;
     gridTemplate?: {
         cols?: CSSProperties["gridTemplateColumns"];

@@ -1,4 +1,3 @@
-import React from "react";
 export * from "./colors";
 export type Elevation = 0 | 1 | 2 | 3 | 4;
 export declare const setElevation: (className: string, elevation?: Elevation) => string;

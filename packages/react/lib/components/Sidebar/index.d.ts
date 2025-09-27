@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX, FC, ReactNode } from 'react';
 import './index.scss';
 import ComponentProps from '../Component';
 export interface SidebarProps extends ComponentProps {
@@ -6,8 +6,8 @@ export interface SidebarProps extends ComponentProps {
     closeSidebar?: () => void;
     header?: JSX.Element;
     footer?: JSX.Element;
-    children?: React.ReactNode;
+    children?: ReactNode;
     visible?: boolean;
 }
-declare const Sidebar: React.FC<SidebarProps>;
+declare const Sidebar: FC<SidebarProps>;
 export default Sidebar;

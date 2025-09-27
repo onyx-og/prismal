@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import './index.scss';
 import { InputProps, InputRefType } from '../types';
 export interface TextInputProps extends InputProps {
@@ -6,10 +6,10 @@ export interface TextInputProps extends InputProps {
     onPressEnter?: (arg?: string | null) => void;
     onChange?: (arg?: string) => void;
     size?: 's' | 'm' | 'l';
-    after?: React.ReactNode;
-    before?: React.ReactNode;
+    after?: ReactNode;
+    before?: ReactNode;
     type?: 'default' | 'primary';
     placeholder?: string;
 }
-declare const TextInput: React.ForwardRefExoticComponent<TextInputProps & React.RefAttributes<InputRefType>>;
+declare const TextInput: import("react").ForwardRefExoticComponent<TextInputProps & import("react").RefAttributes<InputRefType>>;
 export default TextInput;

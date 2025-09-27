@@ -1,12 +1,9 @@
-/// <reference types="react" />
 import "./index.scss";
 import ComponentProps from "../Component";
+import { ReactNode, FC } from "react";
 export interface TooltipProps extends ComponentProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     text: string;
-    accent?: never;
-    accentDark?: never;
-    accentLight?: never;
 }
-declare const Tooltip: (props: TooltipProps) => import("react/jsx-runtime").JSX.Element;
+declare const Tooltip: FC<TooltipProps>;
 export default Tooltip;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX, FC, ReactNode } from 'react';
 import './index.scss';
 import ComponentProps from '../Component';
 interface AlertBaseProps extends ComponentProps {
@@ -11,7 +11,7 @@ interface AlertBaseProps extends ComponentProps {
     transition?: boolean;
 }
 interface AlertCustomProps extends AlertBaseProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     message?: never;
     action?: never;
 }
@@ -21,5 +21,5 @@ interface AlertSimpleProps extends AlertBaseProps {
     action?: JSX.Element[];
 }
 export type AlertProps = AlertSimpleProps | AlertCustomProps;
-declare const Alert: React.FC<AlertProps>;
+declare const Alert: FC<AlertProps>;
 export default Alert;

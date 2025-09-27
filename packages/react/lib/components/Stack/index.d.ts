@@ -1,4 +1,4 @@
-import React from "react";
+import { CSSProperties, ReactNode, FC } from "react";
 import "./index.scss";
 import ComponentProps from "../Component";
 type StackElement = {
@@ -6,11 +6,11 @@ type StackElement = {
     [key: string]: any;
 };
 export interface StackProps extends ComponentProps {
-    render?: (elData: StackElement, index: number, isActive: boolean) => React.ReactNode;
+    render?: (elData: StackElement, index: number, isActive: boolean) => ReactNode;
     data: StackElement[];
     direction?: "vertical" | "horizontal";
-    gap?: React.CSSProperties["gap"];
+    gap?: CSSProperties["gap"];
     itemContainerClass?: string;
 }
-declare const Stack: React.FC<StackProps>;
+declare const Stack: FC<StackProps>;
 export default Stack;

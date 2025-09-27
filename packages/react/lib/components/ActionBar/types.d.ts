@@ -1,5 +1,5 @@
 import type ComponentProps from "../Component";
-import { RefObject } from 'react';
+import { RefObject, JSX } from 'react';
 export interface ActionBarItemConfig {
     item: React.ReactNode;
     position: "left" | "center" | "right";
@@ -9,8 +9,8 @@ export interface ActionBarItemConfig {
     alt?: JSX.Element;
 }
 export interface ActionBarRef {
-    lowNode: (HTMLDivElement | undefined)[];
-    highNode: HTMLDivElement | undefined;
+    lowNode: (HTMLDivElement | null)[];
+    highNode: HTMLDivElement | null;
 }
 export interface ActionBarItemWithRefProps {
     children?: React.ReactNode;

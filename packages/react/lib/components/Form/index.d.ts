@@ -1,21 +1,21 @@
-import React from 'react';
+import { ReactElement, JSX, CSSProperties, FC } from 'react';
 import './index.scss';
 import ComponentProps from '../Component';
 export interface FormProps extends ComponentProps {
-    children: JSX.Element | JSX.Element[];
+    children: ReactElement | ReactElement[];
     name?: string;
-    submit: JSX.Element;
+    submit?: JSX.Element;
     onSubmit?: (formData: {
         [key: string]: any;
     }) => void;
     gridTemplate?: {
-        cols?: React.CSSProperties["gridTemplateColumns"];
-        rows?: React.CSSProperties["gridTemplateRows"];
-    } | React.CSSProperties["gridTemplate"];
+        cols?: CSSProperties["gridTemplateColumns"];
+        rows?: CSSProperties["gridTemplateRows"];
+    } | CSSProperties["gridTemplate"];
     gridGap?: {
-        column?: React.CSSProperties["columnGap"];
-        row?: React.CSSProperties["rowGap"];
-    } | React.CSSProperties["gap"];
+        column?: CSSProperties["columnGap"];
+        row?: CSSProperties["rowGap"];
+    } | CSSProperties["gap"];
 }
-declare const Form: React.FC<FormProps>;
+declare const Form: FC<FormProps>;
 export default Form;

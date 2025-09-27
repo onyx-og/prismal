@@ -1,17 +1,17 @@
 import './index.scss';
-import React from 'react';
+import { ReactNode, FC } from 'react';
 import ComponentProps from '../Component';
 export interface ModalProps extends ComponentProps {
     areaId?: string;
-    header?: React.ReactNode;
-    footer?: React.ReactNode;
+    header?: ReactNode;
+    footer?: ReactNode;
     bgClassName?: string;
     fgClassName?: string;
     title?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     visible?: boolean;
     closeModal?: () => void;
     showClose?: boolean;
 }
-declare const Modal: React.FC<ModalProps>;
+declare const Modal: FC<ModalProps>;
 export default Modal;

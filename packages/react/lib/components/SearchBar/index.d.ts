@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import './index.scss';
 import ComponentProps from '../Component';
 export interface SearchBarProps extends ComponentProps {
@@ -9,5 +9,5 @@ export interface SearchBarProps extends ComponentProps {
     btnPosition?: "outer-after" | "outer-before" | "inner-after" | "inner-before";
     type?: "default" | "primary";
 }
-declare const SearchBar: React.FC<SearchBarProps>;
+declare const SearchBar: FC<SearchBarProps>;
 export default SearchBar;

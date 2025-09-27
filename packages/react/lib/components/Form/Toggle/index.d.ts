@@ -1,4 +1,4 @@
-import React from "react";
+/// <reference types="react" />
 import { InputProps, InputRefType } from '../types';
 import "./index.scss";
 export interface ToggleProps extends InputProps {
@@ -12,5 +12,5 @@ export interface ToggleProps extends InputProps {
 /**
  * @credits Inspired by Aaron Iker switch/checkbox
  */
-declare const Toggle: React.ForwardRefExoticComponent<ToggleProps & React.RefAttributes<InputRefType>>;
+declare const Toggle: import("react").ForwardRefExoticComponent<ToggleProps & import("react").RefAttributes<InputRefType>>;
 export default Toggle;

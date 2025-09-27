@@ -1,14 +1,14 @@
 import { InputProps, InputRefType } from "../types";
-import React from "react";
+import { ReactNode } from "react";
 import "./index.scss";
 export interface NumberInputProps extends InputProps {
     onChange?: (arg?: number) => void;
     placeholder?: string;
-    after?: React.ReactNode;
-    before?: React.ReactNode;
+    after?: ReactNode;
+    before?: ReactNode;
     type?: 'default' | 'primary';
     step?: number;
     value?: number;
 }
-declare const NumberInput: React.ForwardRefExoticComponent<NumberInputProps & React.RefAttributes<InputRefType>>;
+declare const NumberInput: import("react").ForwardRefExoticComponent<NumberInputProps & import("react").RefAttributes<InputRefType>>;
 export default NumberInput;

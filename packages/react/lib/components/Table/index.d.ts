@@ -1,14 +1,16 @@
-import React from "react";
+import { ReactNode, JSX } from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
-export type CellData = React.ReactNode;
+export type CellData = ReactNode;
 export interface TableProps extends ComponentProps {
     data: {
         [keyX: string]: {
             [keyY: string]: CellData;
         };
-    };
-    caption?: React.ReactNode;
+    } | {
+        [keyX: string]: any;
+    }[];
+    caption?: ReactNode;
     cellRenderer?: (props: {
         data: CellData;
         mode?: string;

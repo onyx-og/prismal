@@ -1,8 +1,8 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 import ComponentProps from "../Component";
 export interface ParallaxItemProps extends ComponentProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     factor?: number;
 }
-declare const ParallaxItem: React.FC<ParallaxItemProps>;
+declare const ParallaxItem: FC<ParallaxItemProps>;
 export default ParallaxItem;

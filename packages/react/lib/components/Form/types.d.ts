@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { JSX } from 'react/jsx-runtime';
 import ComponentProps from '../Component';
 export interface InputProps extends ComponentProps {
     id?: string;

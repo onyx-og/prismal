@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, ReactNode } from 'react';
 import ComponentProps from '../Component';
 import './index.scss';
 export type SelectOption = {
@@ -7,8 +7,8 @@ export type SelectOption = {
     selected?: boolean;
 };
 export interface DropdownProps extends ComponentProps {
-    children: React.ReactNode;
-    toggleElement?: React.ReactNode;
+    children: ReactNode;
+    toggleElement?: ReactNode;
 }
-declare const Dropdown: React.FC<DropdownProps>;
+declare const Dropdown: FC<DropdownProps>;
 export default Dropdown;

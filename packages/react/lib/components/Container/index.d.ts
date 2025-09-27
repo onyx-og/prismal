@@ -1,9 +1,9 @@
-import React from "react";
+import { ReactNode, FC } from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
 type Ratio = "5-2" | "9-2" | "5-4" | "16-9" | "16-3" | "18-9" | "20-6" | "20-8" | "8-5" | "4-3" | "4-5";
 export interface ContainerProps extends ComponentProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     ratio?: {
         xs?: Ratio;
         sm?: Ratio;
@@ -27,5 +27,5 @@ export interface ContainerProps extends ComponentProps {
     } | boolean;
     cursor?: "circle";
 }
-declare const Container: React.FC<ContainerProps>;
+declare const Container: FC<ContainerProps>;
 export default Container;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, ReactNode } from 'react';
 import './index.scss';
 import { ListProcessor } from './page';
 import ComponentProps from '../Component';
@@ -11,9 +11,9 @@ export interface ProcessedListProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
@@ -27,13 +27,13 @@ export interface RawListProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
-    children: React.ReactNode[];
+    children: ReactNode[];
     view?: 'list';
     type: 'raw';
     padding?: 's' | 'm' | 'l';
@@ -44,9 +44,9 @@ export interface ProcessedGridProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
@@ -66,13 +66,13 @@ export interface RawGridProps extends ComponentProps {
     pageSize?: number;
     page?: number;
     infiniteScroll?: boolean;
-    header?: React.ReactNode;
+    header?: ReactNode;
     headerClassName?: string;
-    footer?: React.ReactNode;
+    footer?: ReactNode;
     footerClassName?: string;
     showPageCtrl?: boolean;
     showExtremesCtrl?: boolean;
-    children: React.ReactNode[];
+    children: ReactNode[];
     view?: 'grid';
     type: 'raw';
     padding?: 's' | 'm' | 'l';
@@ -85,5 +85,5 @@ export interface RawGridProps extends ComponentProps {
 }
 export type GridProps = ProcessedGridProps | RawGridProps;
 export type ListComponentProps = ListProps | GridProps;
-declare const List: React.FC<ListComponentProps>;
+declare const List: FC<ListComponentProps>;
 export default List;

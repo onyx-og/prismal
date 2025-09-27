@@ -1,8 +1,8 @@
-import React from "react";
+import { ReactNode, FC } from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
 export interface LazyItemProps extends ComponentProps {
-    children: React.ReactNode;
+    children: ReactNode;
     exitEffect?: boolean;
     /**
      * Customize the entrance animation by setting animation -> 'none'
@@ -12,5 +12,5 @@ export interface LazyItemProps extends ComponentProps {
     loadedClass?: string;
     offset?: number;
 }
-declare const LazyItem: (props: LazyItemProps) => import("react/jsx-runtime").JSX.Element;
+declare const LazyItem: FC<LazyItemProps>;
 export default LazyItem;

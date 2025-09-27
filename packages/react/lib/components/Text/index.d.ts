@@ -1,4 +1,4 @@
-import React from "react";
+/// <reference types="react" />
 import ComponentProps from "../Component";
 import "./index.scss";
 export interface HeadingTextProps extends ComponentProps {
