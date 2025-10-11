@@ -1,0 +1,28 @@
+
+.prismal-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 0 12px;
+    border-left: 1px solid #555;
+    white-space: nowrap;
+    flex-shrink: 0;
+    
+    .prismal-marquee-content {
+        display: inline-block;
+        min-width: 100%;
+        white-space: nowrap;
+        animation-play-state: running;
+    }
+    
+    @keyframes marquee {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+}
+
+

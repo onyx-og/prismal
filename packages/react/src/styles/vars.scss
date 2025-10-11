@@ -3,7 +3,7 @@
 
 @mixin theme {
     --font-default: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-    --font-primary: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    --font-primary: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     --font-secondary: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
     --color-primary: #6200EE;
     --color-primary_: 98, 0, 238;
@@ -20,7 +20,7 @@ $version: "0.5.8";
 // Core features
 $rtl: false !default;
 
-$font-heading: var(--font-primary), 'Serif';
+$font-heading: var(--font-primary), 'Sans-serif';
 $font-alt-heading: var(--font-secondary), 'Sans-serif';
 $font-body: var(--font-default), 'Sans-serif';
 $font-body-weight: 400;

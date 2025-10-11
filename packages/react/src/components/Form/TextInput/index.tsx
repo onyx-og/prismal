@@ -5,13 +5,15 @@ import {
 } from 'react';
 import './index.scss';
 import { setAccentStyle } from 'utils/colors';
-import { InputProps, InputRefType } from '../types';
+import { Accepted, InputProps, InputRefType, InputType } from '../types';
 import { setBorderRadius } from 'utils/';
-export interface TextInputProps extends InputProps {
+
+export interface TextInputProps<T extends InputType> extends InputProps {
     // TODO: Extend with other compatible types
-    htmlType?: 'text' | 'email' | 'password';
+    htmlType?: T;
+    accept?: Accepted<T>;
     onPressEnter?: (arg?: string | null) => void;
-    onChange?: (arg?: string) => void;
+    onChange?: (arg?: string | string[]) => void;
     // TODO: Consider moving to InputProps
     size?: 's' | 'm' | 'l';
     after?: ReactNode;
@@ -19,14 +21,14 @@ export interface TextInputProps extends InputProps {
     type?: 'default' | 'primary';
     placeholder?: string;
 }
-const TextInput = forwardRef( ( props: TextInputProps, ref: ForwardedRef<InputRefType> ) => {
+const TextInput = forwardRef( ( props: TextInputProps<InputType>, ref: ForwardedRef<InputRefType> ) => {
     const { 
         name, id,
         size = 'm',
         htmlType = 'text',
         onChange,
         onPressEnter,
-        validator,
+        validator, accept,
         required = false,
         placeholder,
         label,
@@ -147,8 +149,10 @@ const TextInput = forwardRef( ( props: TextInputProps, ref: ForwardedRef<InputRe
                 disabled={disabled}
                 onChange={onValueChange}
                 onKeyUp={onKeyUp}
+                accept={accept}
                 placeholder={placeholder}
                 defaultValue={value}
+                value={value}
                 required={required}
                 role='textbox'
                 aria-required={required}

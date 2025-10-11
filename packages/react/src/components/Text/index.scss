@@ -1,5 +1,6 @@
 
 @use '../../styles/globals.scss';
+@use '../../styles/vars.scss';
 // TODO: Add responsive breakpointed classes
 .prismal-text {
     @at-root h1#{&} {
@@ -20,6 +21,7 @@
     @at-root h6#{&} {
         @extend %h6;
     }
+    font-family: vars.$font-body;
     &.prismal-text-xs {
         font-size: 0.75rem;
     }

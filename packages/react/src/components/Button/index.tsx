@@ -22,6 +22,7 @@ export interface ButtonProps extends ComponentProps {
 
 const Button: FC<ButtonProps> = (props) => {
     const {
+        "data-id": dataId,
         name,
         iconName,
         onClick,
@@ -52,15 +53,18 @@ const Button: FC<ButtonProps> = (props) => {
     style_ = {...style_, ...style};
 
     const onClick_ = useCallback((e: MouseEvent<HTMLButtonElement>) => {
-        if (disabled) return;
         if (onClick) onClick(e);
-    }, [onClick, disabled]);
+    }, [onClick]);
 
     return <button
+        data-id={dataId}
+        name={name}
+        title={title}
+        disabled={disabled}
         type={htmlType}
         data-testid={name ? `button-${name}` : undefined}
         style={style_}
-        onClick={onClick_} className={btnClass}
+        onClick={(disabled || readOnly) ? undefined: onClick_} className={btnClass}
     >
         { iconName && <Icon name={iconName}/>}
         { title || children }

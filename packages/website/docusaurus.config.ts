@@ -7,7 +7,7 @@ const path = require('path');
 
 const config: Config = {
   title: 'Prismal',
-  tagline: 'Full spectrum design system',
+  tagline: 'Full-spectrum design system',
   favicon: 'img/logo.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -155,7 +155,7 @@ const config: Config = {
           position: 'right',
           items: [
             {href: 'pathname:///showcase/index.html', label: 'React'},
-            // {href: 'pathname:///showcase-native/index.html', label: 'React Native'},
+            {href: 'pathname:///showcase-native/index.html', label: 'React Native'},
           ],
         },
         {

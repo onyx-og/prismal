@@ -22,7 +22,11 @@
   },
   "scripts": {
     "build:react": "npm run -w packages/react build",
-    "build:react-native": "npm run -w packages/react-native build"
+    "start:showcase": "npm run -w packages/showcase start",
+    "build:showcase": "npm run -w packages/showcase build",
+    "build:react-native": "npm run -w packages/react-native build",
+    "start:showcase-native": "npm run -w packages/showcase start",
+    "build:showcase-native": "npm run -w packages/showcase build"
   },
   "repository": {
     "type": "git",

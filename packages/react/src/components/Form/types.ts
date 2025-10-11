@@ -1,5 +1,6 @@
 import { JSX } from 'react/jsx-runtime';
 import ComponentProps from '../Component';
+import { InputHTMLAttributes } from 'react';
 
 export interface InputProps extends ComponentProps {
     id?: string;
@@ -33,6 +34,9 @@ export interface InputProps extends ComponentProps {
         row?: React.CSSProperties["gridRow"]
     } | React.CSSProperties["gridArea"];
 }
+
+export type InputType = "text" | "email" | "password" | "file";
+export type Accepted<T> = T extends "file" ? InputHTMLAttributes<HTMLInputElement>["accept"] : never;
 
 // TODO: Change name into InputRef
 export type InputRefType = {

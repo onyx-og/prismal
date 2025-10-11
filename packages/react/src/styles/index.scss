@@ -7,6 +7,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Sanchez';
+  src: url('./fonts/sanchez/Sanchez-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 body {
   font-family: vars.$font-body !important;
   font-weight: vars.$font-body-weight;

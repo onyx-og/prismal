@@ -41,7 +41,7 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
 
     const timeoutId = useRef<NodeJS.Timeout>(null);
 
-    const prepareSearch = useCallback( (value?: string) => {
+    const prepareSearch = useCallback( (value: any) => {
         // enable button
         // setDisableState(false)
         if ( !!!value ) setDisableState(true)

@@ -2,22 +2,47 @@
 
 .prismal-accordion {
     font-family: vars.$font-body;
+
     .prismal-accordion-content {
-        max-height: 0px;
+        height: 0px;
         overflow: hidden;
-        transition: 0.25s ease-in-out;
+        interpolate-size: allow-keywords;
+        transition: all 2s cubic-bezier(0, 1, 0, 1);
+        padding: 0 1rem;
+    }
+
+    .prismal-accordion-icon {
+        width: 1rem;
+        height: 1rem;
+        margin: 0 .5rem;
+
+        rect {
+            transition: all 800ms;
+            transform: rotate(0);
+            transform-origin: 50% 50%;
+        }
+
+        &.accordion-plus {
+            //
+        }
+
+        &.accordion-minus {
+            .vertical-line {
+                transform: rotate(450deg);
+            }
+        }
     }
 
     .prismal-accordion-title {
         cursor: pointer;
         display: flex;
         align-items: center;
-        padding: 0.5rem;
+        padding: 0 .5rem;
         position: relative;
     }
 
     .prismal-accordion-trigger:checked+.prismal-accordion-title+.prismal-accordion-content {
-        max-height: inherit;
+        height: auto;
     }
 
     input[type="checkbox"].prismal-accordion-trigger {

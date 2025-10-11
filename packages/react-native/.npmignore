@@ -1,5 +1,7 @@
 src/
 jest.config.mjs
 tests/
+docs/
 tsconfig.json
-packages
+build.tsconfig.json
+webpack.config.json

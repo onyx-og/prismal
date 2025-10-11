@@ -1,6 +1,7 @@
 @use '../../styles/vars';
 
 .prismal-tabs-container {
+    position: relative;
     .prismal-tabs {
         display: flex;
         flex-direction: row;
@@ -12,6 +13,7 @@
         overflow-y: clip;
         border-radius: var(--border-radius);
         font-family: vars.$font-body;
+        /*
         &::after {
             content: "\a0";
             width: 100%;
@@ -19,7 +21,7 @@
             position: absolute;
             bottom: 0;
             background-color: grey;
-        }
+        } */
 
         .prismal-tab-container {
             flex: 1;
