@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
   stories: [
-    "../components/**/*.stories.mdx",
-    "../components/**/*.stories.@(js|jsx|ts|tsx)",
-    "../components/**/stories.@(js|jsx|ts|tsx)"
+    "../src/**/stories.mdx",
+    "../src/components/**/*.stories.@(js|jsx|ts|tsx)",
+    "../src/components/**/stories.@(js|jsx|ts|tsx)"
   ],
   addons: [
     "@storybook/addon-links",
@@ -23,6 +23,10 @@ module.exports = {
     }
   },
   webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.mdx$/,
+      use: ['@mdx-js/loader'],
+    });
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       'react-native$': 'react-native-web',

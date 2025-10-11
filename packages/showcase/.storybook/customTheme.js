@@ -4,9 +4,9 @@ export default create({
   base: 'light', // or 'dark'
 
   // Brand details
-  brandTitle: 'Prismal UI',
-  brandUrl: '/docs/',
-  brandImage: 'prismal-react/img/logo_banner.svg', // URL to your logo
+  brandTitle: 'Prismal React',
+  brandUrl: 'prismal/docs/',
+  brandImage: 'prismal/img/logo_banner.svg', // URL to your logo
   brandTarget: '_self', // opens in the same window,
   // Typography
 	fontBase:
