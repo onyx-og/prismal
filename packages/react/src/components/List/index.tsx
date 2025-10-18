@@ -157,7 +157,7 @@ const List: FC<ListComponentProps> = ( props ) => {
             res = props.data;
         }
         return res;
-    }, [props.type]);
+    }, [props.type, (props as any).children, (props as any).data]);
 
     const listSubSet = useMemo(() => {
         if (pageSize) {
