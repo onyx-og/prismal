@@ -1,45 +1,37 @@
 # Function: useModal()
 
-> **useModal**(`config?`): `object`
+> **useModal**(`config?`): `UseModalReturn`
 
-Defined in: [hooks/useModal/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/c800194f7409ec5ee2985ddabc203568950fbd7d/packages/react/src/hooks/useModal/index.tsx#L9)
+Defined in: [hooks/useModal/index.tsx:31](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/hooks/useModal/index.tsx#L31)
 
-Custom hook meant to export a Modal component and the methods to manage its state
-This allows to provide the Modal component with headers, footers or content that can already alter that state
-Also to ease the management of the state from other components outside the Modal.
+useModal
 
 ## Parameters
 
 ### config?
 
+Configuration for the modal.
+
 #### areaId?
 
 `string`
 
+The ID of the DOM element to render the modal into.
+
 ## Returns
 
-`object`
+`UseModalReturn`
 
-### close()
+An object containing the Modal component and state management functions.
 
-> **close**: () => `void`
+## Description
 
-#### Returns
+A custom hook to manage the state of a Modal component.
 
-`void`
+## Example
 
-### Modal
-
-> **Modal**: `FC`\<`ModalProps`\> = `_Modal`
-
-### open()
-
-> **open**: () => `void`
-
-#### Returns
-
-`void`
-
-### state
-
-> **state**: `boolean`
+```ts
+const { Modal, open, close } = useModal();
+<Button onClick={open}>Open Modal</Button>
+<Modal title="My Modal">Content</Modal>
+```

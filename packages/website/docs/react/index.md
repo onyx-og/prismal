@@ -4,7 +4,7 @@
 **Breaking down complex UIs into React components.**
 
 [![npm version](https://badge.fury.io/js/%40prismal%2Freact.svg)](https://www.npmjs.com/package/@prismal/react)
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/CC%20BY--SA%204.0-pink)](./LICENSE.md)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/CC%20BY--SA%204.0-pink)](https://github.com/onyx-og/prismal/blob/main/packages/react/LICENSE.md)
 [![TypeScript](https://img.shields.io/badge/Written%20in-TypeScript-blue.svg)](https://www.typescriptlang.org/)
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://onyx-og.github.io/prismal/showcase/)
 
@@ -34,11 +34,6 @@ While the package is not yet published, once it is, installation will be straigh
 npm install @prismal/react
 ```
 
-In the meantime you can install the latest version of the library from the repo:
-```bash
-npm install onyx-og/prismal-react
-```
-
 ## 💡 Usage
 Prismal react components are designed to be imported individually, allowing for optimal bundle size and clear dependency management.
 
@@ -51,7 +46,7 @@ import "@prismal/react/lib/styles/button.css";
 function MyComponent() {
   return (
     <div>
-      <h1>Welcome to Primal React!</h1>
+      <h1>Welcome to Prismal React!</h1>
       <Button onClick={() => alert('Button clicked!')}>
         Click Me
       </Button>
@@ -65,7 +60,7 @@ export default MyComponent;
 ### 📖 Component Preview & Documentation
 Explore our components interactively with Storybook. This is the best way to see the components in action, play with their props, and understand their usage.
 
-[Visit the Storybook Preview](https://onyx-og.github.io/prismal-react/)
+[Visit the Storybook Showcase](https://onyx-og.github.io/prismal/showcase/index.html)
 
 ## 🎨 Styling
 The library provides both stylesheet classes for direct application and SCSS utility mixins for deeper customization within your Sass stylesheets.
@@ -77,7 +72,7 @@ To set up the development environment:
 
 Clone the repository:
 ```bash
-git clone https://github.com/onyx-og/prismal-react.git
+git clone https://github.com/onyx-og/prismal.git
 ```
 Install dependencies:
 ```bash
@@ -95,7 +90,7 @@ To run the tests, use the following command:
 npm run test
 ```
 ## 📄 License
-This project is licensed under the CC-BY-SA-4.0 License - see the [LICENSE](https://github.com/onyx-og/prismal-react/blob/main/LICENSE.md) for details.
+This project is licensed under the CC-BY-SA-4.0 License - see the [LICENSE](https://github.com/onyx-og/prismal/blob/main/packages/react/LICENSE.md) for details.
 
 ## Author
 Onyx - [onyx.ac](https://onyx.ac)

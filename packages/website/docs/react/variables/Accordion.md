@@ -1,5 +1,29 @@
 # Variable: Accordion
 
-> `const` **Accordion**: `React.FC`\<`AccordionProps`\>
+> `const` **Accordion**: `FC`\<`AccordionProps`\>
 
-Defined in: [components/Accordion/index.tsx:13](https://github.com/onyx-og/prismal-react/blob/c800194f7409ec5ee2985ddabc203568950fbd7d/packages/react/src/components/Accordion/index.tsx#L13)
+Defined in: [components/Accordion/index.tsx:35](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Accordion/index.tsx#L35)
+
+## Component
+
+Accordion
+
+## Description
+
+A collapsible content panel component.
+
+## Param
+
+The component props.
+
+## Returns
+
+The rendered Accordion component.
+
+## Example
+
+```ts
+<Accordion header={<h2>Click to open</h2>}>
+  <p>This is the content.</p>
+</Accordion>
+```

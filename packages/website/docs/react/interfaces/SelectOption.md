@@ -1,6 +1,10 @@
 # Interface: SelectOption
 
-Defined in: [components/Form/Select/index.tsx:7](https://github.com/onyx-og/prismal-react/blob/c800194f7409ec5ee2985ddabc203568950fbd7d/packages/react/src/components/Form/Select/index.tsx#L7)
+Defined in: [components/Form/Select/index.tsx:18](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/Select/index.tsx#L18)
+
+## Description
+
+Represents an option in the Select component.
 
 ## Properties
 
@@ -8,7 +12,9 @@ Defined in: [components/Form/Select/index.tsx:7](https://github.com/onyx-og/pris
 
 > **element**: `ReactNode`
 
-Defined in: [components/Form/Select/index.tsx:9](https://github.com/onyx-og/prismal-react/blob/c800194f7409ec5ee2985ddabc203568950fbd7d/packages/react/src/components/Form/Select/index.tsx#L9)
+Defined in: [components/Form/Select/index.tsx:20](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/Select/index.tsx#L20)
+
+The renderable content of the option.
 
 ***
 
@@ -16,7 +22,9 @@ Defined in: [components/Form/Select/index.tsx:9](https://github.com/onyx-og/pris
 
 > `optional` **selected**: `boolean`
 
-Defined in: [components/Form/Select/index.tsx:10](https://github.com/onyx-og/prismal-react/blob/c800194f7409ec5ee2985ddabc203568950fbd7d/packages/react/src/components/Form/Select/index.tsx#L10)
+Defined in: [components/Form/Select/index.tsx:21](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/Select/index.tsx#L21)
+
+If true, the option is selected by default.
 
 ***
 
@@ -24,4 +32,6 @@ Defined in: [components/Form/Select/index.tsx:10](https://github.com/onyx-og/pri
 
 > **value**: `string`
 
-Defined in: [components/Form/Select/index.tsx:8](https://github.com/onyx-og/prismal-react/blob/c800194f7409ec5ee2985ddabc203568950fbd7d/packages/react/src/components/Form/Select/index.tsx#L8)
+Defined in: [components/Form/Select/index.tsx:19](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/Select/index.tsx#L19)
+
+The value of the option.

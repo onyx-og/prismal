@@ -1,5 +1,30 @@
 # Variable: Form
 
-> `const` **Form**: `React.FC`\<`FormProps`\>
+> `const` **Form**: `FC`\<`FormProps`\>
 
-Defined in: [components/Form/index.tsx:26](https://github.com/onyx-og/prismal-react/blob/c800194f7409ec5ee2985ddabc203568950fbd7d/packages/react/src/components/Form/index.tsx#L26)
+Defined in: [components/Form/index.tsx:52](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/index.tsx#L52)
+
+## Component
+
+Form
+
+## Description
+
+A form component that manages form state, validation, and submission.
+
+## Param
+
+The component props.
+
+## Returns
+
+The rendered Form component.
+
+## Example
+
+```ts
+<Form name="login" onSubmit={(data) => console.log(data)}>
+  <TextInput name="username" label="Username" />
+  <TextInput name="password" label="Password" type="password" />
+</Form>
+```

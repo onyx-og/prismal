@@ -8,7 +8,7 @@ const path = require('path');
 const config: Config = {
   title: 'Prismal',
   tagline: 'Full-spectrum design system',
-  favicon: 'img/logo.png',
+  favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -41,15 +41,15 @@ const config: Config = {
         out: 'docs/react',
       },
     ],
-    [
-      'docusaurus-plugin-typedoc',
-      {
-        id: 'native',
-        entryPoints: ['../react-native/src/index.ts'],
-        tsconfig: '../react-native/tsconfig.json',
-        out: 'docs/native',
-      },
-    ],
+    // [
+    //   'docusaurus-plugin-typedoc',
+    //   {
+    //     id: 'native',
+    //     entryPoints: ['../react-native/src/index.ts'],
+    //     tsconfig: '../react-native/tsconfig.json',
+    //     out: 'docs/native',
+    //   },
+    // ],
   ],
 
   // Even if you don't use internationalization, you can use this field to set
@@ -173,7 +173,7 @@ const config: Config = {
           items: [
             {
               label: 'Intro',
-              to: '/docs/intro',
+              to: '/docs/get-started/intro',
             },
           ],
         },

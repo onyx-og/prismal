@@ -10,6 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "baseUrl": "src",
+    "skipLibCheck": true,
     "paths": {
       "styles": ["styles/*"],
       "components": ["components/*"],
@@ -24,5 +25,8 @@
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
     "src/setupTests.ts",
+    "node_modules", // Esclude l'intera cartella node_modules
+    "**/node_modules", // Un'altra forma per sicurezza, copre anche le sottocartelle
+    "lib"
   ]
 }
