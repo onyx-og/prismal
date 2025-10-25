@@ -5,10 +5,17 @@ import TextInput from 'components/Form/TextInput';
 import { InputRefType } from 'components/Form/types';
 import Button from 'components/Button';
 import ComponentProps from '../Component';
-// TODO: Consider the creation and usage of a Form.SearchInput
-// instead of Form.TextInput. The idea is to better integrate 
-// the button inside the input component tree
 
+/**
+ * @typedef {object} SearchBarProps
+ * @description Props for the SearchBar component.
+ * @property {boolean} [disabled=false] If true, the search bar is disabled.
+ * @property {string} [placeholder='Search'] The placeholder text for the search input.
+ * @property {string} [value=''] The initial value of the search input.
+ * @property {(query: string) => void} [onSearch] Callback function fired when a search is performed.
+ * @property {"outer-after" | "outer-before" | "inner-after" | "inner-before"} [btnPosition="outer-after"] The position of the search button.
+ * @property {"default" | "primary"} [type="default"] The visual style of the search bar.
+ */
 export interface SearchBarProps extends ComponentProps {
     disabled?: boolean;
     placeholder?: string;
@@ -17,9 +24,17 @@ export interface SearchBarProps extends ComponentProps {
     btnPosition?: "outer-after" | "outer-before" | "inner-after" | "inner-before";
     type?: "default" | "primary";
 }
+
+/**
+ * @component SearchBar
+ * @description A search input component with a search button.
+ * @param {SearchBarProps} props The component props.
+ * @returns {React.ReactElement} The rendered SearchBar component.
+ * @example
+ * <SearchBar placeholder="Search for items..." onSearch={(query) => console.log(query)} />
+ */
 const SearchBar: FC<SearchBarProps> = ( props ) => {
     const {
-        disabled = false,
         placeholder = 'Search',
         value = '',
         onSearch,
@@ -39,14 +54,20 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
     const [ query, setQuery ] = useState<string | undefined>(value);
     const [ btnDisabled, setDisableState ] = useState(true);
 
-    const timeoutId = useRef<NodeJS.Timeout>(null);
+    // FIX: Replaced `NodeJS.Timeout` with `ReturnType<typeof setTimeout>` for browser compatibility.
+    const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    /**
+     * @function prepareSearch
+     * @description Prepares the search by setting the query after a delay.
+     * @param {any} value The input value.
+     * @returns {() => void} A cleanup function to clear the timeout.
+     */
     const prepareSearch = useCallback( (value: any) => {
-        // enable button
-        // setDisableState(false)
         if ( !!!value ) setDisableState(true)
         else setDisableState(false)
         if ( value !== query ) {
+            if (timeoutId.current) clearTimeout(timeoutId.current);
             timeoutId.current = setTimeout( () => {
                 setQuery(value)
             }, 1500)
@@ -56,21 +77,19 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
         }
     }, [query]);
 
+    /**
+     * @function doSearch
+     * @description Immediately performs the search with the current input value.
+     */
     const doSearch = useCallback( () => {
         if (inputRef.current?.element) {
-            // Clearing timeout started from the prepareSearch method
-            // is just for tidyiness (since the query state change won't trigger for same values)
             if (timeoutId.current) window.clearTimeout(timeoutId.current);
-
-            setQuery(inputRef.current.element.value);
+            setQuery((inputRef.current.element as HTMLInputElement).value);
         }
     }, [inputRef]);
 
     useEffect( () => {
-        if (!query || query == '') {
-           // setDisableState(true);
-        } else if (onSearch) {
-           // setDisableState(false);
+        if (query && onSearch) {
             onSearch(query);
         }
     }, [query, onSearch]);
@@ -89,7 +108,6 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
         {btnPosition == "outer-before" ? searchBtn : undefined}
         <TextInput htmlType='text'
             ref={inputRef}
-            // disabled={disabled} // TODO
             type={type}
             value={query}
             size='l'

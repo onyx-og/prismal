@@ -1,38 +1,55 @@
 import {
-    useState, useCallback, FC
+    useState, useCallback, FC, ReactElement
 } from 'react';
 import Modal, { ModalProps } from '../../components/Modal';
 
 /**
- * Custom hook meant to export a Modal component and the methods to manage its state
- * This allows to provide the Modal component with headers, footers or content that can already alter that state
- * Also to ease the management of the state from other components outside the Modal.
+ * @typedef {object} UseModalReturn
+ * @description The return object of the useModal hook.
+ * @property {FC<ModalProps>} Modal The Modal component, pre-configured with state management.
+ * @property {boolean} state The current visibility state of the modal.
+ * @property {() => void} open A function to open the modal.
+ * @property {() => void} close A function to close the modal.
+ */
+type UseModalReturn = {
+    Modal: FC<ModalProps>;
+    state: boolean;
+    open: () => void;
+    close: () => void;
+}
+/**
+ * @function useModal
+ * @description A custom hook to manage the state of a Modal component.
+ * @param {object} [config] Configuration for the modal.
+ * @param {string} [config.areaId] The ID of the DOM element to render the modal into.
+ * @returns {UseModalReturn} An object containing the Modal component and state management functions.
+ * @example
+ * const { Modal, open, close } = useModal();
+ * <Button onClick={open}>Open Modal</Button>
+ * <Modal title="My Modal">Content</Modal>
  */
 const useModal = (
     config?: {areaId?: string}
-) => {
+): UseModalReturn => {
     const [ state, setState ] = useState(false);
     
     /**
-     * Closes the modal
+     * @function close
+     * @description Closes the modal.
      */
     const close = useCallback( () => {
         setState(false)
     }, []);
 
     /**
-     * Opens the modal
+     * @function open
+     * @description Opens the modal.
      */
     const open = useCallback( () => {
         setState(true)
     }, []);
 
-    // NOTE: the 'state' boolean may not be needed to exported since it is already
-    // used internally in Modal component 
-
-    // Alter the component to keep the props that will be passed
-    // but the visibility will be managed from open, state and close
-    const _Modal: FC<ModalProps> = ( props ) => <Modal areaId={config?.areaId} visible={state} closeModal={close} {...props}/>
+    const _Modal: FC<ModalProps> = ( props ): ReactElement => <Modal areaId={config?.areaId} visible={state} closeModal={close} {...props}/>
 
     return { Modal: _Modal, state, open, close }
 }

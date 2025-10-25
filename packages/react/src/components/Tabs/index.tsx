@@ -4,10 +4,20 @@ import {
 } from "react";
 import "./index.scss";
 import ComponentProps from "../Component";
+// FIX: Import missing utility functions `setAccentStyle` and `setBorderRadius`.
 import {setAccentStyle, setBorderRadius} from "../../utils"
 import Icon from "../Icon";
 
-
+/**
+ * @typedef {object} TabConfig
+ * @description Configuration for a single tab.
+ * @property {string | number} name A unique name for the tab.
+ * @property {string} [iconName] The name of an icon to display in the tab.
+ * @property {string} label The text label for the tab.
+ * @property {boolean} [disabled] If true, the tab is disabled.
+ * @property {boolean} [default] If true, this tab is selected by default.
+ * @property {string} [className] Additional CSS class for the tab.
+ */
 export type TabConfig = {
     name: string | number,
     iconName?: string,
@@ -17,9 +27,22 @@ export type TabConfig = {
     className?: string,
     [otherProp: string]: any
 }
+
+/**
+ * @typedef {object} TabProps
+ * @description Props for the Tab component.
+ * @property {boolean} selected Whether the tab is currently selected.
+ */
 interface TabProps extends TabConfig {
     selected: boolean;
 }
+
+/**
+ * @component Tab
+ * @description Renders a single tab item.
+ * @param {TabProps} props The component props.
+ * @returns {React.ReactElement} The rendered tab.
+ */
 const Tab: FC<TabProps> = (props) => {
     const { name, label, iconName, disabled, selected, className } = props;
 
@@ -34,8 +57,26 @@ const Tab: FC<TabProps> = (props) => {
     </div>
 }
 
+/**
+ * @function defaultRenderer
+ * @description The default renderer for a tab.
+ * @param {TabConfig} tab The tab configuration.
+ * @param {number} index The index of the tab.
+ * @param {boolean} isSelected Whether the tab is selected.
+ * @returns {ReactNode} The rendered Tab component.
+ */
 const defaultRenderer = (tab: TabConfig, index: number, isSelected: boolean) => <Tab selected={isSelected} {...tab} />
 
+/**
+ * @typedef {object} TabContainerProps
+ * @description Props for the TabContainer component.
+ * @property {number} index The index of the tab.
+ * @property {boolean} isSelected Whether the tab is selected.
+ * @property {(tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number)=>void) => ReactNode} tabRenderer The function to render the tab.
+ * @property {TabConfig} config The configuration for the tab.
+ * @property {string} [className] Additional CSS class.
+ * @property {(selected: TabConfig["name"]) => void} setSelected Function to set the selected tab.
+ */
 interface TabContainerProps {
     index: number;
     isSelected: boolean;
@@ -44,23 +85,49 @@ interface TabContainerProps {
     className?: string;
     setSelected: (selected: TabConfig["name"]) => void;
 }
+
+/**
+ * @component TabContainer
+ * @description A container for a single tab that handles selection.
+ * @param {TabContainerProps} props The component props.
+ * @returns {React.ReactElement} The rendered tab container.
+ */
 const TabContainer: FC<TabContainerProps> = (props) => {
     const { tabRenderer, index, isSelected, config, className, setSelected } = props;
 
     let tabContainerClass = `prismal-tab-container`;
-    if (className)`${tabContainerClass} ${className}`;
+    if (className) tabContainerClass = `${tabContainerClass} ${className}`;
     return <div onClick={() => setSelected(config.name)} className={tabContainerClass}>
         {tabRenderer(config, index, isSelected, setSelected)}
     </div>
 }
+
+/**
+ * @typedef {object} TabContentProps
+ * @description Props for tab content elements.
+ * @property {string | number} data-tab The name of the tab this content belongs to.
+ */
 interface TabContentProps {
   'data-tab': string | number;
 }
+
+/**
+ * @typedef {object} TabsProps
+ * @description Props for the Tabs component.
+ * @property {TabConfig[]} data The configuration data for all tabs.
+ * @property {TabContainerProps["tabRenderer"]} [tabRenderer] A custom function to render tabs.
+ * @property {(currentTab: string | number) => void} [onChange] Callback fired when the selected tab changes.
+ * @property {ReactElement<TabContentProps>[]} [children] Child elements representing tab content.
+ * @property {{[tabName: string]: ReactNode}} [content] An object mapping tab names to content nodes.
+ * @property {(tabName: string | number) => ReactNode} [contentRenderer] A function to render tab content.
+ * @property {string} [tabsClass] Additional CSS class for the tabs container.
+ * @property {string} [tabContentClass] Additional CSS class for the tab content container.
+ * @property {string} [tabClass] Additional CSS class for individual tabs.
+ */
 export interface TabsProps extends ComponentProps {
     data: TabConfig[];
     tabRenderer?: TabContainerProps["tabRenderer"];
     onChange?: (currentTab: string | number) => void;
-    // [TODO] Try to specify that the elements must have attr/prop "data-tab" set
     children?: ReactElement<TabContentProps>[];
     content?: {
         [tabName: string]: ReactNode;
@@ -70,16 +137,34 @@ export interface TabsProps extends ComponentProps {
     tabContentClass?: string;
     tabClass?: string;
 }
+
+/**
+ * @typedef {object} TabRef
+ * @description The ref object exposed by the Tabs component.
+ * @property {string | number} name The name of the currently selected tab.
+ */
 export type TabRef = {
     name: string | number;
 }
-// TODO: Consider accepting children prop that represent tabs
+
+/**
+ * @component Tabs
+ * @description A component for displaying content in a tabbed interface.
+ * @param {TabsProps} props The component props.
+ * @param {React.Ref<TabRef | undefined>} ref The forwarded ref.
+ * @returns {React.ReactElement} The rendered Tabs component.
+ * @example
+ * <Tabs data={[{ name: 'tab1', label: 'Tab 1' }, { name: 'tab2', label: 'Tab 2' }]}>
+ *   <div data-tab="tab1">Content 1</div>
+ *   <div data-tab="tab2">Content 2</div>
+ * </Tabs>
+ */
 const Tabs = forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
     const {
         data, tabRenderer = defaultRenderer,
         className, tabClass, tabsClass, tabContentClass,
         accent, accentDark, accentLight,
-        borderRadius, elevation, onChange,
+        borderRadius, onChange,
         children, content, contentRenderer
     } = props;
     // Select the first tab if no default is provided
@@ -112,7 +197,7 @@ const Tabs = forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
                 tabRenderer={tabRenderer}
             />
         });
-    }, [data, selected, tabClass, tabRenderer, setSelected]);
+    }, [data, selected, tabClass, tabRenderer]);
 
     const tabContent = useMemo(() => {
         if (selected && children) {
@@ -125,16 +210,15 @@ const Tabs = forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         }
         else if (selected && content) {
             const selectedContent = content[selected];
-            // TODO: Consider adding a fallback content
             return selectedContent;
         }
         return null // Missing content. Probably in use with onChange or ref
-    }, [selected, content, tabContentClass_, children, contentRenderer]);
+    }, [selected, content, children, contentRenderer]);
 
     const style: { [key: string]: any } = useMemo(() => {
         let _style: { [key: string]: any } = {}
         _style = setAccentStyle(_style, { accent, accentLight, accentDark });
-        _style = setBorderRadius(_style, borderRadius)
+        if(borderRadius) _style = setBorderRadius(_style, borderRadius)
         return _style;
     }, [accent, accentLight, accentDark, borderRadius]);
 
@@ -143,5 +227,5 @@ const Tabs = forwardRef<TabRef | undefined, TabsProps>((props, ref) => {
         {tabContent != null ? <div className={tabContentClass_}>{tabContent}</div> : <></>}
     </div>
 })
-
+Tabs.displayName = "Tabs";
 export default Tabs;

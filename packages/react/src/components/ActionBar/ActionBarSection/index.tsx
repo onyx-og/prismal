@@ -9,6 +9,12 @@ import useSidebar from 'hooks/useSidebar';
 
 import './index.scss';
 
+/**
+ * @component ActionBarAltSection
+ * @description Renders an alternative view for an ActionBar section, typically as a button that opens a sidebar with the section's items.
+ * @param {ActionBarAltSectionProps} props The component props.
+ * @returns {React.ReactElement} The rendered alternative section component.
+ */
 const ActionBarAltSection: FC<ActionBarAltSectionProps> = ( props ) => {
     const {
         items, title,
@@ -16,21 +22,21 @@ const ActionBarAltSection: FC<ActionBarAltSectionProps> = ( props ) => {
         button = {iconName: 'ellipsis-v', type: "default"}
     } = props;
 
-    // TODO: Since it is a reusable practice, consider exporting to somewhere else
-    // Remember to accept as argument additional conditions for marking the ref presence
-    const [ gotRef, markRefPresence ] = useState(false);     // Reference to the html div containing this section
     const ref = useRef<HTMLDivElement | null>(null);
+    /**
+     * @function refSetter
+     * @description A callback ref to get a reference to the section's content div.
+     * @param {HTMLDivElement | null} node The DOM node of the content div.
+     */
     const refSetter = useCallback( (node: HTMLDivElement | null) => {
         if (ref.current) {
-            //
+            // Making sure that the ref is set only once
+            return;
         }
-
         if (node) {
-            markRefPresence(true)
+            // Save a reference to the node
+            ref.current = node
         }
-
-        // Save a reference to the node
-        ref.current = node
     }, []);
 
 
@@ -54,8 +60,13 @@ const ActionBarAltSection: FC<ActionBarAltSectionProps> = ( props ) => {
     </>
 }
 
-
-const ActionBarSection = ( props: AcctionBarSectionProps ) => {
+/**
+ * @component ActionBarSection
+ * @description A container for items within the ActionBar, organized into left, center, or right positions. It handles responsive scaling of its items.
+ * @param {AcctionBarSectionProps} props The component props.
+ * @returns {React.ReactElement} The rendered ActionBar section.
+ */
+const ActionBarSection: FC<AcctionBarSectionProps> = ( props ) => {
     const {
         type,
         items,
@@ -92,13 +103,16 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
         markCenterItemPresence
     ] = useState(false);
 
-    // TODO: Explain how refs alone can't be used in array deps
-    const [ gotRef, markRefPresence ] = useState(false); 
-
     const sectionWidth = useElementWidth(ref);
 
     const actionBarSectionClass = `actionbar-${type}`;
 
+    /**
+     * @function addItemRef
+     * @description Callback to add a reference to an item's DOM element to the list.
+     * @param {ActionBarItemRef | null} item The item reference object.
+     * @returns {HTMLElement | null | undefined}
+     */
     const addItemRef = useCallback( ( item: ActionBarItemRef | null) => {
         if ( item && item.element && type !== 'center' ) {
             // The unique key was enforced to assure that the list object contains
@@ -107,19 +121,21 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
             updateItemsList({...itemsList.current})
             return itemsList.current[item.key];
         }
-    }, []);
+    }, [type]);
 
+    /**
+     * @function refSetter
+     * @description A callback ref to get a reference to the section's root div.
+     * @param {HTMLDivElement | null} node The DOM node of the section div.
+     */
     const refSetter = useCallback( (node: HTMLDivElement | null) => {
         if (ref.current) {
-            //
+            return;
         }
-
         if (node) {
-            markRefPresence(true)
+            // Save a reference to the node
+            ref.current = node
         }
-
-        // Save a reference to the node
-        ref.current = node
     }, []);
 
     /** Items expected for this actionbar section
@@ -144,8 +160,9 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
                     alt={i.alt}
                 />
             } else if (!hasCenteredItems && i?.position === 'center') {
-                markCenterItemPresence(true);;
-            } 
+                markCenterItemPresence(true);
+            }
+            return undefined;
             // Even though there's the following filter, ts still thinks there may be undef values
         }).filter( e => e !== undefined ) as JSX.Element[];
 
@@ -160,15 +177,17 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
                 />
             })
             
-    }, [items]);
+    }, [items, type, hasCenteredItems, addItemRef]);
 
     useEffect( () => {
         itemsList.current = { ...itemsList.current };
     }, [_items]);
 
-    // Given a list of items, uses their width to obain the total width
-    // then, based on the current scaling state, the section's width and the total calculate
-    // and descide whether it shouldv update scaling state 
+    /**
+     * @function alterScaling
+     * @description Toggles the scaling state of the section based on the total width of its items versus the available section width.
+     * @param {{ [key: string]: HTMLElement | null }} _itemList An object of item elements.
+     */
     const alterScaling = useCallback( (_itemList: {
         [key: string]: HTMLElement | null
     }) => {
@@ -190,7 +209,7 @@ const ActionBarSection = ( props: AcctionBarSectionProps ) => {
 
     useEffect( () => {
         alterScaling(itemsList.current);
-    }, [_itemsList, sectionWidth]);
+    }, [_itemsList, sectionWidth, alterScaling]);
 
     // Shows an alternative version of the section when scaling value is set to true
     const renderedItem = useMemo( () => {

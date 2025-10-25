@@ -1,12 +1,29 @@
 import {FC, ReactNode, useEffect, useRef, useState, useMemo, useCallback} from "react";
 import ComponentProps from "../Component";
-import { setAccentStyle, getRandId } from "utils/";
+import { setAccentStyle } from "utils/";
 import { useElScrollPosition } from "hooks/useScrollPosition";
 
+/**
+ * @typedef {object} ParallaxItemProps
+ * @description Props for the ParallaxItem component.
+ * @property {ReactNode} [children] The content to be affected by the parallax effect.
+ * @property {number} [factor=0.1] The parallax scroll factor. A value between -1 and 1.
+ */
 export interface ParallaxItemProps extends ComponentProps {
     children?: ReactNode;
     factor?: number;
 }
+
+/**
+ * @component ParallaxItem
+ * @description A component that creates a parallax scrolling effect on its children.
+ * @param {ParallaxItemProps} props The component props.
+ * @returns {React.ReactElement} The rendered ParallaxItem component.
+ * @example
+ * <ParallaxItem factor={0.2}>
+ *   <img src="image.jpg" alt="Parallax" />
+ * </ParallaxItem>
+ */
 const ParallaxItem: FC<ParallaxItemProps> = (props) => {
     const {
         "data-id": dataId,
@@ -24,11 +41,16 @@ const ParallaxItem: FC<ParallaxItemProps> = (props) => {
         if (factor < -1 || factor > 1) {
             throw new Error('ParallaxItem - Factor value must be between -1 and 1.');
         }
-    }, []);
+    }, [factor]);
 
     const ref = useRef<HTMLDivElement>(null);
     const [refSet, markRefSet] = useState<boolean>(false);
 
+    /**
+     * @function refSetter
+     * @description A callback ref to get a reference to the component's root div.
+     * @param {HTMLDivElement} node The DOM node of the div.
+     */
     const refSetter = useCallback((node: HTMLDivElement) => {
         if (ref.current) {
             return

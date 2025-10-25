@@ -1,10 +1,19 @@
 import { ReactNode, FC, ChangeEvent, useState, useMemo, useCallback, CSSProperties, useEffect } from "react";
 import ComponentProps from "../Component";
-import { setAccentStyle,getRandId } from "../../utils/";
+// FIX: Corrected import path
+import { setAccentStyle,getRandId } from "../../utils";
 
 import "./index.scss";
-import Icon from "components/Icon";
 
+/**
+ * @typedef {object} AccordionProps
+ * @description Props for the Accordion component.
+ * @property {ReactNode} children The content to be displayed inside the accordion when it is open.
+ * @property {ReactNode} header The header content of the accordion, which is always visible.
+ * @property {boolean} [defaultOpen=false] If true, the accordion will be open by default.
+ * @property {CSSProperties} [contentStyle] Custom CSS styles for the content container.
+ * @property {string} [contentClass] Additional CSS class for the content container.
+ */
 export interface AccordionProps extends ComponentProps {
     children: ReactNode;
     header: ReactNode;
@@ -12,12 +21,22 @@ export interface AccordionProps extends ComponentProps {
     contentStyle?: CSSProperties;
     contentClass?: string;
 }
+
+/**
+ * @component Accordion
+ * @description A collapsible content panel component.
+ * @param {AccordionProps} props The component props.
+ * @returns {React.ReactElement} The rendered Accordion component.
+ * @example
+ * <Accordion header={<h2>Click to open</h2>}>
+ *   <p>This is the content.</p>
+ * </Accordion>
+ */
 const Accordion: FC<AccordionProps> = (props) => {
     const {
         "data-id": dataId,
         className,
         style, accent, accentLight, accentDark,
-        borderRadius, elevation,
         children, header,
         defaultOpen = false,
         contentClass, contentStyle
@@ -34,20 +53,38 @@ const Accordion: FC<AccordionProps> = (props) => {
         else return getRandId();
     }, [dataId]);
 
+    // Stable id for the content region to support aria-controls/labelledby
+    const contentId = `${dataId_}-content`;
+
     let className_ = "prismal-accordion";
     if (className) className_ = `${className_} ${className}`;
 
-    let style_ = {};
+    // Ensure typed style object for TS/ESLint
+    let style_: Record<string, unknown> = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
     if (style) style_ = {...style_, ...style};
 
     let contentClass_ = `prismal-accordion-content`;
     if (contentClass) contentClass_ = `${contentClass_} ${contentClass}`;
 
+    /**
+     * @function onToggle
+     * @description Handles the accordion toggle and updates the open state.
+     * @param {ChangeEvent<HTMLInputElement>} e The change event from the checkbox.
+     * @returns {void}
+     */
     const onToggle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setEnabled(e.target.checked);
     }, []);
 
+    /**
+     * @member indicator_
+     * @description Renders the plus/minus SVG indicator based on the open state.
+     * @returns {JSX.Element} The indicator SVG element.
+     * @example
+     * // Used within the Accordion header label
+     * // {indicator_}{header}
+     */
     const indicator_ = useMemo(() => {
         return <svg xmlns="http://www.w3.org/2000/svg" 
             className={enabled 
@@ -61,9 +98,30 @@ const Accordion: FC<AccordionProps> = (props) => {
     },[enabled]);
 
     return <div data-id={dataId_} style={style_} className={className_}>
-        <input className="prismal-accordion-trigger" defaultChecked={defaultOpen} onChange={onToggle} id={dataId_} type="checkbox" />
-        <label className="prismal-accordion-title" htmlFor={dataId_}>{indicator_}{header}</label>
-        <div className={contentClass_} style={contentStyle}>
+        <input
+            className="prismal-accordion-trigger"
+            defaultChecked={defaultOpen}
+            onChange={onToggle}
+            id={dataId_}
+            type="checkbox"
+            aria-controls={contentId}
+            aria-expanded={enabled}
+        />
+        <label
+            className="prismal-accordion-title"
+            htmlFor={dataId_}
+            aria-controls={contentId}
+            aria-expanded={enabled}
+        >
+            {indicator_}{header}
+        </label>
+        <div
+            id={contentId}
+            className={contentClass_}
+            style={contentStyle}
+            role="region"
+            aria-labelledby={dataId_}
+        >
             {children}
         </div>
     </div>

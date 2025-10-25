@@ -8,17 +8,43 @@ import { setAccentStyle } from 'utils/colors';
 import "./index.scss";
 import { setBorderRadius } from "utils/";
 
+/**
+ * @typedef {object} SelectOption
+ * @description Represents an option in the Select component.
+ * @property {string} value The value of the option.
+ * @property {ReactNode} element The renderable content of the option.
+ * @property {boolean} [selected] If true, the option is selected by default.
+ */
 export interface SelectOption {
     value: string;
     element: ReactNode;
     selected?: boolean;
 } 
+
+/**
+ * @typedef {object} SelectProps
+ * @description Props for the Select component.
+ * @property {boolean} [multiple=false] If true, allows multiple options to be selected.
+ * @property {SelectOption[]} options The array of options to display.
+ * @property {string | JSX.Element} [placeholder="Select.."] The placeholder text or element.
+ * @property {((arg: string) => void) & ((arg: string[]) => void)} [onChange] Callback for when the selection changes.
+ */
 export interface SelectProps extends InputProps {
     multiple?: boolean;
     options: SelectOption[];
     placeholder?: string | JSX.Element;
     onChange?: ((arg: string) => void) & ((arg: string[]) => void);
 }
+
+/**
+ * @component Select
+ * @description A select input component for forms with single or multiple selection.
+ * @param {SelectProps} props The component props.
+ * @param {ForwardedRef<InputRefType>} ref The forwarded ref to the select element.
+ * @returns {React.ReactElement} The rendered Select component.
+ * @example
+ * <Select name="colors" label="Colors" options={[{ value: 'red', element: 'Red' }]} />
+ */
 const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) => {
     const {
         className, style,
@@ -29,7 +55,6 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         required = false,
         disabled = false,
         multiple = false,
-        readOnly = false,
         onChange, validator,
         options, gridPlacement
     } = props;
@@ -53,8 +78,13 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
             // and no placeholder, set the first option as selected
             setSelected(options[0].value)
         }
-    },[options, multiple]);
+    },[options, multiple, placeholder]);
 
+    /**
+     * @function setSelection
+     * @description Updates the selected state based on user interaction.
+     * @param {string} value The value of the option to select or deselect.
+     */
     const setSelection = useCallback( (value: string) => {
         if (!multiple) setSelected(value);
         else if (typeof selected == "object" && selected.includes(value)) {
@@ -71,16 +101,22 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         }
     },[selected, multiple])
 
+    /**
+     * @member options_
+     * @description Memoized array of option elements.
+     * @returns {JSX.Element[]}
+     */
     const options_ = useMemo(() => {
         return options.map((e, i) => {
             return <option key={i}
                 value={e.value}
                 onClick={() => setSelection(e.value)}
-                selected={selected?.includes(e.value)}>
+                // selected={selected?.includes(e.value)} // `selected` on <option> is not recommended
+                > 
                 {e.element}
             </option>
         })
-    },[options, selected]);
+    },[options, setSelection]);
 
     let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
@@ -107,7 +143,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
                 onChange(selected_);
             }
         };
-    }, [selected, multiple]);
+    }, [selected, multiple, onChange]);
 
     const inputRef = useRef<HTMLSelectElement>(null);
     const [ isNotValid_, markNotValid ] = useState<(string | boolean)[]>([]);
@@ -117,6 +153,11 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         isNotValid.current = isNotValid_;
     }, [isNotValid_]);
 
+    /**
+     * @function checkValidity
+     * @description Checks the validity of the select input.
+     * @returns {(string|boolean)[]} An array of error messages, or an empty array if valid.
+     */
     const checkValidity = useCallback( () => {
         const value = inputRef?.current?.value;
         let errorMessages = [];
@@ -131,7 +172,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         if (required && !value) errorMessages.push('This field is mandatory');
         markNotValid(errorMessages);
         return errorMessages;
-    }, [inputRef.current, validator, required]);
+    }, [validator, required]);
     
     useImperativeHandle(ref, () => ({
         isInputRefType: true,
@@ -140,7 +181,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         getValidity: () => isNotValid.current,
         getValue: () => inputRef.current?.value,
         element: inputRef.current
-    }), [name]);
+    }), [name, checkValidity]);
 
     const className_ = useMemo(() => {
         let className_ = "prismal-input-select";
@@ -155,6 +196,8 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
             multiple={multiple}
             required={required}
             disabled={disabled}
+            value={selected}
+            onChange={(e) => setSelected(multiple ? Array.from(e.target.selectedOptions, option => option.value) : e.target.value)}
         >
             <option value="">{placeholder}</option>
             {options_}

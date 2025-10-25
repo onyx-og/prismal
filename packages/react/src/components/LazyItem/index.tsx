@@ -2,6 +2,16 @@ import {ReactNode, FC, useRef, useMemo,useCallback, useEffect, useState} from "r
 import ComponentProps from "../Component";
 import "./index.scss";
 import {useIntersectionObserver} from "hooks/";
+
+/**
+ * @typedef {object} LazyItemProps
+ * @description Props for the LazyItem component.
+ * @property {ReactNode} children The content to be lazy-loaded.
+ * @property {boolean} [exitEffect=true] If true, an exit animation will be applied when the component scrolls out of view.
+ * @property {'fade' | 'slide-up' | 'slide-left' | 'pop-in' | 'none'} [animation='fade'] The type of entrance animation.
+ * @property {string} [loadedClass] An additional CSS class to apply when the content is loaded.
+ * @property {number} [offset=250] The delay in milliseconds before the entrance animation starts.
+ */
 export interface LazyItemProps extends ComponentProps {
     children: ReactNode;
     exitEffect?: boolean;
@@ -13,6 +23,17 @@ export interface LazyItemProps extends ComponentProps {
     loadedClass?: string;
     offset?: number;
 }
+
+/**
+ * @component LazyItem
+ * @description A component that lazy-loads its children when it scrolls into the viewport, with an optional animation.
+ * @param {LazyItemProps} props The component props.
+ * @returns {React.ReactElement} The rendered LazyItem component.
+ * @example
+ * <LazyItem animation="slide-up">
+ *   <img src="image.jpg" alt="Lazy loaded" />
+ * </LazyItem>
+ */
 const LazyItem: FC<LazyItemProps> = (props) => {
     const {
         "data-id": dataId,
@@ -30,6 +51,11 @@ const LazyItem: FC<LazyItemProps> = (props) => {
     const ref = useRef<HTMLDivElement>(null);
     const [refSet, markRefSet] = useState<boolean>(false);
 
+    /**
+     * @function refSetter
+     * @description A callback ref to get a reference to the component's root div.
+     * @param {HTMLDivElement} node The DOM node of the div.
+     */
     const refSetter = useCallback((node: HTMLDivElement) => {
         if (ref.current) {
             return
@@ -46,7 +72,8 @@ const LazyItem: FC<LazyItemProps> = (props) => {
     const [hasLoadedOnce, setHasLoadedOnce] =  useState(false);
 
     useEffect(() => {
-        let timeout: NodeJS.Timeout;
+        // FIX: Replaced `NodeJS.Timeout` with `ReturnType<typeof setTimeout>` for browser compatibility.
+        let timeout: ReturnType<typeof setTimeout>;
         if (isIntersecting) {
             timeout = setTimeout(()=> {
                 setIsInView(true);
@@ -61,23 +88,31 @@ const LazyItem: FC<LazyItemProps> = (props) => {
         return () => {
             clearTimeout(timeout);
         }
-    }, [isIntersecting, isInView, hasLoadedOnce, offset]);
+    }, [isIntersecting, isInView, hasLoadedOnce, offset, exitEffect]);
 
+    /**
+     * @member children_
+     * @description Memoized children, rendered only after the component has been in view at least once.
+     * @returns {ReactNode}
+     */
     const children_ = useMemo(() => {
         if (hasLoadedOnce) {
             return children;
         }
         return null;
-    }, [children, loadedClass, hasLoadedOnce]);
+    }, [children, hasLoadedOnce]);
 
+    /**
+     * @member className_
+     * @description Memoized CSS class string, dynamically updated based on the component's view state.
+     * @returns {string}
+     */
     const className_ = useMemo(() => {
         let className_ = `prismal-lazy-item prismal-lazy-item-${animation}`;
         if (className) className_ =  `${className_} ${className}`;
         if (isInView) {
             className_ = `${className_} prismal-lazy-item-view`;
             if (loadedClass) className_ = `${className_} ${loadedClass}`;
-        } else {
-            // console.log("not loaded")
         }
         return className_;
     },[className, animation, isInView, loadedClass]);

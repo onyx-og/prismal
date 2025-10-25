@@ -1,16 +1,20 @@
 import { RefObject, useState, useEffect } from 'react';
 
 /**
- * 
- * https://dev.to/vitaliemaldur/resize-event-listener-using-react-hooks-1k0c
+ * @function useElementWidth
+ * @description A custom hook that tracks the width of a DOM element, updating on resize and content changes.
+ * @param {RefObject<HTMLElement | undefined | null>} ref A ref to the element to measure.
+ * @returns {number} The current width of the element.
+ * @example
+ * const myRef = useRef(null);
+ * const width = useElementWidth(myRef);
+ * <div ref={myRef}>Width is {width}px</div>
  */
 const useElementWidth = (ref: RefObject<HTMLElement | undefined | null>) => {
-// const useElementWidth = (element: HTMLElement | null) => {
 	// save current element width in the state object
 	const [width, setWidth] = useState(ref.current?.clientWidth || 0);
 
 	useEffect(() => {
-		// let element = ref.current;
 		if (ref.current) {
 			// timeoutId for debounce mechanism
 			let timeoutId: number;
@@ -34,7 +38,7 @@ const useElementWidth = (ref: RefObject<HTMLElement | undefined | null>) => {
 				window.removeEventListener('resize', resizeListener);
 			}
 		}
-	}, [ref])
+	}, [ref, width])
 
 	// Tracks elemenet width also when changing in content size
 	useEffect(() => {

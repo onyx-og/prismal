@@ -4,13 +4,26 @@ import {
     forwardRef, ForwardedRef, useRef, useState, useCallback,
     useMemo, Children, useImperativeHandle, 
 } from 'react';
+// Add type-only import for style typing
+import type { CSSProperties } from 'react';
 import ActionBarSection from './ActionBarSection';
 
 import { setAccentStyle } from 'utils/colors';
 import type { ActionBarItemConfig, ActionBarProps, ActionBarItemWithRefProps, ActionBarRef } from './types';
 
 
-const ActionBarItemWithRef = forwardRef((props: ActionBarItemWithRefProps, ref: ForwardedRef<HTMLDivElement>) => {
+/**
+ * @component ActionBarItemWithRef
+ * @description Wraps an ActionBar child to expose its DOM node via ref collection.
+ * @param {ActionBarItemWithRefProps} props The wrapper props containing children to render.
+ * @param {React.Ref<HTMLDivElement>} ref Forwarded ref to the wrapper div.
+ * @returns {JSX.Element} The wrapper element that holds the child.
+ * @example
+ * <ActionBarItemWithRef>
+ *   <button>Click</button>
+ * </ActionBarItemWithRef>
+ */
+const ActionBarItemWithRef = forwardRef<HTMLDivElement, ActionBarItemWithRefProps>((props, ref) => {
     const { children } = props;
     const wrapperProps = {
         className: "prismal-actionbar-child-wref",
@@ -22,8 +35,19 @@ const ActionBarItemWithRef = forwardRef((props: ActionBarItemWithRefProps, ref: 
         </div>
     );
 });
+ActionBarItemWithRef.displayName = 'ActionBarItemWithRef';
 
-const ActionBar = forwardRef((props: ActionBarProps, ref:  ForwardedRef<ActionBarRef>) => {
+
+/**
+ * @component ActionBar
+ * @description A flexible bar for actions and navigation, divided into left, center, and right sections.
+ * @param {ActionBarProps} props The component props.
+ * @param {React.Ref<ActionBarRef>} ref Forwarded ref to the ActionBar's managed DOM nodes.
+ * @returns {JSX.Element} The rendered ActionBar component.
+ * @example
+ * <ActionBar items={[{ item: <Button>Action</Button>, position: 'right', key: 'action1' }]} />
+ */
+const ActionBar = forwardRef<ActionBarRef, ActionBarProps>((props, ref) => {
     const {
         items = [],
         children, defaultPosition = "right",
@@ -35,9 +59,7 @@ const ActionBar = forwardRef((props: ActionBarProps, ref:  ForwardedRef<ActionBa
     } = props;
     let actionBarClass = `prismal-actionbar prismal-actionbar-${type}`;
 
-    // const actionBarRef = useRef<HTMLDivElement>(null);
-    // console.log("Got actionbar ref", actionBarRef);
-    let style_: { [key: string]: any } = {};
+    let style_: CSSProperties = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
     if (style) style_ = { ...style_, ...style };
 
@@ -50,32 +72,47 @@ const ActionBar = forwardRef((props: ActionBarProps, ref:  ForwardedRef<ActionBa
         return Children.toArray(children);
     }, [children]);
 
+    /**
+     * @function childrenRefCollector
+     * @description Collects child wrapper DOM nodes and marks completion when the last child mounts.
+     * @param {HTMLDivElement | null} node The mounted/unmounted DOM node reference.
+     * @param {number} i Index of the child node.
+     * @returns {void}
+     * @example
+     * <ActionBarItemWithRef ref={(node) => childrenRefCollector(node, i)}>{el}</ActionBarItemWithRef>
+     */
     const childrenRefCollector = useCallback((node: HTMLDivElement | null, i: number) => {
         if (node) {
             lowNode.current[i] = node;
-            if (children_.length-1 == i)  {
-                marklowNodeSet(true)
+            if (children_.length - 1 === i) {
+                marklowNodeSet(true);
             }
         }
     }, [children_]);
 
+    /**
+     * @function processItem
+     * @description Filters items for a given section and augments with children placed at the default position.
+     * @param {'left'|'center'|'right'} position The target section to process.
+     * @returns {ActionBarItemConfig[]} The list of items to render in the section.
+     * @example
+     * const leftItems = processItem("left");
+     */
     const processItem = useCallback((position: ActionBarItemConfig["position"]) => {
-        const items_ = items.filter((i) =>
-            i?.position == position
-        );
-        if (defaultPosition == position && children_.length) {
-            let childrenItems: ActionBarItemConfig[] = children_.map((el, i) => {
+        const items_ = items.filter((i) => i?.position === position);
+        if (defaultPosition === position && children_.length) {
+            const childrenItems: ActionBarItemConfig[] = children_.map((el, i) => {
                 return {
-                    item: <ActionBarItemWithRef ref={(node) => childrenRefCollector(node,i)}>{el}</ActionBarItemWithRef>,
+                    item: <ActionBarItemWithRef ref={(node) => childrenRefCollector(node, i)}>{el}</ActionBarItemWithRef>,
                     position: position,
                     key: `${position}-${i}`,
-                }
-            })
+                };
+            });
 
             items_.push(...childrenItems);
         }
         return items_;
-    }, [items, children, defaultPosition]);
+    }, [items, children_, defaultPosition, childrenRefCollector]);
 
     const leftItems = useMemo(() => {
         return processItem("left");
@@ -92,15 +129,21 @@ const ActionBar = forwardRef((props: ActionBarProps, ref:  ForwardedRef<ActionBa
     const highNode = useRef<HTMLDivElement>(null);
     const [highNodeSet, markhighNodeSet] = useState<boolean>(false);
 
-    const setHighNodeRef = useCallback((node: HTMLDivElement) => {
-        if (highNode.current) {
-            return;
-        }
+    /**
+     * @function setHighNodeRef
+     * @description Sets the top-level DOM node reference once, when the component mounts.
+     * @param {HTMLDivElement | null} node The root node reference or null on unmount.
+     * @returns {void}
+     * @example
+     * <div ref={setHighNodeRef} />
+     */
+    const setHighNodeRef = useCallback((node: HTMLDivElement | null) => {
+        if (highNode.current) return;
         if (node) {
             highNode.current = node;
             markhighNodeSet(true);
         }
-    }, []);
+    }, [markhighNodeSet]);
 
     useImperativeHandle(ref, () => ({
         lowNode: lowNode.current, // lowest managed DOM node(s)
@@ -119,6 +162,7 @@ const ActionBar = forwardRef((props: ActionBarProps, ref:  ForwardedRef<ActionBa
             altIcon={sectionAlt?.right} type='right' items={rightItems} />
     </div>
 });
+ActionBar.displayName = 'ActionBar';
 
 export default ActionBar;
 export type { ActionBarItemConfig };

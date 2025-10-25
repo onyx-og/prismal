@@ -6,10 +6,27 @@ import { setAccentStyle } from "utils/";
 
 import "./index.scss";
 
+/**
+ * @typedef {object} CursorProps
+ * @description Props for the Cursor component.
+ * @property {RefObject<{ x: number, y: number }>} positionRef A ref object containing the cursor's x and y coordinates.
+ * @property {"circle" | "dot" | "dashed" | "two-dots" | "gooey"} [type="circle"] The visual style of the cursor.
+ */
 export interface CursorProps extends ComponentProps {
     positionRef: RefObject<{ x: number, y: number }>;
     type?: "circle" | "dot" | "dashed" | "two-dots" | "gooey";
 };
+
+/**
+ * @component Cursor
+ * @description A custom cursor component that follows the mouse position within a parent container.
+ * @param {CursorProps} props The component props.
+ * @returns {React.ReactElement} The rendered Cursor component.
+ * @example
+ * const containerRef = useRef(null);
+ * const cursorPositionRef = useCursorPosition(containerRef);
+ * <div ref={containerRef}><Cursor positionRef={cursorPositionRef} /></div>
+ */
 const Cursor: FC<CursorProps> = (props) => {
     const {
         "data-id": dataId,
@@ -28,6 +45,10 @@ const Cursor: FC<CursorProps> = (props) => {
         // We need a subscription model to get updates from the ref
         let animationFrameId: number;
 
+        /**
+         * @function updatePosition
+         * @description Updates the cursor position based on the positionRef value.
+         */
         const updatePosition = () => {
             // Get the value from the ref and update state
             if (positionRef.current) {

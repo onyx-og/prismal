@@ -8,6 +8,12 @@ import useElementWidth from 'hooks/useElementWidth';
 
 import type { ActionBarItemProps } from '../types';
 
+/**
+ * @component ActionBarItem
+ * @description An individual item within an ActionBar section that can optionally scale or display an alternative element.
+ * @param {ActionBarItemProps} props The component props.
+ * @returns {React.ReactElement} The rendered action bar item.
+ */
 const ActionBarItem: FC<ActionBarItemProps> = ( props ) => {
     const {
         item, scale = true,
@@ -42,7 +48,7 @@ const ActionBarItem: FC<ActionBarItemProps> = ( props ) => {
         if (ref.current?.clientWidth && !originalWidth ) {
             setOriginalWidth(ref.current.clientWidth);
         }
-    }, [item]);
+    }, [item, originalWidth]);
 
    
 
@@ -59,7 +65,7 @@ const ActionBarItem: FC<ActionBarItemProps> = ( props ) => {
         } else if ( !scale ) {
             setScaled({value: false, width: 0})
         }
-    }, [originalWidth, scale, scaleFactor, sectionWidth, uniqueKey]);
+    }, [originalWidth, scale, scaleFactor, sectionWidth, uniqueKey, siblingWeight, scaling.value]);
 
     // const currentWidth = useElementWidth(ref.current, 'offsetWidth');
 
@@ -87,7 +93,7 @@ const ActionBarItem: FC<ActionBarItemProps> = ( props ) => {
         return () => {
             if (timeoutId) window.clearTimeout(timeoutId)
         }
-    }, [renderedItem, scaling]);
+    }, [renderedItem, scaling, uniqueKey, setReady]);
     
     return <div ref={ref} className='actionbar-item'>{renderedItem}</div>
 }

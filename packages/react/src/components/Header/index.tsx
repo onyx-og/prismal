@@ -7,6 +7,15 @@ import "./index.scss";
 import { setAccentStyle, setBorderRadius, setBoxElevation } from "utils/";
 import {useElScrollThreshold} from "hooks/useScrollPosition";
 
+/**
+ * @typedef {object} HeaderProps
+ * @description Props for the Header component.
+ * @property {string} [navClass] Additional CSS class for the navigation container.
+ * @property {string} [placeHolderClass] Additional CSS class for the placeholder element.
+ * @property {ReactNode} [children] The content to be displayed within the header.
+ * @property {boolean} [sticky=true] If true, the header becomes sticky on scroll.
+ * @property {string} [stickyClass] Additional CSS class to apply when the header is sticky.
+ */
 export interface HeaderProps extends ComponentProps {
     navClass?: string;
     placeHolderClass?: string;
@@ -14,10 +23,22 @@ export interface HeaderProps extends ComponentProps {
     sticky?: boolean;
     stickyClass?: string;
 }
+
+/**
+ * @component Header
+ * @description A header component that can be made sticky on scroll.
+ * @param {HeaderProps} props The component props.
+ * @param {React.Ref<any>} ref The forwarded ref.
+ * @returns {React.ReactElement} The rendered Header component.
+ * @example
+ * <Header sticky>
+ *   <nav>...</nav>
+ * </Header>
+ */
 const Header = forwardRef((props: HeaderProps, ref) => {
     const {
         "data-id": dataId, className, style,
-        navClass, placeHolderClass,
+        navClass,
         accent, accentLight, accentDark,
         borderRadius, elevation,
         children,
@@ -35,11 +56,13 @@ const Header = forwardRef((props: HeaderProps, ref) => {
     let className_ = "prismal-header";
     if (className) className_ = `${className_} ${className}`;
 
-    let placeHolderClass_ = "prismal-header-placeholder";
-    if (navClass) placeHolderClass_ = `${placeHolderClass_} ${placeHolderClass}`;
-
     const headerRef = useRef<HTMLDivElement>(null);
     const [headerRefSet, markHeaderRefSet] = useState<boolean>(false);
+    /**
+     * @function setHeaderRef
+     * @description A callback ref to get a reference to the header element.
+     * @param {HTMLDivElement} node The header DOM node.
+     */
     const setHeaderRef = useCallback((node: HTMLDivElement) => {
         if (headerRef.current) {
             return;
@@ -53,6 +76,11 @@ const Header = forwardRef((props: HeaderProps, ref) => {
     const lowNode = useRef<HTMLDivElement>(null);
     const [lowNodeSet, marklowNodeSet] = useState<boolean>(false);
 
+    /**
+     * @function setLowNodeRef
+     * @description A callback ref to get a reference to the navigation container element.
+     * @param {HTMLDivElement} node The navigation container DOM node.
+     */
     const setLowNodeRef = useCallback((node: HTMLDivElement) => {
         if (lowNode.current) {
             return;
@@ -79,6 +107,11 @@ const Header = forwardRef((props: HeaderProps, ref) => {
         }
     }, [thresholdTrigger]);
 
+    /**
+     * @member nav
+     * @description Memoized navigation container element with dynamic classes for sticky behavior.
+     * @returns {JSX.Element}
+     */
     const nav = useMemo(() => {
         let navClass_ = "prismal-header-nav";
         if (navClass) navClass_ = `${navClass_} ${navClass}`;
@@ -92,12 +125,11 @@ const Header = forwardRef((props: HeaderProps, ref) => {
         return <div ref={setLowNodeRef} className={navClass_}>
             {children}
         </div>
-    }, [thresholdTrigger, children, sticky, stickyClass]);
+    }, [thresholdTrigger, children, sticky, stickyClass, navClass, setLowNodeRef]);
 
     return <header data-id={dataId} style={style_} ref={setHeaderRef} className={className_}>
         {nav}
     </header>
 });
-
+Header.displayName = "Header";
 export default Header;
-

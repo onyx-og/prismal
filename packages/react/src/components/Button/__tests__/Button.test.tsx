@@ -1,10 +1,15 @@
 import { render, cleanup, screen, within, fireEvent } from '@testing-library/react';
+// FIX: Import Jest functions to resolve test runner errors.
+import { afterEach, test, expect, jest } from '@jest/globals';
 
 import Button from '../';
 import React from 'react';
 
 afterEach(() => cleanup());
 
+/**
+ * @description Test case: Renders a base button with default properties.
+ */
 test('Base button', () => {
     render(<Button name='clickme'>Click me</Button>);
 
@@ -16,6 +21,9 @@ test('Base button', () => {
     expect(btnEl).not.toHaveClass('btn-disabled btn-primary btn-text btn-circle');
 });
 
+/**
+ * @description Test case: Renders a button with specific type, shape, and disabled state.
+ */
 test('Button with specific type, shape and disabled state', () => {
     render(<Button
         name='primary-circle'
@@ -29,6 +37,9 @@ test('Button with specific type, shape and disabled state', () => {
     expect(btnEl).toHaveClass('prismal-btn btn-circle btn-primary btn-disabled');
 });
 
+/**
+ * @description Test case: Ensures the button can inherit a custom CSS class.
+ */
 test('Button should inherit class', () => {
     render(<Button
         name='custom-class'
@@ -41,6 +52,9 @@ test('Button should inherit class', () => {
     expect(btnEl).toHaveClass('customClass');
 });
 
+/**
+ * @description Test case: Renders a button with an icon.
+ */
 test('Button with an icon name', () => {
     render(<Button name='icon-only' iconName='close'/>);
 
@@ -51,6 +65,9 @@ test('Button with an icon name', () => {
     expect(iconEl).toBeInTheDocument();
 });
 
+/**
+ * @description Test case: Verifies that the onClick callback is fired on click.
+ */
 test('Button should fire onClick callback', () => {
     const handleClick = jest.fn()
   

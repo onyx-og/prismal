@@ -68,7 +68,7 @@ const Slider: FC<SliderProps> = ( props ) => {
         return <label key={i} htmlFor={`slider_${i}-${id}`} className={`numb${i}`}> 
             { arrowEl }
         </label>
-    }, [id, navElForward]);
+    }, [id, navElForward, navElBackward]);
 
     const {
         labelClass, labelEl
@@ -145,7 +145,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                 navArrowsNext, navArrowsPrevious,
                 slideList
             }
-        }, [slideWrapper, renderInputCtrl, renderLabel, renderNavArrow, slides, slideWrapper]);
+        }, [renderInputCtrl, renderLabel, renderNavArrow, slides, slideWrapper]);
 
         const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements();
 
@@ -160,7 +160,8 @@ const Slider: FC<SliderProps> = ( props ) => {
         },[slideNumber])
 
         useEffect( () => {
-            let interval: NodeJS.Timeout;
+            // FIX: Replaced `NodeJS.Timeout` with `ReturnType<typeof setInterval>` for browser compatibility.
+            let interval: ReturnType<typeof setInterval>;
             // When the reference of the last input is added, start autoplay
             if (inputCtrlList.current.length == inputCtrls.length && autoPlay) {
                 interval = setInterval(() => {
@@ -176,7 +177,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                     clearInterval(interval)
                 }
             }
-        }, [inputCtrlList.current.length, slideNumber, autoPlay]);
+        }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length]);
 
         const slideshowStyle = `
             #prismal-slider-${id} .prismal-slider-slides{
@@ -322,7 +323,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                 navArrowsNext, navArrowsPrevious,
                 slideList
             }
-        }, [children_, renderInputCtrl, renderLabel, renderNavArrow, children_]);
+        }, [children_, renderInputCtrl, renderLabel, renderNavArrow]);
 
         const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements();
 
@@ -337,7 +338,8 @@ const Slider: FC<SliderProps> = ( props ) => {
         },[slideNumber])
 
         useEffect( () => {
-            let interval: NodeJS.Timeout;
+            // FIX: Replaced `NodeJS.Timeout` with `ReturnType<typeof setInterval>` for browser compatibility.
+            let interval: ReturnType<typeof setInterval>;
             // When the reference of the last input is added, start autoplay
             if (inputCtrlList.current.length == inputCtrls.length && autoPlay) {
                 interval = setInterval(() => {
@@ -353,7 +355,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                     clearInterval(interval)
                 }
             }
-        }, [inputCtrlList.current.length, slideNumber, autoPlay]);
+        }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length]);
 
         const slideshowStyle = `
             #prismal-slider-${id} .prismal-slider-slides{

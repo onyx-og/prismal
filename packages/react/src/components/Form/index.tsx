@@ -13,6 +13,16 @@ interface ElementWithRef<T> extends JSX.Element {
     ref: RefAttributes<T>
 }
 
+/**
+ * @typedef {object} FormProps
+ * @description Props for the Form component.
+ * @property {ReactElement | ReactElement[]} children The input elements to be included in the form.
+ * @property {string} [name] The name of the form.
+ * @property {JSX.Element} [submit] A custom submit button element.
+ * @property {(formData: {[key:string]: any}) => void} [onSubmit] Callback function executed on form submission with valid data.
+ * @property {object | CSSProperties["gridTemplate"]} [gridTemplate] Defines the grid layout for form fields.
+ * @property {object | CSSProperties["gap"]} [gridGap="0.5rem"] Defines the gap between grid items.
+ */
 export interface FormProps extends ComponentProps {
     children: ReactElement | ReactElement[];
     name?: string;
@@ -27,6 +37,18 @@ export interface FormProps extends ComponentProps {
         row?: CSSProperties["rowGap"];
     } | CSSProperties["gap"];
 }
+
+/**
+ * @component Form
+ * @description A form component that manages form state, validation, and submission.
+ * @param {FormProps} props The component props.
+ * @returns {React.ReactElement} The rendered Form component.
+ * @example
+ * <Form name="login" onSubmit={(data) => console.log(data)}>
+ *   <TextInput name="username" label="Username" />
+ *   <TextInput name="password" label="Password" type="password" />
+ * </Form>
+ */
 const Form: FC<FormProps> = (props) => {
     const {
         children, 
@@ -50,14 +72,10 @@ const Form: FC<FormProps> = (props) => {
     // Assures that _children is an array, event when it's not
     const _children = useMemo(()=> ([] as JSX.Element[]).concat(children), [children]);
 
-    // [DEPRECATED] Clears inputs ref list when children changes
-    // Because ref is populated with .push
-    // useEffect( () => {
-    //     inputsRef.current = inputsRef.current.slice(0, _children.length);
-    // }, [_children]);
-
-    /* Callback ref that filters, accepting only references
-     * having isInputRefType as property, or rather InputRefTypes
+    /**
+     * @function addInputRef
+     * @description A callback ref to collect references to form inputs.
+     * @param {InputRefType | null} inputRef The ref object of the input.
      */
     const addInputRef = (inputRef: InputRefType | null) => {
         if ( inputRef && inputRef.hasOwnProperty('isInputRefType') && inputRef.isInputRefType) {
@@ -71,23 +89,29 @@ const Form: FC<FormProps> = (props) => {
      * when the child is a managed input
      */
     const renderedChildren = useMemo( () => {
-        return Children.toArray(_children).map( (child, i) => {
+        return Children.toArray(_children).map( (child) => {
             if (isValidElement(child)) {
                 const child_ = child as ElementWithRef<InputRefType>;
                 return cloneElement(child_, {
                     ref: (el: InputRefType | null) => addInputRef(el)
                 });
             } 
+            return child;
         });
     }, [_children, name]);
     
+    /**
+     * @function submitForm
+     * @description Validates all form inputs and calls the onSubmit callback if the form is valid.
+     * @param {any} [e] The event object, used to prevent default form submission.
+     */
     const submitForm = (e?: any) => {
         // i.e. provided with a <button> avoid default behaviour (post)
         if (e && typeof e.preventDefault === 'function') {
             e.preventDefault();
         }
            
-        let validity = [],
+        let validity: (string|boolean)[][] = [],
             /* formData is an object with field's mapped to their values
              */
             formData: {
@@ -115,6 +139,11 @@ const Form: FC<FormProps> = (props) => {
         }
     }
     
+    /**
+     * @member submitComponent
+     * @description Memoized submit button element.
+     * @returns {JSX.Element | undefined}
+     */
     const submitComponent = useMemo( () => {
         if (submit) {
             return cloneElement(submit, {
@@ -123,10 +152,6 @@ const Form: FC<FormProps> = (props) => {
                     submitForm(e);
                 }
             });
-            // return <submit.type {...submit.props} onClick={(e: any) => {
-            //     submit.props.onClick && submit.props.onClick();
-            //     submitForm(e);
-            // }}/>
         } else if (onSubmit) {
             return <Button 
                 type='primary' 
@@ -134,10 +159,15 @@ const Form: FC<FormProps> = (props) => {
                     Submit
             </Button>
         } else {
-            // No onSubmit method, no submit button
+            return undefined;
         }
-    }, [submit, submitForm, onSubmit]);
+    }, [submit, onSubmit]);
 
+    /**
+     * @member formFields
+     * @description Memoized container for form fields with grid styling.
+     * @returns {JSX.Element}
+     */
     const formFields = useMemo(() => {
         const style: CSSProperties = {};
 
@@ -158,7 +188,7 @@ const Form: FC<FormProps> = (props) => {
         return <div style={style} className='form-fields'>
             {renderedChildren}
         </div>
-    }, [renderedChildren, gridTemplate]);
+    }, [renderedChildren, gridTemplate, gridGap]);
 
     return <form data-id={dataId} name={name} 
         onSubmit={submitForm}

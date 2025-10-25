@@ -7,10 +7,25 @@ import ComponentProps from "../Component";
 
 import "./index.scss";
 
+/**
+ * @typedef {object} MarqueeRef
+ * @description The ref object exposed by the Marquee component.
+ * @property {() => void} pause A function to pause the marquee animation.
+ * @property {() => void} play A function to play the marquee animation.
+ */
 type MarqueeRef = {
     pause: () => void;
     play: () => void;
 }
+
+/**
+ * @typedef {object} MarqueeProps
+ * @description Props for the Marquee component.
+ * @property {ReactNode} children The content to be scrolled.
+ * @property {boolean} [pauseOnHover=true] If true, the animation pauses on mouse hover.
+ * @property {number} [speed=8] A decimal from 0 to 1 representing the scroll speed.
+ * @property {() => void} [onClick] Click event handler for the marquee.
+ */
 export interface MarqueeProps extends ComponentProps {
     children: ReactNode;
     pauseOnHover?: boolean;
@@ -18,6 +33,18 @@ export interface MarqueeProps extends ComponentProps {
     speed?: number;
     onClick?: () => void;
 }
+
+/**
+ * @component Marquee
+ * @description A component that creates a scrolling marquee effect for its children.
+ * @param {MarqueeProps} props The component props.
+ * @param {ForwardedRef<MarqueeRef>} ref The forwarded ref to control the marquee.
+ * @returns {React.ReactElement} The rendered Marquee component.
+ * @example
+ * <Marquee speed={5}>
+ *   <p>This is scrolling text.</p>
+ * </Marquee>
+ */
 const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) => {
     const {
         children,
@@ -27,6 +54,11 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
     } = props;
     const marqueeRef = useRef<HTMLDivElement>(null);
     const [isSetMarqueeRef, markSetMarqueeRef] = useState(false);
+    /**
+     * @function setMarqueeRef
+     * @description A callback ref to get a reference to the marquee content element.
+     * @param {HTMLDivElement} el The DOM node.
+     */
     const setMarqueeRef = useCallback((el: HTMLDivElement) => {
         if (el) {
             marqueeRef.current = el;
@@ -40,6 +72,11 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
     );
     const containerRef = useRef<HTMLDivElement>(null);
     const [isSetContainerRef, markSetContainerRef] = useState(false);
+    /**
+     * @function setContainerRef
+     * @description A callback ref to get a reference to the marquee container element.
+     * @param {HTMLDivElement} el The DOM node.
+     */
     const setContainerRef = useCallback((el: HTMLDivElement) => {
         if (el) {
             containerRef.current = el;
@@ -58,6 +95,10 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
     }));
 
     useEffect(() => {
+        /**
+         * @function calculateMarquee
+         * @description Determines if the content should scroll based on its width relative to the container.
+         */
         const calculateMarquee = () => {
             if (containerRef.current && marqueeRef.current) {
                 const containerWidth = containerRef.current.offsetWidth;
@@ -81,15 +122,22 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
         setStyle(shouldScroll
             ? { ...style, animation: `marquee ${10 / speed}s linear infinite`, whiteSpace: "nowrap" }
             : { ...style, whiteSpace: "nowrap" })
-    }, [shouldScroll]);
+    }, [shouldScroll, speed, style]);
 
+    /**
+     * @function handleMouseEnter
+     * @description Pauses the marquee on mouse enter if pauseOnHover is true.
+     */
     const handleMouseEnter = () => {
         if (pauseOnHover) {
             setStyle({ ...style, animationPlayState: "paused" });
         }
     };
 
-
+    /**
+     * @function handleMouseLeave
+     * @description Resumes the marquee on mouse leave if pauseOnHover is true.
+     */
     const handleMouseLeave = () => {
         if (pauseOnHover) {
             setStyle({ ...style, animationPlayState: "running" })
@@ -109,5 +157,5 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
         </div>
     </div>
 });
-
+Marquee.displayName = "Marquee";
 export default Marquee;

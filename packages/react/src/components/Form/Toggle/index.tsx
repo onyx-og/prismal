@@ -5,14 +5,19 @@ import {
 } from "react";
 import { InputProps, InputRefType } from '../types';
 import { setAccentStyle } from 'utils/colors';
-import { setBorderRadius, setBoxElevation } from 'utils/';
+import { setBorderRadius } from 'utils/';
 import "./index.scss";
 
-
-
-// [TODO] Disabled and required can be applied through selector
-// change behaviour for other inputs
-
+/**
+ * @typedef {object} ToggleProps
+ * @description Props for the Toggle component.
+ * @property {"checkbox" | "switch"} [type="checkbox"] The type of toggle to render.
+ * @property {boolean} [checked=false] The initial checked state of the toggle.
+ * @property {never} [placeholder] Not used.
+ * @property {never} [value] Not used.
+ * @property {never} [inline] Not used.
+ * @property {(value: boolean) => any} [onChange] Callback for when the toggle state changes.
+ */
 export interface ToggleProps extends InputProps {
     type?: "checkbox" | "switch";
     checked?: boolean;
@@ -22,7 +27,14 @@ export interface ToggleProps extends InputProps {
     onChange?: (value: boolean) => any;
 }
 /**
- * @credits Inspired by Aaron Iker switch/checkbox
+ * @component Toggle
+ * @description A checkbox or switch input component for forms.
+ * @credits Inspired by Aaron Iker switch/checkbox.
+ * @param {ToggleProps} props The component props.
+ * @param {ForwardedRef<InputRefType>} ref The forwarded ref to the input element.
+ * @returns {ReactElement} The rendered Toggle component.
+ * @example
+ * <Toggle type="switch" label="Enable feature" name="feature-toggle" />
  */
 const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>): ReactElement => {
     const {
@@ -63,6 +75,11 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
         isNotValid.current = isNotValid_;
     }, [isNotValid_]);
 
+    /**
+     * @function checkValidity
+     * @description Checks the validity of the toggle input.
+     * @returns {(string|boolean)[]} An array of error messages, or an empty array if valid.
+     */
     const checkValidity = useCallback( () => {
         const value = inputRef?.current?.checked;
         let errorMessages = [];
@@ -86,14 +103,24 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
         getValidity: () => isNotValid.current,
         getValue: () => inputRef.current?.checked,
         element: inputRef.current
-    }), [isNotValid, name]);
+    }), [isNotValid, name, checkValidity]);
 
+    /**
+     * @function doOnChange
+     * @description Handles the change event, triggers validation, and calls the onChange prop.
+     * @param {ChangeEvent<HTMLInputElement>} event The input change event.
+     */
     const doOnChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         const evtValue = event.currentTarget.checked;
         checkValidity();
         onChange && onChange(evtValue);
     }, [onChange, checkValidity]);
 
+    /**
+     * @member label_
+     * @description Memoized label element for the toggle.
+     * @returns {JSX.Element | null}
+     */
     const label_ = useMemo(() => {
         if (label) {
             let labelClass_ = "prismal-toggle-label";
@@ -110,7 +137,11 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
         return null;
     }, [label, id, labelSeparator, labelPosition, labelClass]);
 
-
+    /**
+     * @member input
+     * @description Memoized input element for the toggle.
+     * @returns {JSX.Element}
+     */
     const input = useMemo(() => {
         let inputClass_ = "prismal-toggle-input";
         if (type == "switch") inputClass_ = `${inputClass_} prismal-toggle-switch`;
@@ -130,7 +161,10 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
         return className_;
     }, [className, isNotValid_]);
 
-    /** Transforms 'isNotvalid' array of errors into a list
+    /**
+     * @member renderedErrors
+     * @description Transforms 'isNotValid_' array of errors into a list of error messages.
+     * @returns {JSX.Element[]}
      */
     const renderedErrors = useMemo( () => isNotValid_.map( (err, i) => 
         <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
@@ -145,5 +179,5 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
         </ul> : <></>}
     </div>
 });
-
+Toggle.displayName = "Toggle";
 export default Toggle;

@@ -1,16 +1,20 @@
 import { RefObject, useState, useEffect } from 'react';
 
 /**
- * 
- * https://dev.to/vitaliemaldur/resize-event-listener-using-react-hooks-1k0c
+ * @function useElementHeight
+ * @description A custom hook that tracks the height of a DOM element, updating on resize and content changes.
+ * @param {RefObject<HTMLElement>} ref A ref to the element to measure.
+ * @returns {number} The current height of the element.
+ * @example
+ * const myRef = useRef(null);
+ * const height = useElementHeight(myRef);
+ * <div ref={myRef}>Height is {height}px</div>
  */
 const useElementHeight = (ref: RefObject<HTMLElement>) => {
-// const useElementHeight = (element: HTMLElement | null) => {
 	// save current element width in the state object
 	const [height, setHeight] = useState(ref.current?.clientHeight || 0);
 
 	useEffect(() => {
-		// let element = ref.current;
 		if (ref.current) {
 			// timeoutId for debounce mechanism
 			let timeoutId: number;
@@ -34,7 +38,7 @@ const useElementHeight = (ref: RefObject<HTMLElement>) => {
 				window.removeEventListener('resize', resizeListener);
 			}
 		}
-	}, [ref])
+	}, [ref, height])
 
 	// Tracks elemenet height also when changing in content size
 	useEffect(() => {
