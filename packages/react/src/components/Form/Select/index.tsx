@@ -66,6 +66,8 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
     } = props;
 
     const [selected, setSelected] = useState<string | string[]>();
+    const [filter, setFilter] = useState("");
+    const [availableOptions, setAvailableOptions] = useState<SelectOption[]>(options);
 
     useEffect( ()=> {
         let selected_ = options
@@ -113,20 +115,21 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
      * @returns {JSX.Element[]}
      */
     const options_ = useMemo(() => {
+        let optionsSource = availableOptions;
         if (orderOptions) {
-            options.sort(orderOptions)
+            optionsSource = [...optionsSource].sort(orderOptions);
         }
-        let result = options.map((e, i) => {
+        let result = optionsSource.map((e, i) => {
             return <option key={i}
                 value={e.value}
                 onClick={() => setSelection(e.value)}
                 // selected={selected?.includes(e.value)} // `selected` on <option> is not recommended
-                > 
+                >
                 {e.element}
             </option>
         })
         return result;
-    },[options, setSelection, fetchOptions, orderOptions]);
+    },[availableOptions, setSelection, orderOptions]);
 
     let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
@@ -162,6 +165,36 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
     useEffect(() => {
         isNotValid.current = isNotValid_;
     }, [isNotValid_]);
+
+    useEffect(() => {
+        if (fetchOptions) {
+            let isActive = true;
+            fetchOptions(filter).then((fetchedOptions) => {
+                if (isActive && fetchedOptions) setAvailableOptions(fetchedOptions);
+            }).catch(() => {
+                if (isActive) setAvailableOptions([]);
+            });
+            return () => {
+                isActive = false;
+            };
+        }
+
+        if (!isFiltered || !filter.trim()) {
+            setAvailableOptions(options);
+            return;
+        }
+
+        const normalizedFilter = filter.trim().toLowerCase();
+        const filteredOptions = options.filter((option) => {
+            const valueMatch = option.value.toLowerCase().includes(normalizedFilter);
+            let elementMatch = false;
+            if (typeof option.element === "string") {
+                elementMatch = option.element.toLowerCase().includes(normalizedFilter);
+            }
+            return valueMatch || elementMatch;
+        });
+        setAvailableOptions(filteredOptions);
+    }, [options, fetchOptions, filter, isFiltered]);
 
     /**
      * @function checkValidity
@@ -200,6 +233,13 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         return className_;
     }, [className, isNotValid_]);
 
+    const placeholder_ = useMemo(() => {
+        if (isFiltered) {
+            return <input type="text" value={filter} onChange={(event) => setFilter(event.target.value)} placeholder={typeof placeholder === "string" ? placeholder : undefined} />;
+        }
+        return placeholder;
+    }, [filter, isFiltered, placeholder]);
+
     return <div className={className_} style={style_}>
         <label htmlFor={id}>{label}</label>
         <select name={name} ref={inputRef} id={id} title={title}
@@ -209,7 +249,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
             value={selected}
             onChange={(e) => setSelected(multiple ? Array.from(e.target.selectedOptions, option => option.value) : e.target.value)}
         >
-            <option value="">{placeholder}</option>
+            <option value="">{placeholder_}</option>
             {options_}
         </select>
     </div>
