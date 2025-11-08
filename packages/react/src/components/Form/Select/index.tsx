@@ -34,6 +34,11 @@ export interface SelectProps extends InputProps {
     options: SelectOption[];
     placeholder?: string | JSX.Element;
     onChange?: ((arg: string) => void) & ((arg: string[]) => void);
+    isFiltered?: boolean;
+    /** Function to fetch options asynchronously based on filter */
+    fetchOptions?: (filter?: string) => Promise<SelectOption[]>;
+    /** Compare function for sorting options */
+    orderOptions?: (a: SelectOption, b: SelectOption) => number;
 }
 
 /**
@@ -56,7 +61,8 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         disabled = false,
         multiple = false,
         onChange, validator,
-        options, gridPlacement
+        options, gridPlacement,
+        fetchOptions, orderOptions
     } = props;
 
     const [selected, setSelected] = useState<string | string[]>();
@@ -107,7 +113,10 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
      * @returns {JSX.Element[]}
      */
     const options_ = useMemo(() => {
-        return options.map((e, i) => {
+        if (orderOptions) {
+            options.sort(orderOptions)
+        }
+        let result = options.map((e, i) => {
             return <option key={i}
                 value={e.value}
                 onClick={() => setSelection(e.value)}
@@ -116,7 +125,8 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
                 {e.element}
             </option>
         })
-    },[options, setSelection]);
+        return result;
+    },[options, setSelection, fetchOptions, orderOptions]);
 
     let style_: CSSProperties = {};
     setAccentStyle(style_, {accent, accentLight, accentDark});
