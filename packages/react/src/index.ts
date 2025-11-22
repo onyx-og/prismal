@@ -31,6 +31,7 @@ import {InputRefType} from "./components/Form/types";
 import LazyItem from "./components/LazyItem";
 import ParallaxItem from "./components/ParallaxItem";
 import Pie from "./components/Pie";
+import { Graph, GraphType } from "./components/Graph";
 import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
 
@@ -45,6 +46,7 @@ import {
 export {Container, Text};
 export {Tabs, Accordion};
 export {Pie};
+export {Graph, GraphType};
 export type { SelectOption };
 export { ActionBar };
 export type { ActionBarItemConfig };
