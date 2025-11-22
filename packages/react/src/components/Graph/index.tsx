@@ -52,8 +52,11 @@ export const Graph: FC<GraphProps> = (props) => {
 
     const { ChartComponent, chartProps } = useGraph({ ...props, ...dimensions });
 
+    let className_ = 'graph-container';
+    if (className) className_ = `${className_} ${className}`;
+
     return (
-        <div className={`graph-container ${className}`}>
+        <div className={className_}>
             {title && <h3 className="graph-title">{title}</h3>}
             <div ref={containerRef} className="graph-chart-area">
                 {dimensions.width > 0 && dimensions.height > 0 && chartProps && <ChartComponent {...chartProps} />}

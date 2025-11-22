@@ -66,10 +66,8 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
         }
     }, []);
     const [shouldScroll, setShouldScroll] = useState(false);
-    const [style, setStyle] = useState<CSSProperties>(onClick
-        ? { cursor: "pointer" }
-        : {}
-    );
+    const [isPlaying, setIsPlaying] = useState(true);
+
     const containerRef = useRef<HTMLDivElement>(null);
     const [isSetContainerRef, markSetContainerRef] = useState(false);
     /**
@@ -86,12 +84,8 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
 
     // Expose pause and play methods to parent via ref
     useImperativeHandle(ref, () => ({
-        pause: () => {
-            if (marqueeRef.current) setStyle({ ...style, animationPlayState: "paused" });
-        },
-        play: () => {
-            if (marqueeRef.current) setStyle({ ...style, animationPlayState: "running" });
-        }
+        pause: () => setIsPlaying(false),
+        play: () => setIsPlaying(true)
     }));
 
     useEffect(() => {
@@ -118,11 +112,14 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
 
     }, [isSetMarqueeRef, isSetContainerRef]);
 
-    useEffect(() => {
-        setStyle(shouldScroll
-            ? { ...style, animation: `marquee ${10 / speed}s linear infinite`, whiteSpace: "nowrap" }
-            : { ...style, whiteSpace: "nowrap" })
-    }, [shouldScroll, speed, style]);
+    const style: CSSProperties = {
+        ...(onClick ? { cursor: "pointer" } : {}),
+        whiteSpace: "nowrap",
+        ...(shouldScroll ? {
+            animation: `marquee ${10 / speed}s linear infinite`,
+            animationPlayState: isPlaying ? "running" : "paused"
+        } : {})
+    };
 
     /**
      * @function handleMouseEnter
@@ -130,7 +127,7 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
      */
     const handleMouseEnter = () => {
         if (pauseOnHover) {
-            setStyle({ ...style, animationPlayState: "paused" });
+            setIsPlaying(false);
         }
     };
 
@@ -140,7 +137,7 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
      */
     const handleMouseLeave = () => {
         if (pauseOnHover) {
-            setStyle({ ...style, animationPlayState: "running" })
+            setIsPlaying(true);
         }
     };
 
