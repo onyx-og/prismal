@@ -10,23 +10,23 @@ import { setBorderRadius, setPadding, setBoxElevation } from '../../utils';
 /**
  * @typedef {object} CardProps
  * @description Props for the Card component.
- * @property {ReactNode} [header] The content for the card's header section.
- * @property {string} [headerClass] Additional CSS class for the header.
- * @property {ReactNode} [footer] The content for the card's footer section.
- * @property {string} [footerClass] Additional CSS class for the footer.
- * @property {ReactNode} [children] The main content of the card (body).
- * @property {string} [bodyClass] Additional CSS class for the body.
- * @property {"vertical" | "horizontal"} [orientation="vertical"] The orientation of the card layout.
- * @property {"none" | 'xs' | "s" | 'm' | 'l'} [padding='s'] The padding size for the card content.
  */
-export interface CardProps extends ComponentProps  {
+export interface CardProps extends ComponentProps {
+    /** The content for the card's header section. */
     header?: ReactNode;
+    /** Additional CSS class for the header. */
     headerClass?: string;
+    /** The content for the card's footer section. */
     footer?: ReactNode;
+    /** Additional CSS class for the footer. */
     footerClass?: string;
+    /** The main content of the card (body). */
     children?: ReactNode; // Card content
+    /** Additional CSS class for the body. */
     bodyClass?: string;
+    /** The orientation of the card layout. */
     orientation?: "vertical" | "horizontal";
+    /** The padding size for the card content. */
     padding?: "none" | 'xs' | "s" | 'm' | 'l';
 }
 
@@ -40,7 +40,7 @@ export interface CardProps extends ComponentProps  {
  *   <p>This is the card content.</p>
  * </Card>
  */
-const Card: FC<CardProps> = ( props ) => {
+const Card: FC<CardProps> = (props) => {
     const {
         "data-id": dataId,
         header, headerClass,
@@ -57,12 +57,12 @@ const Card: FC<CardProps> = ( props ) => {
     if (className) cardClass = `${cardClass} ${className}`;
     cardClass = `${cardClass} prismal-card-${orientation[0]}`;
 
-    let style_: {[key: string]: any} = {...style};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
+    let style_: { [key: string]: any } = { ...style };
+    setAccentStyle(style_, { accent, accentLight, accentDark });
     if (borderRadius) setBorderRadius(style_, borderRadius);
     setBoxElevation(style_, elevation);
     setPadding(style_, padding);
-    
+
     /**
      * @member header_
      * @description Memoized header element.
@@ -79,7 +79,7 @@ const Card: FC<CardProps> = ( props ) => {
             </div>
         }
         return null;
-    },[header, headerClass]);
+    }, [header, headerClass]);
 
     /**
      * @member body
@@ -97,7 +97,7 @@ const Card: FC<CardProps> = ( props ) => {
             </div>
         }
         return null;
-    },[children, bodyClass]);
+    }, [children, bodyClass]);
 
     /**
      * @member footer_
@@ -115,7 +115,7 @@ const Card: FC<CardProps> = ( props ) => {
             </div>
         }
         return null;
-    },[footer, footerClass]);
+    }, [footer, footerClass]);
 
     return <div data-id={dataId}
         className={cardClass}

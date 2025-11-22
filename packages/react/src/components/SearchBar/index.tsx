@@ -1,4 +1,4 @@
-import {FC, useState, useMemo, useRef, useCallback, useEffect } from 'react';
+import { FC, useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import './index.scss';
 
 import TextInput from 'components/Form/TextInput';
@@ -9,19 +9,19 @@ import ComponentProps from '../Component';
 /**
  * @typedef {object} SearchBarProps
  * @description Props for the SearchBar component.
- * @property {boolean} [disabled=false] If true, the search bar is disabled.
- * @property {string} [placeholder='Search'] The placeholder text for the search input.
- * @property {string} [value=''] The initial value of the search input.
- * @property {(query: string) => void} [onSearch] Callback function fired when a search is performed.
- * @property {"outer-after" | "outer-before" | "inner-after" | "inner-before"} [btnPosition="outer-after"] The position of the search button.
- * @property {"default" | "primary"} [type="default"] The visual style of the search bar.
  */
 export interface SearchBarProps extends ComponentProps {
+    /** If true, the search bar is disabled. */
     disabled?: boolean;
+    /** The placeholder text for the search input. */
     placeholder?: string;
+    /** The initial value of the search input. */
     value?: string;
+    /** Callback function fired when a search is performed. */
     onSearch?: (query: string) => void;
+    /** The position of the search button. */
     btnPosition?: "outer-after" | "outer-before" | "inner-after" | "inner-before";
+    /** The visual style of the search bar. */
     type?: "default" | "primary";
 }
 
@@ -33,7 +33,7 @@ export interface SearchBarProps extends ComponentProps {
  * @example
  * <SearchBar placeholder="Search for items..." onSearch={(query) => console.log(query)} />
  */
-const SearchBar: FC<SearchBarProps> = ( props ) => {
+const SearchBar: FC<SearchBarProps> = (props) => {
     const {
         placeholder = 'Search',
         value = '',
@@ -51,8 +51,8 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
 
 
     const inputRef = useRef<InputRefType>(null)
-    const [ query, setQuery ] = useState<string | undefined>(value);
-    const [ btnDisabled, setDisableState ] = useState(true);
+    const [query, setQuery] = useState<string | undefined>(value);
+    const [btnDisabled, setDisableState] = useState(true);
 
     // FIX: Replaced `NodeJS.Timeout` with `ReturnType<typeof setTimeout>` for browser compatibility.
     const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -63,12 +63,12 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
      * @param {any} value The input value.
      * @returns {() => void} A cleanup function to clear the timeout.
      */
-    const prepareSearch = useCallback( (value: any) => {
-        if ( !!!value ) setDisableState(true)
+    const prepareSearch = useCallback((value: any) => {
+        if (!!!value) setDisableState(true)
         else setDisableState(false)
-        if ( value !== query ) {
+        if (value !== query) {
             if (timeoutId.current) clearTimeout(timeoutId.current);
-            timeoutId.current = setTimeout( () => {
+            timeoutId.current = setTimeout(() => {
                 setQuery(value)
             }, 1500)
         }
@@ -81,14 +81,14 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
      * @function doSearch
      * @description Immediately performs the search with the current input value.
      */
-    const doSearch = useCallback( () => {
+    const doSearch = useCallback(() => {
         if (inputRef.current?.element) {
             if (timeoutId.current) window.clearTimeout(timeoutId.current);
             setQuery((inputRef.current.element as HTMLInputElement).value);
         }
     }, [inputRef]);
 
-    useEffect( () => {
+    useEffect(() => {
         if (query && onSearch) {
             onSearch(query);
         }
@@ -102,8 +102,8 @@ const SearchBar: FC<SearchBarProps> = ( props ) => {
         accent={accent}
         accentDark={accentDark}
         accentLight={accentLight}
-    />,[doSearch, btnDisabled, type, accent, accentDark, accentLight, btnPosition]);
-    
+    />, [doSearch, btnDisabled, type, accent, accentDark, accentLight, btnPosition]);
+
     return <div className={componentClass}>
         {btnPosition == "outer-before" ? searchBtn : undefined}
         <TextInput htmlType='text'

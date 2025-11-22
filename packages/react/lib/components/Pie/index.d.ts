@@ -7,13 +7,13 @@ import { FC } from "react";
 /**
  * @typedef {object} PieChartProps
  * @description Props for the Pie chart component.
- * @property {string} [name] A name for the chart.
- * @property {number} [size=220] The size (width and height) of the pie chart.
- * @property {Array<{name?: string, percentage: number, color?: string, label?: string}>} data The data for the pie chart slices.
  */
 export interface PieChartProps extends ComponentProps {
+    /** A name for the chart. */
     name?: string;
+    /** The size (width and height) of the pie chart. */
     size?: number;
+    /** The data for the pie chart slices. */
     data: {
         name?: string;
         percentage: number;

@@ -1,35 +1,35 @@
 import './index.scss';
-import {ReactNode, FC, useMemo} from 'react';
+import { ReactNode, FC, useMemo } from 'react';
 import ActionBar, { ActionBarItemConfig } from 'components/ActionBar';
 import Button from 'components/Button';
-import {createPortal} from 'react-dom';
+import { createPortal } from 'react-dom';
 import ComponentProps from '../Component';
 import Card from 'components/Card';
 
 /**
  * @typedef {object} ModalProps
  * @description Props for the Modal component.
- * @property {string} [areaId] The ID of the DOM element where the modal should be rendered (portaled).
- * @property {ReactNode} [header] Custom header content for the modal.
- * @property {ReactNode} [footer] Custom footer content for the modal.
- * @property {string} [bgClassName] Additional CSS class for the modal background overlay.
- * @property {string} [fgClassName] Additional CSS class for the modal foreground (the modal itself).
- * @property {string} [title] The title to be displayed in the modal header.
- * @property {ReactNode} [children] The main content of the modal.
- * @property {boolean} [visible=false] Controls the visibility of the modal.
- * @property {() => void} [closeModal] Callback function to close the modal.
- * @property {boolean} [showClose=true] If true, shows the close button in the header.
  */
 export interface ModalProps extends ComponentProps {
+    /** The ID of the DOM element where the modal should be rendered (portaled). */
     areaId?: string;
+    /** Custom header content for the modal. */
     header?: ReactNode;
+    /** Custom footer content for the modal. */
     footer?: ReactNode;
+    /** Additional CSS class for the modal background overlay. */
     bgClassName?: string;
+    /** Additional CSS class for the modal foreground (the modal itself). */
     fgClassName?: string;
+    /** The title to be displayed in the modal header. */
     title?: string;
+    /** The main content of the modal. */
     children?: ReactNode;
+    /** Controls the visibility of the modal. */
     visible?: boolean;
+    /** Callback function to close the modal. */
     closeModal?: () => void;
+    /** If true, shows the close button in the header. */
     showClose?: boolean;
 };
 
@@ -85,7 +85,7 @@ const Modal: FC<ModalProps> = (props) => {
             key: 'close-modal'
         });
         return items;
-    },[title, showClose, closeModal, accent, accentLight, accentDark]);
+    }, [title, showClose, closeModal, accent, accentLight, accentDark]);
 
     const {
         header = <ActionBar

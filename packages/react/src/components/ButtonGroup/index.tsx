@@ -12,13 +12,13 @@ import "./index.scss";
 /**
  * @typedef {object} ButtonGroupProps
  * @description Props for the ButtonGroup component.
- * @property {ReactElement<ButtonProps>[] | ReactElement<ButtonProps>} children The Button components to group.
- * @property {"row" | "column"} [orientation="row"] The orientation of the button group.
- * @property {'default' | 'primary' | 'text'} [type='default'] The visual style to apply to all buttons in the group.
  */
 export interface ButtonGroupProps extends ComponentProps {
+    /** The Button components to group. */
     children: ReactElement<ButtonProps>[] | ReactElement<ButtonProps>;
+    /** The orientation of the button group. */
     orientation?: "row" | "column";
+    /** The visual style to apply to all buttons in the group. */
     type?: 'default' | 'primary' | 'text';
 }
 
@@ -52,13 +52,13 @@ const ButtonGroup: FC<ButtonGroupProps> = (props) => {
     setAccentStyle(style_, { accent, accentLight, accentDark });
     setBorderRadius(style_, borderRadius);
     // Merge and override with provided style
-    style_ = {...style_, ...style};
+    style_ = { ...style_, ...style };
 
     const childrenWithProps = Children.map(children, child => {
         // Check if the child is a valid React element before cloning
         if (isValidElement(child)) {
             // Use cloneElement to add the new prop to each child
-            return reCloneChildren(child, Button,{ type, elevation, borderRadius });
+            return reCloneChildren(child, Button, { type, elevation, borderRadius });
         }
         return child;
     });

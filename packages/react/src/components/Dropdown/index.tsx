@@ -9,24 +9,24 @@ import { setBorderRadius } from 'utils/';
 /**
  * @typedef {object} SelectOption
  * @description Represents an option in a select-like component.
- * @property {string} label The display label for the option.
- * @property {string} value The value of the option.
- * @property {boolean} [selected] Whether the option is selected.
  */
 export type SelectOption = {
+    /** The display label for the option. */
     label: string;
+    /** The value of the option. */
     value: string;
+    /** Whether the option is selected. */
     selected?: boolean;
 }
 
 /**
  * @typedef {object} DropdownProps
  * @description Props for the Dropdown component.
- * @property {ReactNode} children The content to display within the dropdown.
- * @property {ReactNode} [toggleElement] The element that toggles the dropdown's visibility.
  */
 export interface DropdownProps extends ComponentProps {
+    /** The content to display within the dropdown. */
     children: ReactNode;
+    /** The element that toggles the dropdown's visibility. */
     toggleElement?: ReactNode;
 }
 
@@ -40,7 +40,7 @@ export interface DropdownProps extends ComponentProps {
  *   <p>Dropdown content.</p>
  * </Dropdown>
  */
-const Dropdown: FC<DropdownProps> = ( props ) => {
+const Dropdown: FC<DropdownProps> = (props) => {
     const {
         toggleElement,
         children,
@@ -48,14 +48,14 @@ const Dropdown: FC<DropdownProps> = ( props ) => {
         accent, accentLight, accentDark,
         borderRadius
     } = props;
-    
+
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-    let style_: {[key: string]: any} = {};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
+    let style_: { [key: string]: any } = {};
+    setAccentStyle(style_, { accent, accentLight, accentDark });
     setBorderRadius(style_, borderRadius);
 
-    if (style) style_ = {...style_, ...style};
+    if (style) style_ = { ...style_, ...style };
 
     let className_ = 'prismal-dropdown';
     if (className) className_ = `${className_} ${className}`;
@@ -71,7 +71,7 @@ const Dropdown: FC<DropdownProps> = ( props ) => {
         }
     }, [toggleElement]);
 
-    return <div 
+    return <div
         className={className_}
         style={style_}
     >
@@ -83,7 +83,7 @@ const Dropdown: FC<DropdownProps> = ( props ) => {
             </div>
         </div>
     </div>
-        
+
 }
 
 export default Dropdown;

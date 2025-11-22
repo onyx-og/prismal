@@ -12,14 +12,11 @@ type Ratio = "5-2" | "9-2" | "5-4" | "16-9" | "16-3" | "18-9" | "20-6" | "20-8" 
 /**
  * @typedef {object} ContainerProps
  * @description Props for the Container component.
- * @property {ReactNode} [children] The content to be rendered inside the container.
- * @property {object | Ratio} [ratio] The aspect ratio of the container, can be a single value or responsive object.
- * @property {object | number} [span] The column span of the container in a grid layout.
- * @property {object | boolean} [hide=false] Controls the visibility of the container, can be responsive.
- * @property {"circle"} [cursor] The type of custom cursor to display within the container.
  */
 export interface ContainerProps extends ComponentProps {
+    /** The content to be rendered inside the container. */
     children?: ReactNode;
+    /** The aspect ratio of the container, can be a single value or responsive object. */
     ratio?: {
         xs?: Ratio,
         sm?: Ratio,
@@ -27,6 +24,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: Ratio,
         xl?: Ratio,
     } | Ratio;
+    /** The column span of the container in a grid layout. */
     span?: {
         xs?: number,
         sm?: number,
@@ -34,6 +32,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: number,
         xl?: number,
     } | number;
+    /** Controls the visibility of the container, can be responsive. */
     hide?: {
         xs?: boolean,
         sm?: boolean,
@@ -41,6 +40,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: boolean,
         xl?: boolean,
     } | boolean;
+    /** The type of custom cursor to display within the container. */
     cursor?: "circle",
 }
 
@@ -72,7 +72,7 @@ const Container: FC<ContainerProps> = (props) => {
         if (className) className_ = `${className_} ${className}`;
 
         if (ratio) {
-            if (typeof ratio =="string") {
+            if (typeof ratio == "string") {
                 className_ = `${className_} prismal-ratio-${ratio}`;
             } else if (typeof ratio == "object") {
                 if (ratio.xs) className_ = `${className_} prismal-ratio-xs-${ratio.xs}`;
@@ -84,7 +84,7 @@ const Container: FC<ContainerProps> = (props) => {
         }
 
         if (span) {
-            if (typeof span =="number") {
+            if (typeof span == "number") {
                 className_ = `${className_} prismal-span-${span}`;
             } else if (typeof span == "object") {
                 if (span.xs) className_ = `${className_} prismal-span-xs-${span.xs}`;
@@ -96,7 +96,7 @@ const Container: FC<ContainerProps> = (props) => {
         }
 
         if (hide) {
-            if (typeof hide =="boolean") {
+            if (typeof hide == "boolean") {
                 if (hide) className_ = `${className_} prismal-hide`;
                 // else className_ = `${className_} prismal-show`;
             } else if (typeof hide == "object") {
@@ -120,9 +120,9 @@ const Container: FC<ContainerProps> = (props) => {
     }, [className, ratio, span, hide]);
 
     let style_: CSSProperties = {};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
+    setAccentStyle(style_, { accent, accentLight, accentDark });
 
-    if (style) style_ = {...style_, ...style};
+    if (style) style_ = { ...style_, ...style };
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -130,10 +130,10 @@ const Container: FC<ContainerProps> = (props) => {
 
     const memoizedChildren = useMemo(() => children, [children]);
 
-    return <div ref={containerRef} data-id={dataId} style={style_} 
+    return <div ref={containerRef} data-id={dataId} style={style_}
         className={className_}>
-            {memoizedChildren}
-            <Cursor positionRef={cursorPositionRef} />
+        {memoizedChildren}
+        <Cursor positionRef={cursorPositionRef} />
     </div>
 };
 

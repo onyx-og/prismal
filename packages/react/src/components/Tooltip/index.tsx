@@ -7,11 +7,11 @@ import { ReactNode, FC } from "react";
 /**
  * @typedef {object} TooltipProps
  * @description Props for the Tooltip component.
- * @property {ReactNode} [children] The element that the tooltip is attached to.
- * @property {string} text The text to display in the tooltip.
  */
 export interface TooltipProps extends ComponentProps {
+    /** The element that the tooltip is attached to. */
     children?: ReactNode; // content
+    /** The text to display in the tooltip. */
     text: string;
 }
 
@@ -27,15 +27,15 @@ export interface TooltipProps extends ComponentProps {
  */
 const Tooltip: FC<TooltipProps> = (props) => {
     const {
-        children,text,
+        children, text,
         className, style,
         borderRadius
     } = props;
 
-    let style_: {[key: string]: any} = {};
-    if(borderRadius) setBorderRadius(style_, borderRadius);
+    let style_: { [key: string]: any } = {};
+    if (borderRadius) setBorderRadius(style_, borderRadius);
 
-    if (style) style_ = {...style_, ...style};
+    if (style) style_ = { ...style_, ...style };
 
     let className_ = 'prismal-tooltip';
     if (className) className_ = `${className_} ${className}`;

@@ -5,40 +5,40 @@ import { InputHTMLAttributes, ReactNode } from 'react';
 /**
  * @typedef {object} InputProps
  * @description Base props for form input components.
- * @property {string} [id] The ID of the input element.
- * @property {string} [name] The name of the input element.
- * @property {string} [label] The label text for the input.
- * @property {string} [labelClass] Additional CSS class for the label.
- * @property {string | null} [labelSeparator] Separator character to display after the label.
- * @property {"after" | "before"} [labelPosition] The position of the label relative to the input.
- * @property {string | ReactNode} [placeholder] Placeholder text or element.
- * @property {string} [title] The title attribute for the input.
- * @property {boolean} [inline] If true, the input is displayed inline.
- * @property {boolean} [disabled] If true, the input is disabled.
- * @property {boolean} [required] If true, the input is required.
- * @property {boolean} [readOnly] If true, the input is read-only.
- * @property {string | number} [value] The value of the input.
- * @property {(arg?: any) => void} [onChange] Callback for when the input value changes.
- * @property {(arg?: string | number | boolean) => boolean | string} [validator] A function to validate the input's value.
- * @property {object | React.CSSProperties["gridArea"]} [gridPlacement] Defines the grid placement for the input.
  */
 export interface InputProps extends ComponentProps {
+    /** The ID of the input element. */
     id?: string;
+    /** The name of the input element. */
     name?: string;
+    /** The label text for the input. */
     label?: string;
+    /** Additional CSS class for the label. */
     labelClass?: string;
+    /** Separator character to display after the label. */
     labelSeparator?: string | null;
+    /** The position of the label relative to the input. */
     labelPosition?: "after" | "before";
     // FIX: Changed `JSX.Element` to `ReactNode` to resolve type error and be more idiomatic.
+    /** Placeholder text or element. */
     placeholder?: string | ReactNode;
+    /** The title attribute for the input. */
     title?: string;
+    /** If true, the input is displayed inline. */
     inline?: boolean;
+    /** If true, the input is disabled. */
     disabled?: boolean;
+    /** If true, the input is required. */
     required?: boolean;
+    /** If true, the input is read-only. */
     readOnly?: boolean;
+    /** The value of the input. */
     value?: string | number;
-    onChange?: ( arg?: any) => void;
-    validator?: ( arg?: string | number | boolean ) => boolean | string;
+    /** Callback for when the input value changes. */
+    onChange?: (arg?: any) => void;
+    /** A function to validate the input's value. */
+    validator?: (arg?: string | number | boolean) => boolean | string;
+    /** Defines the grid placement for the input. */
     gridPlacement?: {
         column?: React.CSSProperties["gridColumn"];
         row?: React.CSSProperties["gridRow"]
@@ -60,18 +60,18 @@ export type Accepted<T> = T extends "file" ? InputHTMLAttributes<HTMLInputElemen
 /**
  * @typedef {object} InputRefType
  * @description The ref object exposed by form input components.
- * @property {boolean} isInputRefType A flag to identify this as an input ref.
- * @property {string} [name] The name of the input.
- * @property {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null} element The DOM element of the input.
- * @property {() => (string | boolean)[]} checkValidity A function to trigger validation.
- * @property {() => (string | boolean)[]} getValidity A function to get the current validation errors.
- * @property {(args?: any) => any} getValue A function to get the current value of the input.
  */
 export type InputRefType = {
+    /** A flag to identify this as an input ref. */
     isInputRefType: boolean;
+    /** The name of the input. */
     name?: string;
+    /** The DOM element of the input. */
     element: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
+    /** A function to trigger validation. */
     checkValidity: () => (string | boolean)[];
+    /** A function to get the current validation errors. */
     getValidity: () => (string | boolean)[];
+    /** A function to get the current value of the input. */
     getValue: (args?: any) => any;
 }

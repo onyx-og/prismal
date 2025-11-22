@@ -4,24 +4,24 @@ import ComponentProps from '../Component';
 /**
  * @typedef {object} FormProps
  * @description Props for the Form component.
- * @property {ReactElement | ReactElement[]} children The input elements to be included in the form.
- * @property {string} [name] The name of the form.
- * @property {JSX.Element} [submit] A custom submit button element.
- * @property {(formData: {[key:string]: any}) => void} [onSubmit] Callback function executed on form submission with valid data.
- * @property {object | CSSProperties["gridTemplate"]} [gridTemplate] Defines the grid layout for form fields.
- * @property {object | CSSProperties["gap"]} [gridGap="0.5rem"] Defines the gap between grid items.
  */
 export interface FormProps extends ComponentProps {
+    /** The input elements to be included in the form. */
     children: ReactElement | ReactElement[];
+    /** The name of the form. */
     name?: string;
+    /** A custom submit button element. */
     submit?: JSX.Element;
+    /** Callback function executed on form submission with valid data. */
     onSubmit?: (formData: {
         [key: string]: any;
     }) => void;
+    /** Defines the grid layout for form fields. */
     gridTemplate?: {
         cols?: CSSProperties["gridTemplateColumns"];
         rows?: CSSProperties["gridTemplateRows"];
     } | CSSProperties["gridTemplate"];
+    /** Defines the gap between grid items. */
     gridGap?: {
         column?: CSSProperties["columnGap"];
         row?: CSSProperties["rowGap"];

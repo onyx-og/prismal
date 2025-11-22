@@ -21,16 +21,15 @@ type MarqueeRef = {
 /**
  * @typedef {object} MarqueeProps
  * @description Props for the Marquee component.
- * @property {ReactNode} children The content to be scrolled.
- * @property {boolean} [pauseOnHover=true] If true, the animation pauses on mouse hover.
- * @property {number} [speed=8] A decimal from 0 to 1 representing the scroll speed.
- * @property {() => void} [onClick] Click event handler for the marquee.
  */
 export interface MarqueeProps extends ComponentProps {
+    /** The content to be scrolled. */
     children: ReactNode;
+    /** If true, the animation pauses on mouse hover. */
     pauseOnHover?: boolean;
-    /** Decimal from 0 to 1 */
+    /** A decimal from 0 to 1 representing the scroll speed. */
     speed?: number;
+    /** Click event handler for the marquee. */
     onClick?: () => void;
 }
 

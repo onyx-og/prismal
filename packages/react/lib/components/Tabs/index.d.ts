@@ -4,80 +4,80 @@ import ComponentProps from "../Component";
 /**
  * @typedef {object} TabConfig
  * @description Configuration for a single tab.
- * @property {string | number} name A unique name for the tab.
- * @property {string} [iconName] The name of an icon to display in the tab.
- * @property {string} label The text label for the tab.
- * @property {boolean} [disabled] If true, the tab is disabled.
- * @property {boolean} [default] If true, this tab is selected by default.
- * @property {string} [className] Additional CSS class for the tab.
  */
 export type TabConfig = {
+    /** A unique name for the tab. */
     name: string | number;
+    /** The name of an icon to display in the tab. */
     iconName?: string;
+    /** The text label for the tab. */
     label: string;
+    /** If true, the tab is disabled. */
     disabled?: boolean;
+    /** If true, this tab is selected by default. */
     default?: boolean;
+    /** Additional CSS class for the tab. */
     className?: string;
     [otherProp: string]: any;
 };
 /**
  * @typedef {object} TabContainerProps
  * @description Props for the TabContainer component.
- * @property {number} index The index of the tab.
- * @property {boolean} isSelected Whether the tab is selected.
- * @property {(tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number)=>void) => ReactNode} tabRenderer The function to render the tab.
- * @property {TabConfig} config The configuration for the tab.
- * @property {string} [className] Additional CSS class.
- * @property {(selected: TabConfig["name"]) => void} setSelected Function to set the selected tab.
  */
 interface TabContainerProps {
+    /** The index of the tab. */
     index: number;
+    /** Whether the tab is selected. */
     isSelected: boolean;
+    /** The function to render the tab. */
     tabRenderer: (tab: TabConfig, index: number, isSelected: boolean, setSelected: (selected: string | number) => void) => ReactNode;
+    /** The configuration for the tab. */
     config: TabConfig;
+    /** Additional CSS class. */
     className?: string;
+    /** Function to set the selected tab. */
     setSelected: (selected: TabConfig["name"]) => void;
 }
 /**
  * @typedef {object} TabContentProps
  * @description Props for tab content elements.
- * @property {string | number} data-tab The name of the tab this content belongs to.
  */
 interface TabContentProps {
+    /** The name of the tab this content belongs to. */
     'data-tab': string | number;
 }
 /**
  * @typedef {object} TabsProps
  * @description Props for the Tabs component.
- * @property {TabConfig[]} data The configuration data for all tabs.
- * @property {TabContainerProps["tabRenderer"]} [tabRenderer] A custom function to render tabs.
- * @property {(currentTab: string | number) => void} [onChange] Callback fired when the selected tab changes.
- * @property {ReactElement<TabContentProps>[]} [children] Child elements representing tab content.
- * @property {{[tabName: string]: ReactNode}} [content] An object mapping tab names to content nodes.
- * @property {(tabName: string | number) => ReactNode} [contentRenderer] A function to render tab content.
- * @property {string} [tabsClass] Additional CSS class for the tabs container.
- * @property {string} [tabContentClass] Additional CSS class for the tab content container.
- * @property {string} [tabClass] Additional CSS class for individual tabs.
  */
 export interface TabsProps extends ComponentProps {
+    /** The configuration data for all tabs. */
     data: TabConfig[];
+    /** A custom function to render tabs. */
     tabRenderer?: TabContainerProps["tabRenderer"];
+    /** Callback fired when the selected tab changes. */
     onChange?: (currentTab: string | number) => void;
+    /** Child elements representing tab content. */
     children?: ReactElement<TabContentProps>[];
+    /** An object mapping tab names to content nodes. */
     content?: {
         [tabName: string]: ReactNode;
     };
+    /** A function to render tab content. */
     contentRenderer?: (tabName: string | number) => ReactNode;
+    /** Additional CSS class for the tabs container. */
     tabsClass?: string;
+    /** Additional CSS class for the tab content container. */
     tabContentClass?: string;
+    /** Additional CSS class for individual tabs. */
     tabClass?: string;
 }
 /**
  * @typedef {object} TabRef
  * @description The ref object exposed by the Tabs component.
- * @property {string | number} name The name of the currently selected tab.
  */
 export type TabRef = {
+    /** The name of the currently selected tab. */
     name: string | number;
 };
 /**

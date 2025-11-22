@@ -9,162 +9,162 @@ import ComponentProps from '../Component';
 /**
  * @typedef {object} ProcessedListProps
  * @description Props for a List component that processes data.
- * @property {any[]} data The array of data to be processed and displayed.
- * @property {number} [pageSize] The number of items to display per page.
- * @property {number} [page] The initial page number.
- * @property {boolean} [infiniteScroll] If true, enables infinite scrolling.
- * @property {ReactNode} [header] Content to display above the list.
- * @property {string} [headerClassName] CSS class for the header.
- * @property {ReactNode} [footer] Content to display below the list.
- * @property {string} [footerClassName] CSS class for the footer.
- * @property {boolean} [showPageCtrl] If true, shows pagination controls.
- * @property {boolean} [showExtremesCtrl] If true, shows first/last page controls.
- * @property {ListProcessor} listProcessor A function to process and render list items.
- * @property {(arg: any) => void} [onProcessEnd] Callback fired after data processing.
- * @property {'list'} [view] The view type.
- * @property {'process'} type The list type.
- * @property {'s' | 'm' | 'l'} [padding] The padding size for the list.
  */
 export interface ProcessedListProps extends ComponentProps {
+    /** The array of data to be processed and displayed. */
     data: any[];
+    /** The number of items to display per page. */
     pageSize?: number;
+    /** The initial page number. */
     page?: number;
+    /** If true, enables infinite scrolling. */
     infiniteScroll?: boolean;
+    /** Content to display above the list. */
     header?: ReactNode;
+    /** CSS class for the header. */
     headerClassName?: string;
+    /** Content to display below the list. */
     footer?: ReactNode;
+    /** CSS class for the footer. */
     footerClassName?: string;
+    /** If true, shows pagination controls. */
     showPageCtrl?: boolean;
+    /** If true, shows first/last page controls. */
     showExtremesCtrl?: boolean;
+    /** A function to process and render list items. */
     listProcessor: ListProcessor;
+    /** Callback fired after data processing. */
     onProcessEnd?: (arg: any) => void;
+    /** The view type. */
     view?: 'list';
+    /** The list type. */
     type: 'process';
+    /** The padding size for the list. */
     padding?: 's' | 'm' | 'l';
 }
 /**
  * @typedef {object} RawListProps
  * @description Props for a List component that displays raw children.
- * @property {number} [pageSize] The number of items to display per page.
- * @property {number} [page] The initial page number.
- * @property {boolean} [infiniteScroll] If true, enables infinite scrolling.
- * @property {ReactNode} [header] Content to display above the list.
- * @property {string} [headerClassName] CSS class for the header.
- * @property {ReactNode} [footer] Content to display below the list.
- * @property {string} [footerClassName] CSS class for the footer.
- * @property {boolean} [showPageCtrl] If true, shows pagination controls.
- * @property {boolean} [showExtremesCtrl] If true, shows first/last page controls.
- * @property {ReactNode[]} children The array of nodes to display.
- * @property {'list'} [view] The view type.
- * @property {'raw'} type The list type.
- * @property {'s' | 'm' | 'l'} [padding] The padding size for the list.
  */
 export interface RawListProps extends ComponentProps {
+    /** The number of items to display per page. */
     pageSize?: number;
+    /** The initial page number. */
     page?: number;
+    /** If true, enables infinite scrolling. */
     infiniteScroll?: boolean;
+    /** Content to display above the list. */
     header?: ReactNode;
+    /** CSS class for the header. */
     headerClassName?: string;
+    /** Content to display below the list. */
     footer?: ReactNode;
+    /** CSS class for the footer. */
     footerClassName?: string;
+    /** If true, shows pagination controls. */
     showPageCtrl?: boolean;
+    /** If true, shows first/last page controls. */
     showExtremesCtrl?: boolean;
+    /** The array of nodes to display. */
     children: ReactNode[];
+    /** The view type. */
     view?: 'list';
+    /** The list type. */
     type: 'raw';
+    /** The padding size for the list. */
     padding?: 's' | 'm' | 'l';
 }
 export type ListProps = ProcessedListProps | RawListProps;
 /**
  * @typedef {object} ProcessedGridProps
  * @description Props for a Grid component that processes data.
- * @property {any[]} data The array of data to be processed and displayed.
- * @property {number} [pageSize] The number of items to display per page.
- * @property {number} [page] The initial page number.
- * @property {boolean} [infiniteScroll] If true, enables infinite scrolling.
- * @property {ReactNode} [header] Content to display above the grid.
- * @property {string} [headerClassName] CSS class for the header.
- * @property {ReactNode} [footer] Content to display below the grid.
- * @property {string} [footerClassName] CSS class for the footer.
- * @property {boolean} [showPageCtrl] If true, shows pagination controls.
- * @property {boolean} [showExtremesCtrl] If true, shows first/last page controls.
- * @property {ListProcessor} listProcessor A function to process and render grid items.
- * @property {(arg: any) => void} [onProcessEnd] Callback fired after data processing.
- * @property {'grid'} [view] The view type.
- * @property {'process'} type The list type.
- * @property {'s' | 'm' | 'l'} [padding] The padding size for the grid.
- * @property {number} [cols] The number of columns in the grid.
- * @property {number} [xsCols] The number of columns for extra small screens.
- * @property {number} [smCols] The number of columns for small screens.
- * @property {number} [mdCols] The number of columns for medium screens.
- * @property {number} [lgCols] The number of columns for large screens.
- * @property {number} [xlCols] The number of columns for extra large screens.
  */
 export interface ProcessedGridProps extends ComponentProps {
+    /** The array of data to be processed and displayed. */
     data: any[];
+    /** The number of items to display per page. */
     pageSize?: number;
+    /** The initial page number. */
     page?: number;
+    /** If true, enables infinite scrolling. */
     infiniteScroll?: boolean;
+    /** Content to display above the grid. */
     header?: ReactNode;
+    /** CSS class for the header. */
     headerClassName?: string;
+    /** Content to display below the grid. */
     footer?: ReactNode;
+    /** CSS class for the footer. */
     footerClassName?: string;
+    /** If true, shows pagination controls. */
     showPageCtrl?: boolean;
+    /** If true, shows first/last page controls. */
     showExtremesCtrl?: boolean;
+    /** A function to process and render grid items. */
     listProcessor: ListProcessor;
+    /** Callback fired after data processing. */
     onProcessEnd?: (arg: any) => void;
+    /** The view type. */
     view?: 'grid';
+    /** The list type. */
     type: 'process';
+    /** The padding size for the grid. */
     padding?: 's' | 'm' | 'l';
+    /** The number of columns in the grid. */
     cols?: number;
+    /** The number of columns for extra small screens. */
     xsCols?: number;
+    /** The number of columns for small screens. */
     smCols?: number;
+    /** The number of columns for medium screens. */
     mdCols?: number;
+    /** The number of columns for large screens. */
     lgCols?: number;
+    /** The number of columns for extra large screens. */
     xlCols?: number;
 }
 /**
  * @typedef {object} RawGridProps
  * @description Props for a Grid component that displays raw children.
- * @property {number} [pageSize] The number of items to display per page.
- * @property {number} [page] The initial page number.
- * @property {boolean} [infiniteScroll] If true, enables infinite scrolling.
- * @property {ReactNode} [header] Content to display above the grid.
- * @property {string} [headerClassName] CSS class for the header.
- * @property {ReactNode} [footer] Content to display below the grid.
- * @property {string} [footerClassName] CSS class for the footer.
- * @property {boolean} [showPageCtrl] If true, shows pagination controls.
- * @property {boolean} [showExtremesCtrl] If true, shows first/last page controls.
- * @property {ReactNode[]} children The array of nodes to display.
- * @property {'grid'} [view] The view type.
- * @property {'raw'} type The list type.
- * @property {'s' | 'm' | 'l'} [padding] The padding size for the grid.
- * @property {number} [cols] The number of columns in the grid.
- * @property {number} [xsCols] The number of columns for extra small screens.
- * @property {number} [smCols] The number of columns for small screens.
- * @property {number} [mdCols] The number of columns for medium screens.
- * @property {number} [lgCols] The number of columns for large screens.
- * @property {number} [xlCols] The number of columns for extra large screens.
  */
 export interface RawGridProps extends ComponentProps {
+    /** The number of items to display per page. */
     pageSize?: number;
+    /** The initial page number. */
     page?: number;
+    /** If true, enables infinite scrolling. */
     infiniteScroll?: boolean;
+    /** Content to display above the grid. */
     header?: ReactNode;
+    /** CSS class for the header. */
     headerClassName?: string;
+    /** Content to display below the grid. */
     footer?: ReactNode;
+    /** CSS class for the footer. */
     footerClassName?: string;
+    /** If true, shows pagination controls. */
     showPageCtrl?: boolean;
+    /** If true, shows first/last page controls. */
     showExtremesCtrl?: boolean;
+    /** The array of nodes to display. */
     children: ReactNode[];
+    /** The view type. */
     view?: 'grid';
+    /** The list type. */
     type: 'raw';
+    /** The padding size for the grid. */
     padding?: 's' | 'm' | 'l';
+    /** The number of columns in the grid. */
     cols?: number;
+    /** The number of columns for extra small screens. */
     xsCols?: number;
+    /** The number of columns for small screens. */
     smCols?: number;
+    /** The number of columns for medium screens. */
     mdCols?: number;
+    /** The number of columns for large screens. */
     lgCols?: number;
+    /** The number of columns for extra large screens. */
     xlCols?: number;
 }
 export type GridProps = ProcessedGridProps | RawGridProps;

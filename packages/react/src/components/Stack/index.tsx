@@ -1,4 +1,4 @@
-import {CSSProperties, ReactNode, useState, useRef, useCallback, useMemo, FC, useEffect} from "react";
+import { CSSProperties, ReactNode, useState, useRef, useCallback, useMemo, FC, useEffect } from "react";
 import "./index.scss"
 import ComponentProps from "../Component";
 import { setAccentStyle } from "../../utils/colors";
@@ -8,28 +8,28 @@ import { Elevation, setBorderRadius, setElevation } from "../../utils";
 /**
  * @typedef {object} StackElement
  * @description Data structure for an element in the Stack component.
- * @property {string} name The name of the element, used as a key.
- * @property {any} [key] Any other properties for the element.
  */
 type StackElement = {
+    /** The name of the element, used as a key. */
     name: string;
+    /** Any other properties for the element. */
     [key: string]: any;
 }
 
 /**
  * @typedef {object} StackProps
  * @description Props for the Stack component.
- * @property {(elData: StackElement, index: number, isActive: boolean) => ReactNode} [render] A function to render each stack item.
- * @property {StackElement[]} data The array of data for the stack items.
- * @property {"vertical" | "horizontal"} [direction="vertical"] The direction of the stack.
- * @property {CSSProperties["gap"]} [gap="20px"] The gap between stack items.
- * @property {string} [itemContainerClass] Additional CSS class for the item containers.
  */
 export interface StackProps extends ComponentProps {
+    /** A function to render each stack item. */
     render?: (elData: StackElement, index: number, isActive: boolean) => ReactNode;
+    /** The array of data for the stack items. */
     data: StackElement[];
+    /** The direction of the stack. */
     direction?: "vertical" | "horizontal";
+    /** The gap between stack items. */
     gap?: CSSProperties["gap"];
+    /** Additional CSS class for the item containers. */
     itemContainerClass?: string;
 }
 
@@ -51,25 +51,25 @@ const defaultRenderer = (elData: StackElement) => {
 /**
  * @typedef {object} StackItemContainerProps
  * @description Props for the StackItemContainer component.
- * @property {boolean} isActive Whether the item is the active one.
- * @property {CSSProperties["gap"]} [gap] The gap between items.
- * @property {CSSProperties["gap"]} [offset] The offset to apply to the item.
- * @property {(index: number) => void} setOffset A function to set the offset of the active item.
- * @property {(index: number) => void} setActive A function to set the active item.
- * @property {StackElement} itemData The data for the item.
- * @property {number} index The index of the item.
- * @property {"vertical" | "horizontal"} direction The direction of the stack.
- * @property {(elData: StackElement, index: number, isActive: boolean) => ReactNode} itemRenderer The renderer function for the item.
  */
 interface StackItemContainerProps extends ComponentProps {
+    /** Whether the item is the active one. */
     isActive: boolean;
+    /** The gap between items. */
     gap?: CSSProperties["gap"];
+    /** The offset to apply to the item. */
     offset?: CSSProperties["gap"];
+    /** A function to set the offset of the active item. */
     setOffset: (index: number) => void;
+    /** A function to set the active item. */
     setActive: (index: number) => void;
+    /** The data for the item. */
     itemData: StackElement;
+    /** The index of the item. */
     index: number;
+    /** The direction of the stack. */
     direction: "vertical" | "horizontal";
+    /** The renderer function for the item. */
     itemRenderer: (elData: StackElement, index: number, isActive: boolean) => ReactNode;
 }
 
@@ -118,7 +118,7 @@ const StackItemContainer: FC<StackItemContainerProps> = (props) => {
     }, [index, gap, offset, borderRadius]);
 
     let itemContainerClass = `stack-item-container`;
-    if(elevation) itemContainerClass = setElevation(itemContainerClass, elevation);
+    if (elevation) itemContainerClass = setElevation(itemContainerClass, elevation);
     if (isActive) itemContainerClass = `${itemContainerClass} active`;
     if (className) itemContainerClass = `${itemContainerClass} ${className}`;
 
@@ -165,14 +165,14 @@ const Stack: FC<StackProps> = (props) => {
     let stackClass = "prismal-stack";
     if (className) stackClass = `${stackClass} ${className}`;
 
-    const style: {[key: string]: any} = useMemo(() => {
-        let _style: {[key: string]: any} = {
-          height: `calc(${activeOffset}px + ${data.length - 1} * ${gap})`,
+    const style: { [key: string]: any } = useMemo(() => {
+        let _style: { [key: string]: any } = {
+            height: `calc(${activeOffset}px + ${data.length - 1} * ${gap})`,
         }
         _style = setAccentStyle(_style, { accent, accentLight, accentDark });
         return _style;
-    },[activeOffset, gap, data, accent, accentLight, accentDark]);
-      
+    }, [activeOffset, gap, data, accent, accentLight, accentDark]);
+
     return <div className={stackClass} style={style}>
         {stackedItems}
     </div>

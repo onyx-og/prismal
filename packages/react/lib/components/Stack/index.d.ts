@@ -4,27 +4,27 @@ import ComponentProps from "../Component";
 /**
  * @typedef {object} StackElement
  * @description Data structure for an element in the Stack component.
- * @property {string} name The name of the element, used as a key.
- * @property {any} [key] Any other properties for the element.
  */
 type StackElement = {
+    /** The name of the element, used as a key. */
     name: string;
+    /** Any other properties for the element. */
     [key: string]: any;
 };
 /**
  * @typedef {object} StackProps
  * @description Props for the Stack component.
- * @property {(elData: StackElement, index: number, isActive: boolean) => ReactNode} [render] A function to render each stack item.
- * @property {StackElement[]} data The array of data for the stack items.
- * @property {"vertical" | "horizontal"} [direction="vertical"] The direction of the stack.
- * @property {CSSProperties["gap"]} [gap="20px"] The gap between stack items.
- * @property {string} [itemContainerClass] Additional CSS class for the item containers.
  */
 export interface StackProps extends ComponentProps {
+    /** A function to render each stack item. */
     render?: (elData: StackElement, index: number, isActive: boolean) => ReactNode;
+    /** The array of data for the stack items. */
     data: StackElement[];
+    /** The direction of the stack. */
     direction?: "vertical" | "horizontal";
+    /** The gap between stack items. */
     gap?: CSSProperties["gap"];
+    /** Additional CSS class for the item containers. */
     itemContainerClass?: string;
 }
 /**

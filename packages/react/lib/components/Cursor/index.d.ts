@@ -4,14 +4,14 @@ import "./index.scss";
 /**
  * @typedef {object} CursorProps
  * @description Props for the Cursor component.
- * @property {RefObject<{ x: number, y: number }>} positionRef A ref object containing the cursor's x and y coordinates.
- * @property {"circle" | "dot" | "dashed" | "two-dots" | "gooey"} [type="circle"] The visual style of the cursor.
  */
 export interface CursorProps extends ComponentProps {
+    /** A ref object containing the cursor's x and y coordinates. */
     positionRef: RefObject<{
         x: number;
         y: number;
     }>;
+    /** The visual style of the cursor. */
     type?: "circle" | "dot" | "dashed" | "two-dots" | "gooey";
 }
 /**

@@ -1,4 +1,4 @@
-import {ReactNode, JSX, useMemo, useEffect, useCallback, useState, CSSProperties, FC} from "react";
+import { ReactNode, JSX, useMemo, useEffect, useCallback, useState, CSSProperties, FC } from "react";
 import ComponentProps from "../Component";
 
 import "./index.scss";
@@ -13,16 +13,16 @@ export type CellData = ReactNode;
 /**
  * @typedef {object} TableProps
  * @description Props for the Table component.
- * @property {{[keyX: string]: {[keyY: string]: CellData}} | {[keyX: string]: any}[]} data The data for the table, either as an object of objects or an array of objects.
- * @property {ReactNode} [caption] The caption for the table.
- * @property {(props: {data: CellData, mode?: string}) => JSX.Element} [cellRenderer] A function to custom render table cells.
  */
 export interface TableProps extends ComponentProps {
-    data: {[keyX: string]: {[keyY: string]: CellData}} | {
+    /** The data for the table, either as an object of objects or an array of objects. */
+    data: { [keyX: string]: { [keyY: string]: CellData } } | {
         [keyX: string]: any;
     }[];
+    /** The caption for the table. */
     caption?: ReactNode;
-    cellRenderer?: (props: {data: CellData, coords?: [string, string], mode?: string}) => JSX.Element
+    /** A function to custom render table cells. */
+    cellRenderer?: (props: { data: CellData, coords?: [string, string], mode?: string }) => JSX.Element
 }
 
 /**
@@ -31,8 +31,8 @@ export interface TableProps extends ComponentProps {
  * @param {object} props The props for the cell renderer.
  * @returns {JSX.Element} A table data cell element.
  */
-const defaultCellRenderer = (props: {data: CellData, coords?: [string, string], mode?: string}) => {
-    const {data, coords} = props;
+const defaultCellRenderer = (props: { data: CellData, coords?: [string, string], mode?: string }) => {
+    const { data, coords } = props;
     const key = `${coords ? coords.concat() : null}`;
 
     return <td key={key}>{data}</td>
@@ -41,13 +41,13 @@ const defaultCellRenderer = (props: {data: CellData, coords?: [string, string], 
 /**
  * @typedef {object} HeaderCellProp
  * @description Props for the HeaderCell component.
- * @property {string} label The label for the header cell.
- * @property {(key: string) => void} toggleOrder A function to toggle the sorting order for the column.
- * @property {false | 'asc' | 'desc'} [setsOrdering] The current sorting order of the column.
  */
 interface HeaderCellProp {
+    /** The label for the header cell. */
     label: string;
+    /** A function to toggle the sorting order for the column. */
     toggleOrder: (key: string) => void;
+    /** The current sorting order of the column. */
     setsOrdering?: false | 'asc' | 'desc';
 }
 
@@ -64,7 +64,7 @@ const HeaderCell: FC<HeaderCellProp> = (props) => {
         className = `${className} prismal-table-header-cell-${setsOrdering}`;
     }
 
-    return <th className={className} onClick={()=>toggleOrder(label)} scope="col">{label}</th>
+    return <th className={className} onClick={() => toggleOrder(label)} scope="col">{label}</th>
 }
 
 /**
@@ -84,8 +84,8 @@ const Table: FC<TableProps> = (props) => {
         cellRenderer = defaultCellRenderer
     } = props;
 
-    let className_ = `prismal-table-container`; 
-    if ( className ) className_ = `${className_} ${className}`;
+    let className_ = `prismal-table-container`;
+    if (className) className_ = `${className_} ${className}`;
 
     const caption_ = useMemo(() => {
         if (caption) {
@@ -94,18 +94,18 @@ const Table: FC<TableProps> = (props) => {
             </caption>
         }
         return null;
-    },[caption]);
+    }, [caption]);
 
-    const keysX = useMemo(()=> {
-        let keys: {[key: string]: null} = {};
+    const keysX = useMemo(() => {
+        let keys: { [key: string]: null } = {};
         Object.values(data).forEach(v => {
             Object.keys(v).forEach(k => keys[k] = null)
         })
         const keys_ = Object.keys(keys);
         return keys_;
-    },[data]);
+    }, [data]);
 
-   const [keysY_, setKeysY] = useState(Object.keys(data));
+    const [keysY_, setKeysY] = useState(Object.keys(data));
 
     useEffect(() => {
         setKeysY(Object.keys(data));
@@ -118,12 +118,12 @@ const Table: FC<TableProps> = (props) => {
      * @description Toggles the sorting order for a given column key.
      * @param {string} keyX The key of the column to sort.
      */
-    const toggleOrder = useCallback( (keyX: string) => {
+    const toggleOrder = useCallback((keyX: string) => {
         if (orderBy && orderBy[0] == keyX) {
-            if (orderBy[1] ==  'asc') setOrder([keyX, 'desc']);
+            if (orderBy[1] == 'asc') setOrder([keyX, 'desc']);
             else setOrder([keyX, 'asc']);
         } else setOrder([keyX, 'asc']);
-    },[orderBy]);
+    }, [orderBy]);
 
     /**
      * @function sort
@@ -156,7 +156,7 @@ const Table: FC<TableProps> = (props) => {
                 // false (0) comes before true (1).
                 comparisonResult = Number(valueA) - Number(valueB);
             } else {
-            // For now, if types are mixed or unknown, they are considered equal for sorting.
+                // For now, if types are mixed or unknown, they are considered equal for sorting.
                 return 0;
             }
             // Apply sorting order (ascending or descending).
@@ -167,25 +167,25 @@ const Table: FC<TableProps> = (props) => {
             return tuple[0]
         });
         setKeysY(sortedKeysY);
-    },[data, keysY_]);
+    }, [data, keysY_]);
 
     // Applies sort when specified
     useEffect(() => {
         if (orderBy) {
             sort(orderBy[0], orderBy[1]);
         }
-    },[orderBy, data, sort]);
+    }, [orderBy, data, sort]);
 
-    const columnHeaders = useMemo(()=> {
+    const columnHeaders = useMemo(() => {
         const headers = keysX.map((k) => {
-            return <HeaderCell key={k} label={k} toggleOrder={toggleOrder} 
-                setsOrdering={(orderBy && orderBy[0] == k) ? orderBy[1] : false}/>
+            return <HeaderCell key={k} label={k} toggleOrder={toggleOrder}
+                setsOrdering={(orderBy && orderBy[0] == k) ? orderBy[1] : false} />
         });
         headers.unshift(<th key="empty-header" scope="col"></th>)
         return headers;
-    },[keysX, orderBy, toggleOrder]);
+    }, [keysX, orderBy, toggleOrder]);
 
-    const rows = useMemo(()=> {
+    const rows = useMemo(() => {
         const rows_: any[] = [];
         keysY_.forEach((r, i) => {
             rows_.push(<tr key={i}>
@@ -193,18 +193,18 @@ const Table: FC<TableProps> = (props) => {
                 {/* FIX: Removed `key` from props passed to `cellRenderer` to match type definition. */}
                 {Array.from(keysX, (v) => {
                     if (Array.isArray(data)) {
-                        return cellRenderer({data: data[Number(r)][v], coords: [r, v]});
+                        return cellRenderer({ data: data[Number(r)][v], coords: [r, v] });
                     }
-                    return cellRenderer({data: data[r][v], coords: [r, v]});
+                    return cellRenderer({ data: data[r][v], coords: [r, v] });
                 })}
             </tr>)
         });
         return rows_;
-    },[keysY_, keysX, data, cellRenderer]);
+    }, [keysY_, keysX, data, cellRenderer]);
 
     let style_: CSSProperties = {};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
-    if (style) style_ = {...style_, ...style};
+    setAccentStyle(style_, { accent, accentLight, accentDark });
+    if (style) style_ = { ...style_, ...style };
 
     return <div style={style_} data-id={dataId} className={className_} >
         <table>

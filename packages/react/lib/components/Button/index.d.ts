@@ -4,27 +4,27 @@ import './index.scss';
 /**
  * @typedef {object} ButtonProps
  * @description Props for the Button component.
- * @property {string} [name] The name attribute for the button element.
- * @property {string} [iconName] The name of the icon to display.
- * @property {string} [title] The title attribute for the button, used for tooltips.
- * @property {(e: MouseEvent<HTMLButtonElement>) => void} [onClick] Click event handler.
- * @property {boolean} [disabled=false] If true, the button will be disabled.
- * @property {'default' | 'primary' | 'text'} [type='default'] The visual style of the button.
- * @property {ReactNode} [children] The content of the button.
- * @property {'default-shape' | 'circle'} [shape='default-shape'] The shape of the button.
- * @property {'submit' | 'button'} [htmlType='button'] The type attribute for the button element.
- * @property {boolean} [readOnly=false] If true, the button will be in a read-only state.
  */
 export interface ButtonProps extends ComponentProps {
+    /** The name attribute for the button element. */
     name?: string;
+    /** The name of the icon to display. */
     iconName?: string;
+    /** The title attribute for the button, used for tooltips. */
     title?: string;
+    /** Click event handler. */
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+    /** If true, the button will be disabled. */
     disabled?: boolean;
+    /** The visual style of the button. */
     type?: 'default' | 'primary' | 'text';
+    /** The content of the button. */
     children?: ReactNode;
+    /** The shape of the button. */
     shape?: 'default-shape' | 'circle';
+    /** The type attribute for the button element. */
     htmlType?: 'submit' | 'button';
+    /** If true, the button will be in a read-only state. */
     readOnly?: boolean;
 }
 /**

@@ -1,24 +1,24 @@
 import { ReactNode, FC, ChangeEvent, useState, useMemo, useCallback, CSSProperties, useEffect } from "react";
 import ComponentProps from "../Component";
 // FIX: Corrected import path
-import { setAccentStyle,getRandId } from "../../utils";
+import { setAccentStyle, getRandId } from "../../utils";
 
 import "./index.scss";
 
 /**
  * @typedef {object} AccordionProps
  * @description Props for the Accordion component.
- * @property {ReactNode} children The content to be displayed inside the accordion when it is open.
- * @property {ReactNode} header The header content of the accordion, which is always visible.
- * @property {boolean} [defaultOpen=false] If true, the accordion will be open by default.
- * @property {CSSProperties} [contentStyle] Custom CSS styles for the content container.
- * @property {string} [contentClass] Additional CSS class for the content container.
  */
 export interface AccordionProps extends ComponentProps {
+    /** The content to be displayed inside the accordion when it is open. */
     children: ReactNode;
+    /** The header content of the accordion, which is always visible. */
     header: ReactNode;
+    /** If true, the accordion will be open by default. */
     defaultOpen?: boolean;
+    /** Custom CSS styles for the content container. */
     contentStyle?: CSSProperties;
+    /** Additional CSS class for the content container. */
     contentClass?: string;
 }
 
@@ -46,9 +46,9 @@ const Accordion: FC<AccordionProps> = (props) => {
 
     useEffect(() => {
         setEnabled(defaultOpen);
-    },[defaultOpen]);
+    }, [defaultOpen]);
 
-    const dataId_ = useMemo( () => {
+    const dataId_ = useMemo(() => {
         if (dataId) return `${dataId}`;
         else return getRandId();
     }, [dataId]);
@@ -61,8 +61,8 @@ const Accordion: FC<AccordionProps> = (props) => {
 
     // Ensure typed style object for TS/ESLint
     let style_: Record<string, unknown> = {};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
-    if (style) style_ = {...style_, ...style};
+    setAccentStyle(style_, { accent, accentLight, accentDark });
+    if (style) style_ = { ...style_, ...style };
 
     let contentClass_ = `prismal-accordion-content`;
     if (contentClass) contentClass_ = `${contentClass_} ${contentClass}`;
@@ -86,16 +86,16 @@ const Accordion: FC<AccordionProps> = (props) => {
      * // {indicator_}{header}
      */
     const indicator_ = useMemo(() => {
-        return <svg xmlns="http://www.w3.org/2000/svg" 
-            className={enabled 
+        return <svg xmlns="http://www.w3.org/2000/svg"
+            className={enabled
                 ? "prismal-accordion-icon accordion-minus"
-                : "prismal-accordion-icon accordion-plus"} 
+                : "prismal-accordion-icon accordion-plus"}
             width="100" height="100" viewBox="0 0 160 160"
         >
-            <rect className="vertical-line" rx="10" x="70" width="20" height="160"/>
-            <rect className="horizontal-line" rx="10" y="70" width="160" height="20"/>
+            <rect className="vertical-line" rx="10" x="70" width="20" height="160" />
+            <rect className="horizontal-line" rx="10" y="70" width="160" height="20" />
         </svg>
-    },[enabled]);
+    }, [enabled]);
 
     return <div data-id={dataId_} style={style_} className={className_}>
         <input

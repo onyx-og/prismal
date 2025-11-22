@@ -9,11 +9,9 @@ export type CellData = ReactNode;
 /**
  * @typedef {object} TableProps
  * @description Props for the Table component.
- * @property {{[keyX: string]: {[keyY: string]: CellData}} | {[keyX: string]: any}[]} data The data for the table, either as an object of objects or an array of objects.
- * @property {ReactNode} [caption] The caption for the table.
- * @property {(props: {data: CellData, mode?: string}) => JSX.Element} [cellRenderer] A function to custom render table cells.
  */
 export interface TableProps extends ComponentProps {
+    /** The data for the table, either as an object of objects or an array of objects. */
     data: {
         [keyX: string]: {
             [keyY: string]: CellData;
@@ -21,7 +19,9 @@ export interface TableProps extends ComponentProps {
     } | {
         [keyX: string]: any;
     }[];
+    /** The caption for the table. */
     caption?: ReactNode;
+    /** A function to custom render table cells. */
     cellRenderer?: (props: {
         data: CellData;
         coords?: [string, string];

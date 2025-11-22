@@ -1,26 +1,26 @@
-import {ReactNode, FC, useRef, useMemo,useCallback, useEffect, useState} from "react";
+import { ReactNode, FC, useRef, useMemo, useCallback, useEffect, useState } from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
-import {useIntersectionObserver} from "hooks/";
+import { useIntersectionObserver } from "hooks/";
 
 /**
  * @typedef {object} LazyItemProps
  * @description Props for the LazyItem component.
- * @property {ReactNode} children The content to be lazy-loaded.
- * @property {boolean} [exitEffect=true] If true, an exit animation will be applied when the component scrolls out of view.
- * @property {'fade' | 'slide-up' | 'slide-left' | 'pop-in' | 'none'} [animation='fade'] The type of entrance animation.
- * @property {string} [loadedClass] An additional CSS class to apply when the content is loaded.
- * @property {number} [offset=250] The delay in milliseconds before the entrance animation starts.
  */
 export interface LazyItemProps extends ComponentProps {
+    /** The content to be lazy-loaded. */
     children: ReactNode;
+    /** If true, an exit animation will be applied when the component scrolls out of view. */
     exitEffect?: boolean;
     /**
      * Customize the entrance animation by setting animation -> 'none'
      * and providing loadedClass
+     * The type of entrance animation.
      */
     animation?: 'fade' | 'slide-up' | 'slide-left' | 'pop-in' | 'none';
+    /** An additional CSS class to apply when the content is loaded. */
     loadedClass?: string;
+    /** The delay in milliseconds before the entrance animation starts. */
     offset?: number;
 }
 
@@ -46,7 +46,7 @@ const LazyItem: FC<LazyItemProps> = (props) => {
     } = props;
 
     let style_ = {};
-    style_ = {...style_, ...style};
+    style_ = { ...style_, ...style };
 
     const ref = useRef<HTMLDivElement>(null);
     const [refSet, markRefSet] = useState<boolean>(false);
@@ -69,18 +69,18 @@ const LazyItem: FC<LazyItemProps> = (props) => {
     const isIntersecting = useIntersectionObserver(ref, refSet);
 
     const [isInView, setIsInView] = useState(false);
-    const [hasLoadedOnce, setHasLoadedOnce] =  useState(false);
+    const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
 
     useEffect(() => {
         // FIX: Replaced `NodeJS.Timeout` with `ReturnType<typeof setTimeout>` for browser compatibility.
         let timeout: ReturnType<typeof setTimeout>;
         if (isIntersecting) {
-            timeout = setTimeout(()=> {
+            timeout = setTimeout(() => {
                 setIsInView(true);
                 if (!hasLoadedOnce) setHasLoadedOnce(true);
             }, offset);
         } else if (isInView && !isIntersecting && exitEffect) {
-            timeout = setTimeout(()=> {
+            timeout = setTimeout(() => {
                 setIsInView(false);
             }, offset);
         }
@@ -109,13 +109,13 @@ const LazyItem: FC<LazyItemProps> = (props) => {
      */
     const className_ = useMemo(() => {
         let className_ = `prismal-lazy-item prismal-lazy-item-${animation}`;
-        if (className) className_ =  `${className_} ${className}`;
+        if (className) className_ = `${className_} ${className}`;
         if (isInView) {
             className_ = `${className_} prismal-lazy-item-view`;
             if (loadedClass) className_ = `${className_} ${loadedClass}`;
         }
         return className_;
-    },[className, animation, isInView, loadedClass]);
+    }, [className, animation, isInView, loadedClass]);
 
     return <div data-id={dataId} ref={refSetter} className={className_}
         style={style_}

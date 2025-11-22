@@ -1,5 +1,5 @@
 import {
-    ReactNode, forwardRef, ForwardedRef,CSSProperties,
+    ReactNode, forwardRef, ForwardedRef, CSSProperties,
     useState, useEffect, useMemo, useCallback, useRef,
     useImperativeHandle, JSX
 } from "react";
@@ -11,28 +11,28 @@ import { setBorderRadius } from "utils/";
 /**
  * @typedef {object} SelectOption
  * @description Represents an option in the Select component.
- * @property {string} value The value of the option.
- * @property {ReactNode} element The renderable content of the option.
- * @property {boolean} [selected] If true, the option is selected by default.
  */
 export interface SelectOption {
+    /** The value of the option. */
     value: string;
+    /** The renderable content of the option. */
     element: ReactNode;
+    /** If true, the option is selected by default. */
     selected?: boolean;
-} 
+}
 
 /**
  * @typedef {object} SelectProps
  * @description Props for the Select component.
- * @property {boolean} [multiple=false] If true, allows multiple options to be selected.
- * @property {SelectOption[]} options The array of options to display.
- * @property {string | JSX.Element} [placeholder="Select.."] The placeholder text or element.
- * @property {((arg: string) => void) & ((arg: string[]) => void)} [onChange] Callback for when the selection changes.
  */
 export interface SelectProps extends InputProps {
+    /** If true, allows multiple options to be selected. */
     multiple?: boolean;
+    /** The array of options to display. */
     options: SelectOption[];
+    /** The placeholder text or element. */
     placeholder?: string | JSX.Element;
+    /** Callback for when the selection changes. */
     onChange?: ((arg: string) => void) & ((arg: string[]) => void);
     isFiltered?: boolean;
     /** Function to fetch options asynchronously based on filter */
@@ -67,7 +67,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
 
     const [selected, setSelected] = useState<string | string[]>();
 
-    useEffect( ()=> {
+    useEffect(() => {
         let selected_ = options
             .filter((i) => i.selected)
             .map((i) => i.value);
@@ -84,20 +84,20 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
             // and no placeholder, set the first option as selected
             setSelected(options[0].value)
         }
-    },[options, multiple, placeholder]);
+    }, [options, multiple, placeholder]);
 
     /**
      * @function setSelection
      * @description Updates the selected state based on user interaction.
      * @param {string} value The value of the option to select or deselect.
      */
-    const setSelection = useCallback( (value: string) => {
+    const setSelection = useCallback((value: string) => {
         if (!multiple) setSelected(value);
         else if (typeof selected == "object" && selected.includes(value)) {
             let selection = [...selected];
             selection = [
                 ...selection.slice(0, selected.indexOf(value)),
-                ...selection.slice(selected.indexOf(value)+1, selection.length)
+                ...selection.slice(selected.indexOf(value) + 1, selection.length)
             ];
             setSelected(selection)
         } else if (typeof selected == "object") {
@@ -105,7 +105,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
             selection.push(value);
             setSelected(selection);
         }
-    },[selected, multiple])
+    }, [selected, multiple])
 
     /**
      * @member options_
@@ -120,19 +120,19 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
             return <option key={i}
                 value={e.value}
                 onClick={() => setSelection(e.value)}
-                // selected={selected?.includes(e.value)} // `selected` on <option> is not recommended
-                > 
+            // selected={selected?.includes(e.value)} // `selected` on <option> is not recommended
+            >
                 {e.element}
             </option>
         })
         return result;
-    },[options, setSelection, fetchOptions, orderOptions]);
+    }, [options, setSelection, fetchOptions, orderOptions]);
 
     let style_: CSSProperties = {};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
+    setAccentStyle(style_, { accent, accentLight, accentDark });
     setBorderRadius(style_, borderRadius);
 
-    if (style) style_ = {...style_, ...style};
+    if (style) style_ = { ...style_, ...style };
 
     if (gridPlacement) {
         if (typeof gridPlacement == "string") {
@@ -143,9 +143,9 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         }
     }
 
-    useEffect( () => {
-        if ( selected && onChange ) {
-            if (multiple){
+    useEffect(() => {
+        if (selected && onChange) {
+            if (multiple) {
                 let selected_ = selected as string[]
                 onChange(selected_);
             } else {
@@ -156,7 +156,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
     }, [selected, multiple, onChange]);
 
     const inputRef = useRef<HTMLSelectElement>(null);
-    const [ isNotValid_, markNotValid ] = useState<(string | boolean)[]>([]);
+    const [isNotValid_, markNotValid] = useState<(string | boolean)[]>([]);
     const isNotValid = useRef<(string | boolean)[]>([]);
 
     useEffect(() => {
@@ -168,7 +168,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
      * @description Checks the validity of the select input.
      * @returns {(string|boolean)[]} An array of error messages, or an empty array if valid.
      */
-    const checkValidity = useCallback( () => {
+    const checkValidity = useCallback(() => {
         const value = inputRef?.current?.value;
         let errorMessages = [];
         // If provided, perform validator method
@@ -183,7 +183,7 @@ const Select = forwardRef((props: SelectProps, ref: ForwardedRef<InputRefType>) 
         markNotValid(errorMessages);
         return errorMessages;
     }, [validator, required]);
-    
+
     useImperativeHandle(ref, () => ({
         isInputRefType: true,
         name,

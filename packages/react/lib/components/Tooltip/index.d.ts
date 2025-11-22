@@ -4,11 +4,11 @@ import { ReactNode, FC } from "react";
 /**
  * @typedef {object} TooltipProps
  * @description Props for the Tooltip component.
- * @property {ReactNode} [children] The element that the tooltip is attached to.
- * @property {string} text The text to display in the tooltip.
  */
 export interface TooltipProps extends ComponentProps {
+    /** The element that the tooltip is attached to. */
     children?: ReactNode;
+    /** The text to display in the tooltip. */
     text: string;
 }
 /**

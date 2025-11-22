@@ -3,11 +3,11 @@ import ComponentProps from "../Component";
 /**
  * @typedef {object} ParallaxItemProps
  * @description Props for the ParallaxItem component.
- * @property {ReactNode} [children] The content to be affected by the parallax effect.
- * @property {number} [factor=0.1] The parallax scroll factor. A value between -1 and 1.
  */
 export interface ParallaxItemProps extends ComponentProps {
+    /** The content to be affected by the parallax effect. */
     children?: ReactNode;
+    /** The parallax scroll factor. A value between -1 and 1. */
     factor?: number;
 }
 /**

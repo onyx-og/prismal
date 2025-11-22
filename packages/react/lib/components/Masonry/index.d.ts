@@ -14,15 +14,15 @@ export declare const useMasonryGrid: (gridRef: RefObject<HTMLDivElement | null>,
 /**
  * @typedef {object} MasonryProcProps
  * @description Props for a Masonry component that processes data.
- * @property {"process"} type The type of masonry layout.
- * @property {{ [key: string]: any }[]} data The array of data items.
- * @property {(item: { [key: string]: any }) => React.ReactNode} [itemRenderer] A function to render each item.
  */
 export interface MasonryProcProps {
+    /** The type of masonry layout. */
     type: "process";
+    /** The array of data items. */
     data: {
         [key: string]: any;
     }[];
+    /** A function to render each item. */
     itemRenderer?: (item: {
         [key: string]: any;
     }) => React.ReactNode;
@@ -30,19 +30,19 @@ export interface MasonryProcProps {
 /**
  * @typedef {object} MasonryRawProps
  * @description Props for a Masonry component that uses raw children.
- * @property {"raw"} type The type of masonry layout.
- * @property {React.ReactNode | React.ReactNode[]} children The child elements to arrange.
  */
 export interface MasonryRawProps {
+    /** The type of masonry layout. */
     type: "raw";
+    /** The child elements to arrange. */
     children: React.ReactNode | React.ReactNode[];
 }
 /**
  * @typedef {object} BaseMasonryProps
  * @description Base props for the Masonry component.
- * @property {number} [rowHeight=8] The height of each row in pixels.
  */
 interface BaseMasonryProps extends ComponentProps {
+    /** The height of each row in pixels. */
     rowHeight?: number;
 }
 type MasonryProps = (MasonryProcProps | MasonryRawProps) & BaseMasonryProps;

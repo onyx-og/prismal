@@ -4,23 +4,23 @@ import ComponentProps from '../Component';
 /**
  * @typedef {object} CardProps
  * @description Props for the Card component.
- * @property {ReactNode} [header] The content for the card's header section.
- * @property {string} [headerClass] Additional CSS class for the header.
- * @property {ReactNode} [footer] The content for the card's footer section.
- * @property {string} [footerClass] Additional CSS class for the footer.
- * @property {ReactNode} [children] The main content of the card (body).
- * @property {string} [bodyClass] Additional CSS class for the body.
- * @property {"vertical" | "horizontal"} [orientation="vertical"] The orientation of the card layout.
- * @property {"none" | 'xs' | "s" | 'm' | 'l'} [padding='s'] The padding size for the card content.
  */
 export interface CardProps extends ComponentProps {
+    /** The content for the card's header section. */
     header?: ReactNode;
+    /** Additional CSS class for the header. */
     headerClass?: string;
+    /** The content for the card's footer section. */
     footer?: ReactNode;
+    /** Additional CSS class for the footer. */
     footerClass?: string;
+    /** The main content of the card (body). */
     children?: ReactNode;
+    /** Additional CSS class for the body. */
     bodyClass?: string;
+    /** The orientation of the card layout. */
     orientation?: "vertical" | "horizontal";
+    /** The padding size for the card content. */
     padding?: "none" | 'xs' | "s" | 'm' | 'l';
 }
 /**

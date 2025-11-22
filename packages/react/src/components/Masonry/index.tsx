@@ -1,9 +1,9 @@
-import { RefObject, FC, useEffect, useCallback,useMemo, useRef, Children, CSSProperties, ReactNode, isValidElement} from "react";
+import { RefObject, FC, useEffect, useCallback, useMemo, useRef, Children, CSSProperties, ReactNode, isValidElement } from "react";
 import ComponentProps from "../Component";
 import Card from "../Card";
 
 import "./index.scss";
-import MasonryItem, {MasonryItemRef} from "./item";
+import MasonryItem, { MasonryItemRef } from "./item";
 
 
 /**
@@ -15,9 +15,9 @@ import MasonryItem, {MasonryItemRef} from "./item";
  * @param {Array<any>} [dependencies=[]] Dependencies to re-trigger the layout calculation.
  */
 export const useMasonryGrid = (
-    gridRef: RefObject<HTMLDivElement | null>, 
+    gridRef: RefObject<HTMLDivElement | null>,
     rowHeight: number,
-    itemRefs:  RefObject<MasonryItemRef[]>,
+    itemRefs: RefObject<MasonryItemRef[]>,
     dependencies: Array<any> = []) => {
 
     /**
@@ -43,11 +43,11 @@ export const useMasonryGrid = (
             const row = rowHeight;
 
             itemRefs.current.forEach(item => {
-                if (item && item.applyStyle && item.element.current && item.element.current.offsetHeight) { 
+                if (item && item.applyStyle && item.element.current && item.element.current.offsetHeight) {
                     const style: CSSProperties = {};
                     const domElement = item.element.current;
-                    
-                    const height = domElement.offsetHeight; 
+
+                    const height = domElement.offsetHeight;
                     const spanRow = Math.ceil((height + gap) / (row + gap));
                     style.gridRowEnd = `span ${spanRow}`;
 
@@ -80,7 +80,7 @@ export const useMasonryGrid = (
 
     useEffect(() => {
         const grid = gridRef.current;
-        
+
         watchImages();
         resizeAll();
 
@@ -95,7 +95,7 @@ export const useMasonryGrid = (
         if ('ResizeObserver' in window && grid && itemRefs.current) {
             ro = new ResizeObserver(() => resizeAll());
             itemRefs.current.forEach(itemRef => {
-                if(itemRef.element.current) ro.observe(itemRef.element.current);
+                if (itemRef.element.current) ro.observe(itemRef.element.current);
             });
         }
 
@@ -111,24 +111,24 @@ export const useMasonryGrid = (
 /**
  * @typedef {object} MasonryProcProps
  * @description Props for a Masonry component that processes data.
- * @property {"process"} type The type of masonry layout.
- * @property {{ [key: string]: any }[]} data The array of data items.
- * @property {(item: { [key: string]: any }) => React.ReactNode} [itemRenderer] A function to render each item.
  */
 export interface MasonryProcProps {
+    /** The type of masonry layout. */
     type: "process";
+    /** The array of data items. */
     data: { [key: string]: any }[];
+    /** A function to render each item. */
     itemRenderer?: (item: { [key: string]: any }) => React.ReactNode;
 }
 
 /**
  * @typedef {object} MasonryRawProps
  * @description Props for a Masonry component that uses raw children.
- * @property {"raw"} type The type of masonry layout.
- * @property {React.ReactNode | React.ReactNode[]} children The child elements to arrange.
  */
 export interface MasonryRawProps {
+    /** The type of masonry layout. */
     type: "raw";
+    /** The child elements to arrange. */
     children: React.ReactNode | React.ReactNode[];
 }
 
@@ -166,9 +166,9 @@ const MasonryProcessedItems: FC<{
 /**
  * @typedef {object} BaseMasonryProps
  * @description Base props for the Masonry component.
- * @property {number} [rowHeight=8] The height of each row in pixels.
  */
 interface BaseMasonryProps extends ComponentProps {
+    /** The height of each row in pixels. */
     rowHeight?: number;
 };
 type MasonryProps = (MasonryProcProps | MasonryRawProps) & BaseMasonryProps;
@@ -219,11 +219,11 @@ const Masonry: FC<MasonryProps> = (props) => {
         if (type === 'process') {
             return <MasonryProcessedItems collector={refCollector} itemRenderer={props.itemRenderer} data={props.data} />
         } else if (type === 'raw') {
-            return Children.toArray(props.children).map( (el, i) => {
-              if (isValidElement(el)) {
-                return <MasonryItem key={i} ref={refCollector}>{el}</MasonryItem>;
-              }
-              return null;
+            return Children.toArray(props.children).map((el, i) => {
+                if (isValidElement(el)) {
+                    return <MasonryItem key={i} ref={refCollector}>{el}</MasonryItem>;
+                }
+                return null;
             });
         }
     }, [type, (props as MasonryProcProps).data, (props as MasonryRawProps).children, (props as MasonryProcProps).itemRenderer]);

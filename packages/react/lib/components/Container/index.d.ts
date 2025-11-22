@@ -5,14 +5,11 @@ type Ratio = "5-2" | "9-2" | "5-4" | "16-9" | "16-3" | "18-9" | "20-6" | "20-8" 
 /**
  * @typedef {object} ContainerProps
  * @description Props for the Container component.
- * @property {ReactNode} [children] The content to be rendered inside the container.
- * @property {object | Ratio} [ratio] The aspect ratio of the container, can be a single value or responsive object.
- * @property {object | number} [span] The column span of the container in a grid layout.
- * @property {object | boolean} [hide=false] Controls the visibility of the container, can be responsive.
- * @property {"circle"} [cursor] The type of custom cursor to display within the container.
  */
 export interface ContainerProps extends ComponentProps {
+    /** The content to be rendered inside the container. */
     children?: ReactNode;
+    /** The aspect ratio of the container, can be a single value or responsive object. */
     ratio?: {
         xs?: Ratio;
         sm?: Ratio;
@@ -20,6 +17,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: Ratio;
         xl?: Ratio;
     } | Ratio;
+    /** The column span of the container in a grid layout. */
     span?: {
         xs?: number;
         sm?: number;
@@ -27,6 +25,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: number;
         xl?: number;
     } | number;
+    /** Controls the visibility of the container, can be responsive. */
     hide?: {
         xs?: boolean;
         sm?: boolean;
@@ -34,6 +33,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: boolean;
         xl?: boolean;
     } | boolean;
+    /** The type of custom cursor to display within the container. */
     cursor?: "circle";
 }
 /**

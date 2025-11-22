@@ -4,25 +4,25 @@ import { Accepted, InputProps, InputRefType, InputType } from '../types';
 /**
  * @typedef {object} TextInputProps
  * @description Props for the TextInput component.
- * @property {T} [htmlType='text'] The type of the input element.
- * @property {Accepted<T>} [accept] The accept attribute for file inputs.
- * @property {(arg?: string | null) => void} [onPressEnter] Callback for when the Enter key is pressed.
- * @property {(arg?: string | string[]) => void} [onChange] Callback for when the input value changes.
- * @property {'s' | 'm' | 'l'} [size='m'] The size of the input.
- * @property {ReactNode} [after] Element to display after the input.
- * @property {ReactNode} [before] Element to display before the input.
- * @property {'default' | 'primary'} [type='default'] The visual style of the input.
- * @property {string} [placeholder] Placeholder text for the input.
  */
 export interface TextInputProps<T extends InputType> extends InputProps {
+    /** The type of the input element. */
     htmlType?: T;
+    /** The accept attribute for file inputs. */
     accept?: Accepted<T>;
+    /** Callback for when the Enter key is pressed. */
     onPressEnter?: (arg?: string | null) => void;
+    /** Callback for when the input value changes. */
     onChange?: (arg?: string | string[] | File | File[] | undefined) => void;
+    /** The size of the input. */
     size?: 's' | 'm' | 'l';
+    /** Element to display after the input. */
     after?: ReactNode;
+    /** Element to display before the input. */
     before?: ReactNode;
+    /** The visual style of the input. */
     type?: 'default' | 'primary';
+    /** Placeholder text for the input. */
     placeholder?: string;
     multiple?: boolean;
 }

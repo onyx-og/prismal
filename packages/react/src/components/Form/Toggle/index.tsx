@@ -11,19 +11,19 @@ import "./index.scss";
 /**
  * @typedef {object} ToggleProps
  * @description Props for the Toggle component.
- * @property {"checkbox" | "switch"} [type="checkbox"] The type of toggle to render.
- * @property {boolean} [checked=false] The initial checked state of the toggle.
- * @property {never} [placeholder] Not used.
- * @property {never} [value] Not used.
- * @property {never} [inline] Not used.
- * @property {(value: boolean) => any} [onChange] Callback for when the toggle state changes.
  */
 export interface ToggleProps extends InputProps {
+    /** The type of toggle to render. */
     type?: "checkbox" | "switch";
+    /** The initial checked state of the toggle. */
     checked?: boolean;
+    /** Not used. */
     placeholder?: never;
+    /** Not used. */
     value?: never;
+    /** Not used. */
     inline?: never;
+    /** Callback for when the toggle state changes. */
     onChange?: (value: boolean) => any;
 }
 /**
@@ -42,7 +42,7 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
         id, name, className,
         checked = false,
         disabled = false,
-        required =  false,
+        required = false,
         readOnly = false,
         labelPosition = "after",
         label, labelSeparator, labelClass,
@@ -52,10 +52,10 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
     } = props;
 
     let style_: CSSProperties = {};
-    setAccentStyle(style_, {accent, accentLight, accentDark});
+    setAccentStyle(style_, { accent, accentLight, accentDark });
     setBorderRadius(style_, borderRadius);
 
-    if (style) style_ = {...style_, ...style};
+    if (style) style_ = { ...style_, ...style };
 
     if (gridPlacement) {
         if (typeof gridPlacement == "string") {
@@ -68,7 +68,7 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [ isNotValid_, markNotValid ] = useState<(string | boolean)[]>([]);
+    const [isNotValid_, markNotValid] = useState<(string | boolean)[]>([]);
     const isNotValid = useRef<(string | boolean)[]>([]);
 
     useEffect(() => {
@@ -80,7 +80,7 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
      * @description Checks the validity of the toggle input.
      * @returns {(string|boolean)[]} An array of error messages, or an empty array if valid.
      */
-    const checkValidity = useCallback( () => {
+    const checkValidity = useCallback(() => {
         const value = inputRef?.current?.checked;
         let errorMessages = [];
         // If provided, perform validator method
@@ -127,7 +127,7 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
             if (labelClass) labelClass_ = `${labelClass_} ${labelClass}`;
             if (labelSeparator) {
                 return <label htmlFor={id} className={labelClass_}>
-                    { labelPosition == "after" ? <>{labelSeparator}{label}</> 
+                    {labelPosition == "after" ? <>{labelSeparator}{label}</>
                         : <>{label}{labelSeparator}</>
                     }
                 </label>
@@ -166,8 +166,8 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
      * @description Transforms 'isNotValid_' array of errors into a list of error messages.
      * @returns {JSX.Element[]}
      */
-    const renderedErrors = useMemo( () => isNotValid_.map( (err, i) => 
-        <li key={i}>{ typeof err === 'string' ? err : 'Check this field' }</li>
+    const renderedErrors = useMemo(() => isNotValid_.map((err, i) =>
+        <li key={i}>{typeof err === 'string' ? err : 'Check this field'}</li>
     ), [isNotValid_]);
 
     return <div style={style_} className={className_}>
@@ -175,7 +175,7 @@ const Toggle = forwardRef((props: ToggleProps, ref: ForwardedRef<InputRefType>):
             : <>{label_}{input}</>
         }
         {renderedErrors.length ? <ul className='input-errors'>
-            { renderedErrors }
+            {renderedErrors}
         </ul> : <></>}
     </div>
 });

@@ -4,23 +4,23 @@ import './index.scss';
 /**
  * @typedef {object} SelectOption
  * @description Represents an option in a select-like component.
- * @property {string} label The display label for the option.
- * @property {string} value The value of the option.
- * @property {boolean} [selected] Whether the option is selected.
  */
 export type SelectOption = {
+    /** The display label for the option. */
     label: string;
+    /** The value of the option. */
     value: string;
+    /** Whether the option is selected. */
     selected?: boolean;
 };
 /**
  * @typedef {object} DropdownProps
  * @description Props for the Dropdown component.
- * @property {ReactNode} children The content to display within the dropdown.
- * @property {ReactNode} [toggleElement] The element that toggles the dropdown's visibility.
  */
 export interface DropdownProps extends ComponentProps {
+    /** The content to display within the dropdown. */
     children: ReactNode;
+    /** The element that toggles the dropdown's visibility. */
     toggleElement?: ReactNode;
 }
 /**

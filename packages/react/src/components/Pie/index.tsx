@@ -9,13 +9,13 @@ import { useMemo, FC, useRef, useState, useCallback, ReactNode } from "react";
 /**
  * @typedef {object} PieChartProps
  * @description Props for the Pie chart component.
- * @property {string} [name] A name for the chart.
- * @property {number} [size=220] The size (width and height) of the pie chart.
- * @property {Array<{name?: string, percentage: number, color?: string, label?: string}>} data The data for the pie chart slices.
  */
 export interface PieChartProps extends ComponentProps {
+	/** A name for the chart. */
 	name?: string;
+	/** The size (width and height) of the pie chart. */
 	size?: number;
+	/** The data for the pie chart slices. */
 	data: {
 		name?: string;
 		percentage: number;
@@ -27,11 +27,11 @@ export interface PieChartProps extends ComponentProps {
 /**
  * @typedef {object} SliceLabelProps
  * @description Props for the SliceLabel component.
- * @property {string} text The text to display as the label.
- * @property {SVGPathElement} bgPath The path element of the slice background.
  */
 interface SliceLabelProps {
+	/** The text to display as the label. */
 	text: string,
+	/** The path element of the slice background. */
 	bgPath: SVGPathElement,
 }
 
@@ -58,17 +58,21 @@ const SliceLabel: FC<SliceLabelProps> = (props) => {
 /**
  * @typedef {object} SliceProps
  * @description Props for the Slice component.
- * @property {string} [labelText] The text label for the slice.
- * @property {number} cx The center x-coordinate of the pie.
- * @property {number} cy The center y-coordinate of the pie.
- * @property {number} radius The radius of the pie.
- * @property {number} fromAngle The starting angle of the slice.
- * @property {number} toAngle The ending angle of the slice.
- * @property {string} color The color of the slice.
  */
 interface SliceProps {
-	labelText?: string, cx: number, cy: number, radius: number,
-	fromAngle: number, toAngle: number,
+	/** The text label for the slice. */
+	labelText?: string,
+	/** The center x-coordinate of the pie. */
+	cx: number,
+	/** The center y-coordinate of the pie. */
+	cy: number,
+	/** The radius of the pie. */
+	radius: number,
+	/** The starting angle of the slice. */
+	fromAngle: number,
+	/** The ending angle of the slice. */
+	toAngle: number,
+	/** The color of the slice. */
 	color: string
 }
 
@@ -84,10 +88,10 @@ const Slice: FC<SliceProps> = (props) => {
 	const [refSet, markRefSet] = useState(false)
 
 	/**
-     * @function refSetter
-     * @description A callback ref to get a reference to the SVG path element.
-     * @param {SVGPathElement | null} node The SVG path DOM node.
-     */
+	 * @function refSetter
+	 * @description A callback ref to get a reference to the SVG path element.
+	 * @param {SVGPathElement | null} node The SVG path DOM node.
+	 */
 	const refSetter = useCallback((node: SVGPathElement | null) => {
 		if (pathRef.current) {
 			return;
@@ -136,7 +140,7 @@ const Slice: FC<SliceProps> = (props) => {
  * <Pie data={[{ percentage: 50, color: 'red' }, { percentage: 50, color: 'blue' }]} />
  */
 const Pie: FC<PieChartProps> = (props) => {
-	const { 
+	const {
 		size = 220, data, className
 	} = props;
 

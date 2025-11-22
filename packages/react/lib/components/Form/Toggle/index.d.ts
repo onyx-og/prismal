@@ -4,19 +4,19 @@ import "./index.scss";
 /**
  * @typedef {object} ToggleProps
  * @description Props for the Toggle component.
- * @property {"checkbox" | "switch"} [type="checkbox"] The type of toggle to render.
- * @property {boolean} [checked=false] The initial checked state of the toggle.
- * @property {never} [placeholder] Not used.
- * @property {never} [value] Not used.
- * @property {never} [inline] Not used.
- * @property {(value: boolean) => any} [onChange] Callback for when the toggle state changes.
  */
 export interface ToggleProps extends InputProps {
+    /** The type of toggle to render. */
     type?: "checkbox" | "switch";
+    /** The initial checked state of the toggle. */
     checked?: boolean;
+    /** Not used. */
     placeholder?: never;
+    /** Not used. */
     value?: never;
+    /** Not used. */
     inline?: never;
+    /** Callback for when the toggle state changes. */
     onChange?: (value: boolean) => any;
 }
 /**

@@ -4,17 +4,17 @@ import "./index.scss";
 /**
  * @typedef {object} AccordionProps
  * @description Props for the Accordion component.
- * @property {ReactNode} children The content to be displayed inside the accordion when it is open.
- * @property {ReactNode} header The header content of the accordion, which is always visible.
- * @property {boolean} [defaultOpen=false] If true, the accordion will be open by default.
- * @property {CSSProperties} [contentStyle] Custom CSS styles for the content container.
- * @property {string} [contentClass] Additional CSS class for the content container.
  */
 export interface AccordionProps extends ComponentProps {
+    /** The content to be displayed inside the accordion when it is open. */
     children: ReactNode;
+    /** The header content of the accordion, which is always visible. */
     header: ReactNode;
+    /** If true, the accordion will be open by default. */
     defaultOpen?: boolean;
+    /** Custom CSS styles for the content container. */
     contentStyle?: CSSProperties;
+    /** Additional CSS class for the content container. */
     contentClass?: string;
 }
 /**

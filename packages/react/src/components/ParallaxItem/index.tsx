@@ -1,4 +1,4 @@
-import {FC, ReactNode, useEffect, useRef, useState, useMemo, useCallback} from "react";
+import { FC, ReactNode, useEffect, useRef, useState, useMemo, useCallback } from "react";
 import ComponentProps from "../Component";
 import { setAccentStyle } from "utils/";
 import { useElScrollPosition } from "hooks/useScrollPosition";
@@ -6,11 +6,11 @@ import { useElScrollPosition } from "hooks/useScrollPosition";
 /**
  * @typedef {object} ParallaxItemProps
  * @description Props for the ParallaxItem component.
- * @property {ReactNode} [children] The content to be affected by the parallax effect.
- * @property {number} [factor=0.1] The parallax scroll factor. A value between -1 and 1.
  */
 export interface ParallaxItemProps extends ComponentProps {
+    /** The content to be affected by the parallax effect. */
     children?: ReactNode;
+    /** The parallax scroll factor. A value between -1 and 1. */
     factor?: number;
 }
 
@@ -61,16 +61,16 @@ const ParallaxItem: FC<ParallaxItemProps> = (props) => {
         }
     }, []);
 
-    const elScrollY =  useElScrollPosition(ref, refSet);
+    const elScrollY = useElScrollPosition(ref, refSet);
 
     const style_ = useMemo(() => {
-        let style_: {[key: string]: any} = {};
-        setAccentStyle(style_, {accent, accentLight, accentDark});
+        let style_: { [key: string]: any } = {};
+        setAccentStyle(style_, { accent, accentLight, accentDark });
         style_.transform = `translateY(${factor * (elScrollY || 0)}px)`;
-        if (style) style_ = {...style_, ...style};
+        if (style) style_ = { ...style_, ...style };
         return style_;
     }, [style, accent, accentDark, accentLight, elScrollY, factor]);
-    
+
     return <>
         <div ref={refSetter} data-id={dataId} className={className_} style={style_}>
             {children}

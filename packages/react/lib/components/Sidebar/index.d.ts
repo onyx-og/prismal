@@ -4,19 +4,19 @@ import ComponentProps from '../Component';
 /**
  * @typedef {object} SidebarProps
  * @description Props for the Sidebar component.
- * @property {string} [areaId] The ID of the DOM element where the sidebar should be rendered.
- * @property {() => void} [closeSidebar] Callback function to close the sidebar.
- * @property {JSX.Element} [header] Custom header content for the sidebar.
- * @property {JSX.Element} [footer] Custom footer content for the sidebar.
- * @property {ReactNode} [children] The main content of the sidebar.
- * @property {boolean} [visible] Controls the visibility of the sidebar.
  */
 export interface SidebarProps extends ComponentProps {
+    /** The ID of the DOM element where the sidebar should be rendered. */
     areaId?: string;
+    /** Callback function to close the sidebar. */
     closeSidebar?: () => void;
+    /** Custom header content for the sidebar. */
     header?: JSX.Element;
+    /** Custom footer content for the sidebar. */
     footer?: JSX.Element;
+    /** The main content of the sidebar. */
     children?: ReactNode;
+    /** Controls the visibility of the sidebar. */
     visible?: boolean;
 }
 /**

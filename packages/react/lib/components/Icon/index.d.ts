@@ -3,11 +3,11 @@ import 'styles/icons.scss';
 /**
  * @typedef {object} IconProps
  * @description Props for the Icon component.
- * @property {string} name The name of the icon to display.
- * @property {string} [className] Additional CSS class for the icon element.
  */
 export interface IconProps {
+    /** The name of the icon to display. */
     name: string;
+    /** Additional CSS class for the icon element. */
     className?: string;
 }
 /**

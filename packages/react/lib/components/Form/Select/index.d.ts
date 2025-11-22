@@ -4,28 +4,33 @@ import "./index.scss";
 /**
  * @typedef {object} SelectOption
  * @description Represents an option in the Select component.
- * @property {string} value The value of the option.
- * @property {ReactNode} element The renderable content of the option.
- * @property {boolean} [selected] If true, the option is selected by default.
  */
 export interface SelectOption {
+    /** The value of the option. */
     value: string;
+    /** The renderable content of the option. */
     element: ReactNode;
+    /** If true, the option is selected by default. */
     selected?: boolean;
 }
 /**
  * @typedef {object} SelectProps
  * @description Props for the Select component.
- * @property {boolean} [multiple=false] If true, allows multiple options to be selected.
- * @property {SelectOption[]} options The array of options to display.
- * @property {string | JSX.Element} [placeholder="Select.."] The placeholder text or element.
- * @property {((arg: string) => void) & ((arg: string[]) => void)} [onChange] Callback for when the selection changes.
  */
 export interface SelectProps extends InputProps {
+    /** If true, allows multiple options to be selected. */
     multiple?: boolean;
+    /** The array of options to display. */
     options: SelectOption[];
+    /** The placeholder text or element. */
     placeholder?: string | JSX.Element;
+    /** Callback for when the selection changes. */
     onChange?: ((arg: string) => void) & ((arg: string[]) => void);
+    isFiltered?: boolean;
+    /** Function to fetch options asynchronously based on filter */
+    fetchOptions?: (filter?: string) => Promise<SelectOption[]>;
+    /** Compare function for sorting options */
+    orderOptions?: (a: SelectOption, b: SelectOption) => number;
 }
 /**
  * @component Select

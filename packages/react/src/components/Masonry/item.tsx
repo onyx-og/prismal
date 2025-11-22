@@ -1,14 +1,14 @@
-import { useState, useImperativeHandle, ReactNode, forwardRef, ForwardedRef, useRef,RefObject } from 'react';
+import { useState, useImperativeHandle, ReactNode, forwardRef, ForwardedRef, useRef, RefObject } from 'react';
 
 
 /**
  * @typedef {object} MasonryItemRef
  * @description The ref object exposed by a MasonryItem, allowing the parent to apply styles.
- * @property {(style: {[key: string]: any}) => void} applyStyle A function to apply CSS styles to the item.
- * @property {RefObject<HTMLDivElement | null>} element Ref to the item's root DOM element.
  */
 export interface MasonryItemRef {
-    applyStyle: (style: {[key: string]: any}) => void;
+    /** A function to apply CSS styles to the item. */
+    applyStyle: (style: { [key: string]: any }) => void;
+    /** Ref to the item's root DOM element. */
     element: RefObject<HTMLDivElement | null>;
 }
 
@@ -22,7 +22,7 @@ export interface MasonryItemRef {
 // 'forwardRef' is necessary to allow the parent component (MasonryGrid) 
 // to get a reference to the DOM of this element.
 const MasonryItem = forwardRef((props: { children: ReactNode }, ref: ForwardedRef<MasonryItemRef>) => {
-    const {children} = props;
+    const { children } = props;
     // 1. State to store the calculated style
     const [itemStyle, setItemStyle] = useState({});
     const elementRef = useRef(null);
@@ -37,8 +37,8 @@ const MasonryItem = forwardRef((props: { children: ReactNode }, ref: ForwardedRe
     }));
 
     // Apply the stored style to the outer div
-    return <div 
-        className="prismal-masonry-item" 
+    return <div
+        className="prismal-masonry-item"
         ref={elementRef} // The ref points to the DOM element we want to measure
         style={itemStyle} // The style is applied via React state
     >

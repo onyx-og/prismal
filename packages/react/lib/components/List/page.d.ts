@@ -2,23 +2,24 @@ import React from 'react';
 /**
  * @typedef {function} ListProcessor
  * @description A function that processes a list of items and returns renderable elements.
- * @param {any[]} arg The array of items to process.
- * @returns {{processed?: any[], elements: React.ReactNode[]}} An object containing the processed data and the elements to render.
  */
-export type ListProcessor = (arg: any[]) => {
+export type ListProcessor = (
+/** The array of items to process. */
+arg: any[]) => {
+    /** An object containing the processed data and the elements to render. */
     processed?: any[];
     elements: React.ReactNode[];
 };
 /**
  * @typedef {object} PageProps
  * @description Props for the Page component.
- * @property {any[]} list The list of items for the current page.
- * @property {ListProcessor} listProcessor The function to process and render the items.
- * @property {(arg: any) => void} [onProcessEnd] Callback fired after processing is complete.
  */
 export interface PageProps {
+    /** The list of items for the current page. */
     list: any[];
+    /** The function to process and render the items. */
     listProcessor: ListProcessor;
+    /** Callback fired after processing is complete. */
     onProcessEnd?: (arg: any) => void;
 }
 /**

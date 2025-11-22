@@ -4,21 +4,21 @@ import "./index.scss";
 /**
  * @typedef {object} LazyItemProps
  * @description Props for the LazyItem component.
- * @property {ReactNode} children The content to be lazy-loaded.
- * @property {boolean} [exitEffect=true] If true, an exit animation will be applied when the component scrolls out of view.
- * @property {'fade' | 'slide-up' | 'slide-left' | 'pop-in' | 'none'} [animation='fade'] The type of entrance animation.
- * @property {string} [loadedClass] An additional CSS class to apply when the content is loaded.
- * @property {number} [offset=250] The delay in milliseconds before the entrance animation starts.
  */
 export interface LazyItemProps extends ComponentProps {
+    /** The content to be lazy-loaded. */
     children: ReactNode;
+    /** If true, an exit animation will be applied when the component scrolls out of view. */
     exitEffect?: boolean;
     /**
      * Customize the entrance animation by setting animation -> 'none'
      * and providing loadedClass
+     * The type of entrance animation.
      */
     animation?: 'fade' | 'slide-up' | 'slide-left' | 'pop-in' | 'none';
+    /** An additional CSS class to apply when the content is loaded. */
     loadedClass?: string;
+    /** The delay in milliseconds before the entrance animation starts. */
     offset?: number;
 }
 /**
