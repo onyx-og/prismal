@@ -1,5 +1,4 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
 import {Dropdown} from '@prismal/react';
 
 const meta = {
@@ -12,6 +11,10 @@ const meta = {
         borderRadius: {
             control: 'select',
             options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"]
+        },
+        type: {
+            control: 'select',
+            options: ["primary", "default"]
         }
     }
 } as Meta<typeof Dropdown >;

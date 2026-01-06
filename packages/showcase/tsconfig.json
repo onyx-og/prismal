@@ -1,25 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2015",
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "declaration": true,
-    "outDir": "lib",
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx",
-    "baseUrl": "src",
-    "paths": {
-      "@prismal/react": ["../../react/"],
-    }
-  },
-  "include": [
-    "src",
-  ],
-  "exclude": [
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx",
-    "src/setupTests.ts",
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
   ]
 }
