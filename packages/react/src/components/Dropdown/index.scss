@@ -7,26 +7,32 @@
     font-family: vars.$font-body;
 
     .prismal-dropdown-select {
-        background-color: white;
+        &.type-primary {
+            background-color: white;
+            padding: .5rem 2rem .5rem 1rem;
+            color: black;
+            border-radius: var(--border-radius);
+            user-select: none;
+            border-style: none;
+            filter: url("#");
+        }
         cursor: pointer;
-        user-select: none;
-        color: black;
-        padding: .5rem 2rem .5rem 1rem;
-        border-style: none;
-        border-radius: var(--border-radius);
-        filter: url("#");
 
         &.anim-pulse {
             @include animations.anim-pulse;
         }
 
-        .prismal-dropdown-content {
+        &>.prismal-dropdown-content {
             list-style: none;
             padding: 0;
             margin: 0;
             position: absolute;
-            left: 0;
-            margin-top: 0.5em;
+            left: var(--dropdown-content-left, 0);
+            right: var(--dropdown-content-right, auto);
+            top: var(--dropdown-content-top, 100%);
+            bottom: var(--dropdown-content-bottom, auto);
+            margin-top: var(--dropdown-content-margin-top, 0.2em);
+            margin-bottom: var(--dropdown-content-margin-bottom, 0);
 
             &:not(:has(*:only-child)):not(:has(* + *)) {
                 display: none;
@@ -102,17 +108,17 @@
         &:focus-within {
             z-index: vars.$zindex-0;
 
-            .prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
+            &>.prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
                 display: block !important;
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }
 
-            .prismal-dropdown-content:has(*:only-child) {
+            &>.prismal-dropdown-content:has(*:only-child) {
                 display: block !important;
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }
 
-            .prismal-dropdown-content:has(* + *)>* {
+            &>.prismal-dropdown-content:has(* + *)>* {
                 display: block !important;
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }

@@ -13,6 +13,7 @@ import FileInput from "./components/Form/FileInput";
 import Marquee from "./components/Marquee";
 import Dropdown from "./components/Dropdown";
 import Tooltip from "./components/Tooltip";
+import Menu, {MenuItem, MenuItemData} from "./components/Menu"
 import List from "./components/List";
 import Masonry from "./components/Masonry";
 import Modal from "./components/Modal";
@@ -60,6 +61,7 @@ export { List, Masonry };
 export {Icon, Card, Modal, Alert, SearchBar, Sidebar};
 export { Form, Select, TextInput, Toggle, NumberInput, FileInput, InputRefType };
 export { Dropdown, Tooltip };
+export { Menu, MenuItem, MenuItemData };
 export { LazyItem, ParallaxItem };
 export { setAccentStyle, hex2rgba };
 export {

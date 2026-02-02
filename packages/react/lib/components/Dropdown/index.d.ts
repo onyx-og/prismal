@@ -22,6 +22,8 @@ export interface DropdownProps extends ComponentProps {
     children: ReactNode;
     /** The element that toggles the dropdown's visibility. */
     toggleElement?: ReactNode;
+    /** Defines the visual style of the dropdown. */
+    type?: 'primary' | 'default';
 }
 /**
  * @component Dropdown

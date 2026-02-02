@@ -26,6 +26,8 @@ export interface ModalProps extends ComponentProps {
     closeModal?: () => void;
     /** If true, shows the close button in the header. */
     showClose?: boolean;
+    /** Specify side-effect for modal close */
+    onClose?: () => void;
 }
 /**
  * @component Modal

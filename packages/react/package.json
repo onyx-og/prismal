@@ -1,6 +1,6 @@
 {
   "name": "@prismal/react",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Full-spectrum design system.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -28,8 +28,8 @@
   ],
   "license": "CC-BY-SA-4.0",
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": ">=19.2.0",
+    "react-dom": ">=19.2.0"
   },
   "files": [
     "lib",

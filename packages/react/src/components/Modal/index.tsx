@@ -1,5 +1,5 @@
 import './index.scss';
-import { ReactNode, FC, useMemo } from 'react';
+import { ReactNode, FC, useMemo, useCallback } from 'react';
 import ActionBar, { ActionBarItemConfig } from 'components/ActionBar';
 import Button from 'components/Button';
 import { createPortal } from 'react-dom';
@@ -31,6 +31,8 @@ export interface ModalProps extends ComponentProps {
     closeModal?: () => void;
     /** If true, shows the close button in the header. */
     showClose?: boolean;
+    /** Specify side-effect for modal close */
+    onClose?: () => void;
 };
 
 /**
@@ -51,6 +53,7 @@ const Modal: FC<ModalProps> = (props) => {
         children,
         visible = false,
         closeModal,
+        onClose,
         showClose = true,
         className,
         accent, accentDark, accentLight,
@@ -68,6 +71,11 @@ const Modal: FC<ModalProps> = (props) => {
     if (bgClassName) modalBgClass = `${modalBgClass} ${bgClassName}`;
     if (fgClassName) modalFgClass = `${modalFgClass} ${fgClassName}`;
 
+    let doCloseModal = useCallback(() => {
+        if (closeModal) closeModal();
+        if (onClose) onClose();
+    }, [closeModal, onClose]);
+
     const modalArea = areaId ? document.getElementById(areaId) : undefined;
 
     const headerActionBarItems = useMemo(() => {
@@ -77,7 +85,7 @@ const Modal: FC<ModalProps> = (props) => {
             item: <Button
                 shape='circle'
                 type="text"
-                onClick={closeModal} iconName='close'
+                onClick={doCloseModal} iconName='close'
                 accent={accent} accentDark={accentDark} accentLight={accentLight}
             />,
             position: 'right',
@@ -85,7 +93,7 @@ const Modal: FC<ModalProps> = (props) => {
             key: 'close-modal'
         });
         return items;
-    }, [title, showClose, closeModal, accent, accentLight, accentDark]);
+    }, [title, showClose, doCloseModal, accent, accentLight, accentDark]);
 
     const {
         header = <ActionBar
@@ -95,7 +103,7 @@ const Modal: FC<ModalProps> = (props) => {
     } = props;
 
     const component = <div data-id={dataId} className={modalClass}>
-        <div className={modalBgClass} onClick={closeModal}></div>
+        <div className={modalBgClass} onClick={doCloseModal}></div>
         <Card className={modalFgClass}
             header={header} footer={footer}>
             {<div className='modal-content'>

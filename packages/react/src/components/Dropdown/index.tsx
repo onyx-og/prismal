@@ -1,5 +1,5 @@
 import {
-    FC, ReactNode, useRef, useMemo
+    FC, ReactNode, useRef, useMemo, useEffect
 } from 'react';
 import ComponentProps from '../Component';
 import { setAccentStyle } from 'utils/colors';
@@ -28,6 +28,8 @@ export interface DropdownProps extends ComponentProps {
     children: ReactNode;
     /** The element that toggles the dropdown's visibility. */
     toggleElement?: ReactNode;
+    /** Defines the visual style of the dropdown. */
+    type?: 'primary' | 'default';
 }
 
 /**
@@ -46,10 +48,57 @@ const Dropdown: FC<DropdownProps> = (props) => {
         children,
         className, style,
         accent, accentLight, accentDark,
-        borderRadius
+        borderRadius,
+        type = 'primary'
     } = props;
 
     const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const updateRect = () => {
+            if (dropdownRef.current) {
+                const rect = dropdownRef.current.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const viewportWidth = window.innerWidth;
+
+                dropdownRef.current.style.setProperty('--dropdown-width', `${rect.width}px`);
+                dropdownRef.current.style.setProperty('--dropdown-height', `${rect.height}px`);
+                dropdownRef.current.style.setProperty('--dropdown-top', `${rect.top}px`);
+                dropdownRef.current.style.setProperty('--dropdown-left', `${rect.left}px`);
+
+                const spaceBelow = viewportHeight - rect.bottom;
+                const spaceAbove = rect.top;
+                if (spaceBelow < 200 && spaceAbove > spaceBelow) {
+                    dropdownRef.current.style.setProperty('--dropdown-content-top', 'auto');
+                    dropdownRef.current.style.setProperty('--dropdown-content-bottom', '100%');
+                    dropdownRef.current.style.setProperty('--dropdown-content-margin-top', '0');
+                    dropdownRef.current.style.setProperty('--dropdown-content-margin-bottom', '0.5em');
+                } else {
+                    dropdownRef.current.style.setProperty('--dropdown-content-top', 'var(--dropdown-height)');
+                    dropdownRef.current.style.setProperty('--dropdown-content-bottom', 'auto');
+                    dropdownRef.current.style.setProperty('--dropdown-content-margin-top', '0.5em');
+                    dropdownRef.current.style.setProperty('--dropdown-content-margin-bottom', '0');
+                }
+
+                const spaceRight = viewportWidth - rect.right;
+                const spaceLeft = rect.left;
+                if (spaceRight < 200 && spaceLeft > spaceRight) {
+                    dropdownRef.current.style.setProperty('--dropdown-content-left', 'auto');
+                    dropdownRef.current.style.setProperty('--dropdown-content-right', '0');
+                } else {
+                    dropdownRef.current.style.setProperty('--dropdown-content-left', '0');
+                    dropdownRef.current.style.setProperty('--dropdown-content-right', 'auto');
+                }
+            }
+        };
+        updateRect();
+        window.addEventListener('resize', updateRect);
+        window.addEventListener('scroll', updateRect, true);
+        return () => {
+            window.removeEventListener('resize', updateRect);
+            window.removeEventListener('scroll', updateRect, true);
+        };
+    }, []);
 
     let style_: { [key: string]: any } = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
@@ -75,9 +124,9 @@ const Dropdown: FC<DropdownProps> = (props) => {
         className={className_}
         style={style_}
     >
-        <div tabIndex={0} className='prismal-dropdown-select' ref={dropdownRef}>
+        <div tabIndex={0} className={`prismal-dropdown-select type-${type}`} ref={dropdownRef}>
             {toggleEl}
-            <div className='prismal-dropdown-toggle-btn'></div>
+            {type == 'primary' ? <div className='prismal-dropdown-toggle-btn'></div> : null}
             <div className="prismal-dropdown-content">
                 {children}
             </div>

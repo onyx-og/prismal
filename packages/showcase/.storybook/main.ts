@@ -1,5 +1,8 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
-
+import {
+  getCodeEditorStaticDirs,
+  getExtraStaticDir,
+} from 'storybook-addon-code-editor/getStaticDirs';
 import { dirname } from "path"
 
 import { fileURLToPath } from "url"
@@ -12,12 +15,20 @@ function getAbsolutePath(value: string): any {
   return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)))
 }
 const config: StorybookConfig = {
+  staticDirs: [
+    ...getCodeEditorStaticDirs(__filename),
+    // files will be available at: /monaco-editor/esm/*
+    getExtraStaticDir('monaco-editor/esm'),
+  ],
   "stories": [
       "../src/components/**/stories.mdx",
       "../src/components/**/stories.@(js|jsx|ts|tsx)",
       "../src/components/**/*.stories.@(js|jsx|ts|tsx)"
     ],
-  "addons": [getAbsolutePath("@storybook/addon-webpack5-compiler-swc")],
+  "addons": [
+    getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
+    'storybook-addon-code-editor',
+  ],
   framework: {
     name: '@storybook/react-webpack5',
     // name: "@storybook/react-vite",

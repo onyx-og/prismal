@@ -107,16 +107,16 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'lib'),
         filename: 'index.js',
-        globalObject: 'this',
         library: {
             type: 'module',
         },
-    libraryTarget: 'commonjs'
+    // libraryTarget: 'commonjs'
     },
     externals: {
-        react: 'react',
-        reactDOM: 'react-dom'
+        'react': 'react',
+        'react-dom': 'react-dom'
     },
+    externalsType: 'module',
     devtool: 'source-map',
     module: {
         rules: [
