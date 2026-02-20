@@ -48,7 +48,7 @@
                 }
             }
 
-            &:has(*:only-child) {
+            &:has(> *:only-child) {
                 display: none;
                 cursor: pointer;
                 margin: 0.5rem 0;
