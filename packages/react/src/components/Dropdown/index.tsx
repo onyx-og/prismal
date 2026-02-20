@@ -30,6 +30,8 @@ export interface DropdownProps extends ComponentProps {
     toggleElement?: ReactNode;
     /** Defines the visual style of the dropdown. */
     type?: 'primary' | 'default';
+    /** Whether the dropdown is open. */
+    isOpen?: boolean;
 }
 
 /**
@@ -49,7 +51,8 @@ const Dropdown: FC<DropdownProps> = (props) => {
         className, style,
         accent, accentLight, accentDark,
         borderRadius,
-        type = 'primary'
+        type = 'primary',
+        isOpen,
     } = props;
 
     const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -108,6 +111,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
 
     let className_ = 'prismal-dropdown';
     if (className) className_ = `${className_} ${className}`;
+    if (isOpen) className_ = `${className_} is-open`;
 
     /**
      * @member toggleEl
@@ -127,7 +131,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
         <div tabIndex={0} className={`prismal-dropdown-select type-${type}`} ref={dropdownRef}>
             {toggleEl}
             {type == 'primary' ? <div className='prismal-dropdown-toggle-btn'></div> : null}
-            <div className="prismal-dropdown-content">
+            <div className={`prismal-dropdown-content ${isOpen ? 'open' : ''}`}>
                 {children}
             </div>
         </div>
