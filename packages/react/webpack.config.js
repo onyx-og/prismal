@@ -69,6 +69,7 @@ const components = {
         actionBar: ['./src/components/ActionBar/index.scss', './src/styles/theme.scss'],
         accordion: ['./src/components/Accordion/index.scss', './src/styles/theme.scss'],
         lazyItem: ['./src/components/LazyItem/index.scss'],
+        view: ['./src/components/View/index.scss', './src/styles/theme.scss'],
     },
     output: {
         path: path.resolve(__dirname, 'lib/styles'),
