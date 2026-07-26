@@ -27,6 +27,20 @@
             flex: 1;
             position: relative;
 
+            // variant="nav" renders this as a <button> instead of a <div>; strip the
+            // native button chrome so it's visually identical to the div version.
+            &button {
+                appearance: none;
+                background: none;
+                border: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                font: inherit;
+                color: inherit;
+                text-align: inherit;
+            }
+
             .prismal-tab {
                 display: flex;
                 flex-direction: column;
