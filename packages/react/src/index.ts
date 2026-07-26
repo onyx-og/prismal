@@ -35,6 +35,7 @@ import Pie from "./components/Pie";
 import { Graph, GraphType } from "./components/Graph";
 import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
+import View, { ViewItem } from "./components/View";
 
 import { 
     useModal, useSidebar,
@@ -45,6 +46,7 @@ import {
 } from "hooks/";
 
 export {Container, Text};
+export {View, ViewItem};
 export {Tabs, Accordion};
 export {Pie};
 export {Graph, GraphType};

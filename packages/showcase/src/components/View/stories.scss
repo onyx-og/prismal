@@ -1,0 +1,16 @@
+.prismal-sc-div {
+    background-color: var(--color-primary-light);
+}
+
+.prismal-sc-view-base {
+    background-color: var(--color-primary-light);
+    height: 100%;
+}
+
+.prismal-sc-view-overlay {
+    width: max-content;
+    height: max-content;
+    background-color: var(--color-primary-dark);
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+}

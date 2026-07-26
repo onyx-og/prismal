@@ -1,0 +1,140 @@
+// components/View/index.scss
+//
+// The whole responsive story lives here. React writes one custom property per
+// breakpoint (--prismal-view-cols-sm, --prismal-view-item-w-lg, ...) and this
+// file assembles them into a fallback chain, so a value set at `sm` keeps
+// applying until `md` overrides it. No breakpoint detection in JS, and the
+// server-rendered markup already carries every breakpoint's value.
+
+// Swap these for the library's shared breakpoint variables (styles/_variables).
+$prismal-view-bp: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+
+// Builds var(--prefix-xl, var(--prefix-lg, ... var(--prefix-xs, $fallback)))
+// for every breakpoint up to and including $upto.
+@function prismal-view-chain($prefix, $upto, $fallback) {
+    $chain: $fallback;
+    @each $bp in (xs, sm, md, lg, xl) {
+        $chain: var(--#{$prefix}-#{$bp}, #{$chain});
+        @if $bp == $upto {
+            @return $chain;
+        }
+    }
+    @return $chain;
+}
+
+.prismal-view {
+    --prismal-view-unit: 1rem;
+
+    display: grid;
+    position: relative;
+
+    // Keeps the layer stack local. Without this, an item's z-index competes with
+    // whatever else is on the page — a sticky header, a Modal — and a View placed
+    // low in the document could punch through them.
+    isolation: isolate;
+
+    grid-template-columns: prismal-view-chain(prismal-view-cols, xs, none);
+    grid-template-rows: prismal-view-chain(prismal-view-rows, xs, none);
+    gap: prismal-view-chain(prismal-view-gap, xs, 0px);
+
+    // Tracks beyond the declared ones inherit the base cell size rather than
+    // collapsing. This is what makes `reflow="wrap"` look right: items pushed past
+    // the declared row count land in implicit rows of exactly the same height.
+    grid-auto-columns: prismal-view-chain(prismal-view-auto-col, xs, auto);
+    grid-auto-rows: prismal-view-chain(prismal-view-auto-row, xs, auto);
+
+    @each $bp, $width in $prismal-view-bp {
+        @media (min-width: $width) {
+            grid-template-columns: prismal-view-chain(prismal-view-cols, $bp, none);
+            grid-template-rows: prismal-view-chain(prismal-view-rows, $bp, none);
+            gap: prismal-view-chain(prismal-view-gap, $bp, 0px);
+            grid-auto-columns: prismal-view-chain(prismal-view-auto-col, $bp, auto);
+            grid-auto-rows: prismal-view-chain(prismal-view-auto-row, $bp, auto);
+        }
+    }
+}
+
+.prismal-view-dense {
+    grid-auto-flow: row dense;
+}
+
+.prismal-view-item {
+    // `auto` start line means an unhooked item falls back to normal auto-placement,
+    // so a View can mix explicitly addressed and flowed children.
+    grid-column: prismal-view-chain(prismal-view-item-col, xs, auto)
+        / span prismal-view-chain(prismal-view-item-w, xs, 1);
+    grid-row: prismal-view-chain(prismal-view-item-row, xs, auto)
+        / span prismal-view-chain(prismal-view-item-h, xs, 1);
+
+    // Overlapping items are a supported arrangement, not an error state. Grid
+    // already allows two items to claim the same area; these three properties are
+    // what make the result deliberate rather than incidental.
+    //
+    // z-index defaults to `auto`, so items with no explicit layer paint in DOM
+    // order — the common case reads correctly with no extra props.
+    z-index: prismal-view-chain(prismal-view-item-z, xs, auto);
+    justify-self: prismal-view-chain(prismal-view-item-justify, xs, stretch);
+    align-self: prismal-view-chain(prismal-view-item-align, xs, stretch);
+    translate: prismal-view-chain(prismal-view-item-offset, xs, 0 0);
+
+    // Gives absolutely-positioned content inside an item something to resolve
+    // against. Does not create a stacking context on its own (z-index stays
+    // `auto` unless `layer` is set), so the layer order above stays authoritative.
+    position: relative;
+
+    min-width: 0;
+    min-height: 0;
+
+    @each $bp, $width in $prismal-view-bp {
+        @media (min-width: $width) {
+            grid-column: prismal-view-chain(prismal-view-item-col, $bp, auto)
+                / span prismal-view-chain(prismal-view-item-w, $bp, 1);
+            grid-row: prismal-view-chain(prismal-view-item-row, $bp, auto)
+                / span prismal-view-chain(prismal-view-item-h, $bp, 1);
+
+            z-index: prismal-view-chain(prismal-view-item-z, $bp, auto);
+            justify-self: prismal-view-chain(prismal-view-item-justify, $bp, stretch);
+            align-self: prismal-view-chain(prismal-view-item-align, $bp, stretch);
+            translate: prismal-view-chain(prismal-view-item-offset, $bp, 0 0);
+        }
+    }
+}
+
+// An upper layer that spans a wide area to place one small element would
+// otherwise swallow every click destined for the layer beneath it. `"content"`
+// makes the empty part of the box transparent to the pointer while keeping the
+// content itself interactive.
+.prismal-view-item-pointer-none {
+    pointer-events: none;
+}
+
+.prismal-view-item-pointer-content {
+    pointer-events: none;
+
+    > .prismal-view-item-content > * {
+        pointer-events: auto;
+    }
+}
+
+.prismal-view-item-clip {
+    overflow: hidden;
+}
+
+.prismal-view-item-content {
+    width: 100%;
+    height: 100%;
+}
+
+// Intrinsic sizing for width="auto" / height="auto". Laid out at max-content so
+// the measured size is what the content wants, independent of the cell it sits
+// in — which is what stops the measure/resize loop from oscillating.
+.prismal-view-item-measure {
+    width: max-content;
+    height: max-content;
+    max-width: none;
+}
