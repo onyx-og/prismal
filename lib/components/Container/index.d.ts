@@ -1,9 +1,15 @@
-import React from "react";
+import { ReactNode, FC } from "react";
 import ComponentProps from "../Component";
 import "./index.scss";
 type Ratio = "5-2" | "9-2" | "5-4" | "16-9" | "16-3" | "18-9" | "20-6" | "20-8" | "8-5" | "4-3" | "4-5";
+/**
+ * @typedef {object} ContainerProps
+ * @description Props for the Container component.
+ */
 export interface ContainerProps extends ComponentProps {
-    children?: React.ReactNode;
+    /** The content to be rendered inside the container. */
+    children?: ReactNode;
+    /** The aspect ratio of the container, can be a single value or responsive object. */
     ratio?: {
         xs?: Ratio;
         sm?: Ratio;
@@ -11,6 +17,7 @@ export interface ContainerProps extends ComponentProps {
         lg?: Ratio;
         xl?: Ratio;
     } | Ratio;
+    /** The column span of the container in a grid layout. */
     span?: {
         xs?: number;
         sm?: number;
@@ -18,13 +25,26 @@ export interface ContainerProps extends ComponentProps {
         lg?: number;
         xl?: number;
     } | number;
+    /** Controls the visibility of the container, can be responsive. */
     hide?: {
-        xs?: true;
-        sm?: true;
-        md?: true;
-        lg?: true;
-        xl?: true;
-    } | true;
+        xs?: boolean;
+        sm?: boolean;
+        md?: boolean;
+        lg?: boolean;
+        xl?: boolean;
+    } | boolean;
+    /** The type of custom cursor to display within the container. */
+    cursor?: "circle";
 }
-declare const Container: React.FC<ContainerProps>;
+/**
+ * @component Container
+ * @description A flexible container component with responsive properties for layout and visibility.
+ * @param {ContainerProps} props The component props.
+ * @returns {React.ReactElement} The rendered Container component.
+ * @example
+ * <Container span={6} ratio="16-9">
+ *   <p>Content</p>
+ * </Container>
+ */
+declare const Container: FC<ContainerProps>;
 export default Container;

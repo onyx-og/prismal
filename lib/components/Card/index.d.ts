@@ -1,17 +1,37 @@
-import React from "react";
+import { ReactNode, FC } from "react";
 import './index.scss';
 import ComponentProps from '../Component';
-import { BorderRadius } from '../../utils';
+/**
+ * @typedef {object} CardProps
+ * @description Props for the Card component.
+ */
 export interface CardProps extends ComponentProps {
-    header?: React.ReactNode;
+    /** The content for the card's header section. */
+    header?: ReactNode;
+    /** Additional CSS class for the header. */
     headerClass?: string;
-    footer?: React.ReactNode;
+    /** The content for the card's footer section. */
+    footer?: ReactNode;
+    /** Additional CSS class for the footer. */
     footerClass?: string;
-    children?: React.ReactNode;
+    /** The main content of the card (body). */
+    children?: ReactNode;
+    /** Additional CSS class for the body. */
     bodyClass?: string;
+    /** The orientation of the card layout. */
     orientation?: "vertical" | "horizontal";
-    cornerRadius?: BorderRadius;
+    /** The padding size for the card content. */
     padding?: "none" | 'xs' | "s" | 'm' | 'l';
 }
-declare const Card: React.FC<CardProps>;
+/**
+ * @component Card
+ * @description A flexible content container with optional header, footer, and body sections.
+ * @param {CardProps} props The component props.
+ * @returns {React.ReactElement} The rendered Card component.
+ * @example
+ * <Card header={<h2>Card Title</h2>} footer={<Button>Action</Button>}>
+ *   <p>This is the card content.</p>
+ * </Card>
+ */
+declare const Card: FC<CardProps>;
 export default Card;

@@ -1,12 +1,19 @@
 import ComponentProps from "../Component";
-import React from "react";
+import { FC } from "react";
 /**
  * https://stackoverflow.com/a/79042186/1623725 for drawing pie slices
  * https://stackoverflow.com/a/67299291/1623725 for adding text in them
  */
+/**
+ * @typedef {object} PieChartProps
+ * @description Props for the Pie chart component.
+ */
 export interface PieChartProps extends ComponentProps {
+    /** A name for the chart. */
     name?: string;
+    /** The size (width and height) of the pie chart. */
     size?: number;
+    /** The data for the pie chart slices. */
     data: {
         name?: string;
         percentage: number;
@@ -14,5 +21,13 @@ export interface PieChartProps extends ComponentProps {
         label?: string;
     }[];
 }
-declare const Pie: React.FC<PieChartProps>;
+/**
+ * @component Pie
+ * @description A component to render a pie chart from a data array.
+ * @param {PieChartProps} props The component props.
+ * @returns {React.ReactElement} The rendered Pie chart SVG.
+ * @example
+ * <Pie data={[{ percentage: 50, color: 'red' }, { percentage: 50, color: 'blue' }]} />
+ */
+declare const Pie: FC<PieChartProps>;
 export default Pie;
