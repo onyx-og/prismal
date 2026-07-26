@@ -2,7 +2,7 @@ import Container from "./components/Container";
 import Text from "./components/Text";
 import Icon from "./components/Icon";
 import Button from "./components/Button";
-import ButtonGroup from "components/ButtonGroup";
+import ButtonGroup from "./components/ButtonGroup";
 import Select, { SelectOption } from "./components/Form/Select";
 import TextInput from "./components/Form/TextInput";
 import Toggle from "./components/Form/Toggle";

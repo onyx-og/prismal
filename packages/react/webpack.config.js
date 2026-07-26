@@ -53,6 +53,7 @@ const components = {
         card: ['./src/components/Card/index.scss', './src/styles/theme.scss'],
         alert: ['./src/components/Alert/index.scss', './src/styles/theme.scss'],
         list: ['./src/components/List/index.scss', './src/styles/theme.scss'],
+        masonry: ['./src/components/Masonry/index.scss', './src/styles/theme.scss'],
         sidebar: ['./src/components/Sidebar/index.scss', './src/styles/theme.scss'],
         slider: ['./src/components/Slider/index.scss', './src/styles/theme.scss'],
         modal: ['./src/components/Modal/index.scss', './src/styles/theme.scss'],
@@ -114,7 +115,10 @@ const config = {
     },
     externals: {
         'react': 'react',
-        'react-dom': 'react-dom'
+        'react-dom': 'react-dom',
+        'react/jsx-runtime': 'react/jsx-runtime',
+        'react/jsx-dev-runtime': 'react/jsx-dev-runtime',
+        'react-dom/client': 'react-dom/client'
     },
     externalsType: 'module',
     devtool: 'source-map',
