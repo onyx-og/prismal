@@ -30,7 +30,7 @@ export interface DropdownProps extends ComponentProps {
     toggleElement?: ReactNode;
     /** Defines the visual style of the dropdown. */
     type?: 'primary' | 'default';
-    /** Whether the dropdown is open. */
+    /** Manually toggles visibility */
     isOpen?: boolean;
 }
 
@@ -47,12 +47,12 @@ export interface DropdownProps extends ComponentProps {
 const Dropdown: FC<DropdownProps> = (props) => {
     const {
         toggleElement,
+        isOpen = false,
         children,
         className, style,
         accent, accentLight, accentDark,
         borderRadius,
         type = 'primary',
-        isOpen,
     } = props;
 
     const dropdownRef = useRef<HTMLDivElement | null>(null);

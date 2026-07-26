@@ -16,6 +16,7 @@
             border-style: none;
             filter: url("#");
         }
+
         cursor: pointer;
 
         &.anim-pulse {
@@ -63,29 +64,41 @@
                 padding: 0.5rem 1rem;
                 background-color: white;
                 transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
+
                 &:hover {
                     transform: translateX(0.5em);
                 }
             }
 
-            // &:has(* + *)>* {
-            //     display: none;
-            //     cursor: pointer;
-            //     margin: 0.5rem 0;
-            //     border: none;
-            //     border-radius: var(--border-radius);
-            //     padding: 0.5rem 1rem;
-            //     background-color: white;
-            //     transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
-            //     &:hover {
-            //         transform: translateX(0.5em);
-            //     }
-            // }
+            &:has(*:only-child) {
+                display: none;
+                cursor: pointer;
+                margin: 0.5rem 0;
+                border: none;
+                border-radius: var(--border-radius);
+                padding: 0.5rem 1rem;
+                background-color: white;
+                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
 
+                &:hover {
+                    transform: translateX(0.5em);
+                }
+            }
 
-            
+            &:has(* + *)>* {
+                display: none;
+                cursor: pointer;
+                margin: 0.5rem 0;
+                border: none;
+                border-radius: var(--border-radius);
+                padding: 0.5rem 1rem;
+                background-color: white;
+                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
 
-
+                &:hover {
+                    transform: translateX(0.5em);
+                }
+            }
         }
 
         .prismal-dropdown-toggle-btn {
@@ -131,5 +144,34 @@
                 }
             }
         }
+    }
+
+    &.is-open {
+        .prismal-dropdown-select {
+            z-index: vars.$zindex-0;
+
+            &>.prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            }
+
+            &>.prismal-dropdown-content:has(*:only-child) {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            }
+
+            &>.prismal-dropdown-content:has(* + *)>* {
+                display: block !important;
+                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            }
+
+            .prismal-dropdown-toggle-btn {
+                &::before {
+                    content: '▲';
+                    font-size: 0.5em;
+                }
+            }
+        }
+
     }
 }
