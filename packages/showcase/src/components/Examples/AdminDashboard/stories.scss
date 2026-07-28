@@ -1,0 +1,178 @@
+.example-admin-dashboard {
+    display: flex;
+    align-items: stretch;
+    min-height: 42rem;
+    font-family: sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.admin-nav {
+    /* Explicit width + padding under content-box would render at
+       14rem + 2rem instead of 14rem — border-box keeps it true to width. */
+    box-sizing: border-box;
+    width: 14rem;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #f7f7f8;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.admin-nav-brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.5rem 0.75rem 1rem;
+}
+
+.admin-nav-menu .prismal-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.admin-nav-menu .admin-nav-item-active {
+    background: #e4e4f5;
+    font-weight: 600;
+}
+
+.admin-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-topbar {
+    /* ActionBar sets width:100% (content-box) on this element; adding
+       horizontal padding without border-box would push it past .admin-main. */
+    box-sizing: border-box;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.admin-content {
+    flex: 1;
+    padding: 1.25rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-overview,
+.admin-users,
+.admin-orders,
+.admin-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.admin-kpi-row {
+    margin-bottom: 0.25rem;
+}
+
+.admin-kpi-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    justify-content: center;
+    height: 100%;
+}
+
+.admin-kpi-label {
+    opacity: 0.6;
+}
+
+.admin-overview-charts {
+    display: flex;
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.admin-revenue-card {
+    flex: 2;
+}
+
+.admin-category-card {
+    flex: 1;
+}
+
+.admin-revenue-graph {
+    height: 14rem;
+}
+
+.admin-category-body {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.admin-category-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.admin-category-swatch {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+}
+
+.admin-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.admin-notifications {
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    min-width: 14rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.admin-user-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+
+.admin-status-badge {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.admin-status-badge-paid {
+    background: #e3f2e1;
+    color: #2e7d32;
+}
+
+.admin-status-badge-pending {
+    background: #fff3cd;
+    color: #8a6100;
+}
+
+.admin-status-badge-refunded {
+    background: #fde2e1;
+    color: #b3261e;
+}

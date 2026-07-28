@@ -1,0 +1,82 @@
+.example-todo-app {
+    max-width: 40rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: sans-serif;
+}
+
+.todo-app-nav {
+    /* Header sets width:100% (content-box) on this element; adding horizontal
+       padding without border-box would push it past its container's edge. */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+}
+
+.todo-app-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+.todo-app-tabs {
+    /* Same footgun as .todo-app-nav: Tabs sets width:100% (content-box) on
+       .prismal-tabs, so this needs border-box too. */
+    box-sizing: border-box;
+    padding: 0 1.25rem;
+    /* Sticky instead of the header: Tabs already has its own opaque
+       background (unlike Header's nav), so no transparency/blur trick
+       is needed here for readability. */
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.todo-app-list .prismal-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-item-body {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.todo-item-title {
+    flex: 1;
+}
+
+.todo-item-done {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.todo-item-priority {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.todo-item-priority-high {
+    background: #fde2e1;
+    color: #b3261e;
+}
+
+.todo-item-priority-medium {
+    background: #fff3cd;
+    color: #8a6100;
+}
+
+.todo-item-priority-low {
+    background: #e3f2e1;
+    color: #2e7d32;
+}

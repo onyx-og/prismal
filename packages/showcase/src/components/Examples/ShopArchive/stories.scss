@@ -1,0 +1,173 @@
+.example-shop-archive {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: sans-serif;
+}
+
+.shop-archive-nav {
+    /* Header sets width:100% (content-box) on this element; adding horizontal
+       padding without border-box would push it past its container's edge. */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+}
+
+.shop-archive-nav-flyout {
+    /* Keep the same centered width the nav had in normal flow — position:fixed
+       otherwise stretches it edge-to-edge, misaligned with the page below.
+       left/right + margin:auto centers it without relying on containing-block
+       percentage math. */
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 72rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Alpha alone still lets scrolled-under content ghost through the text;
+       the blur is what actually makes it readable. */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.shop-archive-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+.shop-archive-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 0 1.25rem;
+}
+
+.shop-archive-filters {
+    width: 14rem;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.shop-archive-results {
+    flex: 1;
+    min-width: 0;
+}
+
+.shop-archive-grid .prismal-list-wrapper > .prismal-page-container {
+    grid-auto-rows: 15rem !important;
+    gap: 1rem !important;
+}
+
+.product-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.product-card-photo {
+    /* Cancels the header's own inherited padding so the photo bleeds
+       to the card's edges, without zeroing --box-padding on the Card itself. */
+    margin: calc(-1 * var(--box-padding, 0.75rem));
+    /* Match the card's own corner radius, since a plain rectangle here would
+       square off the card's rounded top corners otherwise. */
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.product-card-brand {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+}
+
+.product-card-name {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.product-card-footer-row {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-card-price {
+    font-weight: 600;
+}
+
+.cart-sidebar-title {
+    margin: 0;
+}
+
+.cart-sidebar-content,
+.cart-sidebar-footer {
+    white-space: normal;
+}
+
+.cart-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    min-width: 16rem;
+}
+
+.cart-sidebar-empty {
+    opacity: 0.6;
+}
+
+.cart-line {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cart-line-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.cart-line-name {
+    white-space: normal;
+}
+
+.cart-line-unit-price {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.cart-line-total {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.cart-sidebar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.cart-sidebar-total {
+    font-weight: 600;
+}

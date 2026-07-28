@@ -1,0 +1,242 @@
+.example-landing-page {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.landing-nav {
+    /* Header sets width:100% (content-box) on this element; adding horizontal
+       padding without border-box would push it past its container's edge
+       (masked here by .example-landing-page's overflow-x:hidden, but still
+       worth fixing at the source). */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: white;
+}
+
+.landing-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+.landing-nav-menu {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.landing-nav-menu .prismal-menu-item {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.landing-hero {
+    position: relative;
+    padding: 5rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    overflow: hidden;
+}
+
+.landing-hero-blob {
+    position: absolute;
+    top: -6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(90, 110, 220, 0.25), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.landing-hero-title {
+    max-width: 40rem;
+    position: relative;
+}
+
+.landing-hero-subtitle {
+    max-width: 34rem;
+    opacity: 0.75;
+    position: relative;
+}
+
+.landing-features,
+.landing-testimonials,
+.landing-pricing,
+.landing-faq,
+.landing-newsletter {
+    /* width:100% + padding under content-box overflows past the section's
+       own max-width (visible on .landing-newsletter, which resets max-width
+       to none and so has nothing left to clip the overflow). */
+    box-sizing: border-box;
+    padding: 3rem 1.5rem;
+    max-width: 64rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.landing-section-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.landing-features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.landing-feature-card {
+    flex: 1 1 16rem;
+    max-width: 20rem;
+}
+
+.landing-feature-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    height: 100%;
+    justify-content: center;
+}
+
+.landing-testimonial-slider {
+    height: 14rem;
+}
+
+.landing-testimonial-card {
+    height: 100%;
+    max-width: 30rem;
+    text-align: center;
+}
+
+.landing-testimonial-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    height: 100%;
+}
+
+.landing-testimonial-quote {
+    font-style: italic;
+}
+
+.landing-testimonial-name {
+    font-weight: 600;
+}
+
+.landing-testimonial-role {
+    opacity: 0.6;
+}
+
+.landing-pricing-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.landing-pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+}
+
+.landing-pricing-card {
+    flex: 1 1 14rem;
+    max-width: 18rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.landing-pricing-description {
+    opacity: 0.7;
+}
+
+.landing-pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin: 0.5rem 0;
+}
+
+.landing-pricing-features {
+    list-style: none;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.landing-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 40rem;
+    margin: 0 auto;
+}
+
+.landing-newsletter {
+    text-align: center;
+    background: #f7f7f8;
+    max-width: none;
+}
+
+.landing-newsletter-form {
+    max-width: 26rem;
+    margin: 1rem auto 0;
+}
+
+.landing-newsletter-form .form-fields {
+    align-items: center;
+}
+
+.landing-footer {
+    background: #1c1e26;
+    color: #f2f2f4;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.landing-footer-logo {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    margin-right: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+.landing-footer-menu {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.landing-footer-menu .prismal-menu-item {
+    cursor: pointer;
+    opacity: 0.8;
+}
