@@ -121,8 +121,46 @@ $prismal-view-bp: (
     }
 }
 
+// Constrains the item to the box its own span implies — `span * cellSize +
+// (span - 1) * gap` — and scrolls whatever doesn't fit. `cellSize` is the
+// View's own resolved auto-row/auto-col track size (the same value
+// grid-auto-rows/grid-auto-columns already use above), not the bare `unit`:
+// a row is however big cellHeight says a row is, and a plain `unit` fallback
+// would silently pretend every row is exactly 1 unit tall regardless of what
+// the View actually declared. This matters most when cellWidth/cellHeight is
+// "auto": that kind of track sizes itself to its tallest/widest occupant, so
+// without an independent cap here a single overlong item would inflate the
+// whole row/column instead of scrolling.
+//
+// If cellHeight/cellWidth is genuinely "auto" (never given a concrete size),
+// there is no length to multiply by — the calc() is invalid and `height`/
+// `width` fall back to `auto`, i.e. clip becomes a no-op on that axis. That's
+// a real limit, not a bug: "auto" means the track's size was never meant to
+// be a fixed quantity, so `clip` has nothing to scale against. Give that
+// axis a concrete cellHeight/cellWidth if you need it to also clip.
 .prismal-view-item-clip {
-    overflow: hidden;
+    overflow: auto;
+    height: calc(
+        #{prismal-view-chain(prismal-view-item-h, xs, 1)} * #{prismal-view-chain(prismal-view-auto-row, xs, auto)} +
+        (#{prismal-view-chain(prismal-view-item-h, xs, 1)} - 1) * #{prismal-view-chain(prismal-view-gap, xs, 0px)}
+    );
+    width: calc(
+        #{prismal-view-chain(prismal-view-item-w, xs, 1)} * #{prismal-view-chain(prismal-view-auto-col, xs, auto)} +
+        (#{prismal-view-chain(prismal-view-item-w, xs, 1)} - 1) * #{prismal-view-chain(prismal-view-gap, xs, 0px)}
+    );
+
+    @each $bp, $width in $prismal-view-bp {
+        @media (min-width: $width) {
+            height: calc(
+                #{prismal-view-chain(prismal-view-item-h, $bp, 1)} * #{prismal-view-chain(prismal-view-auto-row, $bp, auto)} +
+                (#{prismal-view-chain(prismal-view-item-h, $bp, 1)} - 1) * #{prismal-view-chain(prismal-view-gap, $bp, 0px)}
+            );
+            width: calc(
+                #{prismal-view-chain(prismal-view-item-w, $bp, 1)} * #{prismal-view-chain(prismal-view-auto-col, $bp, auto)} +
+                (#{prismal-view-chain(prismal-view-item-w, $bp, 1)} - 1) * #{prismal-view-chain(prismal-view-gap, $bp, 0px)}
+            );
+        }
+    }
 }
 
 .prismal-view-item-content {

@@ -30,7 +30,9 @@ export type ViewPointerEvents = "auto" | "none" | "content";
  * @property {object | number | string} [offset] Post-placement nudge, applied as a translate.
  * @property {string} [reflow] Overrides the View's reflow policy for this item alone.
  * @property {"auto" | "none" | "content"} [pointerEvents="auto"] Hit-testing behaviour.
- * @property {boolean} [clip=false] Hide overflow instead of letting content bleed past the span.
+ * @property {boolean} [clip=false] Constrain the item to the box implied by its own
+ * width/height span — rather than the row/column track, which may be sized "auto" and
+ * would otherwise grow to fit oversized content — and scroll whatever doesn't fit.
  */
 export interface ViewItemProps extends ComponentProps {
     children?: ReactNode;
