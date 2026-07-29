@@ -26,6 +26,8 @@ export interface ButtonProps extends ComponentProps {
     htmlType?: 'submit' | 'button';
     /** If true, the button will be in a read-only state. */
     readOnly?: boolean;
+    /** If true, the hover ripple grows past the button's own edges instead of being clipped to its shape. */
+    hoverGrow?: boolean;
 }
 /**
  * @component Button

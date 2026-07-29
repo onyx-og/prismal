@@ -2,7 +2,7 @@
 
 > `const` **ParallaxItem**: `FC`\<`ParallaxItemProps`\>
 
-Defined in: [components/ParallaxItem/index.tsx:27](https://github.com/onyx-og/prismal/blob/9a285ef7c2a5fc4511a360c2837da1f9e4206acf/packages/react/src/components/ParallaxItem/index.tsx#L27)
+Defined in: [components/ParallaxItem/index.tsx:27](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/ParallaxItem/index.tsx#L27)
 
 ## Component
 

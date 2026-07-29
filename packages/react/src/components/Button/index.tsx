@@ -33,6 +33,8 @@ export interface ButtonProps extends ComponentProps {
     htmlType?: 'submit' | 'button';
     /** If true, the button will be in a read-only state. */
     readOnly?: boolean;
+    /** If true, the hover ripple grows past the button's own edges instead of being clipped to its shape. */
+    hoverGrow?: boolean;
 }
 
 /**
@@ -60,7 +62,8 @@ const Button: FC<ButtonProps> = (props) => {
         className, style,
         accent, accentDark, accentLight,
         elevation = 0, borderRadius,
-        htmlType = 'button'
+        htmlType = 'button',
+        hoverGrow = false
     } = props;
 
     let btnClass = `prismal-btn btn-${type} btn-${shape}`;
@@ -69,6 +72,7 @@ const Button: FC<ButtonProps> = (props) => {
     if (readOnly) btnClass = `${btnClass} btn-readonly`;
     else if (elevation) btnClass = `${btnClass} btn-elevated`;
     else btnClass = `${btnClass} btn-anim`;
+    if (hoverGrow) btnClass = `${btnClass} btn-hover-grow`;
 
     let style_: { [key: string]: any } = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });

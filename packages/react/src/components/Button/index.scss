@@ -1,6 +1,39 @@
 @use '../../styles/vars';
 @use '../../styles/animations';
 
+// Renders a small cluster of dots, hidden at scale(0) and centered on the
+// button. Growing `transform: scale(...)` on hover radiates them outward
+// until they blanket the button, giving a ripple-like color transition
+// instead of an instant background swap. `clip-path` (not `overflow`)
+// contains the cluster so it never bleeds past the button's own corners,
+// leaving the separate `::after` focus-ring pulse (which relies on its
+// box-shadow spreading *outside* the button) unaffected.
+@mixin ripple-dots($color) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $color;
+    box-shadow:
+        14px -10px 0 0 $color,
+        -12px -14px 0 0 $color,
+        16px 12px 0 0 $color,
+        -14px 10px 0 0 $color,
+        2px -18px 0 0 $color,
+        -6px 16px 0 0 $color,
+        18px 4px 0 0 $color,
+        -18px -2px 0 0 $color;
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform var(--btn-ripple-duration, 1.2s) cubic-bezier(.22, .61, .36, 1);
+    pointer-events: none;
+    clip-path: inset(0 round var(--border-radius));
+}
+
 .prismal-btn {
     appearance: none;
     -webkit-appearance: none;
@@ -12,6 +45,8 @@
     cursor: pointer;
     display: flex;
     position: relative;
+    overflow: clip;
+    isolation: isolate;
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
@@ -21,6 +56,9 @@
     box-shadow: var(--box-elevation-secondary);
     box-sizing: border-box;
     width: fit-content;
+    // Clipped by default, so the ripple runs slow enough to actually be
+    // seen filling the button's own bounds.
+    --btn-ripple-duration: 1.2s;
 
     &.btn-anim {
         @include animations.anim-pulse;
@@ -30,15 +68,56 @@
         box-shadow: var(--box-elevation-primary);
     }
 
+    // hoverGrow lets the ripple spill past the button's own edges instead
+    // of being clipped to its shape. It doesn't need the slow, contained
+    // pacing above, so it speeds back up.
+    &.btn-hover-grow {
+        --btn-ripple-duration: .6s;
+
+        &::before {
+            clip-path: none !important;
+        }
+
+        // In a ButtonGroup, adjacent buttons share stacking order via DOM
+        // position, so a later sibling normally paints over an earlier
+        // one's overflowing ripple. Lift the hovered/focused button above
+        // its neighbors only while the ripple is actually showing.
+        &:hover:not(.btn-disabled),
+        &:focus-visible:not(.btn-disabled) {
+            z-index: 2;
+        }
+    }
+
     &.btn-default {
         background-color: transparent;
         border: solid .1em vars.$primary-color;
         color: vars.$primary-color;
+        // No delay reverting back to idle -- it should snap the instant
+        // hover/focus ends, in step with the ripple starting to shrink.
+        transition: border-color .4s, color .4s, background-color 0s;
 
-        &:hover:not(.btn-disabled) {
-            background-color: vars.$primary-color-light;
+        &::before {
+            @include ripple-dots(vars.$primary-color-light);
+        }
+
+        &.btn-circle::before {
+            clip-path: circle(50%);
+        }
+
+        &:hover:not(.btn-disabled),
+        &:focus-visible:not(.btn-disabled) {
             border: solid .1em vars.$primary-color-light;
             color: vars.$primary-color-dark;
+            background-color: vars.$primary-color-light;
+            // Delayed by the ripple's own duration, so the real
+            // background-color only "paints" the instant the ripple has
+            // finished filling the button -- by then it's an invisible
+            // handoff instead of a visible jump.
+            transition: border-color .4s, color .4s, background-color 0s var(--btn-ripple-duration);
+
+            &::before {
+                transform: scale(14);
+            }
         }
 
         &:focus:not(.btn-disabled)::after,
@@ -61,11 +140,32 @@
         border: solid .1em vars.$primary-color;
         background-color: vars.$primary-color;
         color: vars.$light-color;
+        // No delay reverting back to idle -- it should snap the instant
+        // hover/focus ends, in step with the ripple starting to shrink.
+        transition: border-color .4s, color .4s, background-color 0s;
 
-        &:hover:not(.btn-disabled) {
+        &::before {
+            @include ripple-dots(vars.$primary-color-dark);
+        }
+
+        &.btn-circle::before {
+            clip-path: circle(50%);
+        }
+
+        &:hover:not(.btn-disabled),
+        &:focus-visible:not(.btn-disabled) {
             border: solid .1em vars.$primary-color-dark;
-            background-color: vars.$primary-color-dark;
             color: vars.$primary-color-light;
+            background-color: vars.$primary-color-dark;
+            // Delayed by the ripple's own duration, so the real
+            // background-color only "paints" the instant the ripple has
+            // finished filling the button -- by then it's an invisible
+            // handoff instead of a visible jump.
+            transition: border-color .4s, color .4s, background-color 0s var(--btn-ripple-duration);
+
+            &::before {
+                transform: scale(14);
+            }
         }
 
         &:focus:not(.btn-disabled)::after {
