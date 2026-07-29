@@ -59,16 +59,18 @@ const TodoApp = () => {
                 <Button type="primary" iconName="plus" onClick={addTodoModal.open}>Add task</Button>
             </Header>
 
-            <Tabs
-                tabsClass="todo-app-tabs"
-                data={[
-                    { name: "all", label: "All" },
-                    { name: "active", label: "Active" },
-                    { name: "completed", label: "Completed" },
-                ]}
-                selected={filter}
-                onChange={(name) => setFilter(name as Filter)}
-            />
+            <div className="todo-app-tabs-sticky">
+                <Tabs
+                    tabsClass="todo-app-tabs"
+                    data={[
+                        { name: "all", label: "All" },
+                        { name: "active", label: "Active" },
+                        { name: "completed", label: "Completed" },
+                    ]}
+                    selected={filter}
+                    onChange={(name) => setFilter(name as Filter)}
+                />
+            </div>
 
             {filteredTodos.length ? (
                 <List

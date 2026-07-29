@@ -29,12 +29,24 @@
        .prismal-tabs, so this needs border-box too. */
     box-sizing: border-box;
     padding: 0 1.25rem;
+}
+
+.todo-app-tabs-sticky {
     /* Sticky instead of the header: Tabs already has its own opaque
-       background (unlike Header's nav), so no transparency/blur trick
-       is needed here for readability. */
+       background (unlike Header's nav), so no transparency/blur trick is
+       needed here for readability.
+       This has to sit on a wrapper around <Tabs>, not on .todo-app-tabs
+       itself — Tabs' own wrapper (.prismal-tabs-container) is exactly as
+       tall as the tab bar, leaving no room within its containing block for
+       position:sticky to have any visible effect. This wrapper's containing
+       block is .example-todo-app instead, which spans the whole scrollable
+       list — that's what gives the sticky effect somewhere to actually stick. */
     position: sticky;
     top: 0;
     z-index: 5;
+}
+
+.todo-app-tabs-sticky .todo-app-tabs {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 

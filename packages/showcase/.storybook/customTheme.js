@@ -6,7 +6,7 @@ export default create({
   // Brand details
   brandTitle: 'Prismal React',
   brandUrl: 'prismal/docs/',
-  brandImage: 'prismal/img/logo_banner.svg', // URL to your logo
+  brandImage: 'http://onyx.ac/wp-content/uploads/2026/07/logo_3d.svg', // URL to your logo
   brandTarget: '_self', // opens in the same window,
   // Typography
 	fontBase:

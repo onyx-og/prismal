@@ -6,36 +6,51 @@
     width: fit-content;
     min-width: 12rem;
 
-    .input-wrapper {
+    &.prismal-search-btn-outer-after,
+    &.prismal-search-btn-outer-before {
+        // Shared border color for the input + button pair, so hovering or
+        // focusing either half highlights both the same way.
+        --searchbar-border-color: #dddddd;
 
-        .prismal-input {
-            height: 100%;
+        &:hover,
+        &:focus-within {
+            --searchbar-border-color: #{vars.$primary-color};
         }
-        .prismal-input, input {
-            // border-top-right-radius: 0;
-            // border-bottom-right-radius: 0;
+
+        .prismal-input-text .prismal-input {
+            height: 100%;
+            border-color: var(--searchbar-border-color) !important;
+        }
+        .prismal-btn {
+            border-width: 1px !important;
+            border-color: var(--searchbar-border-color) !important;
         }
     }
 
     &.prismal-search-btn-outer-after {
-        .input-wrapper {
+        .prismal-input-text {
             margin-right: 0 !important;
 
-            .prismal-input, input {
+            .prismal-input, .prismal-input > input {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
             }
         }
         .prismal-btn {
+            // Overlap the button's left border onto the input's right border
+            // instead of drawing both side by side.
+            margin-left: -1px;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
     }
 
     &.prismal-search-btn-outer-before {
-        .input-wrapper {
-            margin-left: 0 !important;
-            .prismal-input, input {
+        .prismal-input-text {
+            // Overlap the input's left border onto the button's right border
+            // instead of drawing both side by side.
+            margin-left: -1px !important;
+            .prismal-input, .prismal-input > input {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
             }
