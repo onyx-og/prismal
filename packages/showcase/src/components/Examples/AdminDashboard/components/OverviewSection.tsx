@@ -20,25 +20,25 @@ const OverviewSection = (props: OverviewSectionProps) => {
     return (
         <div className="admin-overview">
             <View className="admin-kpi-row" columns={4} cellWidth="1fr" cellHeight={6} gap={1}>
-                <ViewItem>
+                <ViewItem width={1}>
                     <Card style={{ height: "100%" }} elevation={1} bodyClass="admin-kpi-body">
                         <Text type="body" size="sm" className="admin-kpi-label">Total revenue</Text>
                         <Text type="heading" level={3}>${totalRevenue.toLocaleString()}</Text>
                     </Card>
                 </ViewItem>
-                <ViewItem>
+                <ViewItem width={1}>
                     <Card style={{ height: "100%" }} elevation={1} bodyClass="admin-kpi-body">
                         <Text type="body" size="sm" className="admin-kpi-label">Orders</Text>
                         <Text type="heading" level={3}>{orders.length}</Text>
                     </Card>
                 </ViewItem>
-                <ViewItem>
+                <ViewItem width={1}>
                     <Card style={{ height: "100%" }} elevation={1} bodyClass="admin-kpi-body">
                         <Text type="body" size="sm" className="admin-kpi-label">Customers</Text>
                         <Text type="heading" level={3}>{userCount}</Text>
                     </Card>
                 </ViewItem>
-                <ViewItem>
+                <ViewItem width={1}>
                     <Card style={{ height: "100%" }} elevation={1} bodyClass="admin-kpi-body">
                         <Text type="body" size="sm" className="admin-kpi-label">Avg. order value</Text>
                         <Text type="heading" level={3}>${avgOrderValue}</Text>

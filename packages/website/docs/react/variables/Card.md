@@ -2,7 +2,7 @@
 
 > `const` **Card**: `FC`\<[`CardProps`](../interfaces/CardProps.md)\>
 
-Defined in: [components/Card/index.tsx:43](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Card/index.tsx#L43)
+Defined in: [components/Card/index.tsx:43](https://github.com/onyx-og/prismal/blob/9a285ef7c2a5fc4511a360c2837da1f9e4206acf/packages/react/src/components/Card/index.tsx#L43)
 
 ## Component
 

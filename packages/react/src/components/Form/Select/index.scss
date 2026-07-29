@@ -2,6 +2,9 @@
 
 .prismal-input-select {
     font-family: vars.$font-body;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     * {
         box-sizing: border-box;
     }

@@ -2,7 +2,7 @@
 
 > `const` **Table**: `FC`\<`TableProps`\>
 
-Defined in: [components/Table/index.tsx:78](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Table/index.tsx#L78)
+Defined in: [components/Table/index.tsx:78](https://github.com/onyx-og/prismal/blob/9a285ef7c2a5fc4511a360c2837da1f9e4206acf/packages/react/src/components/Table/index.tsx#L78)
 
 ## Component
 

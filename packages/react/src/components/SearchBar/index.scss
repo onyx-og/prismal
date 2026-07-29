@@ -1,5 +1,3 @@
-@use '../../styles/vars';
-
 .prismal-searchbar {
     display: flex;
     flex-direction: row;
@@ -10,20 +8,20 @@
     &.prismal-search-btn-outer-before {
         // Shared border color for the input + button pair, so hovering or
         // focusing either half highlights both the same way.
-        --searchbar-border-color: #dddddd;
+        --searchbar-border-color: var(--color-primary);
 
         &:hover,
         &:focus-within {
-            --searchbar-border-color: #{vars.$primary-color};
+            --searchbar-border-color: var(--color-primary-dark);
         }
 
         .prismal-input-text .prismal-input {
             height: 100%;
-            border-color: var(--searchbar-border-color) !important;
+            border-color: var(--color-primary) !important;
         }
         .prismal-btn {
             border-width: 1px !important;
-            border-color: var(--searchbar-border-color) !important;
+            border-color: var(--color-primary) !important;
         }
     }
 

@@ -29,10 +29,11 @@ const RecipeLibrary = () => {
         <div className="example-recipe-library">
             <Header sticky navClass="recipe-library-nav">
                 <span className="recipe-library-title">Recipe Library</span>
-                <SearchBar placeholder="Search recipes" onSearch={setSearch} />
+                <SearchBar accent="#ff921c" placeholder="Search recipes" onSearch={setSearch} />
             </Header>
 
             <Tabs
+                accent="#ff921c"
                 tabsClass="recipe-library-tabs"
                 data={[
                     { name: "all", label: "All" },
@@ -51,6 +52,7 @@ const RecipeLibrary = () => {
                     mdCols={2}
                     xsCols={1}
                     pageSize={6}
+                    accent="#ff921c"
                     data={filteredRecipes}
                     listProcessor={(items) => ({
                         elements: items.map((recipe: Recipe) => (

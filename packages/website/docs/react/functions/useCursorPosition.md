@@ -2,7 +2,7 @@
 
 > **useCursorPosition**(`containerRef`): `RefObject`\<\{ `x`: `number`; `y`: `number`; \}\>
 
-Defined in: [hooks/useCursor/index.ts:13](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/hooks/useCursor/index.ts#L13)
+Defined in: [hooks/useCursor/index.ts:13](https://github.com/onyx-og/prismal/blob/9a285ef7c2a5fc4511a360c2837da1f9e4206acf/packages/react/src/hooks/useCursor/index.ts#L13)
 
 useCursorPosition
 

@@ -2,7 +2,7 @@
 
 > `const` **Form**: `FC`\<`FormProps`\>
 
-Defined in: [components/Form/index.tsx:52](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/index.tsx#L52)
+Defined in: [components/Form/index.tsx:52](https://github.com/onyx-og/prismal/blob/9a285ef7c2a5fc4511a360c2837da1f9e4206acf/packages/react/src/components/Form/index.tsx#L52)
 
 ## Component
 

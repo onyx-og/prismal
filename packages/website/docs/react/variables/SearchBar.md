@@ -2,7 +2,7 @@
 
 > `const` **SearchBar**: `FC`\<`SearchBarProps`\>
 
-Defined in: [components/SearchBar/index.tsx:36](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/SearchBar/index.tsx#L36)
+Defined in: [components/SearchBar/index.tsx:36](https://github.com/onyx-og/prismal/blob/9a285ef7c2a5fc4511a360c2837da1f9e4206acf/packages/react/src/components/SearchBar/index.tsx#L36)
 
 ## Component
 
