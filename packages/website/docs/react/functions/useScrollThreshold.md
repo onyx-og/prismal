@@ -2,7 +2,7 @@
 
 > **useScrollThreshold**(`threshold`): `boolean`
 
-Defined in: [hooks/useScrollPosition/index.ts:11](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/hooks/useScrollPosition/index.ts#L11)
+Defined in: [hooks/useScrollPosition/index.ts:11](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/hooks/useScrollPosition/index.ts#L11)
 
 useScrollThreshold
 

@@ -2,7 +2,7 @@
 
 > `const` **Accordion**: `FC`\<`AccordionProps`\>
 
-Defined in: [components/Accordion/index.tsx:35](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Accordion/index.tsx#L35)
+Defined in: [components/Accordion/index.tsx:35](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Accordion/index.tsx#L35)
 
 ## Component
 
@@ -13,6 +13,8 @@ Accordion
 A collapsible content panel component.
 
 ## Param
+
+**props**
 
 The component props.
 

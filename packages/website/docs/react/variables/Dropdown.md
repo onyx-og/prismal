@@ -2,7 +2,7 @@
 
 > `const` **Dropdown**: `FC`\<`DropdownProps`\>
 
-Defined in: [components/Dropdown/index.tsx:43](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Dropdown/index.tsx#L43)
+Defined in: [components/Dropdown/index.tsx:47](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Dropdown/index.tsx#L47)
 
 ## Component
 
@@ -13,6 +13,8 @@ Dropdown
 A component that displays content in a dropdown, toggleable by a specified element.
 
 ## Param
+
+**props**
 
 The component props.
 

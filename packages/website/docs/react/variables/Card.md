@@ -2,7 +2,7 @@
 
 > `const` **Card**: `FC`\<[`CardProps`](../interfaces/CardProps.md)\>
 
-Defined in: [components/Card/index.tsx:43](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Card/index.tsx#L43)
+Defined in: [components/Card/index.tsx:43](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Card/index.tsx#L43)
 
 ## Component
 
@@ -13,6 +13,8 @@ Card
 A flexible content container with optional header, footer, and body sections.
 
 ## Param
+
+**props**
 
 The component props.
 

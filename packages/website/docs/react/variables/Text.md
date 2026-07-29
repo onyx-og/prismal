@@ -2,7 +2,7 @@
 
 > `const` **Text**: `FC`\<`TextProps`\>
 
-Defined in: [components/Text/index.tsx:53](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Text/index.tsx#L53)
+Defined in: [components/Text/index.tsx:53](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Text/index.tsx#L53)
 
 ## Component
 
@@ -13,6 +13,8 @@ Text
 A component for rendering text elements like headings and body text with responsive sizing.
 
 ## Param
+
+**props**
 
 The component props.
 

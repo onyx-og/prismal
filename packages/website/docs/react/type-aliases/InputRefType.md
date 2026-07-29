@@ -2,7 +2,7 @@
 
 > **InputRefType** = `object`
 
-Defined in: [components/Form/types.ts:70](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/types.ts#L70)
+Defined in: [components/Form/types.ts:64](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/types.ts#L64)
 
 ## Description
 
@@ -10,11 +10,11 @@ The ref object exposed by form input components.
 
 ## Properties
 
-### checkValidity()
+### checkValidity
 
 > **checkValidity**: () => (`string` \| `boolean`)[]
 
-Defined in: [components/Form/types.ts:74](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/types.ts#L74)
+Defined in: [components/Form/types.ts:72](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/types.ts#L72)
 
 A function to trigger validation.
 
@@ -28,17 +28,17 @@ A function to trigger validation.
 
 > **element**: `HTMLInputElement` \| `HTMLTextAreaElement` \| `HTMLSelectElement` \| `null`
 
-Defined in: [components/Form/types.ts:73](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/types.ts#L73)
+Defined in: [components/Form/types.ts:70](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/types.ts#L70)
 
 The DOM element of the input.
 
 ***
 
-### getValidity()
+### getValidity
 
 > **getValidity**: () => (`string` \| `boolean`)[]
 
-Defined in: [components/Form/types.ts:75](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/types.ts#L75)
+Defined in: [components/Form/types.ts:74](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/types.ts#L74)
 
 A function to get the current validation errors.
 
@@ -48,11 +48,11 @@ A function to get the current validation errors.
 
 ***
 
-### getValue()
+### getValue
 
 > **getValue**: (`args?`) => `any`
 
-Defined in: [components/Form/types.ts:76](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/types.ts#L76)
+Defined in: [components/Form/types.ts:76](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/types.ts#L76)
 
 A function to get the current value of the input.
 
@@ -72,7 +72,7 @@ A function to get the current value of the input.
 
 > **isInputRefType**: `boolean`
 
-Defined in: [components/Form/types.ts:71](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/types.ts#L71)
+Defined in: [components/Form/types.ts:66](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/types.ts#L66)
 
 A flag to identify this as an input ref.
 
@@ -80,8 +80,8 @@ A flag to identify this as an input ref.
 
 ### name?
 
-> `optional` **name**: `string`
+> `optional` **name?**: `string`
 
-Defined in: [components/Form/types.ts:72](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/types.ts#L72)
+Defined in: [components/Form/types.ts:68](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/types.ts#L68)
 
 The name of the input.

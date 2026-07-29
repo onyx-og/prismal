@@ -1,8 +1,8 @@
 # Function: hex2rgba()
 
-> **hex2rgba**(`hex`, `alpha?`): `undefined` \| `string`
+> **hex2rgba**(`hex`, `alpha?`): `string` \| `undefined`
 
-Defined in: [utils/colors/index.ts:53](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/utils/colors/index.ts#L53)
+Defined in: [utils/colors/index.ts:53](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/utils/colors/index.ts#L53)
 
 hex2rgba
 
@@ -22,7 +22,7 @@ An optional alpha value (0-1).
 
 ## Returns
 
-`undefined` \| `string`
+`string` \| `undefined`
 
 The rgba or rgb string, or undefined if the hex is invalid.
 

@@ -2,7 +2,7 @@
 
 > `const` **ActionBar**: `ForwardRefExoticComponent`\<`ActionBarProps` & `RefAttributes`\<`ActionBarRef`\>\>
 
-Defined in: [components/ActionBar/index.tsx:50](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/ActionBar/index.tsx#L50)
+Defined in: [components/ActionBar/index.tsx:50](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/ActionBar/index.tsx#L50)
 
 ## Component
 
@@ -14,9 +14,13 @@ A flexible bar for actions and navigation, divided into left, center, and right 
 
 ## Param
 
+**props**
+
 The component props.
 
 ## Param
+
+**ref**
 
 Forwarded ref to the ActionBar's managed DOM nodes.
 

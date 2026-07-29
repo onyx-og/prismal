@@ -2,7 +2,7 @@
 
 > **useIntersectionObserver**(`elementRef`, `refTrigger`, `observerOptions?`): `boolean`
 
-Defined in: [hooks/useIntersectionObserver/index.ts:16](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/hooks/useIntersectionObserver/index.ts#L16)
+Defined in: [hooks/useIntersectionObserver/index.ts:16](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/hooks/useIntersectionObserver/index.ts#L16)
 
 useIntersectionObserver
 
@@ -10,15 +10,15 @@ useIntersectionObserver
 
 ### elementRef
 
-`RefObject`\<`null` \| `HTMLElement`\>
+`RefObject`\<`HTMLElement` \| `null`\>
 
 A ref to the element to observe.
 
 ### refTrigger
 
-A trigger to re-run the effect when the ref is set.
+`string` \| `number` \| `boolean`
 
-`string` | `number` | `boolean`
+A trigger to re-run the effect when the ref is set.
 
 ### observerOptions?
 

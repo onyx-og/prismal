@@ -1,9 +1,14 @@
 # @prismal/react
 
+## Enumerations
+
+- [GraphType](enumerations/GraphType.md)
+
 ## Interfaces
 
 - [ActionBarItemConfig](interfaces/ActionBarItemConfig.md)
 - [CardProps](interfaces/CardProps.md)
+- [MenuItemData](interfaces/MenuItemData.md)
 - [SelectOption](interfaces/SelectOption.md)
 
 ## Type Aliases
@@ -22,12 +27,15 @@
 - [Dropdown](variables/Dropdown.md)
 - [FileInput](variables/FileInput.md)
 - [Form](variables/Form.md)
+- [Graph](variables/Graph.md)
 - [Header](variables/Header.md)
 - [Icon](variables/Icon.md)
 - [LazyItem](variables/LazyItem.md)
 - [List](variables/List.md)
 - [Marquee](variables/Marquee.md)
 - [Masonry](variables/Masonry.md)
+- [Menu](variables/Menu.md)
+- [MenuItem](variables/MenuItem.md)
 - [Modal](variables/Modal.md)
 - [NumberInput](variables/NumberInput.md)
 - [ParallaxItem](variables/ParallaxItem.md)
@@ -42,6 +50,8 @@
 - [TextInput](variables/TextInput.md)
 - [Toggle](variables/Toggle.md)
 - [Tooltip](variables/Tooltip.md)
+- [View](variables/View.md)
+- [ViewItem](variables/ViewItem.md)
 
 ## Functions
 

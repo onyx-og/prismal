@@ -2,7 +2,7 @@
 
 > `const` **Masonry**: `FC`\<`MasonryProps`\>
 
-Defined in: [components/Masonry/index.tsx:187](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Masonry/index.tsx#L187)
+Defined in: [components/Masonry/index.tsx:187](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Masonry/index.tsx#L187)
 
 ## Component
 
@@ -13,6 +13,8 @@ Masonry
 A component for creating a masonry grid layout.
 
 ## Param
+
+**props**
 
 The component props.
 

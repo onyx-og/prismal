@@ -2,7 +2,7 @@
 
 > **useSidebar**(`config?`): `UseSidebarReturn`
 
-Defined in: [hooks/useSidebar/index.tsx:30](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/hooks/useSidebar/index.tsx#L30)
+Defined in: [hooks/useSidebar/index.tsx:30](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/hooks/useSidebar/index.tsx#L30)
 
 useSidebar
 

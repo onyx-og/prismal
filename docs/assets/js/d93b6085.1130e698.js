@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_prismal_website_react=globalThis.webpackChunk_prismal_website_react||[]).push([[8526],{6201(a){a.exports=JSON.parse('{"metadata":{"permalink":"/prismal/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

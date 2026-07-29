@@ -2,7 +2,7 @@
 
 > `const` **SearchBar**: `FC`\<`SearchBarProps`\>
 
-Defined in: [components/SearchBar/index.tsx:36](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/SearchBar/index.tsx#L36)
+Defined in: [components/SearchBar/index.tsx:36](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/SearchBar/index.tsx#L36)
 
 ## Component
 
@@ -13,6 +13,8 @@ SearchBar
 A search input component with a search button.
 
 ## Param
+
+**props**
 
 The component props.
 

@@ -2,7 +2,7 @@
 
 > `const` **Select**: `ForwardRefExoticComponent`\<`SelectProps` & `RefAttributes`\<[`InputRefType`](../type-aliases/InputRefType.md)\>\>
 
-Defined in: [components/Form/Select/index.tsx:48](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Form/Select/index.tsx#L48)
+Defined in: [components/Form/Select/index.tsx:53](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Form/Select/index.tsx#L53)
 
 ## Component
 
@@ -14,9 +14,13 @@ A select input component for forms with single or multiple selection.
 
 ## Param
 
+**props**
+
 The component props.
 
 ## Param
+
+**ref**
 
 The forwarded ref to the select element.
 

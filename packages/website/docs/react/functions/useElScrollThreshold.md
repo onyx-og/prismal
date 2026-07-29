@@ -2,7 +2,7 @@
 
 > **useElScrollThreshold**(`elementRef`, `refTrigger`, `offset?`, `threshold?`, `scrollEl?`): `boolean`
 
-Defined in: [hooks/useScrollPosition/index.ts:50](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/hooks/useScrollPosition/index.ts#L50)
+Defined in: [hooks/useScrollPosition/index.ts:50](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/hooks/useScrollPosition/index.ts#L50)
 
 useElScrollThreshold
 
@@ -10,15 +10,15 @@ useElScrollThreshold
 
 ### elementRef
 
-`RefObject`\<`null` \| `HTMLElement`\>
+`RefObject`\<`HTMLElement` \| `null`\>
 
 Ref to the element to track.
 
 ### refTrigger
 
-A trigger to re-run the effect when the ref is set.
+`string` \| `number` \| `boolean`
 
-`string` | `number` | `boolean`
+A trigger to re-run the effect when the ref is set.
 
 ### offset?
 
@@ -34,9 +34,9 @@ The scroll threshold from the top of the viewport.
 
 ### scrollEl?
 
-The element to attach the scroll listener to.
+`HTMLElement` \| `Document`
 
-`HTMLElement` | `Document`
+The element to attach the scroll listener to.
 
 ## Returns
 

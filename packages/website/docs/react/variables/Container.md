@@ -2,7 +2,7 @@
 
 > `const` **Container**: `FC`\<`ContainerProps`\>
 
-Defined in: [components/Container/index.tsx:57](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/components/Container/index.tsx#L57)
+Defined in: [components/Container/index.tsx:57](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/components/Container/index.tsx#L57)
 
 ## Component
 
@@ -13,6 +13,8 @@ Container
 A flexible container component with responsive properties for layout and visibility.
 
 ## Param
+
+**props**
 
 The component props.
 

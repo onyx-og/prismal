@@ -1,8 +1,8 @@
 # Function: useElScrollPosition()
 
-> **useElScrollPosition**(`elementRef`, `refTrigger`, `scrollEl?`): `undefined` \| `number`
+> **useElScrollPosition**(`elementRef`, `refTrigger`, `scrollEl?`): `number` \| `undefined`
 
-Defined in: [hooks/useScrollPosition/index.ts:99](https://github.com/onyx-og/prismal/blob/7e948b825c73ffc9bb10fe5a1890783eb7215c77/packages/react/src/hooks/useScrollPosition/index.ts#L99)
+Defined in: [hooks/useScrollPosition/index.ts:99](https://github.com/onyx-og/prismal/blob/82c8311339de452d56900b0f6783f46c131baa95/packages/react/src/hooks/useScrollPosition/index.ts#L99)
 
 useElScrollPosition
 
@@ -10,25 +10,25 @@ useElScrollPosition
 
 ### elementRef
 
-`RefObject`\<`null` \| `HTMLElement`\>
+`RefObject`\<`HTMLElement` \| `null`\>
 
 Ref to the element to track.
 
 ### refTrigger
 
-A trigger to re-run the effect when the ref is set.
+`string` \| `number` \| `boolean`
 
-`string` | `number` | `boolean`
+A trigger to re-run the effect when the ref is set.
 
 ### scrollEl?
 
-The element to attach the scroll listener to.
+`HTMLElement` \| `Document`
 
-`HTMLElement` | `Document`
+The element to attach the scroll listener to.
 
 ## Returns
 
-`undefined` \| `number`
+`number` \| `undefined`
 
 The vertical scroll position of the element.
 

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_prismal_website_react=self.webpackChunk_prismal_website_react||[]).push([[1903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/prismal/blog","blogTitle":"Blog","authorsListPath":"/prismal/blog/authors"}')}}]);
