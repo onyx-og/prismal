@@ -1,6 +1,6 @@
 # Enumeration: GraphType
 
-Defined in: [components/Graph/types.ts:1](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L1)
+Defined in: [components/Graph/types.ts:1](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L1)
 
 ## Enumeration Members
 
@@ -8,7 +8,7 @@ Defined in: [components/Graph/types.ts:1](https://github.com/onyx-og/prismal/blo
 
 > **AREA\_STACKED**: `"AREA_STACKED"`
 
-Defined in: [components/Graph/types.ts:6](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L6)
+Defined in: [components/Graph/types.ts:6](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L6)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [components/Graph/types.ts:6](https://github.com/onyx-og/prismal/blo
 
 > **BAR\_GROUPED**: `"BAR_GROUPED"`
 
-Defined in: [components/Graph/types.ts:10](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L10)
+Defined in: [components/Graph/types.ts:10](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L10)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [components/Graph/types.ts:10](https://github.com/onyx-og/prismal/bl
 
 > **BAR\_HORIZONTAL**: `"BAR_HORIZONTAL"`
 
-Defined in: [components/Graph/types.ts:8](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L8)
+Defined in: [components/Graph/types.ts:8](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L8)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [components/Graph/types.ts:8](https://github.com/onyx-og/prismal/blo
 
 > **BAR\_STACKED**: `"BAR_STACKED"`
 
-Defined in: [components/Graph/types.ts:9](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L9)
+Defined in: [components/Graph/types.ts:9](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L9)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [components/Graph/types.ts:9](https://github.com/onyx-og/prismal/blo
 
 > **BAR\_VERTICAL**: `"BAR_VERTICAL"`
 
-Defined in: [components/Graph/types.ts:7](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L7)
+Defined in: [components/Graph/types.ts:7](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L7)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [components/Graph/types.ts:7](https://github.com/onyx-og/prismal/blo
 
 > **CANDLESTICK**: `"CANDLESTICK"`
 
-Defined in: [components/Graph/types.ts:11](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L11)
+Defined in: [components/Graph/types.ts:11](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L11)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [components/Graph/types.ts:11](https://github.com/onyx-og/prismal/bl
 
 > **LINE**: `"LINE"`
 
-Defined in: [components/Graph/types.ts:2](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L2)
+Defined in: [components/Graph/types.ts:2](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L2)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [components/Graph/types.ts:2](https://github.com/onyx-og/prismal/blo
 
 > **LINE\_CURVED**: `"LINE_CURVED"`
 
-Defined in: [components/Graph/types.ts:4](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L4)
+Defined in: [components/Graph/types.ts:4](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L4)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [components/Graph/types.ts:4](https://github.com/onyx-og/prismal/blo
 
 > **LINE\_CURVED\_MARKERS**: `"LINE_CURVED_MARKERS"`
 
-Defined in: [components/Graph/types.ts:5](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L5)
+Defined in: [components/Graph/types.ts:5](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L5)
 
 ***
 
@@ -80,4 +80,4 @@ Defined in: [components/Graph/types.ts:5](https://github.com/onyx-og/prismal/blo
 
 > **LINE\_MARKERS**: `"LINE_MARKERS"`
 
-Defined in: [components/Graph/types.ts:3](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Graph/types.ts#L3)
+Defined in: [components/Graph/types.ts:3](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Graph/types.ts#L3)

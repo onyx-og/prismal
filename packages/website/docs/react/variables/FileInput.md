@@ -2,7 +2,7 @@
 
 > `const` **FileInput**: `ForwardRefExoticComponent`\<`FileInputProps` & `RefAttributes`\<[`InputRefType`](../type-aliases/InputRefType.md) \| `null`\>\>
 
-Defined in: [components/Form/FileInput/index.tsx:32](https://github.com/onyx-og/prismal/blob/243b5e735aadd3de3397d69440c7ae29882b85a1/packages/react/src/components/Form/FileInput/index.tsx#L32)
+Defined in: [components/Form/FileInput/index.tsx:32](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Form/FileInput/index.tsx#L32)
 
 ## Component
 
