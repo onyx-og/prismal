@@ -5,6 +5,11 @@ import Button from 'components/Button';
 import { createPortal } from 'react-dom';
 import ComponentProps from '../Component';
 import Card from 'components/Card';
+import { useTransitionState } from 'hooks/';
+
+// Matches the --motion-duration-slow token in styles/animations.scss.
+// Keep in sync if that token is overridden for this modal's transition.
+const TRANSITION_DURATION = 400;
 
 /**
  * @typedef {object} ModalProps
@@ -60,9 +65,11 @@ const Modal: FC<ModalProps> = (props) => {
         bgClassName, fgClassName
     } = props;
 
+    const { shouldRender, phase } = useTransitionState(visible, TRANSITION_DURATION);
+
     let modalClass = 'prismal-modal';
 
-    if (visible) modalClass = `${modalClass} visible`;
+    if (phase === 'entered') modalClass = `${modalClass} visible`;
     if (className) modalClass = `${modalClass} ${className}`;
 
     let modalFgClass = 'modal-fg'; // The modal
@@ -112,7 +119,7 @@ const Modal: FC<ModalProps> = (props) => {
         </Card>
     </div>
 
-    if (visible) {
+    if (shouldRender) {
         if (modalArea) return createPortal(component, modalArea);
         else return component;
     } else return <></>;

@@ -37,7 +37,10 @@
 
             &:not(:has(>*:only-child)) {
                 /* Multi child content has no background color */
-                display: none;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
+                            visibility 0s var(--motion-duration-base);
                 cursor: pointer;
                 margin: 0.5rem 0;
                 padding: 0.5rem 1rem;
@@ -56,7 +59,10 @@
             }
 
             &:has(> *:only-child) {
-                display: none;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
+                            visibility 0s var(--motion-duration-base);
                 cursor: pointer;
                 margin: 0.5rem 0;
                 border: none;
@@ -71,7 +77,10 @@
             }
 
             &:has(*:only-child) {
-                display: none;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
+                            visibility 0s var(--motion-duration-base);
                 cursor: pointer;
                 margin: 0.5rem 0;
                 border: none;
@@ -86,7 +95,10 @@
             }
 
             &:has(* + *)>* {
-                display: none;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
+                            visibility 0s var(--motion-duration-base);
                 cursor: pointer;
                 margin: 0.5rem 0;
                 border: none;
@@ -128,12 +140,16 @@
             z-index: vars.$zindex-0;
 
             &>.prismal-dropdown-content:has(>*:only-child) {
-                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }
 
             &>.prismal-dropdown-content:not(:has(>*:only-child)) {
-                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }
 
@@ -151,17 +167,23 @@
             z-index: vars.$zindex-0;
 
             &>.prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
-                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }
 
             &>.prismal-dropdown-content:has(*:only-child) {
-                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }
 
             &>.prismal-dropdown-content:has(* + *)>* {
-                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
             }
 

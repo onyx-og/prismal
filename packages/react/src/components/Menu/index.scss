@@ -1,0 +1,47 @@
+.prismal-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    // Default flex-item min-width is `auto`, which floors shrinking at the
+    // content's intrinsic width -- override it so the Menu can actually
+    // shrink below its items' natural width when its parent runs out of
+    // room, which is what the overflow check in index.tsx measures against.
+    min-width: 0;
+
+    .prismal-menu-items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: var(--menu-item-padding, 1rem);
+        min-width: 0;
+    }
+
+    // Off-flow clone of the items, used only to measure their natural,
+    // unwrapped width -- see the ResizeObserver logic in index.tsx.
+    .prismal-menu-measure {
+        position: absolute;
+        visibility: hidden;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: var(--menu-item-padding, 1rem);
+        white-space: nowrap;
+    }
+}
+
+// Rendered inside the Sidebar that the collapsed trigger button opens.
+// Unlike the Sidebar's own column-flow content, the menu keeps its items
+// laid out in a row and wraps them to fit the panel's fixed width.
+.prismal-menu-sidebar-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--menu-item-padding, 1rem);
+    white-space: normal;
+}

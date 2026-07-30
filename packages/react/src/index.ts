@@ -37,11 +37,12 @@ import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
 import View, { ViewItem } from "./components/View";
 
-import { 
+import {
     useModal, useSidebar,
     useCursorPosition,
-    useElementWidth, useElementHeight, 
-    useIntersectionObserver, 
+    useElementWidth, useElementHeight,
+    useIntersectionObserver,
+    useTransitionState,
     useElScrollThreshold, useElScrollPosition, useScrollThreshold
 } from "hooks/";
 
@@ -72,5 +73,6 @@ export {
     useElementHeight,
     useCursorPosition,
     useModal, useSidebar,
+    useTransitionState,
     useElScrollThreshold, useElScrollPosition, useScrollThreshold
 }

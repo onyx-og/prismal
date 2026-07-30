@@ -122,7 +122,9 @@ const Accordion: FC<AccordionProps> = (props) => {
             role="region"
             aria-labelledby={dataId_}
         >
-            {children}
+            <div className="prismal-accordion-content-inner">
+                {children}
+            </div>
         </div>
     </div>
 }

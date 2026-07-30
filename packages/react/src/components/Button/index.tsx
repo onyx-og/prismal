@@ -29,6 +29,8 @@ export interface ButtonProps extends ComponentProps {
     children?: ReactNode;
     /** The shape of the button. */
     shape?: 'default-shape' | 'circle';
+    /** The size of the button. */
+    size?: 'sm' | 'md' | 'lg';
     /** The type attribute for the button element. */
     htmlType?: 'submit' | 'button';
     /** If true, the button will be in a read-only state. */
@@ -58,6 +60,7 @@ const Button: FC<ButtonProps> = (props) => {
         children,
         type = 'default',
         shape = 'default-shape',
+        size = 'md',
         title,
         className, style,
         accent, accentDark, accentLight,
@@ -66,13 +69,13 @@ const Button: FC<ButtonProps> = (props) => {
         hoverGrow = false
     } = props;
 
-    let btnClass = `prismal-btn btn-${type} btn-${shape}`;
+    let btnClass = `prismal-btn btn-${type} btn-${shape} btn-${size}`;
     if (className) btnClass = `${btnClass} ${className}`;
     if (disabled) btnClass = `${btnClass} btn-disabled`;
     if (readOnly) btnClass = `${btnClass} btn-readonly`;
     else if (elevation) btnClass = `${btnClass} btn-elevated`;
     else btnClass = `${btnClass} btn-anim`;
-    if (hoverGrow) btnClass = `${btnClass} btn-hover-grow`;
+    if (hoverGrow || type == 'text') btnClass = `${btnClass} btn-hover-grow`;
 
     let style_: { [key: string]: any } = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });

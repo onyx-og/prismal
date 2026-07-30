@@ -1,14 +1,22 @@
 @use '../../styles/vars';
+@use '../../styles/animations';
 
 .prismal-accordion {
     font-family: vars.$font-body;
 
     .prismal-accordion-content {
-        height: 0px;
-        overflow: hidden;
-        interpolate-size: allow-keywords;
-        transition: all 2s cubic-bezier(0, 1, 0, 1);
+        // Collapses/reveals via a 0fr -> 1fr grid row instead of height:auto,
+        // since `auto` isn't natively interpolable and the old approach
+        // relied on `interpolate-size`, which isn't broadly supported yet.
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows var(--motion-duration-slow) var(--motion-ease-standard);
         padding: 0 1rem;
+
+        .prismal-accordion-content-inner {
+            overflow: hidden;
+            min-height: 0;
+        }
     }
 
     .prismal-accordion-icon {
@@ -42,7 +50,7 @@
     }
 
     .prismal-accordion-trigger:checked+.prismal-accordion-title+.prismal-accordion-content {
-        height: auto;
+        grid-template-rows: 1fr;
     }
 
     input[type="checkbox"].prismal-accordion-trigger {
