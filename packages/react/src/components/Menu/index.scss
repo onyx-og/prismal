@@ -39,8 +39,8 @@
 // laid out in a row and wraps them to fit the panel's fixed width.
 .prismal-menu-sidebar-items {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
     align-items: center;
     gap: var(--menu-item-padding, 1rem);
     white-space: normal;

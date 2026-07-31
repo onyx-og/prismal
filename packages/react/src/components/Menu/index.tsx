@@ -1,4 +1,7 @@
 import { CSSProperties, ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import ComponentProps from "../Component";
+import { setAccentStyle } from 'utils/colors';
+import { setBorderRadius } from 'utils/';
 import "./index.scss";
 
 import MenuItem from "./menu-item";
@@ -13,7 +16,7 @@ export interface MenuItemData {
     className?: string;
 }
 
-interface MenuProps {
+interface MenuProps extends ComponentProps {
     className?: string;
     style?: CSSProperties;
     spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -30,7 +33,10 @@ const spacingMap = {
 };
 
 const Menu: React.FC<MenuProps> = (props) => {
-    const { className, style, spacing = 'md', children, data } = props;
+    const { className, style, 
+        accent, accentDark, accentLight,
+        spacing = 'md', children, data
+    } = props;
 
     const style_ = {
         ...style,
@@ -82,12 +88,14 @@ const Menu: React.FC<MenuProps> = (props) => {
     let menuClass = `prismal-menu ${className || ''}`;
     if (collapsed) menuClass = `${menuClass} is-collapsed`;
 
+    setAccentStyle(style_, { accent, accentLight, accentDark });
+
     return <div className={menuClass} style={style_} ref={wrapperRef}>
         <div className="prismal-menu-measure" aria-hidden="true" ref={measureRef}>
             {items}
         </div>
         {collapsed
-            ? <Button shape="circle" type="default" iconName="start" onClick={open} />
+            ? <Button shape="circle" type="text" iconName="navicon" onClick={open} />
             : <div className="prismal-menu-items">{items}</div>
         }
         <Sidebar>

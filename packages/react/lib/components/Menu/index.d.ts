@@ -1,4 +1,5 @@
 import { CSSProperties, ReactNode } from "react";
+import ComponentProps from "../Component";
 import "./index.scss";
 import MenuItem from "./menu-item";
 export interface MenuItemData {
@@ -8,7 +9,7 @@ export interface MenuItemData {
     icon?: ReactNode;
     className?: string;
 }
-interface MenuProps {
+interface MenuProps extends ComponentProps {
     className?: string;
     style?: CSSProperties;
     spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';

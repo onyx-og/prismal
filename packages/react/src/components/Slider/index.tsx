@@ -1,7 +1,16 @@
-import {JSX, useMemo, useState, useEffect, useRef, FC, ReactNode, useCallback, Children} from 'react';
+import {JSX, useMemo, useState, useEffect, useRef, FC, ReactNode, useCallback, Children, TouchEvent as ReactTouchEvent} from 'react';
 import ComponentProps from '../Component';
 import './index.scss';
 import { setAccentStyle } from 'utils/colors';
+
+const SWIPE_THRESHOLD = 50;
+
+const getSwipeDirection = (startX: number, startY: number, endX: number, endY: number): 'left' | 'right' | null => {
+    const deltaX = endX - startX;
+    const deltaY = endY - startY;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) return null;
+    return deltaX < 0 ? 'left' : 'right';
+}
 
 interface SliderProcProps extends ComponentProps {
     type: "process";
@@ -110,6 +119,13 @@ const Slider: FC<SliderProps> = ( props ) => {
         }
     }
 
+    const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+    const handleTouchStart = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
+        const touch = e.touches[0];
+        touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    }, []);
+
     const renderInputCtrl = useCallback( ( i: number ) => {
         if ( i === 0 ) return <input ref={(n)=> storeInput(n, i)} key={i} type="radio" name={`slider-${id}`} className={`prismal-slider-radio${i}`}
         defaultChecked hidden id={`slider_${i}-${id}`}>
@@ -179,13 +195,27 @@ const Slider: FC<SliderProps> = ( props ) => {
             }
         }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length]);
 
+        const handleTouchEnd = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
+            if (!touchStartRef.current) return;
+            const touch = e.changedTouches[0];
+            const direction = getSwipeDirection(touchStartRef.current.x, touchStartRef.current.y, touch.clientX, touch.clientY);
+            touchStartRef.current = null;
+            if (!direction) return;
+            const total = slides.length;
+            if (direction === 'left') {
+                setSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
+            } else {
+                setSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
+            }
+        }, [slideNumber, slides.length]);
+
         const slideshowStyle = `
             #prismal-slider-${id} .prismal-slider-slides{
                 grid-auto-flow: column;
                 grid-column-gap: ${spacing}px;
                 grid-template-rows: calc(100% - 2.5px);
             }
-            
+
             #prismal-slider-${id}.prismal-slider-slides-s .prismal-slider-slides {
                 /* 3/4 = 0.75 */
                 grid-auto-columns: calc(25% - ${ spacing * 0.75 }px);
@@ -290,7 +320,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                 <div className="ctrl-previous prismal-slider-ctrl">
                     { navArrowsPrevious }
                 </div>
-                <div className="prismal-slider-slides"> 
+                <div className="prismal-slider-slides" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                     { slideList }
                 </div>
             </div>
@@ -356,6 +386,20 @@ const Slider: FC<SliderProps> = ( props ) => {
                 }
             }
         }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length]);
+
+        const handleTouchEnd = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
+            if (!touchStartRef.current) return;
+            const touch = e.changedTouches[0];
+            const direction = getSwipeDirection(touchStartRef.current.x, touchStartRef.current.y, touch.clientX, touch.clientY);
+            touchStartRef.current = null;
+            if (!direction) return;
+            const total = children_.length;
+            if (direction === 'left') {
+                setSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
+            } else {
+                setSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
+            }
+        }, [slideNumber, children_.length]);
 
         const slideshowStyle = `
             #prismal-slider-${id} .prismal-slider-slides{
@@ -468,7 +512,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                 <div className="ctrl-previous prismal-slider-ctrl">
                     { navArrowsPrevious }
                 </div>
-                <div className="prismal-slider-slides"> 
+                <div className="prismal-slider-slides" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                     { slideList }
                 </div>
             </div>
