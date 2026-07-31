@@ -1,6 +1,6 @@
 # Interface: ActionBarItemConfig
 
-Defined in: [components/ActionBar/types.ts:9](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/ActionBar/types.ts#L9)
+Defined in: [components/ActionBar/types.ts:9](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/ActionBar/types.ts#L9)
 
 ## Description
 
@@ -12,7 +12,7 @@ Configuration for a single item displayed within the ActionBar.
 
 > `optional` **alt?**: `Element`
 
-Defined in: [components/ActionBar/types.ts:21](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/ActionBar/types.ts#L21)
+Defined in: [components/ActionBar/types.ts:21](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/ActionBar/types.ts#L21)
 
 Optional alternate element shown in an "alt" state or modal.
 
@@ -22,7 +22,7 @@ Optional alternate element shown in an "alt" state or modal.
 
 > **item**: `ReactNode`
 
-Defined in: [components/ActionBar/types.ts:11](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/ActionBar/types.ts#L11)
+Defined in: [components/ActionBar/types.ts:11](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/ActionBar/types.ts#L11)
 
 The renderable content for the item.
 
@@ -32,7 +32,7 @@ The renderable content for the item.
 
 > **key**: `string`
 
-Defined in: [components/ActionBar/types.ts:17](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/ActionBar/types.ts#L17)
+Defined in: [components/ActionBar/types.ts:17](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/ActionBar/types.ts#L17)
 
 Unique identifier for the item.
 
@@ -42,7 +42,7 @@ Unique identifier for the item.
 
 > **position**: `"center"` \| `"left"` \| `"right"`
 
-Defined in: [components/ActionBar/types.ts:13](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/ActionBar/types.ts#L13)
+Defined in: [components/ActionBar/types.ts:13](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/ActionBar/types.ts#L13)
 
 The section of the ActionBar where this item should appear.
 
@@ -52,7 +52,7 @@ The section of the ActionBar where this item should appear.
 
 > `optional` **scale?**: `boolean`
 
-Defined in: [components/ActionBar/types.ts:19](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/ActionBar/types.ts#L19)
+Defined in: [components/ActionBar/types.ts:19](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/ActionBar/types.ts#L19)
 
 Whether the item should scale to fill available space.
 
@@ -62,6 +62,6 @@ Whether the item should scale to fill available space.
 
 > `optional` **title?**: `string`
 
-Defined in: [components/ActionBar/types.ts:15](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/ActionBar/types.ts#L15)
+Defined in: [components/ActionBar/types.ts:15](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/ActionBar/types.ts#L15)
 
 Optional title used for accessibility or tooltips.

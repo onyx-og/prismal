@@ -1,5 +1,24 @@
 @use './vars.scss';
 
+// Motion tokens: shared duration/easing values for every component transition.
+// Exposed as CSS custom properties so consumers can re-theme timing globally
+// without touching JS, the same way --color-primary etc. are overridable.
+@mixin theme {
+    --motion-duration-fast: 150ms;
+    --motion-duration-base: 250ms;
+    --motion-duration-slow: 400ms;
+    --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --motion-ease-bounce: cubic-bezier(.47, 1.64, .41, .8);
+    --motion-ease-entrance: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+// Emitted automatically into every stylesheet that `@use`s this file, so any
+// component using the tokens/presets below gets working custom properties
+// without having to redeclare :root itself.
+:root {
+    @include theme;
+}
+
 // @keyframes gradient {
 // 	0% {
 // 		background-position: 0% 50%;
@@ -26,4 +45,36 @@
 
 @mixin transition-bounce($props: 'all', $time: 0.5s) {
     transition: $props $time cubic-bezier(.47, 1.64, .41, .8);
+}
+
+// Shared entrance presets, built on the motion tokens above.
+// Each preset mixin sets the closed/initial state; pair it with the
+// matching `-active` mixin under whatever class the component toggles
+// to mark the "in view" / "open" state.
+@mixin fade($duration: var(--motion-duration-slow), $easing: var(--motion-ease-standard)) {
+    opacity: 0;
+    transition: opacity $duration $easing;
+}
+@mixin fade-active {
+    opacity: 1;
+}
+
+@mixin slide($x: 0, $y: 0, $duration: var(--motion-duration-base), $easing: var(--motion-ease-standard)) {
+    opacity: 0;
+    transform: translate($x, $y);
+    transition: opacity $duration $easing, transform $duration $easing;
+}
+@mixin slide-active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+@mixin pop-in($scale: 0.9, $duration: var(--motion-duration-base), $easing: var(--motion-ease-entrance)) {
+    opacity: 0;
+    transform: scale($scale);
+    transition: opacity $duration $easing, transform $duration $easing;
+}
+@mixin pop-in-active {
+    opacity: 1;
+    transform: scale(1);
 }

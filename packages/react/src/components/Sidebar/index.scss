@@ -14,7 +14,7 @@ $sidebar-width: calc(180px + 10vw);
         top: 0;
         z-index: vars.$zindex-4 - 1;
         opacity: 0;
-        transition: all 0.5s ease;
+        transition: opacity var(--motion-duration-slow) var(--motion-ease-standard);
     }
 
     .sidebar-fg {
@@ -27,7 +27,9 @@ $sidebar-width: calc(180px + 10vw);
         @extend %fd-col;
         @extend %text-nosel;
         overflow-y: auto;
-        @include animations.transition-bounce();
+        // Duration matches Modal's TRANSITION_DURATION (which gates when the
+        // sidebar unmounts) so the slide-out isn't cut short.
+        transition: all var(--motion-duration-slow) var(--motion-ease-bounce);
         white-space: nowrap;
         overflow: hidden;
         -ms-scroll-limit: 0 0 0 0;

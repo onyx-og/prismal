@@ -22,6 +22,8 @@ export interface ButtonProps extends ComponentProps {
     children?: ReactNode;
     /** The shape of the button. */
     shape?: 'default-shape' | 'circle';
+    /** The size of the button. */
+    size?: 'sm' | 'md' | 'lg';
     /** The type attribute for the button element. */
     htmlType?: 'submit' | 'button';
     /** If true, the button will be in a read-only state. */

@@ -1,5 +1,7 @@
 @use './vars.scss';
+@use './animations.scss';
 
+// animations.scss emits its own :root block automatically (see there).
 :root {
     @include vars.theme;
 }

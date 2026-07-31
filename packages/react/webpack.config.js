@@ -62,6 +62,8 @@ const components = {
         numberInput: ['./src/components/Form/NumberInput/index.scss', './src/styles/theme.scss'],
         textInput: ['./src/components/Form/TextInput/index.scss', './src/styles/theme.scss'],
         toggle: ['./src/components/Form/Toggle/index.scss', './src/styles/theme.scss'],
+        fileInput: ['./src/components/Form/FileInput/index.scss', './src/styles/theme.scss'],
+        range: ['./src/components/Form/Range/index.scss', './src/styles/theme.scss'],
         form: ['./src/components/Form/index.scss', './src/styles/theme.scss'],
         dropdown: ['./src/components/Dropdown/index.scss', './src/styles/theme.scss'],
         tooltip: ['./src/components/Tooltip/index.scss', './src/styles/theme.scss'],

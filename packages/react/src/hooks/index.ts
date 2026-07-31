@@ -4,6 +4,8 @@ import useElementWidth from "./useElementWidth";
 import {useCursorPosition} from "./useCursor";
 import useModal from "./useModal";
 import useSidebar from "./useSidebar";
+import useTransitionState from "./useTransitionState";
+import type { TransitionPhase } from "./useTransitionState";
 import { useElScrollThreshold, useElScrollPosition, useScrollThreshold} from "hooks/useScrollPosition";
 
 export {
@@ -12,5 +14,7 @@ export {
     useElementHeight,
     useCursorPosition,
     useModal, useSidebar,
+    useTransitionState,
     useElScrollThreshold, useElScrollPosition, useScrollThreshold
 }
+export type { TransitionPhase };

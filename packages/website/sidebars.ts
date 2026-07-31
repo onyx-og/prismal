@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       items: [
         'design/core-concepts',
+        'design/animations',
       ],
     },
   ],

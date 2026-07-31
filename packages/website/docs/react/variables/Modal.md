@@ -2,7 +2,7 @@
 
 > `const` **Modal**: `FC`\<`ModalProps`\>
 
-Defined in: [components/Modal/index.tsx:48](https://github.com/onyx-og/prismal/blob/4fbc5ce1b55f11c076a1a42e3e11304f57a96dd9/packages/react/src/components/Modal/index.tsx#L48)
+Defined in: [components/Modal/index.tsx:53](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Modal/index.tsx#L53)
 
 ## Component
 

@@ -10,6 +10,7 @@ import TextInput from "./components/Form/TextInput";
 import Toggle from "./components/Form/Toggle";
 import NumberInput from "./components/Form/NumberInput";
 import FileInput from "./components/Form/FileInput";
+import Range from "./components/Form/Range";
 import Marquee from "./components/Marquee";
 import Dropdown from "./components/Dropdown";
 import Tooltip from "./components/Tooltip";
@@ -37,11 +38,12 @@ import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
 import View, { ViewItem } from "./components/View";
 
-import { 
+import {
     useModal, useSidebar,
     useCursorPosition,
-    useElementWidth, useElementHeight, 
-    useIntersectionObserver, 
+    useElementWidth, useElementHeight,
+    useIntersectionObserver,
+    useTransitionState,
     useElScrollThreshold, useElScrollPosition, useScrollThreshold
 } from "hooks/";
 
@@ -61,7 +63,7 @@ export { Marquee };
 export { Table };
 export { List, Masonry };
 export {Icon, Card, Modal, Alert, SearchBar, Sidebar};
-export { Form, Select, TextInput, Toggle, NumberInput, FileInput, InputRefType };
+export { Form, Select, TextInput, Toggle, NumberInput, FileInput, Range, InputRefType };
 export { Dropdown, Tooltip };
 export { Menu, MenuItem, MenuItemData };
 export { LazyItem, ParallaxItem };
@@ -72,5 +74,6 @@ export {
     useElementHeight,
     useCursorPosition,
     useModal, useSidebar,
+    useTransitionState,
     useElScrollThreshold, useElScrollPosition, useScrollThreshold
 }

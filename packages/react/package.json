@@ -1,6 +1,6 @@
 {
   "name": "@prismal/react",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "Full-spectrum design system.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

@@ -40,6 +40,7 @@
 - [NumberInput](variables/NumberInput.md)
 - [ParallaxItem](variables/ParallaxItem.md)
 - [Pie](variables/Pie.md)
+- [Range](variables/Range.md)
 - [SearchBar](variables/SearchBar.md)
 - [Select](variables/Select.md)
 - [Sidebar](variables/Sidebar.md)
@@ -66,3 +67,4 @@
 - [useModal](functions/useModal.md)
 - [useScrollThreshold](functions/useScrollThreshold.md)
 - [useSidebar](functions/useSidebar.md)
+- [useTransitionState](functions/useTransitionState.md)
