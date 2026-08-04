@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start --poll",
-    "build": "docusaurus build --out-dir ../../docs",
+    "gen-props-map": "node scripts/generate-props-map.js",
+    "start": "npm run gen-props-map && docusaurus start --poll",
+    "build": "npm run gen-props-map && docusaurus build --out-dir ../../docs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

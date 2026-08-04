@@ -11,6 +11,7 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "paths": {
       "styles": ["styles/*"],
       "components": ["components/*"],

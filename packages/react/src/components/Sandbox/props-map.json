@@ -1,0 +1,6123 @@
+{
+  "Cursor": {
+    "displayName": "Cursor",
+    "props": [
+      {
+        "name": "positionRef",
+        "type": "RefObject<{ x: number; y: number; }>",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "A ref object containing the cursor's x and y coordinates."
+      },
+      {
+        "name": "type",
+        "type": "\"circle\" | \"dot\" | \"dashed\" | \"two-dots\" | \"gooey\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "circle",
+          "dot",
+          "dashed",
+          "two-dots",
+          "gooey"
+        ],
+        "description": "The visual style of the cursor."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Container": {
+    "displayName": "Container",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content to be rendered inside the container."
+      },
+      {
+        "name": "ratio",
+        "type": "{ xs?: Ratio | undefined; sm?: Ratio | undefined; md?: Ratio | undefined; lg?: Ratio | undefined; xl?: Ratio | undefined; } | Ratio | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The aspect ratio of the container, can be a single value or responsive object."
+      },
+      {
+        "name": "span",
+        "type": "number | { xs?: number | undefined; sm?: number | undefined; md?: number | undefined; lg?: number | undefined; xl?: number | undefined; } | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The column span of the container in a grid layout."
+      },
+      {
+        "name": "hide",
+        "type": "boolean | { xs?: boolean | undefined; sm?: boolean | undefined; md?: boolean | undefined; lg?: boolean | undefined; xl?: boolean | undefined; } | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Controls the visibility of the container, can be responsive."
+      },
+      {
+        "name": "cursor",
+        "type": "\"circle\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "circle"
+        ],
+        "description": "The type of custom cursor to display within the container."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "HeadingText": {
+    "displayName": "HeadingText",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"heading\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The type of text."
+      },
+      {
+        "name": "level",
+        "type": "1 | 2 | 3 | 4 | 5 | 6",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "description": "The heading level."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "BodyText": {
+    "displayName": "BodyText",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"body\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The type of text."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Text": {
+    "displayName": "Text",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"heading\" | \"body\"",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "heading",
+          "body"
+        ],
+        "description": "The type of text."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content of the text element."
+      },
+      {
+        "name": "size",
+        "type": "{ xs?: Size | undefined; sm?: Size | undefined; md?: Size | undefined; lg?: Size | undefined; xl?: Size | undefined; } | Size | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The size of the text, can be a single value or a responsive object."
+      }
+    ]
+  },
+  "Icon": {
+    "displayName": "Icon",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The name of the icon to display."
+      }
+    ]
+  },
+  "Button": {
+    "displayName": "Button",
+    "props": [
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name attribute for the button element."
+      },
+      {
+        "name": "iconName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the icon to display."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the button, used for tooltips."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the button will be disabled."
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | \"text\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary",
+          "text"
+        ],
+        "description": "The visual style of the button."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content of the button."
+      },
+      {
+        "name": "shape",
+        "type": "\"circle\" | \"default-shape\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "circle",
+          "default-shape"
+        ],
+        "description": "The shape of the button."
+      },
+      {
+        "name": "size",
+        "type": "\"sm\" | \"md\" | \"lg\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "description": "The size of the button."
+      },
+      {
+        "name": "htmlType",
+        "type": "\"submit\" | \"button\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "submit",
+          "button"
+        ],
+        "description": "The type attribute for the button element."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the button will be in a read-only state."
+      },
+      {
+        "name": "hoverGrow",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the hover ripple grows past the button's own edges instead of being clipped to its shape."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "ButtonGroup": {
+    "displayName": "ButtonGroup",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactElement<ButtonProps, string | JSXElementConstructor<any>> | ReactElement<ButtonProps, string | JSXElementConstructor<any>>[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The Button components to group."
+      },
+      {
+        "name": "orientation",
+        "type": "\"row\" | \"column\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "row",
+          "column"
+        ],
+        "description": "The orientation of the button group."
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | \"text\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary",
+          "text"
+        ],
+        "description": "The visual style to apply to all buttons in the group."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Input": {
+    "displayName": "Input",
+    "props": [
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "placeholder",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Placeholder text or element."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "inline",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is displayed inline."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "value",
+        "type": "string | number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The value of the input."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Select": {
+    "displayName": "Select",
+    "props": [
+      {
+        "name": "multiple",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, allows multiple options to be selected."
+      },
+      {
+        "name": "options",
+        "type": "SelectOption[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The array of options to display."
+      },
+      {
+        "name": "placeholder",
+        "type": "string | Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The placeholder text or element."
+      },
+      {
+        "name": "isFiltered",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "inline",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is displayed inline."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "value",
+        "type": "string | number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The value of the input."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "TextInput": {
+    "displayName": "TextInput",
+    "props": [
+      {
+        "name": "htmlType",
+        "type": "T | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The type of the input element."
+      },
+      {
+        "name": "accept",
+        "type": "Accepted<T> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The accept attribute for file inputs."
+      },
+      {
+        "name": "size",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The size of the input."
+      },
+      {
+        "name": "after",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Element to display after the input."
+      },
+      {
+        "name": "before",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Element to display before the input."
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary"
+        ],
+        "description": "The visual style of the input."
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Placeholder text for the input."
+      },
+      {
+        "name": "multiple",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "inline",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is displayed inline."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "value",
+        "type": "string | number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The value of the input."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Toggle": {
+    "displayName": "Toggle",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"checkbox\" | \"switch\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "checkbox",
+          "switch"
+        ],
+        "description": "The type of toggle to render."
+      },
+      {
+        "name": "checked",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "The initial checked state of the toggle."
+      },
+      {
+        "name": "placeholder",
+        "type": "undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Not used."
+      },
+      {
+        "name": "value",
+        "type": "undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Not used."
+      },
+      {
+        "name": "inline",
+        "type": "undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Not used."
+      },
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "NumberInput": {
+    "displayName": "NumberInput",
+    "props": [
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Placeholder text or element."
+      },
+      {
+        "name": "after",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "before",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary"
+        ],
+        "description": ""
+      },
+      {
+        "name": "step",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The value of the input."
+      },
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "inline",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is displayed inline."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "FileInput": {
+    "displayName": "FileInput",
+    "props": [
+      {
+        "name": "after",
+        "type": "never",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "Element to display after the input."
+      },
+      {
+        "name": "before",
+        "type": "never",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "Element to display before the input."
+      },
+      {
+        "name": "value",
+        "type": "never",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The value of the input."
+      },
+      {
+        "name": "multiple",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "htmlType",
+        "type": "\"file\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "file"
+        ],
+        "description": "The type of the input element."
+      },
+      {
+        "name": "accept",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The accept attribute for file inputs."
+      },
+      {
+        "name": "size",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The size of the input."
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary"
+        ],
+        "description": "The visual style of the input."
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Placeholder text for the input."
+      },
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "inline",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is displayed inline."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Range": {
+    "displayName": "Range",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"horizontal\" | \"vertical\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "The orientation of the range slider."
+      },
+      {
+        "name": "min",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The minimum value of the range."
+      },
+      {
+        "name": "max",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The maximum value of the range."
+      },
+      {
+        "name": "step",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The step increment of the range."
+      },
+      {
+        "name": "value",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial value of the range."
+      },
+      {
+        "name": "showIndicator",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, displays the current value indicator."
+      },
+      {
+        "name": "dot",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, renders a dot marker at the current value's position on the track."
+      },
+      {
+        "name": "showMaxIndicator",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, displays the max value indicator."
+      },
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "placeholder",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Placeholder text or element."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "inline",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is displayed inline."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Marquee": {
+    "displayName": "Marquee",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The content to be scrolled."
+      },
+      {
+        "name": "pauseOnHover",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the animation pauses on mouse hover."
+      },
+      {
+        "name": "speed",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "A decimal from 0 to 1 representing the scroll speed."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Dropdown": {
+    "displayName": "Dropdown",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The content to display within the dropdown."
+      },
+      {
+        "name": "toggleElement",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The element that toggles the dropdown's visibility."
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary"
+        ],
+        "description": "Defines the visual style of the dropdown."
+      },
+      {
+        "name": "isOpen",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Manually toggles visibility"
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Tooltip": {
+    "displayName": "Tooltip",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The element that the tooltip is attached to."
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The text to display in the tooltip."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "MenuItem": {
+    "displayName": "MenuItem",
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "ActionBarItemWithRef": {
+    "displayName": "ActionBarItemWithRef",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional children to render within the wrapper."
+      }
+    ]
+  },
+  "ActionBar": {
+    "displayName": "ActionBar",
+    "props": [
+      {
+        "name": "items",
+        "type": "(ActionBarItemConfig | null)[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The list of items to render in the bar; nulls are ignored."
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | \"secondary\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary",
+          "secondary"
+        ],
+        "description": "Visual style variant for the ActionBar."
+      },
+      {
+        "name": "children",
+        "type": "ReactElement<unknown, string | JSXElementConstructor<any>>[] | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional React elements rendered within the ActionBar."
+      },
+      {
+        "name": "defaultPosition",
+        "type": "\"left\" | \"center\" | \"right\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "left",
+          "center",
+          "right"
+        ],
+        "description": "Default section for items without explicit position."
+      },
+      {
+        "name": "modalAreaId",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional DOM id where modals/portals should render."
+      },
+      {
+        "name": "sectionAlt",
+        "type": "{ left?: ActionbarAltSectionBtn | undefined; center?: ActionbarAltSectionBtn | undefined; right?: ActionbarAltSectionBtn | undefined; } | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional alternate action buttons for sections."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "AcctionBarSection": {
+    "displayName": "AcctionBarSection",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"left\" | \"center\" | \"right\"",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "left",
+          "center",
+          "right"
+        ],
+        "description": "The section type where items are displayed."
+      },
+      {
+        "name": "items",
+        "type": "(ActionBarItemConfig | null)[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The items to display in this section; nulls are ignored."
+      },
+      {
+        "name": "modalAreaId",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional DOM id for rendering modals/portals from this section."
+      },
+      {
+        "name": "modalClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional class name applied to the section's modal container."
+      },
+      {
+        "name": "altIcon",
+        "type": "ActionbarAltSectionBtn | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional configuration for an alternate section button."
+      }
+    ]
+  },
+  "ActionBarAltSection": {
+    "displayName": "ActionBarAltSection",
+    "props": [
+      {
+        "name": "items",
+        "type": "Element[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The list of alternate items to render."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional title for the alternate section view."
+      },
+      {
+        "name": "modalAreaId",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional DOM id for modal/portal rendering."
+      },
+      {
+        "name": "modalClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional class name applied to the alternate modal container."
+      },
+      {
+        "name": "button",
+        "type": "ActionbarAltSectionBtn | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional button configuration that toggles the alternate view."
+      }
+    ]
+  },
+  "ActionBarItem": {
+    "displayName": "ActionBarItem",
+    "props": [
+      {
+        "name": "item",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The renderable content for the item."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional title or tooltip for the item."
+      },
+      {
+        "name": "siblingWeight",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Weight used to balance available space with siblings."
+      },
+      {
+        "name": "scale",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Whether the item should expand to fill available space."
+      },
+      {
+        "name": "scaleFactor",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Multiplier applied when scaling is enabled."
+      },
+      {
+        "name": "alt",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Alternate content for modal/alt views."
+      },
+      {
+        "name": "uniqueKey",
+        "type": "string | number",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "Unique stable key for item diffing and refs."
+      },
+      {
+        "name": "sectionRef",
+        "type": "RefObject<HTMLDivElement | null | undefined>",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "Ref to the parent section DOM element."
+      }
+    ]
+  },
+  "Sidebar": {
+    "displayName": "Sidebar",
+    "props": [
+      {
+        "name": "areaId",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the DOM element where the sidebar should be rendered."
+      },
+      {
+        "name": "header",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Custom header content for the sidebar."
+      },
+      {
+        "name": "footer",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Custom footer content for the sidebar."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The main content of the sidebar."
+      },
+      {
+        "name": "visible",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Controls the visibility of the sidebar."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Card": {
+    "displayName": "Card",
+    "props": [
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content for the card's header section."
+      },
+      {
+        "name": "headerClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content for the card's footer section."
+      },
+      {
+        "name": "footerClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the footer."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The main content of the card (body)."
+      },
+      {
+        "name": "bodyClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the body."
+      },
+      {
+        "name": "orientation",
+        "type": "\"horizontal\" | \"vertical\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "The orientation of the card layout."
+      },
+      {
+        "name": "padding",
+        "type": "\"none\" | \"xs\" | \"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the card content."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Modal": {
+    "displayName": "Modal",
+    "props": [
+      {
+        "name": "areaId",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the DOM element where the modal should be rendered (portaled)."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Custom header content for the modal."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Custom footer content for the modal."
+      },
+      {
+        "name": "bgClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the modal background overlay."
+      },
+      {
+        "name": "fgClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the modal foreground (the modal itself)."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title to be displayed in the modal header."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The main content of the modal."
+      },
+      {
+        "name": "visible",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Controls the visibility of the modal."
+      },
+      {
+        "name": "showClose",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows the close button in the header."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Page": {
+    "displayName": "Page",
+    "props": [
+      {
+        "name": "list",
+        "type": "any[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The list of items for the current page."
+      },
+      {
+        "name": "listProcessor",
+        "type": "ListProcessor",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The function to process and render the items."
+      }
+    ]
+  },
+  "ProcessedList": {
+    "displayName": "ProcessedList",
+    "props": [
+      {
+        "name": "data",
+        "type": "any[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The array of data to be processed and displayed."
+      },
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of items to display per page."
+      },
+      {
+        "name": "page",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial page number."
+      },
+      {
+        "name": "infiniteScroll",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, enables infinite scrolling."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display above the list."
+      },
+      {
+        "name": "headerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display below the list."
+      },
+      {
+        "name": "footerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the footer."
+      },
+      {
+        "name": "showPageCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows pagination controls."
+      },
+      {
+        "name": "showExtremesCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows first/last page controls."
+      },
+      {
+        "name": "listProcessor",
+        "type": "ListProcessor",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "A function to process and render list items."
+      },
+      {
+        "name": "view",
+        "type": "\"list\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "list"
+        ],
+        "description": "The view type."
+      },
+      {
+        "name": "type",
+        "type": "\"process\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The list type."
+      },
+      {
+        "name": "padding",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the list."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "RawList": {
+    "displayName": "RawList",
+    "props": [
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of items to display per page."
+      },
+      {
+        "name": "page",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial page number."
+      },
+      {
+        "name": "infiniteScroll",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, enables infinite scrolling."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display above the list."
+      },
+      {
+        "name": "headerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display below the list."
+      },
+      {
+        "name": "footerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the footer."
+      },
+      {
+        "name": "showPageCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows pagination controls."
+      },
+      {
+        "name": "showExtremesCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows first/last page controls."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The array of nodes to display."
+      },
+      {
+        "name": "view",
+        "type": "\"list\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "list"
+        ],
+        "description": "The view type."
+      },
+      {
+        "name": "type",
+        "type": "\"raw\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The list type."
+      },
+      {
+        "name": "padding",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the list."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "List": {
+    "displayName": "List",
+    "props": [
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of items to display per page."
+      },
+      {
+        "name": "page",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial page number."
+      },
+      {
+        "name": "infiniteScroll",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, enables infinite scrolling."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display above the list."
+      },
+      {
+        "name": "headerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display below the list."
+      },
+      {
+        "name": "footerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the footer."
+      },
+      {
+        "name": "showPageCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows pagination controls."
+      },
+      {
+        "name": "showExtremesCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows first/last page controls."
+      },
+      {
+        "name": "view",
+        "type": "\"list\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "list"
+        ],
+        "description": "The view type."
+      },
+      {
+        "name": "type",
+        "type": "\"process\" | \"raw\"",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "process",
+          "raw"
+        ],
+        "description": "The list type."
+      },
+      {
+        "name": "padding",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the list."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "ProcessedGrid": {
+    "displayName": "ProcessedGrid",
+    "props": [
+      {
+        "name": "data",
+        "type": "any[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The array of data to be processed and displayed."
+      },
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of items to display per page."
+      },
+      {
+        "name": "page",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial page number."
+      },
+      {
+        "name": "infiniteScroll",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, enables infinite scrolling."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display above the grid."
+      },
+      {
+        "name": "headerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display below the grid."
+      },
+      {
+        "name": "footerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the footer."
+      },
+      {
+        "name": "showPageCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows pagination controls."
+      },
+      {
+        "name": "showExtremesCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows first/last page controls."
+      },
+      {
+        "name": "listProcessor",
+        "type": "ListProcessor",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "A function to process and render grid items."
+      },
+      {
+        "name": "view",
+        "type": "\"grid\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "grid"
+        ],
+        "description": "The view type."
+      },
+      {
+        "name": "type",
+        "type": "\"process\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The list type."
+      },
+      {
+        "name": "padding",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the grid."
+      },
+      {
+        "name": "cols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns in the grid."
+      },
+      {
+        "name": "xsCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for extra small screens."
+      },
+      {
+        "name": "smCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for small screens."
+      },
+      {
+        "name": "mdCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for medium screens."
+      },
+      {
+        "name": "lgCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for large screens."
+      },
+      {
+        "name": "xlCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for extra large screens."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "RawGrid": {
+    "displayName": "RawGrid",
+    "props": [
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of items to display per page."
+      },
+      {
+        "name": "page",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial page number."
+      },
+      {
+        "name": "infiniteScroll",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, enables infinite scrolling."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display above the grid."
+      },
+      {
+        "name": "headerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display below the grid."
+      },
+      {
+        "name": "footerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the footer."
+      },
+      {
+        "name": "showPageCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows pagination controls."
+      },
+      {
+        "name": "showExtremesCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows first/last page controls."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The array of nodes to display."
+      },
+      {
+        "name": "view",
+        "type": "\"grid\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "grid"
+        ],
+        "description": "The view type."
+      },
+      {
+        "name": "type",
+        "type": "\"raw\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The list type."
+      },
+      {
+        "name": "padding",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the grid."
+      },
+      {
+        "name": "cols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns in the grid."
+      },
+      {
+        "name": "xsCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for extra small screens."
+      },
+      {
+        "name": "smCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for small screens."
+      },
+      {
+        "name": "mdCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for medium screens."
+      },
+      {
+        "name": "lgCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for large screens."
+      },
+      {
+        "name": "xlCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for extra large screens."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Grid": {
+    "displayName": "Grid",
+    "props": [
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of items to display per page."
+      },
+      {
+        "name": "page",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial page number."
+      },
+      {
+        "name": "infiniteScroll",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, enables infinite scrolling."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display above the grid."
+      },
+      {
+        "name": "headerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display below the grid."
+      },
+      {
+        "name": "footerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the footer."
+      },
+      {
+        "name": "showPageCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows pagination controls."
+      },
+      {
+        "name": "showExtremesCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows first/last page controls."
+      },
+      {
+        "name": "view",
+        "type": "\"grid\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "grid"
+        ],
+        "description": "The view type."
+      },
+      {
+        "name": "type",
+        "type": "\"process\" | \"raw\"",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "process",
+          "raw"
+        ],
+        "description": "The list type."
+      },
+      {
+        "name": "padding",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the grid."
+      },
+      {
+        "name": "cols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns in the grid."
+      },
+      {
+        "name": "xsCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for extra small screens."
+      },
+      {
+        "name": "smCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for small screens."
+      },
+      {
+        "name": "mdCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for medium screens."
+      },
+      {
+        "name": "lgCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for large screens."
+      },
+      {
+        "name": "xlCols",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of columns for extra large screens."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "ListComponent": {
+    "displayName": "ListComponent",
+    "props": [
+      {
+        "name": "pageSize",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The number of items to display per page."
+      },
+      {
+        "name": "page",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial page number."
+      },
+      {
+        "name": "infiniteScroll",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, enables infinite scrolling."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display above the list.\nContent to display above the grid."
+      },
+      {
+        "name": "headerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the header."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Content to display below the list.\nContent to display below the grid."
+      },
+      {
+        "name": "footerClassName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "CSS class for the footer."
+      },
+      {
+        "name": "showPageCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows pagination controls."
+      },
+      {
+        "name": "showExtremesCtrl",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, shows first/last page controls."
+      },
+      {
+        "name": "view",
+        "type": "\"list\" | \"grid\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "list",
+          "grid"
+        ],
+        "description": "The view type."
+      },
+      {
+        "name": "type",
+        "type": "\"process\" | \"raw\"",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "process",
+          "raw"
+        ],
+        "description": "The list type."
+      },
+      {
+        "name": "padding",
+        "type": "\"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "The padding size for the list.\nThe padding size for the grid."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "MasonryProc": {
+    "displayName": "MasonryProc",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"process\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The type of masonry layout."
+      },
+      {
+        "name": "data",
+        "type": "{ [key: string]: any; }[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The array of data items."
+      }
+    ]
+  },
+  "MasonryRaw": {
+    "displayName": "MasonryRaw",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"raw\"",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The type of masonry layout."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode | ReactNode[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The child elements to arrange."
+      }
+    ]
+  },
+  "SearchBar": {
+    "displayName": "SearchBar",
+    "props": [
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the search bar is disabled."
+      },
+      {
+        "name": "placeholder",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The placeholder text for the search input."
+      },
+      {
+        "name": "value",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The initial value of the search input."
+      },
+      {
+        "name": "btnPosition",
+        "type": "\"outer-after\" | \"outer-before\" | \"inner-after\" | \"inner-before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "outer-after",
+          "outer-before",
+          "inner-after",
+          "inner-before"
+        ],
+        "description": "The position of the search button."
+      },
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary"
+        ],
+        "description": "The visual style of the search bar."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Alert": {
+    "displayName": "Alert",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Not used in simple alerts.\nCustom content for the alert."
+      },
+      {
+        "name": "message",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The message to display.\nNot used in custom alerts."
+      },
+      {
+        "name": "action",
+        "type": "Element[] | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Action elements to display.\nNot used in custom alerts."
+      },
+      {
+        "name": "cover",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "An element to display as a cover or icon for the alert."
+      },
+      {
+        "name": "visible",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Controls the visibility of the alert."
+      },
+      {
+        "name": "showClose",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Whether to show the close button."
+      },
+      {
+        "name": "cornerRadius",
+        "type": "false | \"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The corner radius of the alert."
+      },
+      {
+        "name": "transition",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "Whether to apply a transition effect."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Slider": {
+    "displayName": "Slider",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"process\" | \"raw\"",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "process",
+          "raw"
+        ],
+        "description": ""
+      },
+      {
+        "name": "id",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "spacing",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "\"xl\" | \"s\" | \"m\" | \"l\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "xl",
+          "s",
+          "m",
+          "l"
+        ],
+        "description": ""
+      },
+      {
+        "name": "navElBackward",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "navElForward",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "labelEl",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "showNavBar",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "autoPlay",
+        "type": "number | false | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Header": {
+    "displayName": "Header",
+    "props": [
+      {
+        "name": "navClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the navigation container."
+      },
+      {
+        "name": "placeHolderClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the placeholder element."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content to be displayed within the header."
+      },
+      {
+        "name": "sticky",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the header becomes sticky on scroll."
+      },
+      {
+        "name": "stickyClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class to apply when the header is sticky."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Table": {
+    "displayName": "Table",
+    "props": [
+      {
+        "name": "data",
+        "type": "{ [keyX: string]: { [keyY: string]: ReactNode; }; } | { [keyX: string]: any; }[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The data for the table, either as an object of objects or an array of objects."
+      },
+      {
+        "name": "caption",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The caption for the table."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Form": {
+    "displayName": "Form",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactElement<unknown, string | JSXElementConstructor<any>> | ReactElement<unknown, string | JSXElementConstructor<any>>[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The input elements to be included in the form."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the form."
+      },
+      {
+        "name": "submit",
+        "type": "Element | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "A custom submit button element."
+      },
+      {
+        "name": "gridTemplate",
+        "type": "{ cols?: GridTemplateColumns<string | number> | undefined; rows?: GridTemplateRows<string | number> | undefined; } | GridTemplate | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid layout for form fields."
+      },
+      {
+        "name": "gridGap",
+        "type": "{ column?: ColumnGap<string | number> | undefined; row?: RowGap<string | number> | undefined; } | Gap<string | number> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the gap between grid items."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "LazyItem": {
+    "displayName": "LazyItem",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The content to be lazy-loaded."
+      },
+      {
+        "name": "exitEffect",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, an exit animation will be applied when the component scrolls out of view."
+      },
+      {
+        "name": "animation",
+        "type": "\"none\" | \"fade\" | \"slide-up\" | \"slide-left\" | \"pop-in\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "fade",
+          "slide-up",
+          "slide-left",
+          "pop-in"
+        ],
+        "description": "Customize the entrance animation by setting animation -> 'none'\nand providing loadedClass\nThe type of entrance animation."
+      },
+      {
+        "name": "loadedClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "An additional CSS class to apply when the content is loaded."
+      },
+      {
+        "name": "offset",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The delay in milliseconds before the entrance animation starts."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "ParallaxItem": {
+    "displayName": "ParallaxItem",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content to be affected by the parallax effect."
+      },
+      {
+        "name": "factor",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The parallax scroll factor. A value between -1 and 1."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "PieChart": {
+    "displayName": "PieChart",
+    "props": [
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "A name for the chart."
+      },
+      {
+        "name": "size",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The size (width and height) of the pie chart."
+      },
+      {
+        "name": "data",
+        "type": "{ name?: string | undefined; percentage: number; color?: string | undefined; label?: string | undefined; }[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The data for the pie chart slices."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "LineChart": {
+    "displayName": "LineChart",
+    "props": [
+      {
+        "name": "width",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "margin",
+        "type": "Margin",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "linePath",
+        "type": "string",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "points",
+        "type": "Point[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "xAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "yAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "colors",
+        "type": "string[]",
+        "controlType": "color",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "showMarkers",
+        "type": "boolean",
+        "controlType": "boolean",
+        "isOptional": false,
+        "description": ""
+      }
+    ]
+  },
+  "BarChart": {
+    "displayName": "BarChart",
+    "props": [
+      {
+        "name": "width",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "margin",
+        "type": "Margin",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "bars",
+        "type": "Bar[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "xAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "yAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "layout",
+        "type": "\"horizontal\" | \"vertical\"",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": ""
+      }
+    ]
+  },
+  "AreaChart": {
+    "displayName": "AreaChart",
+    "props": [
+      {
+        "name": "width",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "margin",
+        "type": "Margin",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "areas",
+        "type": "Area[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "xAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "yAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      }
+    ]
+  },
+  "CandlestickChart": {
+    "displayName": "CandlestickChart",
+    "props": [
+      {
+        "name": "width",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "controlType": "number",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "margin",
+        "type": "Margin",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "candles",
+        "type": "Candle[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "xAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "yAxisTicks",
+        "type": "Tick[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      }
+    ]
+  },
+  "Graph": {
+    "displayName": "Graph",
+    "props": [
+      {
+        "name": "type",
+        "type": "GraphType",
+        "controlType": "select",
+        "isOptional": false,
+        "options": [
+          "LINE",
+          "LINE_MARKERS",
+          "LINE_CURVED",
+          "LINE_CURVED_MARKERS",
+          "AREA_STACKED",
+          "BAR_VERTICAL",
+          "BAR_HORIZONTAL",
+          "BAR_STACKED",
+          "BAR_GROUPED",
+          "CANDLESTICK"
+        ],
+        "description": ""
+      },
+      {
+        "name": "data",
+        "type": "any[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "keys",
+        "type": "GraphKeys",
+        "controlType": "string",
+        "isOptional": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "showMarkers",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "isCurved",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "colors",
+        "type": "string[] | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "layout",
+        "type": "\"horizontal\" | \"vertical\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": ""
+      }
+    ]
+  },
+  "Tabs": {
+    "displayName": "Tabs",
+    "props": [
+      {
+        "name": "data",
+        "type": "TabConfig[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The configuration data for all tabs."
+      },
+      {
+        "name": "children",
+        "type": "ReactElement<TabContentProps, string | JSXElementConstructor<any>>[] | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Child elements representing tab content."
+      },
+      {
+        "name": "content",
+        "type": "{ [tabName: string]: ReactNode; } | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "An object mapping tab names to content nodes."
+      },
+      {
+        "name": "tabsClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the tabs container."
+      },
+      {
+        "name": "tabContentClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the tab content container."
+      },
+      {
+        "name": "tabClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for individual tabs."
+      },
+      {
+        "name": "selected",
+        "type": "string | number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The selected tab, for controlled usage. When set, Tabs stops choosing its own\nselection (from `data[0]` or the `default`-flagged entry) and always renders\nwhichever `name` you pass — clicks call `onChange` instead of updating anything\ninternally, so you're expected to feed the value back in. Needed whenever\nsomething other than clicking a tab decides the active one, e.g. a scrollspy\nnav where scroll position drives selection. Omit to keep Tabs uncontrolled."
+      },
+      {
+        "name": "variant",
+        "type": "TabsVariant | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "tabs",
+          "nav"
+        ],
+        "description": "Presentation mode. See `TabsVariant`. Defaults to `\"tabs\"`."
+      },
+      {
+        "name": "navLabel",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Accessible name for the `<nav>` landmark. Only read when `variant=\"nav\"`."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Accordion": {
+    "displayName": "Accordion",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The content to be displayed inside the accordion when it is open."
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The header content of the accordion, which is always visible."
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the accordion will be open by default."
+      },
+      {
+        "name": "contentStyle",
+        "type": "CSSProperties | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Custom CSS styles for the content container."
+      },
+      {
+        "name": "contentClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the content container."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "ViewItem": {
+    "displayName": "ViewItem",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "at",
+        "type": "Responsive<string> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "width",
+        "type": "Responsive<ViewSpan> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "Responsive<ViewSpan> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "layer",
+        "type": "Responsive<number> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "justify",
+        "type": "Responsive<ViewAlign> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "align",
+        "type": "Responsive<ViewAlign> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "offset",
+        "type": "Responsive<ViewOffset> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "reflow",
+        "type": "ViewReflow | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "clamp",
+          "wrap",
+          "transpose",
+          "stack"
+        ],
+        "description": ""
+      },
+      {
+        "name": "pointerEvents",
+        "type": "ViewPointerEvents | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "auto",
+          "content"
+        ],
+        "description": ""
+      },
+      {
+        "name": "clip",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "View": {
+    "displayName": "View",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "columns",
+        "type": "Responsive<number> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "autoScale",
+        "type": "boolean | Partial<Record<Breakpoint, number>> | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "baseColumns",
+        "type": "number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "reflow",
+        "type": "ViewReflow | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "clamp",
+          "wrap",
+          "transpose",
+          "stack"
+        ],
+        "description": ""
+      },
+      {
+        "name": "rows",
+        "type": "Responsive<number> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "cellWidth",
+        "type": "Responsive<ViewSize> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "cellHeight",
+        "type": "Responsive<ViewSize> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "matrix",
+        "type": "Responsive<ViewMatrix> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "unit",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "gap",
+        "type": "Responsive<ViewSize> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "dense",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Chip": {
+    "displayName": "Chip",
+    "props": [
+      {
+        "name": "type",
+        "type": "\"default\" | \"primary\" | \"text\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "default",
+          "primary",
+          "text"
+        ],
+        "description": "The visual style/type of the chip. Defaults to 'default'."
+      },
+      {
+        "name": "size",
+        "type": "\"sm\" | \"md\" | \"lg\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "description": "The size of the chip. Defaults to 'sm'."
+      },
+      {
+        "name": "iconName",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional icon name to display inside the chip."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The content of the chip."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Optional text label to display."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Date": {
+    "displayName": "Date",
+    "props": [
+      {
+        "name": "id",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The ID of the input element."
+      },
+      {
+        "name": "name",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The name of the input element."
+      },
+      {
+        "name": "label",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The label text for the input."
+      },
+      {
+        "name": "labelClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the label."
+      },
+      {
+        "name": "labelSeparator",
+        "type": "string | null | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Separator character to display after the label."
+      },
+      {
+        "name": "labelPosition",
+        "type": "\"after\" | \"before\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "after",
+          "before"
+        ],
+        "description": "The position of the label relative to the input."
+      },
+      {
+        "name": "placeholder",
+        "type": "ReactNode",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Placeholder text or element."
+      },
+      {
+        "name": "title",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The title attribute for the input."
+      },
+      {
+        "name": "inline",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is displayed inline."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is disabled."
+      },
+      {
+        "name": "required",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is required."
+      },
+      {
+        "name": "readOnly",
+        "type": "boolean | undefined",
+        "controlType": "boolean",
+        "isOptional": true,
+        "description": "If true, the input is read-only."
+      },
+      {
+        "name": "value",
+        "type": "string | number | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The value of the input."
+      },
+      {
+        "name": "gridPlacement",
+        "type": "{ column?: GridColumn | undefined; row?: GridRow | undefined; } | GridArea | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Defines the grid placement for the input."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  },
+  "Stack": {
+    "displayName": "Stack",
+    "props": [
+      {
+        "name": "data",
+        "type": "StackElement[]",
+        "controlType": "string",
+        "isOptional": false,
+        "description": "The array of data for the stack items."
+      },
+      {
+        "name": "direction",
+        "type": "\"horizontal\" | \"vertical\" | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "The direction of the stack."
+      },
+      {
+        "name": "gap",
+        "type": "Gap<string | number> | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "The gap between stack items."
+      },
+      {
+        "name": "itemContainerClass",
+        "type": "string | undefined",
+        "controlType": "string",
+        "isOptional": true,
+        "description": "Additional CSS class for the item containers."
+      },
+      {
+        "name": "elevation",
+        "type": "Elevation | undefined",
+        "controlType": "number",
+        "isOptional": true,
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "The elevation level for box-shadow effects."
+      },
+      {
+        "name": "borderRadius",
+        "type": "BorderRadius | undefined",
+        "controlType": "select",
+        "isOptional": true,
+        "options": [
+          "none",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "full"
+        ],
+        "description": "The border radius of the component."
+      },
+      {
+        "name": "accent",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentLight",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      },
+      {
+        "name": "accentDark",
+        "type": "string | undefined",
+        "controlType": "color",
+        "isOptional": true,
+        "description": ""
+      }
+    ]
+  }
+}

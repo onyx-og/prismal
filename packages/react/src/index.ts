@@ -37,6 +37,7 @@ import { Graph, GraphType } from "./components/Graph";
 import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
 import View, { ViewItem } from "./components/View";
+import Sandbox, { SandboxProps } from "./components/Sandbox";
 
 import {
     useModal, useSidebar,
@@ -68,6 +69,11 @@ export { Dropdown, Tooltip };
 export { Menu, MenuItem, MenuItemData };
 export { LazyItem, ParallaxItem };
 export { setAccentStyle, hex2rgba };
+
+// Dev-only tooling, grouped under a namespace rather than exported flat since it's not
+// part of the design system itself (e.g. Sandbox is a docs/playground utility).
+export const Dev = { Sandbox };
+export type { SandboxProps };
 export {
     useIntersectionObserver,
     useElementWidth,
