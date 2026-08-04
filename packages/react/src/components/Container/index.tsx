@@ -42,6 +42,8 @@ export interface ContainerProps extends ComponentProps {
     } | boolean;
     /** The type of custom cursor to display within the container. */
     cursor?: "circle",
+    /** The HTML element the container renders as. */
+    type?: "div" | "section",
 }
 
 /**
@@ -59,8 +61,11 @@ const Container: FC<ContainerProps> = (props) => {
         "data-id": dataId,
         className, style,
         accent, accentLight, accentDark,
-        children, ratio, span, hide = false
+        children, ratio, span, hide = false,
+        type = "div"
     } = props;
+
+    const Tag = type;
 
     /**
      * @member className_
@@ -124,17 +129,17 @@ const Container: FC<ContainerProps> = (props) => {
 
     if (style) style_ = { ...style_, ...style };
 
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement | HTMLElement>(null);
 
     const cursorPositionRef = useCursorPosition(containerRef);
 
     const memoizedChildren = useMemo(() => children, [children]);
 
-    return <div ref={containerRef} data-id={dataId} style={style_}
+    return <Tag ref={containerRef} data-id={dataId} style={style_}
         className={className_}>
         {memoizedChildren}
         <Cursor positionRef={cursorPositionRef} />
-    </div>
+    </Tag>
 };
 
 export default Container;
