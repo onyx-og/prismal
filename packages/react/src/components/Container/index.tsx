@@ -1,5 +1,5 @@
 import {
-    ReactNode, FC, useMemo, CSSProperties, useRef
+    ReactNode, FC, useMemo, CSSProperties, useRef, createElement
 } from "react";
 import ComponentProps from "../Component";
 import { setAccentStyle } from "utils/";
@@ -129,17 +129,20 @@ const Container: FC<ContainerProps> = (props) => {
 
     if (style) style_ = { ...style_, ...style };
 
-    const containerRef = useRef<HTMLDivElement | HTMLElement>(null);
+    const containerRef = useRef<HTMLElement>(null);
 
     const cursorPositionRef = useCursorPosition(containerRef);
 
     const memoizedChildren = useMemo(() => children, [children]);
 
-    return <Tag ref={containerRef} data-id={dataId} style={style_}
-        className={className_}>
-        {memoizedChildren}
+    // Rendered via createElement rather than JSX: with a dynamic (div | section) tag, JSX's
+    // per-intrinsic-element typing can't resolve a single `ref` type that fits both.
+    return createElement(
+        Tag,
+        { ref: containerRef, "data-id": dataId, style: style_, className: className_ },
+        memoizedChildren,
         <Cursor positionRef={cursorPositionRef} />
-    </Tag>
+    );
 };
 
 export default Container;
