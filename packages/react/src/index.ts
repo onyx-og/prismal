@@ -44,8 +44,10 @@ import {
     useElementWidth, useElementHeight,
     useIntersectionObserver,
     useTransitionState,
-    useElScrollThreshold, useElScrollPosition, useScrollThreshold
+    useElScrollThreshold, useElScrollPosition, useScrollThreshold,
+    useBreakpoint
 } from "hooks/";
+import type { Breakpoint, UseBreakpointOptions, UseBreakpointResult } from "hooks/useBreakpoint";
 
 export {Container, Text};
 export {View, ViewItem};
@@ -75,5 +77,7 @@ export {
     useCursorPosition,
     useModal, useSidebar,
     useTransitionState,
-    useElScrollThreshold, useElScrollPosition, useScrollThreshold
+    useElScrollThreshold, useElScrollPosition, useScrollThreshold,
+    useBreakpoint
 }
+export type { Breakpoint, UseBreakpointOptions, UseBreakpointResult };

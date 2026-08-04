@@ -7,6 +7,8 @@ import useSidebar from "./useSidebar";
 import useTransitionState from "./useTransitionState";
 import type { TransitionPhase } from "./useTransitionState";
 import { useElScrollThreshold, useElScrollPosition, useScrollThreshold} from "hooks/useScrollPosition";
+import useBreakpoint from "./useBreakpoint";
+import type { Breakpoint, UseBreakpointOptions, UseBreakpointResult } from "./useBreakpoint";
 
 export {
     useIntersectionObserver,
@@ -15,6 +17,7 @@ export {
     useCursorPosition,
     useModal, useSidebar,
     useTransitionState,
-    useElScrollThreshold, useElScrollPosition, useScrollThreshold
+    useElScrollThreshold, useElScrollPosition, useScrollThreshold,
+    useBreakpoint
 }
-export type { TransitionPhase };
+export type { TransitionPhase, Breakpoint, UseBreakpointOptions, UseBreakpointResult };
