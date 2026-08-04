@@ -72,7 +72,8 @@ const ActionBarSection: FC<AcctionBarSectionProps> = ( props ) => {
         items,
         modalAreaId,
         modalClassName,
-        altIcon
+        altIcon,
+        useAlt = true
     } = props;
 
     // Reference to the html div containing this section
@@ -174,10 +175,11 @@ const ActionBarSection: FC<AcctionBarSectionProps> = ( props ) => {
                     key={element.key}
                     {...element.props}
                     siblingWeight={sectionItems.length}
+                    scale={useAlt === false ? false : element.props.scale}
                 />
             })
-            
-    }, [items, type, hasCenteredItems, addItemRef]);
+
+    }, [items, type, hasCenteredItems, addItemRef, useAlt]);
 
     useEffect( () => {
         itemsList.current = { ...itemsList.current };
@@ -211,10 +213,11 @@ const ActionBarSection: FC<AcctionBarSectionProps> = ( props ) => {
         alterScaling(itemsList.current);
     }, [_itemsList, sectionWidth, alterScaling]);
 
-    // Shows an alternative version of the section when scaling value is set to true
+    // Shows an alternative version of the section when scaling value is set to true.
+    // When useAlt is false, the section always renders its items statically.
     const renderedItem = useMemo( () => {
-        return !scaling.value ? _items : <ActionBarAltSection button={altIcon} modalClassName={modalClassName} modalAreaId={modalAreaId} items={_items}/>;
-    }, [scaling, _items, modalAreaId, modalClassName, altIcon]);
+        return (!scaling.value || useAlt === false) ? _items : <ActionBarAltSection button={altIcon} modalClassName={modalClassName} modalAreaId={modalAreaId} items={_items}/>;
+    }, [scaling, _items, modalAreaId, modalClassName, altIcon, useAlt]);
 
     // Renders the component only if it has items of it's type,
     // or there are items in the center section

@@ -2,7 +2,7 @@ import './index.scss';
 
 import {
     forwardRef, ForwardedRef, useRef, useState, useCallback,
-    useMemo, Children, useImperativeHandle, 
+    useMemo, Children, isValidElement, useImperativeHandle,
 } from 'react';
 // Add type-only import for style typing
 import type { CSSProperties } from 'react';
@@ -55,7 +55,8 @@ const ActionBar = forwardRef<ActionBarRef, ActionBarProps>((props, ref) => {
         accent, accentLight, accentDark,
         className, style,
         modalAreaId,
-        sectionAlt, "data-id": dataId
+        sectionAlt, "data-id": dataId,
+        useAlt = true
     } = props;
     let actionBarClass = `prismal-actionbar prismal-actionbar-${type}`;
 
@@ -91,8 +92,22 @@ const ActionBar = forwardRef<ActionBarRef, ActionBarProps>((props, ref) => {
     }, [children_]);
 
     /**
+     * @function getChildPosition
+     * @description Resolves a child's target section, honoring a `position` prop on the child itself and falling back to `defaultPosition`.
+     * @param {unknown} el The child element to inspect.
+     * @returns {'left'|'center'|'right'} The resolved section.
+     */
+    const getChildPosition = useCallback((el: unknown): ActionBarItemConfig["position"] => {
+        if (isValidElement(el)) {
+            const childPosition = (el.props as { position?: ActionBarItemConfig["position"] })?.position;
+            if (childPosition) return childPosition;
+        }
+        return defaultPosition;
+    }, [defaultPosition]);
+
+    /**
      * @function processItem
-     * @description Filters items for a given section and augments with children placed at the default position.
+     * @description Filters items for a given section and augments with children resolved to that section.
      * @param {'left'|'center'|'right'} position The target section to process.
      * @returns {ActionBarItemConfig[]} The list of items to render in the section.
      * @example
@@ -100,19 +115,18 @@ const ActionBar = forwardRef<ActionBarRef, ActionBarProps>((props, ref) => {
      */
     const processItem = useCallback((position: ActionBarItemConfig["position"]) => {
         const items_ = items.filter((i) => i?.position === position);
-        if (defaultPosition === position && children_.length) {
-            const childrenItems: ActionBarItemConfig[] = children_.map((el, i) => {
-                return {
-                    item: <ActionBarItemWithRef ref={(node) => childrenRefCollector(node, i)}>{el}</ActionBarItemWithRef>,
-                    position: position,
-                    key: `${position}-${i}`,
-                };
-            });
+        const childrenItems: ActionBarItemConfig[] = children_
+            .map((el, i) => ({ el, i }))
+            .filter(({ el }) => getChildPosition(el) === position)
+            .map(({ el, i }) => ({
+                item: <ActionBarItemWithRef ref={(node) => childrenRefCollector(node, i)}>{el}</ActionBarItemWithRef>,
+                position,
+                key: `${position}-${i}`,
+            }));
 
-            items_.push(...childrenItems);
-        }
+        items_.push(...childrenItems);
         return items_;
-    }, [items, children_, defaultPosition, childrenRefCollector]);
+    }, [items, children_, getChildPosition, childrenRefCollector]);
 
     const leftItems = useMemo(() => {
         return processItem("left");
@@ -154,12 +168,12 @@ const ActionBar = forwardRef<ActionBarRef, ActionBarProps>((props, ref) => {
         className={actionBarClass}
         style={style_}
         ref={setHighNodeRef}>
-        <ActionBarSection modalClassName='section-left-alt' modalAreaId={modalAreaId} 
-            altIcon={sectionAlt?.left} type='left' items={leftItems} />
+        <ActionBarSection modalClassName='section-left-alt' modalAreaId={modalAreaId}
+            altIcon={sectionAlt?.left} type='left' items={leftItems} useAlt={useAlt} />
         <ActionBarSection modalClassName='section-center-alt' modalAreaId={modalAreaId}
-            altIcon={sectionAlt?.center} type='center' items={centerItems} />
+            altIcon={sectionAlt?.center} type='center' items={centerItems} useAlt={useAlt} />
         <ActionBarSection modalClassName='section-right-alt' modalAreaId={modalAreaId}
-            altIcon={sectionAlt?.right} type='right' items={rightItems} />
+            altIcon={sectionAlt?.right} type='right' items={rightItems} useAlt={useAlt} />
     </div>
 });
 ActionBar.displayName = 'ActionBar';
