@@ -49,6 +49,7 @@ const TextInput = forwardRef((props: TextInputProps<InputType>, ref: ForwardedRe
         size = 'm',
         htmlType = 'text',
         onChange,
+        onBlur,
         onPressEnter,
         validator, accept,
         required = false,
@@ -198,6 +199,7 @@ const TextInput = forwardRef((props: TextInputProps<InputType>, ref: ForwardedRe
                 disabled={disabled}
                 onChange={onValueChange}
                 onKeyUp={onKeyUp}
+                onBlur={onBlur}
                 accept={accept}
                 placeholder={placeholder}
                 defaultValue={value as string}
