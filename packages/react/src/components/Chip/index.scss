@@ -1,0 +1,106 @@
+@use '../../styles/vars';
+
+.prismal-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: vars.$font-body;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--border-radius, 6px);
+    box-sizing: border-box;
+    width: fit-content;
+    gap: 0.35rem;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+
+    &:focus,
+    &:focus-within {
+        outline: none;
+        border-color: vars.$primary-color;
+        box-shadow: 0 0 0 3px rgba(185, 136, 255, 0.4); // Subtle primary color glow ring
+
+        [data-theme='dark'] & {
+            border-color: vars.$primary-color-light;
+            box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.4);
+        }
+    }
+
+    // Default styling (matches .component-badge of sandbox)
+    &.chip-default {
+        background-color: #f1f5f9;
+        color: #64748b;
+        border: 1px solid transparent;
+
+        [data-theme='dark'] & {
+            background-color: #1e293b;
+            color: #94a3b8;
+        }
+    }
+
+    // Primary styling
+    &.chip-primary {
+        background-color: vars.$primary-color;
+        color: #ffffff;
+        border: 1px solid transparent;
+
+        [data-theme='dark'] & {
+            background-color: vars.$primary-color-dark;
+            color: #e2d5ff;
+        }
+    }
+
+    // Text styling
+    &.chip-text {
+        background-color: transparent;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+
+        [data-theme='dark'] & {
+            color: #94a3b8;
+            border-color: #334155;
+        }
+    }
+
+    // Size variants
+    &.chip-sm {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.6rem;
+        height: 1.5rem;
+
+        i, svg {
+            width: 0.85rem;
+            height: 0.85rem;
+            font-size: 0.85rem;
+        }
+    }
+
+    &.chip-md {
+        font-size: 0.875rem;
+        padding: 0.35rem 0.8rem;
+        height: 1.85rem;
+
+        i, svg {
+            width: 1rem;
+            height: 1rem;
+            font-size: 1rem;
+        }
+    }
+
+    &.chip-lg {
+        font-size: 1rem;
+        padding: 0.45rem 1rem;
+        height: 2.2rem;
+
+        i, svg {
+            width: 1.15rem;
+            height: 1.15rem;
+            font-size: 1.15rem;
+        }
+    }
+
+    &.chip-elevated {
+        box-shadow: var(--box-elevation, 0 2px 4px rgba(0, 0, 0, 0.05));
+    }
+}

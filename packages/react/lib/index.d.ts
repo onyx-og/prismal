@@ -35,6 +35,8 @@ import { Graph, GraphType } from "./components/Graph";
 import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
 import View, { ViewItem } from "./components/View";
+import Chip, { ChipProps } from "./components/Chip";
+import Breadcrumb, { BreadcrumbItem, BreadcrumbProps, BreadcrumbItemProps, BreadcrumbItemConfig } from "./components/Breadcrumb";
 import { useModal, useSidebar, useCursorPosition, useElementWidth, useElementHeight, useIntersectionObserver, useTransitionState, useElScrollThreshold, useElScrollPosition, useScrollThreshold } from "hooks/";
 export { Container, Text };
 export { View, ViewItem };
@@ -56,5 +58,9 @@ export { Form, Select, TextInput, Toggle, NumberInput, FileInput, Range, InputRe
 export { Dropdown, Tooltip };
 export { Menu, MenuItem, MenuItemData };
 export { LazyItem, ParallaxItem };
+export { Chip };
+export type { ChipProps };
+export { Breadcrumb, BreadcrumbItem };
+export type { BreadcrumbProps, BreadcrumbItemProps, BreadcrumbItemConfig };
 export { setAccentStyle, hex2rgba };
 export { useIntersectionObserver, useElementWidth, useElementHeight, useCursorPosition, useModal, useSidebar, useTransitionState, useElScrollThreshold, useElScrollPosition, useScrollThreshold };
