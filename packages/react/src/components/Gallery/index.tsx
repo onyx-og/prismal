@@ -23,6 +23,8 @@ export interface GalleryProps<T extends GalleryItem = GalleryItem> extends Compo
     itemRenderer: (item: T) => ReactNode;
     /** The height of each masonry row in pixels. */
     rowHeight?: number;
+    /** The gap between tiles in pixels, both horizontal and vertical. */
+    gap?: number;
     /** The pool of ratios randomly assigned to items that don't carry their own `ratio`. */
     ratios?: Ratio[];
     /** Called when the trailing sentinel scrolls into view, so the consumer can load and append more data. */
@@ -54,6 +56,7 @@ const Gallery: FC<GalleryProps<any>> = (props) => {
         className, style,
         data, itemRenderer,
         rowHeight = 8,
+        gap,
         ratios = DEFAULT_RATIOS,
         onLoadMore,
         legend, legendContext
@@ -64,6 +67,7 @@ const Gallery: FC<GalleryProps<any>> = (props) => {
 
     let style_: { [key: string]: any } = {
         ["--row-height"]: `${rowHeight}px`,
+        ...(gap !== undefined ? { ["--gap"]: `${gap}px` } : {}),
     };
     if (style) style_ = { ...style_, ...style };
 
