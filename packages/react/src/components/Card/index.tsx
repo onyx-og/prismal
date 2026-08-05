@@ -28,6 +28,10 @@ export interface CardProps extends ComponentProps {
     orientation?: "vertical" | "horizontal";
     /** The padding size for the card content. */
     padding?: "none" | 'xs' | "s" | 'm' | 'l';
+    /** The semantic element the card renders as. */
+    type?: "container" | "fieldset";
+    /** The legend content, rendered when `type` is "fieldset". */
+    legend?: ReactNode;
 }
 
 /**
@@ -50,12 +54,16 @@ const Card: FC<CardProps> = (props) => {
         children, bodyClass,
         orientation = "vertical",
         borderRadius = 'xs', padding = 's',
-        elevation = 1
+        elevation = 1,
+        type = "container", legend
     } = props;
+
+    const Tag = type === "fieldset" ? "fieldset" : "div";
 
     let cardClass = `prismal-card`;
     if (className) cardClass = `${cardClass} ${className}`;
     cardClass = `${cardClass} prismal-card-${orientation[0]}`;
+    if (type === "fieldset") cardClass = `${cardClass} prismal-card-fieldset`;
 
     let style_: { [key: string]: any } = { ...style };
     setAccentStyle(style_, { accent, accentLight, accentDark });
@@ -117,14 +125,15 @@ const Card: FC<CardProps> = (props) => {
         return null;
     }, [footer, footerClass]);
 
-    return <div data-id={dataId}
+    return <Tag data-id={dataId}
         className={cardClass}
         style={style_}
     >
+        {type === "fieldset" && legend ? <legend className="prismal-card-legend">{legend}</legend> : null}
         {header_}
         {body}
         {footer_}
-    </div>
+    </Tag>
 }
 
 export default Card;
