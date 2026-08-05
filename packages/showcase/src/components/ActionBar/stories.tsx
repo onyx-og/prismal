@@ -9,6 +9,7 @@ const meta = {
         accent: { control: 'color' },
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
+        useAlt: { control: 'boolean' },
     }
 } as Meta<typeof ActionBar>;
 
@@ -39,6 +40,49 @@ Wrapper.args = {
         { item: <span>ActionBar</span>, position: 'center', key: '1' },
         { item: <Button iconName="search" type='primary' />, position: 'right', key: '2' }
     ]
+};
+
+export const UseAltDisabled: Story = {};
+UseAltDisabled.parameters = {
+    viewport: {
+        viewports: {
+            iphone15: {
+                name: 'iPhone 15',
+                styles: {
+                    width: '393px',
+                    height: '852px',
+                },
+            },
+        },
+        defaultViewport: 'iphone15',
+    }
+}
+UseAltDisabled.args = {
+    useAlt: false,
+    modalAreaId: "root",
+    children: [
+        <Button iconName="star" type='primary' />,
+        <span>Source</span>,
+        <Button iconName="clock-o" type='primary' />,
+        <Button iconName="inbox" type='primary' />,
+    ],
+    items: [
+        { item: <span>ActionBar</span>, position: 'center', key: '1' },
+        { item: <Button iconName="search" type='primary' />, position: 'right', key: '2' }
+    ]
+}
+
+export const ChildrenWithPosition: Story = {};
+ChildrenWithPosition.args = {
+    type: 'primary',
+    defaultPosition: 'left',
+    children: [
+        <span key="brand">Brand</span>,
+        // @ts-expect-error position is read off the child element by ActionBar, not a real Button prop
+        <Button iconName="search" type='primary' position="center" />,
+        // @ts-expect-error position is read off the child element by ActionBar, not a real Button prop
+        <Button iconName="cog" type='primary' position="right" />,
+    ],
 };
 
 export const Responsiveness: Story = {};

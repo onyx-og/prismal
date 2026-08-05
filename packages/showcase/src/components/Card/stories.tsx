@@ -13,7 +13,8 @@ const meta = {
         accentLight: { control: 'color' },
         cornerRadius: { control: 'select', options: ["none", "extra-small", "small", "medium", "large", "extra-large", "full"] },
         padding: { control: 'select', options: ['xs', "s", 'm', 'l'] },
-        elevation: { control: 'select', options: [0, 1, 2, 3, 4] }
+        elevation: { control: 'select', options: [0, 1, 2, 3, 4] },
+        type: { control: 'select', options: ['container', 'fieldset'] }
     }
 } as Meta<typeof Card >;
 
@@ -60,6 +61,17 @@ HorizontallyOriented.args = {
     children: <div>Lorem ipsum</div>,
     footer: <Button>Launch</Button>,
     orientation: "horizontal"
+};
+
+export const AsFieldset: Story = {};
+AsFieldset.args = {
+    style: {
+        maxWidth: "20rem"
+    },
+    type: "fieldset",
+    legend: "Shipping details",
+    children: <div>Fields grouped inside a native fieldset/legend pair.</div>,
+    elevation: 1
 };
 
 export const Advanced: Story = {};

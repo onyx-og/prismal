@@ -1,0 +1,9 @@
+.marquee-item-row {
+    display: flex;
+    gap: 2rem;
+
+    span {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+}

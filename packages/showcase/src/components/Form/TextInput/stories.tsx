@@ -59,3 +59,12 @@ Required.args = {
     label: 'Your favorite color',
     required: true,
 };
+
+export const ValidatesOnBlur: Story = {};
+ValidatesOnBlur.args = {
+    name: 'blur-story',
+    htmlType: 'text',
+    label: 'Username',
+    placeholder: 'Type then click away',
+    onBlur: (e: React.FocusEvent<HTMLInputElement>) => console.log('blurred with value:', e.target.value),
+};

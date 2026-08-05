@@ -12,6 +12,7 @@ const meta = {
         accent: { control: 'color' },
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
+        type: { control: 'select', options: ['div', 'section'] },
     }
 } as Meta<typeof Container>;
 
@@ -46,5 +47,14 @@ export const SpecificRatio: Story = {
         children: <div className='prismal-sc-div'>I have a 16-9 ratio</div>,
         span: 6,
         ratio: "5-2",
+    }
+}
+
+export const AsSection: Story = {
+    args: {
+        children: <div className='prismal-sc-div'>Rendered as a &lt;section&gt; element instead of a &lt;div&gt;</div>,
+        type: "section",
+        ratio: "16-9",
+        span: 6,
     }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import {Slider} from '@prismal/react';
 import "./stories.scss";
@@ -65,4 +65,33 @@ SlideSizeM.args = {
     slideWrapper: (slide) => {
         return <div className='slide-container'>{`Lorem ipsum ${slide}`}</div>
     }
+};
+
+export const Vertical = {};
+Vertical.args = {
+    type: "raw",
+    orientation: "vertical",
+    spacing: 1,
+    size: "m",
+    children: [<div className='slide-container'>Lorem ipsum</div>,
+        <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
+};
+
+export const Controlled = () => {
+    const [selected, setSelected] = useState(0);
+    return (
+        <div>
+            <p>Currently on slide {selected + 1}</p>
+            <Slider
+                type="raw"
+                spacing={1}
+                selected={selected}
+                onChange={setSelected}
+            >
+                <div className='slide-container'>Lorem ipsum</div>
+                <div className='slide-container'>Lorem ipsum 2</div>
+                <div className='slide-container'>Lorem ipsum 3</div>
+            </Slider>
+        </div>
+    );
 };
