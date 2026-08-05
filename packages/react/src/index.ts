@@ -39,7 +39,7 @@ import Accordion from "./components/Accordion";
 import View, { ViewItem } from "./components/View";
 import Chip, { ChipProps } from "./components/Chip";
 import Breadcrumb, { BreadcrumbItem, BreadcrumbProps, BreadcrumbItemProps, BreadcrumbItemConfig } from "./components/Breadcrumb";
-
+import Gallery, { GalleryProps } from "./components/Gallery";
 
 import {
     useModal, useSidebar,
@@ -67,6 +67,8 @@ export { Header };
 export { Marquee };
 export { Table };
 export { List, Masonry };
+export { Gallery };
+export type { GalleryProps };
 export {Icon, Card, Modal, Alert, SearchBar, Sidebar};
 export { Form, Select, TextInput, Toggle, NumberInput, FileInput, Range, InputRefType };
 export { Dropdown, Tooltip };

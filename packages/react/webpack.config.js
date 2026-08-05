@@ -54,6 +54,7 @@ const components = {
         alert: ['./src/components/Alert/index.scss', './src/styles/theme.scss'],
         list: ['./src/components/List/index.scss', './src/styles/theme.scss'],
         masonry: ['./src/components/Masonry/index.scss', './src/styles/theme.scss'],
+        gallery: ['./src/components/Gallery/index.scss', './src/styles/theme.scss'],
         sidebar: ['./src/components/Sidebar/index.scss', './src/styles/theme.scss'],
         slider: ['./src/components/Slider/index.scss', './src/styles/theme.scss'],
         modal: ['./src/components/Modal/index.scss', './src/styles/theme.scss'],
