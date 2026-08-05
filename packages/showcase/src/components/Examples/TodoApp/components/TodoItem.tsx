@@ -1,4 +1,4 @@
-import { Card, Toggle, Text, Button } from "@prismal/react";
+import { Card, Toggle, Text, Button, Chip } from "@prismal/react";
 import type { Todo } from "../mock";
 
 interface TodoItemProps {
@@ -11,6 +11,12 @@ const priorityLabel: Record<Todo["priority"], string> = {
     low: "Low",
     medium: "Medium",
     high: "High",
+};
+
+const priorityAccent: Record<Todo["priority"], string> = {
+    low: "#32b643",
+    medium: "#ffb700",
+    high: "#e85600",
 };
 
 const TodoItem = (props: TodoItemProps) => {
@@ -26,9 +32,11 @@ const TodoItem = (props: TodoItemProps) => {
             >
                 {todo.title}
             </Text>
-            <span className={`todo-item-priority todo-item-priority-${todo.priority}`}>
-                {priorityLabel[todo.priority]}
-            </span>
+            <Chip
+                type="primary"
+                accent={priorityAccent[todo.priority]}
+                label={priorityLabel[todo.priority]}
+            />
             <Button
                 type="text"
                 shape="circle"

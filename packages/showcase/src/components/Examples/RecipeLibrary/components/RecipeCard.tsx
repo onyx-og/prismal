@@ -1,4 +1,4 @@
-import { Card, Icon, Text } from "@prismal/react";
+import { Card, Icon, Text, Chip } from "@prismal/react";
 import type { Recipe } from "../mock";
 
 interface RecipeCardProps {
@@ -21,7 +21,7 @@ const RecipeCard = (props: RecipeCardProps) => {
                     </div>
                 }
             >
-                <span className="recipe-card-category">{recipe.category}</span>
+                <Chip className="recipe-card-category" type="text" accent="#ff921c" label={recipe.category} />
                 <Text type="heading" level={4} className="recipe-card-title">{recipe.title}</Text>
                 <span className="recipe-card-meta">{recipe.minutes} min &middot; {recipe.difficulty}</span>
             </Card>

@@ -106,7 +106,13 @@ const TodoApp = () => {
 
             <addTodoModal.Modal title="Add task">
                 <Form gridTemplate="1fr" onSubmit={addTodo}>
-                    <TextInput name="title" label="Title" required placeholder="What needs doing?" />
+                    <TextInput
+                        name="title"
+                        label="Title"
+                        required
+                        placeholder="What needs doing?"
+                        onBlur={(e) => { e.target.value = e.target.value.trim(); }}
+                    />
                     <Select name="priority" label="Priority" options={priorityOptions} />
                 </Form>
             </addTodoModal.Modal>

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Header, SearchBar, Tabs, List, Alert, Accordion, Text, useModal } from "@prismal/react";
+import { Header, SearchBar, Tabs, List, Alert, Accordion, Text, Breadcrumb, useModal } from "@prismal/react";
 import RecipeCard from "./components/RecipeCard";
 import { recipes } from "./mock";
 import type { Recipe, Category } from "./mock";
@@ -67,6 +67,15 @@ const RecipeLibrary = () => {
             <detailModal.Modal title={selectedRecipe?.title}>
                 {selectedRecipe ? (
                     <div className="recipe-detail">
+                        <Breadcrumb
+                            padding="none"
+                            separator="chevron"
+                            items={[
+                                { label: "Recipe Library" },
+                                { label: selectedRecipe.category },
+                                { label: selectedRecipe.title },
+                            ]}
+                        />
                         <Accordion defaultOpen header={<Text type="heading" level={5}>Ingredients</Text>}>
                             <ul className="recipe-detail-ingredients">
                                 {selectedRecipe.ingredients.map((ingredient) => (

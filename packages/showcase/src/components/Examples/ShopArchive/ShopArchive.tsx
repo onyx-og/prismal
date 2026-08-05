@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import {
-    Header, ActionBar, SearchBar, Button, Select, Toggle, List, Alert, Text, useSidebar,
+    Header, ActionBar, SearchBar, Button, Select, Toggle, List, Alert, Text, Container, useSidebar,
 } from "@prismal/react";
 import ProductCard from "./components/ProductCard";
 import CartLine from "./components/CartLine";
@@ -128,7 +128,7 @@ const ShopArchive = () => {
                     />
                 </aside>
 
-                <div className="shop-archive-results">
+                <Container type="section" className="shop-archive-results">
                     {filteredProducts.length ? (
                         <List
                             className="shop-archive-grid"
@@ -148,7 +148,7 @@ const ShopArchive = () => {
                     ) : (
                         <Alert message="No products match your filters." showClose={false} />
                     )}
-                </div>
+                </Container>
             </div>
 
             <cartSidebar.Sidebar

@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import type { RefObject } from "react";
 import {
-    Header, Menu, Button, Icon, Text, Card,
+    Header, Menu, Button, Icon, Text, Card, Container,
     Slider, Tabs, Accordion, Form, TextInput, Alert, Marquee, LazyItem, ParallaxItem,
 } from "@prismal/react";
 import { features, testimonials, pricingPlans, faqs, partnerLogos } from "./mock";
@@ -62,7 +62,7 @@ const LandingPage = () => {
 
             <div ref={featuresRef}>
                 <LazyItem animation="slide-up" exitEffect={false}>
-                    <section className="landing-features">
+                    <Container type="section" className="landing-features">
                         <Text type="heading" level={2} className="landing-section-title">Everything you need</Text>
                         <div className="landing-features-grid">
                             {features.map((feature) => (
@@ -73,13 +73,13 @@ const LandingPage = () => {
                                 </Card>
                             ))}
                         </div>
-                    </section>
+                    </Container>
                 </LazyItem>
             </div>
 
             <div ref={testimonialsRef}>
                 <LazyItem animation="fade" exitEffect={false}>
-                    <section className="landing-testimonials">
+                    <Container type="section" className="landing-testimonials">
                         <Text type="heading" level={2} className="landing-section-title">What teams say</Text>
                         <Slider
                             className="landing-testimonial-slider"
@@ -97,13 +97,13 @@ const LandingPage = () => {
                                 </Card>
                             )}
                         />
-                    </section>
+                    </Container>
                 </LazyItem>
             </div>
 
             <div ref={pricingRef}>
             <LazyItem animation="slide-up" exitEffect={false}>
-                <section className="landing-pricing">
+                <Container type="section" className="landing-pricing">
                     <Text type="heading" level={2} className="landing-section-title">Simple pricing</Text>
                     <Tabs
                         tabsClass="landing-pricing-toggle"
@@ -136,13 +136,13 @@ const LandingPage = () => {
                             </Card>
                         ))}
                     </div>
-                </section>
+                </Container>
             </LazyItem>
             </div>
 
             <div ref={faqRef}>
             <LazyItem animation="fade" exitEffect={false}>
-                <section className="landing-faq">
+                <Container type="section" className="landing-faq">
                     <Text type="heading" level={2} className="landing-section-title">Frequently asked questions</Text>
                     <div className="landing-faq-list">
                         {faqs.map((faq, i) => (
@@ -151,12 +151,12 @@ const LandingPage = () => {
                             </Accordion>
                         ))}
                     </div>
-                </section>
+                </Container>
             </LazyItem>
             </div>
 
             <LazyItem animation="fade" exitEffect={false}>
-                <section className="landing-newsletter">
+                <Container type="section" className="landing-newsletter">
                     <Text type="heading" level={3}>Stay in the loop</Text>
                     <Text type="body" size="sm">Occasional updates when we ship new components. No spam.</Text>
                     {subscribed ? (
@@ -168,14 +168,20 @@ const LandingPage = () => {
                             onSubmit={subscribe}
                             submit={<Button type="primary">Subscribe</Button>}
                         >
-                            <TextInput name="email" htmlType="email" placeholder="you@example.com" required />
+                            <TextInput
+                                name="email"
+                                htmlType="email"
+                                placeholder="you@example.com"
+                                required
+                                onBlur={(e) => { e.target.value = e.target.value.trim(); }}
+                            />
                         </Form>
                     )}
-                </section>
+                </Container>
             </LazyItem>
 
             <footer className="landing-footer">
-                <Marquee speed={4}>
+                <Marquee speed={{ xs: 2, sm: 3, md: 4, lg: 6, xl: 8 }}>
                     {partnerLogos.map((logo) => <span key={logo} className="landing-footer-logo">{logo}</span>)}
                 </Marquee>
                 <Menu

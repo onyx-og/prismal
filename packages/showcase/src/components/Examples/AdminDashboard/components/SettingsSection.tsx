@@ -6,7 +6,7 @@ const SettingsSection = () => {
 
     return (
         <div className="admin-settings">
-            <Card elevation={1} header={<Text type="heading" level={5}>Account settings</Text>}>
+            <Card elevation={1} type="fieldset" legend={<Text type="heading" level={5}>Account settings</Text>}>
                 {saved && (
                     <Alert message="Settings saved." closeAlert={() => setSaved(false)} />
                 )}

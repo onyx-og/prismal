@@ -1,4 +1,4 @@
-import { Card, Icon, Text, Button } from "@prismal/react";
+import { Card, Icon, Text, Button, Chip } from "@prismal/react";
 import type { Product } from "../mock";
 
 interface ProductCardProps {
@@ -20,7 +20,7 @@ const ProductCard = (props: ProductCardProps) => {
                 </div>
             }
         >
-            <span className="product-card-brand">{product.brand}</span>
+            <Chip className="product-card-brand" type="text" label={product.brand} />
             <Text type="heading" level={4} className="product-card-name">{product.name}</Text>
             <div className="product-card-footer-row">
                 <span className="product-card-price">${product.price}</span>

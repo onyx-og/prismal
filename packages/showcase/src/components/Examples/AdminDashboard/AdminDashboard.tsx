@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-    ActionBar, SearchBar, Icon, Menu, Dropdown, Button,
+    ActionBar, SearchBar, Icon, Menu, Dropdown, Button, Breadcrumb,
     Form, TextInput, Select, useModal,
 } from "@prismal/react";
 import OverviewSection from "./components/OverviewSection";
@@ -89,6 +89,15 @@ const AdminDashboard = () => {
                             position: "right",
                             key: "user-menu",
                         },
+                    ]}
+                />
+
+                <Breadcrumb
+                    className="admin-breadcrumb"
+                    padding="s"
+                    items={[
+                        { label: "Admin" },
+                        { label: navItems.find((item) => item.name === activeSection)?.label ?? "" },
                     ]}
                 />
 
