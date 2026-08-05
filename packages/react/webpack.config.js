@@ -75,6 +75,7 @@ const components = {
         view: ['./src/components/View/index.scss', './src/styles/theme.scss'],
         tabs: ['./src/components/Tabs/index.scss', './src/styles/theme.scss'],
         breadcrumb: ['./src/components/Breadcrumb/index.scss', './src/styles/theme.scss'],
+        sandbox: ['./src/components/Sandbox/index.scss', './src/styles/theme.scss'],
     },
     output: {
         path: path.resolve(__dirname, 'lib/styles'),

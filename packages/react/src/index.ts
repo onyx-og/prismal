@@ -40,6 +40,7 @@ import View, { ViewItem } from "./components/View";
 import Chip, { ChipProps } from "./components/Chip";
 import Breadcrumb, { BreadcrumbItem, BreadcrumbProps, BreadcrumbItemProps, BreadcrumbItemConfig } from "./components/Breadcrumb";
 import Gallery, { GalleryProps } from "./components/Gallery";
+import Sandbox, { SandboxProps } from "./components/Sandbox";
 
 import {
     useModal, useSidebar,
@@ -80,6 +81,11 @@ export { Breadcrumb, BreadcrumbItem };
 export type { BreadcrumbProps, BreadcrumbItemProps, BreadcrumbItemConfig };
 
 export { setAccentStyle, hex2rgba };
+
+// Dev-only tooling, grouped under a namespace rather than exported flat since it's not
+// part of the design system itself (e.g. Sandbox is a docs/playground utility).
+export const Dev = { Sandbox };
+export type { SandboxProps };
 export {
     useIntersectionObserver,
     useElementWidth,

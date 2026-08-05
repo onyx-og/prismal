@@ -10,6 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "baseUrl": "src",
+    "resolveJsonModule": true,
     "paths": {
       "styles": ["styles/*"],
       "components": ["components/*"],

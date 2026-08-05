@@ -4,7 +4,6 @@ const path = require('path');
 
 // Setup paths
 const reactDir = path.resolve(__dirname, '../../react');
-const websiteDir = path.resolve(__dirname, '..');
 const tsconfigPath = path.resolve(reactDir, 'tsconfig.json');
 
 console.log('Generating component properties maps from TypeScript definitions...');
@@ -43,15 +42,15 @@ try {
       // Look for exported interface/type ending in "Props"
       if (exp.name.endsWith('Props') && exp.name !== 'ComponentProps') {
         const componentName = exp.name.substring(0, exp.name.length - 5);
-        
+
         // Get the declared type
         const type = checker.getDeclaredTypeOfSymbol(exp);
         const properties = type.getProperties();
-        
+
         const propsList = [];
         for (const propSymbol of properties) {
           const propName = propSymbol.getName();
-          
+
           // Skip data-attributes, style, classNames, etc. to keep UI simple
           if (propName.startsWith('data-') || propName === 'style' || propName === 'className' || propName === 'key' || propName === 'ref') {
             continue;
@@ -59,7 +58,7 @@ try {
 
           const propType = checker.getTypeOfSymbolAtLocation(propSymbol, sourceFile.endOfFileToken);
           const typeString = checker.typeToString(propType);
-          
+
           // Check for union of literals (choices)
           let options = undefined;
           if (propType.isUnion() && !typeString.includes('boolean')) {
@@ -120,8 +119,8 @@ try {
     }
   }
 
-  // Write the result
-  const outputPath = path.resolve(websiteDir, 'src/components/Sandbox/props-map.json');
+  // Write the result alongside the Sandbox component itself
+  const outputPath = path.resolve(reactDir, 'src/components/Sandbox/props-map.json');
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, JSON.stringify(propsMaps, null, 2));
   console.log(`Successfully generated property mappings for ${Object.keys(propsMaps).length} components at:\n  ${outputPath}`);

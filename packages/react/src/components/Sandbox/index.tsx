@@ -9,8 +9,13 @@ import React, {
   useCallback,
   useRef
 } from 'react';
-import './styles.scss';
+import './index.scss';
 import propsMapImport from './props-map.json';
+import Button from '../Button';
+import TextInput from '../Form/TextInput';
+import Select from '../Form/Select';
+import Toggle from '../Form/Toggle';
+import Range from '../Form/Range';
 
 // Cast imported JSON to typed structure
 const propsMap = propsMapImport as Record<
@@ -45,12 +50,6 @@ interface ComponentState {
   }>;
 }
 
-const Button = require('components/Button').default;
-const TextInput = require('components/Form/TextInput').default;
-const Select = require('components/Form/Select').default;
-const Toggle = require('components/Form/Toggle').default;
-const Range = require('components/Form/Range').default;
-
 interface SandboxControlFieldProps {
   ctrl: {
     name: string;
@@ -83,7 +82,7 @@ const SandboxControlField: React.FC<SandboxControlFieldProps> = React.memo(({ ct
   return (
     <div className="sandbox-control-group">
       <label htmlFor={`ctrl-${ctrl.name}`}>{ctrl.name}</label>
-      
+
       {ctrl.controlType === 'boolean' ? (
         <Toggle
           id={`ctrl-${ctrl.name}`}
@@ -125,6 +124,18 @@ export interface SandboxProps {
   children: ReactNode;
 }
 
+/**
+ * @component Sandbox
+ * @description A live prop-editing playground: clones its children with editable props driven by a
+ * schema (props-map.json) generated from the package's exported `*Props` interfaces. Used in docs to
+ * let readers tweak a component's props and see the result update in place.
+ * @param {SandboxProps} props The component props.
+ * @returns {React.ReactElement} The rendered Sandbox component.
+ * @example
+ * <Sandbox>
+ *   <Button type="primary">Primary Button</Button>
+ * </Sandbox>
+ */
 const Sandbox: React.FC<SandboxProps> = ({ children }) => {
   const [componentsState, setComponentsState] = useState<ComponentState[]>([]);
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
@@ -153,10 +164,11 @@ const Sandbox: React.FC<SandboxProps> = ({ children }) => {
       // Introspect name
       const typeObj = child.type as any;
       const rawName = typeObj.displayName || typeObj.name || 'Component';
-      
-      // Clean name from MDX wraps or wrappers if necessary
+
+      // Clean name from MDX wraps or wrappers if necessary (Sandbox is still used from .mdx docs
+      // pages, where component types can arrive wrapped as MDXCreateElement).
       const name = rawName.replace(/^MDXCreateElement$/, '');
-      
+
       // Look up schema
       const schema = propsMap[name] || { displayName: name, props: [] };
       const controls = schema.props;
