@@ -170,8 +170,8 @@ const MasonryProcessedItems: FC<{
 interface BaseMasonryProps extends ComponentProps {
     /** The height of each row in pixels. */
     rowHeight?: number;
-    /** The gap between items in pixels, both horizontal and vertical. */
-    gap?: number;
+    /** The gap between items, both horizontal and vertical. A bare number is treated as pixels; a string is used as-is and must include its own unit (e.g. "1rem", "2%"). */
+    gap?: string | number;
 };
 type MasonryProps = (MasonryProcProps | MasonryRawProps) & BaseMasonryProps;
 
@@ -200,7 +200,7 @@ const Masonry: FC<MasonryProps> = (props) => {
 
     let style_: { [key: string]: any } = {
         ['--row-height']: `${rowHeight}px`,
-        ...(gap !== undefined ? { ['--gap']: `${gap}px` } : {}),
+        ...(gap !== undefined ? { ['--gap']: typeof gap === 'number' ? `${gap}px` : gap } : {}),
     };
     if (style) style_ = { ...style_, ...style };
 
