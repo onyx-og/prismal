@@ -1,10 +1,10 @@
-# Interface: CardProps
+# Interface: ChipProps
 
-Defined in: [components/Card/index.tsx:14](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L14)
+Defined in: components/Chip/index.tsx:12
 
 ## Description
 
-Props for the Card component.
+Props for the Chip component.
 
 ## Extends
 
@@ -48,16 +48,6 @@ Defined in: [utils/colors/index.ts:12](https://github.com/onyx-og/prismal/blob/1
 
 ***
 
-### bodyClass?
-
-> `optional` **bodyClass?**: `string`
-
-Defined in: [components/Card/index.tsx:26](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L26)
-
-Additional CSS class for the body.
-
-***
-
 ### borderRadius?
 
 > `optional` **borderRadius?**: `BorderRadius`
@@ -76,9 +66,9 @@ The border radius of the component.
 
 > `optional` **children?**: `ReactNode`
 
-Defined in: [components/Card/index.tsx:24](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L24)
+Defined in: components/Chip/index.tsx:20
 
-The main content of the card (body).
+The content of the chip.
 
 ***
 
@@ -124,63 +114,33 @@ The elevation level for box-shadow effects.
 
 ***
 
-### footer?
+### iconName?
 
-> `optional` **footer?**: `ReactNode`
+> `optional` **iconName?**: `string`
 
-Defined in: [components/Card/index.tsx:20](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L20)
+Defined in: components/Chip/index.tsx:18
 
-The content for the card's footer section.
-
-***
-
-### footerClass?
-
-> `optional` **footerClass?**: `string`
-
-Defined in: [components/Card/index.tsx:22](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L22)
-
-Additional CSS class for the footer.
+Optional icon name to display inside the chip.
 
 ***
 
-### header?
+### label?
 
-> `optional` **header?**: `ReactNode`
+> `optional` **label?**: `string`
 
-Defined in: [components/Card/index.tsx:16](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L16)
+Defined in: components/Chip/index.tsx:22
 
-The content for the card's header section.
-
-***
-
-### headerClass?
-
-> `optional` **headerClass?**: `string`
-
-Defined in: [components/Card/index.tsx:18](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L18)
-
-Additional CSS class for the header.
+Optional text label to display.
 
 ***
 
-### orientation?
+### size?
 
-> `optional` **orientation?**: `"horizontal"` \| `"vertical"`
+> `optional` **size?**: `"sm"` \| `"md"` \| `"lg"`
 
-Defined in: [components/Card/index.tsx:28](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L28)
+Defined in: components/Chip/index.tsx:16
 
-The orientation of the card layout.
-
-***
-
-### padding?
-
-> `optional` **padding?**: `"none"` \| `"xs"` \| `"s"` \| `"m"` \| `"l"`
-
-Defined in: [components/Card/index.tsx:30](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L30)
-
-The padding size for the card content.
+The size of the chip. Defaults to 'sm'.
 
 ***
 
@@ -195,3 +155,13 @@ Custom inline CSS styles.
 #### Inherited from
 
 `ComponentProps.style`
+
+***
+
+### type?
+
+> `optional` **type?**: `"text"` \| `"default"` \| `"primary"`
+
+Defined in: components/Chip/index.tsx:14
+
+The visual style/type of the chip. Defaults to 'default'.

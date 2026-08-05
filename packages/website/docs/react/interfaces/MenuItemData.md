@@ -1,6 +1,6 @@
 # Interface: MenuItemData
 
-Defined in: [components/Menu/index.tsx:8](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Menu/index.tsx#L8)
+Defined in: [components/Menu/index.tsx:11](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Menu/index.tsx#L11)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [components/Menu/index.tsx:8](https://github.com/onyx-og/prismal/blo
 
 > `optional` **className?**: `string`
 
-Defined in: [components/Menu/index.tsx:13](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Menu/index.tsx#L13)
+Defined in: [components/Menu/index.tsx:16](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Menu/index.tsx#L16)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [components/Menu/index.tsx:13](https://github.com/onyx-og/prismal/bl
 
 > `optional` **icon?**: `ReactNode`
 
-Defined in: [components/Menu/index.tsx:12](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Menu/index.tsx#L12)
+Defined in: [components/Menu/index.tsx:15](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Menu/index.tsx#L15)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [components/Menu/index.tsx:12](https://github.com/onyx-og/prismal/bl
 
 > `optional` **items?**: `MenuItemData`[]
 
-Defined in: [components/Menu/index.tsx:11](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Menu/index.tsx#L11)
+Defined in: [components/Menu/index.tsx:14](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Menu/index.tsx#L14)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [components/Menu/index.tsx:11](https://github.com/onyx-og/prismal/bl
 
 > **label**: `ReactNode`
 
-Defined in: [components/Menu/index.tsx:9](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Menu/index.tsx#L9)
+Defined in: [components/Menu/index.tsx:12](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Menu/index.tsx#L12)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [components/Menu/index.tsx:9](https://github.com/onyx-og/prismal/blo
 
 > `optional` **onClick?**: () => `void`
 
-Defined in: [components/Menu/index.tsx:10](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Menu/index.tsx#L10)
+Defined in: [components/Menu/index.tsx:13](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Menu/index.tsx#L13)
 
 #### Returns
 

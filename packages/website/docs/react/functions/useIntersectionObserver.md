@@ -2,7 +2,7 @@
 
 > **useIntersectionObserver**(`elementRef`, `refTrigger`, `observerOptions?`): `boolean`
 
-Defined in: [hooks/useIntersectionObserver/index.ts:16](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/hooks/useIntersectionObserver/index.ts#L16)
+Defined in: [hooks/useIntersectionObserver/index.ts:16](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/hooks/useIntersectionObserver/index.ts#L16)
 
 useIntersectionObserver
 

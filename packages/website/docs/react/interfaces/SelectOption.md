@@ -1,6 +1,6 @@
 # Interface: SelectOption
 
-Defined in: [components/Form/Select/index.tsx:15](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Form/Select/index.tsx#L15)
+Defined in: [components/Form/Select/index.tsx:15](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Form/Select/index.tsx#L15)
 
 ## Description
 
@@ -12,7 +12,7 @@ Represents an option in the Select component.
 
 > **element**: `ReactNode`
 
-Defined in: [components/Form/Select/index.tsx:19](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Form/Select/index.tsx#L19)
+Defined in: [components/Form/Select/index.tsx:19](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Form/Select/index.tsx#L19)
 
 The renderable content of the option.
 
@@ -22,7 +22,7 @@ The renderable content of the option.
 
 > `optional` **selected?**: `boolean`
 
-Defined in: [components/Form/Select/index.tsx:21](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Form/Select/index.tsx#L21)
+Defined in: [components/Form/Select/index.tsx:21](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Form/Select/index.tsx#L21)
 
 If true, the option is selected by default.
 
@@ -32,6 +32,6 @@ If true, the option is selected by default.
 
 > **value**: `string`
 
-Defined in: [components/Form/Select/index.tsx:17](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Form/Select/index.tsx#L17)
+Defined in: [components/Form/Select/index.tsx:17](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Form/Select/index.tsx#L17)
 
 The value of the option.

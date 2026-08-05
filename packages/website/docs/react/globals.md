@@ -7,7 +7,11 @@
 ## Interfaces
 
 - [ActionBarItemConfig](interfaces/ActionBarItemConfig.md)
+- [BreadcrumbItemConfig](interfaces/BreadcrumbItemConfig.md)
+- [BreadcrumbItemProps](interfaces/BreadcrumbItemProps.md)
+- [BreadcrumbProps](interfaces/BreadcrumbProps.md)
 - [CardProps](interfaces/CardProps.md)
+- [ChipProps](interfaces/ChipProps.md)
 - [MenuItemData](interfaces/MenuItemData.md)
 - [SelectOption](interfaces/SelectOption.md)
 
@@ -20,9 +24,12 @@
 - [Accordion](variables/Accordion.md)
 - [ActionBar](variables/ActionBar.md)
 - [Alert](variables/Alert.md)
+- [Breadcrumb](variables/Breadcrumb.md)
+- [BreadcrumbItem](variables/BreadcrumbItem.md)
 - [Button](variables/Button.md)
 - [ButtonGroup](variables/ButtonGroup.md)
 - [Card](variables/Card.md)
+- [Chip](variables/Chip.md)
 - [Container](variables/Container.md)
 - [Dropdown](variables/Dropdown.md)
 - [FileInput](variables/FileInput.md)

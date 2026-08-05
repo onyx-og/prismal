@@ -1,10 +1,6 @@
-# Interface: CardProps
+# Interface: BreadcrumbProps
 
-Defined in: [components/Card/index.tsx:14](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L14)
-
-## Description
-
-Props for the Card component.
+Defined in: components/Breadcrumb/index.tsx:17
 
 ## Extends
 
@@ -48,16 +44,6 @@ Defined in: [utils/colors/index.ts:12](https://github.com/onyx-og/prismal/blob/1
 
 ***
 
-### bodyClass?
-
-> `optional` **bodyClass?**: `string`
-
-Defined in: [components/Card/index.tsx:26](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L26)
-
-Additional CSS class for the body.
-
-***
-
 ### borderRadius?
 
 > `optional` **borderRadius?**: `BorderRadius`
@@ -76,9 +62,9 @@ The border radius of the component.
 
 > `optional` **children?**: `ReactNode`
 
-Defined in: [components/Card/index.tsx:24](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L24)
+Defined in: components/Breadcrumb/index.tsx:25
 
-The main content of the card (body).
+Custom children for the compound component pattern.
 
 ***
 
@@ -124,53 +110,23 @@ The elevation level for box-shadow effects.
 
 ***
 
-### footer?
+### items?
 
-> `optional` **footer?**: `ReactNode`
+> `optional` **items?**: [`BreadcrumbItemConfig`](BreadcrumbItemConfig.md)[]
 
-Defined in: [components/Card/index.tsx:20](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L20)
+Defined in: components/Breadcrumb/index.tsx:19
 
-The content for the card's footer section.
-
-***
-
-### footerClass?
-
-> `optional` **footerClass?**: `string`
-
-Defined in: [components/Card/index.tsx:22](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L22)
-
-Additional CSS class for the footer.
+List of objects defining the path. Treated as a data-driven approach.
 
 ***
 
-### header?
+### maxLabelWidth?
 
-> `optional` **header?**: `ReactNode`
+> `optional` **maxLabelWidth?**: `string` \| `number`
 
-Defined in: [components/Card/index.tsx:16](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L16)
+Defined in: components/Breadcrumb/index.tsx:29
 
-The content for the card's header section.
-
-***
-
-### headerClass?
-
-> `optional` **headerClass?**: `string`
-
-Defined in: [components/Card/index.tsx:18](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L18)
-
-Additional CSS class for the header.
-
-***
-
-### orientation?
-
-> `optional` **orientation?**: `"horizontal"` \| `"vertical"`
-
-Defined in: [components/Card/index.tsx:28](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L28)
-
-The orientation of the card layout.
+Maximum width of each individual label (e.g. '120px' or 150).
 
 ***
 
@@ -178,9 +134,19 @@ The orientation of the card layout.
 
 > `optional` **padding?**: `"none"` \| `"xs"` \| `"s"` \| `"m"` \| `"l"`
 
-Defined in: [components/Card/index.tsx:30](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L30)
+Defined in: components/Breadcrumb/index.tsx:23
 
-The padding size for the card content.
+Standard container padding.
+
+***
+
+### separator?
+
+> `optional` **separator?**: `ReactNode`
+
+Defined in: components/Breadcrumb/index.tsx:21
+
+The separator to render between items. Can be a preset string or custom node.
 
 ***
 
@@ -195,3 +161,13 @@ Custom inline CSS styles.
 #### Inherited from
 
 `ComponentProps.style`
+
+***
+
+### truncate?
+
+> `optional` **truncate?**: `boolean`
+
+Defined in: components/Breadcrumb/index.tsx:27
+
+If true, item labels are truncated when exceeding max width.

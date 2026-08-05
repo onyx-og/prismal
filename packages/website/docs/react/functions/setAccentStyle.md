@@ -2,7 +2,7 @@
 
 > **setAccentStyle**(`style`, `conf`): `object` & `object`
 
-Defined in: [utils/colors/index.ts:23](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/utils/colors/index.ts#L23)
+Defined in: [utils/colors/index.ts:23](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/utils/colors/index.ts#L23)
 
 setAccentStyle
 

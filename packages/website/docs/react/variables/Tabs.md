@@ -2,7 +2,7 @@
 
 > `const` **Tabs**: `ForwardRefExoticComponent`\<`TabsProps` & `RefAttributes`\<`TabRef` \| `undefined`\>\>
 
-Defined in: [components/Tabs/index.tsx:225](https://github.com/onyx-og/prismal/blob/22083a37c54803b3bac61332c2b8b20207a5d1cf/packages/react/src/components/Tabs/index.tsx#L225)
+Defined in: [components/Tabs/index.tsx:225](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Tabs/index.tsx#L225)
 
 ## Component
 

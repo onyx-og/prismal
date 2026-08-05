@@ -1,6 +1,12 @@
+import Sandbox from '@site/src/components/Sandbox';
+import Slider from 'components/Slider';
+
 # Slider
 
-<iframe className="comp-preview"
-  src="/prismal-react/showcase/iframe.html?globals=&args=&id=commons-slider--docs&viewMode=docs"
-  width="100%"
-/>
+<Sandbox>
+  <Slider spacing={10} size="l" showNavBar={true}>
+    <div style={{ padding: '2rem', background: '#3b82f6', color: '#fff', borderRadius: '12px', textAlign: 'center' }}>Slide 1 Content</div>
+    <div style={{ padding: '2rem', background: '#10b981', color: '#fff', borderRadius: '12px', textAlign: 'center' }}>Slide 2 Content</div>
+    <div style={{ padding: '2rem', background: '#f59e0b', color: '#fff', borderRadius: '12px', textAlign: 'center' }}>Slide 3 Content</div>
+  </Slider>
+</Sandbox>

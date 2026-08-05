@@ -1,10 +1,10 @@
-# Interface: CardProps
+# Interface: BreadcrumbItemProps
 
-Defined in: [components/Card/index.tsx:14](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L14)
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:10
 
 ## Description
 
-Props for the Card component.
+Props for the BreadcrumbItem component.
 
 ## Extends
 
@@ -48,13 +48,13 @@ Defined in: [utils/colors/index.ts:12](https://github.com/onyx-og/prismal/blob/1
 
 ***
 
-### bodyClass?
+### active?
 
-> `optional` **bodyClass?**: `string`
+> `optional` **active?**: `boolean`
 
-Defined in: [components/Card/index.tsx:26](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L26)
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:16
 
-Additional CSS class for the body.
+If true, indicates this is the active/current page.
 
 ***
 
@@ -76,9 +76,9 @@ The border radius of the component.
 
 > `optional` **children?**: `ReactNode`
 
-Defined in: [components/Card/index.tsx:24](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L24)
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:20
 
-The main content of the card (body).
+The contents of the item (e.g. label text or custom elements).
 
 ***
 
@@ -124,63 +124,53 @@ The elevation level for box-shadow effects.
 
 ***
 
-### footer?
+### href?
 
-> `optional` **footer?**: `ReactNode`
+> `optional` **href?**: `string`
 
-Defined in: [components/Card/index.tsx:20](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L20)
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:12
 
-The content for the card's footer section.
-
-***
-
-### footerClass?
-
-> `optional` **footerClass?**: `string`
-
-Defined in: [components/Card/index.tsx:22](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L22)
-
-Additional CSS class for the footer.
+The destination URL for the link.
 
 ***
 
-### header?
+### maxLabelWidth?
 
-> `optional` **header?**: `ReactNode`
+> `optional` **maxLabelWidth?**: `string` \| `number`
 
-Defined in: [components/Card/index.tsx:16](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L16)
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:24
 
-The content for the card's header section.
-
-***
-
-### headerClass?
-
-> `optional` **headerClass?**: `string`
-
-Defined in: [components/Card/index.tsx:18](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L18)
-
-Additional CSS class for the header.
+The maximum width of the label element.
 
 ***
 
-### orientation?
+### onClick?
 
-> `optional` **orientation?**: `"horizontal"` \| `"vertical"`
+> `optional` **onClick?**: (`e`) => `void`
 
-Defined in: [components/Card/index.tsx:28](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L28)
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:14
 
-The orientation of the card layout.
+Click event handler.
+
+#### Parameters
+
+##### e
+
+`MouseEvent`\<`HTMLAnchorElement` \| `HTMLSpanElement`\>
+
+#### Returns
+
+`void`
 
 ***
 
-### padding?
+### separator?
 
-> `optional` **padding?**: `"none"` \| `"xs"` \| `"s"` \| `"m"` \| `"l"`
+> `optional` **separator?**: `ReactNode`
 
-Defined in: [components/Card/index.tsx:30](https://github.com/onyx-og/prismal/blob/17254afab57ba6cf30b0e7f50b84dce8aff4426c/packages/react/src/components/Card/index.tsx#L30)
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:18
 
-The padding size for the card content.
+The separator to render after this item. Internal use mainly.
 
 ***
 
@@ -195,3 +185,13 @@ Custom inline CSS styles.
 #### Inherited from
 
 `ComponentProps.style`
+
+***
+
+### truncate?
+
+> `optional` **truncate?**: `boolean`
+
+Defined in: components/Breadcrumb/BreadcrumbItem.tsx:22
+
+If true, the label text will be truncated.
