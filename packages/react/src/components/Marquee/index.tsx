@@ -1,11 +1,32 @@
 import {
     useState, useEffect, useCallback, useImperativeHandle,
-    useRef, forwardRef, CSSProperties, ReactNode, ForwardedRef
+    useRef, forwardRef, useMemo, CSSProperties, ReactNode, ForwardedRef
 } from "react";
 
 import ComponentProps from "../Component";
+import useBreakpoint, { Breakpoint } from "hooks/useBreakpoint";
 
 import "./index.scss";
+
+const DEFAULT_SPEED = 8;
+const BREAKPOINT_ORDER: Breakpoint[] = ["xs", "sm", "md", "lg", "xl"];
+
+/**
+ * @function resolveSpeed
+ * @description Resolves a single speed value for the current breakpoint. When `speed` is a
+ * per-breakpoint map, falls back to the nearest smaller breakpoint's value, then to the default.
+ */
+const resolveSpeed = (speed: MarqueeProps["speed"], breakpoint: Breakpoint): number => {
+    if (speed === undefined) return DEFAULT_SPEED;
+    if (typeof speed === "number") return speed;
+
+    const startIdx = BREAKPOINT_ORDER.indexOf(breakpoint);
+    for (let i = startIdx; i >= 0; i--) {
+        const value = speed[BREAKPOINT_ORDER[i]];
+        if (value !== undefined) return value;
+    }
+    return DEFAULT_SPEED;
+};
 
 /**
  * @typedef {object} MarqueeRef
@@ -27,8 +48,8 @@ export interface MarqueeProps extends ComponentProps {
     children: ReactNode;
     /** If true, the animation pauses on mouse hover. */
     pauseOnHover?: boolean;
-    /** A decimal from 0 to 1 representing the scroll speed. */
-    speed?: number;
+    /** A decimal from 0 to 1 representing the scroll speed, either a single value or a per-breakpoint map. */
+    speed?: number | Partial<Record<Breakpoint, number>>;
     /** Click event handler for the marquee. */
     onClick?: () => void;
 }
@@ -47,10 +68,12 @@ export interface MarqueeProps extends ComponentProps {
 const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) => {
     const {
         children,
-        speed = 8,
+        speed,
         pauseOnHover = true,
         onClick
     } = props;
+    const { breakpoint } = useBreakpoint();
+    const resolvedSpeed = useMemo(() => resolveSpeed(speed, breakpoint), [speed, breakpoint]);
     const marqueeRef = useRef<HTMLDivElement>(null);
     const [isSetMarqueeRef, markSetMarqueeRef] = useState(false);
     /**
@@ -115,7 +138,7 @@ const Marquee = forwardRef((props: MarqueeProps, ref: ForwardedRef<MarqueeRef>) 
         ...(onClick ? { cursor: "pointer" } : {}),
         whiteSpace: "nowrap",
         ...(shouldScroll ? {
-            animation: `marquee ${10 / speed}s linear infinite`,
+            animation: `marquee ${10 / resolvedSpeed}s linear infinite`,
             animationPlayState: isPlaying ? "running" : "paused"
         } : {})
     };
