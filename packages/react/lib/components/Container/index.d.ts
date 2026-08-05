@@ -35,6 +35,8 @@ export interface ContainerProps extends ComponentProps {
     } | boolean;
     /** The type of custom cursor to display within the container. */
     cursor?: "circle";
+    /** The HTML element the container renders as. */
+    type?: "div" | "section";
 }
 /**
  * @component Container

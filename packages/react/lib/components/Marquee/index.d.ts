@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import ComponentProps from "../Component";
+import { Breakpoint } from "hooks/useBreakpoint";
 import "./index.scss";
 /**
  * @typedef {object} MarqueeRef
@@ -20,8 +21,8 @@ export interface MarqueeProps extends ComponentProps {
     children: ReactNode;
     /** If true, the animation pauses on mouse hover. */
     pauseOnHover?: boolean;
-    /** A decimal from 0 to 1 representing the scroll speed. */
-    speed?: number;
+    /** A decimal from 0 to 1 representing the scroll speed, either a single value or a per-breakpoint map. */
+    speed?: number | Partial<Record<Breakpoint, number>>;
     /** Click event handler for the marquee. */
     onClick?: () => void;
 }

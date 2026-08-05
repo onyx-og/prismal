@@ -22,6 +22,10 @@ export interface CardProps extends ComponentProps {
     orientation?: "vertical" | "horizontal";
     /** The padding size for the card content. */
     padding?: "none" | 'xs' | "s" | 'm' | 'l';
+    /** The semantic element the card renders as. */
+    type?: "container" | "fieldset";
+    /** The legend content, rendered when `type` is "fieldset". */
+    legend?: ReactNode;
 }
 /**
  * @component Card

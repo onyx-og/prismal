@@ -56,12 +56,14 @@ export interface ActionBarProps extends ComponentProps {
     items: (ActionBarItemConfig | null)[];
     /** Visual style variant for the ActionBar. */
     type?: 'default' | 'primary' | 'secondary';
-    /** Optional React elements rendered within the ActionBar. */
+    /** Optional React elements rendered within the ActionBar. Each child may carry its own `position` prop to override `defaultPosition`. */
     children?: React.ReactElement[];
     /** Default section for items without explicit position. */
     defaultPosition?: "left" | "center" | "right";
     /** Optional DOM id where modals/portals should render. */
     modalAreaId?: string;
+    /** When false, disables the automatic item/section "alt" swapping that responds to available width; items render statically. Defaults to true. */
+    useAlt?: boolean;
     /** Optional alternate action buttons for sections. */
     sectionAlt?: {
         /** Alternate button config for the left section. */
@@ -87,6 +89,8 @@ export interface AcctionBarSectionProps {
     modalClassName?: string;
     /** Optional configuration for an alternate section button. */
     altIcon?: ActionbarAltSectionBtn;
+    /** When false, disables the automatic item/section "alt" swapping. Defaults to true. */
+    useAlt?: boolean;
 }
 /**
  * @typedef {object} ActionBarSectionRef

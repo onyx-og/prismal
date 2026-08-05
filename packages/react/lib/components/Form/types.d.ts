@@ -33,6 +33,8 @@ export interface InputProps extends ComponentProps {
     value?: string | number;
     /** Callback for when the input value changes. */
     onChange?: (arg?: any) => void;
+    /** Callback for when the input loses focus. */
+    onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
     /** A function to validate the input's value. */
     validator?: (arg?: string | number | boolean) => boolean | string;
     /** Defines the grid placement for the input. */
