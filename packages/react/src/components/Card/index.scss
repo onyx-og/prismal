@@ -59,4 +59,19 @@
             border-bottom-right-radius: var(--border-radius);
         }
     }
+
+    // Reset the browser's default <fieldset> UA styling (groove border, min-width,
+    // built-in padding) so the fieldset variant matches the div variant's look, differing
+    // only in semantics.
+    &.prismal-card-fieldset {
+        border: none;
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .prismal-card-legend {
+        padding: 0 0.5rem;
+        font-weight: 600;
+    }
 }
