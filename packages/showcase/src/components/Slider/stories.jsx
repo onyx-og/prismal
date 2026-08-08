@@ -10,7 +10,11 @@ const meta = {
         accent: { control: 'color' },
         accentDark: { control: 'color' },
         accentLight: { control: 'color' },
-        showNavBar: { control: 'boolean', defaultValue: 'true'}
+        showNavBar: { control: 'boolean', defaultValue: 'true'},
+        animation: {
+            control: 'select',
+            options: ['ease', 'bounce', 'linear', 'none']
+        }
     }
 };
 
@@ -73,6 +77,33 @@ Vertical.args = {
     orientation: "vertical",
     spacing: 1,
     size: "m",
+    children: [<div className='slide-container'>Lorem ipsum</div>,
+        <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
+};
+
+export const BounceAnimation = {};
+BounceAnimation.args = {
+    type: "raw",
+    spacing: 1,
+    animation: "bounce",
+    children: [<div className='slide-container'>Lorem ipsum</div>,
+        <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
+};
+
+export const LinearAnimation = {};
+LinearAnimation.args = {
+    type: "raw",
+    spacing: 1,
+    animation: "linear",
+    children: [<div className='slide-container'>Lorem ipsum</div>,
+        <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
+};
+
+export const NoAnimation = {};
+NoAnimation.args = {
+    type: "raw",
+    spacing: 1,
+    animation: "none",
     children: [<div className='slide-container'>Lorem ipsum</div>,
         <div className='slide-container'>Lorem ipsum 2</div>, <div className='slide-container'>Lorem ipsum 3</div>]
 };

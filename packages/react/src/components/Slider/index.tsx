@@ -15,6 +15,16 @@ const getSwipeDirection = (startX: number, startY: number, endX: number, endY: n
 type Orientation = 'horizontal' | 'vertical';
 
 /**
+ * @typedef {string} SliderAnimation
+ * @description The transition physics applied when moving between slides.
+ * - `ease`: a smooth, standard slide with no overshoot (default).
+ * - `bounce`: the slide overshoots slightly before settling, for a springier feel.
+ * - `linear`: a constant-speed slide, with no easing.
+ * - `none`: the slide change is instant, with no transition.
+ */
+export type SliderAnimation = 'ease' | 'bounce' | 'linear' | 'none';
+
+/**
  * @function buildSlideshowStyle
  * @description Builds the per-instance stylesheet driving slide layout, pagination, nav-arrow visibility
  * and the slide transform, mirrored across the horizontal (translateX/columns) and vertical
@@ -139,6 +149,8 @@ interface SliderProcProps extends ComponentProps {
     slideWrapper: (arg0: any) => JSX.Element;
     size?: 'xl' | 'l' | 'm' | 's';
     orientation?: Orientation;
+    /** The transition physics applied when moving between slides. Defaults to `ease`. */
+    animation?: SliderAnimation;
     navElBackward?: JSX.Element;
     navElForward?: JSX.Element;
     labelClass?: string;
@@ -157,6 +169,8 @@ interface SliderRawProps extends ComponentProps {
     spacing?: number;
     size?: 'xl' | 'l' | 'm' | 's';
     orientation?: Orientation;
+    /** The transition physics applied when moving between slides. Defaults to `ease`. */
+    animation?: SliderAnimation;
     children: ReactNode[];
     navElBackward?: JSX.Element;
     navElForward?: JSX.Element;
@@ -179,6 +193,7 @@ const Slider: FC<SliderProps> = ( props ) => {
         spacing = 5,
         size = "l",
         orientation = "horizontal",
+        animation = "ease",
         autoPlay = false,
         showNavBar = true,
         selected,
@@ -243,6 +258,7 @@ const Slider: FC<SliderProps> = ( props ) => {
             slideshowClass = `${slideshowClass} prismal-slider-slides-xl`;
     }
     if (orientation === 'vertical') slideshowClass = `${slideshowClass} prismal-slider-vertical`;
+    slideshowClass = `${slideshowClass} prismal-slider-anim-${animation}`;
 
     const inputCtrlList = useRef<(HTMLInputElement)[]>([]);
 
