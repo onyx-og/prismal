@@ -59,7 +59,7 @@ export const LoadOnScroll = () => {
 
     return (
         <div className="gallery-load-more-demo">
-            <Gallery data={photos} itemRenderer={renderPhoto} onLoadMore={handleLoadMore} />
+            <Gallery gap={'0.1rem'} data={photos} itemRenderer={renderPhoto} onLoadMore={handleLoadMore} />
         </div>
     );
 };

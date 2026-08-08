@@ -116,6 +116,50 @@
     .ctrl-previous {
         left: 1%;
     }
+
+    /* Vertical orientation: arrows point up/down and dots stack in a column */
+    &.prismal-slider-vertical {
+        .prismal-slider-ctrl {
+            top: auto;
+            left: 0;
+            width: 100%;
+            text-align: center;
+
+            label svg {
+                transform: rotate(90deg);
+            }
+        }
+
+        .ctrl-next {
+            right: auto;
+            bottom: 1%;
+        }
+
+        .ctrl-previous {
+            left: 0;
+            top: 1%;
+        }
+
+        .prismal-slider-pagination-outer {
+            @extend %fd-col;
+            width: auto;
+            height: 100%;
+            bottom: auto;
+            left: auto;
+            top: 0;
+            right: 0;
+
+            .prismal-slider-pagination-inner {
+                @extend %f;
+                @extend %fd-col;
+                @extend %aic;
+
+                .prismal-slider-label {
+                    margin: 2px 0;
+                }
+            }
+        }
+    }
 }
 
 /*	Slider Mobile	====================================================================================== */
