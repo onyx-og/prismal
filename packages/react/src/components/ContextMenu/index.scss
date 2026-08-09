@@ -1,0 +1,57 @@
+@use '../../styles/vars';
+
+.prismal-context-menu {
+    // Don't introduce a box around the trigger — right-click detection works the same via
+    // event bubbling, but the trigger's own layout is left untouched.
+    display: contents;
+}
+
+.prismal-context-menu-anchor {
+    // A zero-size point Dropdown measures its rect from (see index.tsx) — not part of layout flow.
+    width: 0;
+    height: 0;
+
+    .prismal-dropdown-content {
+        width: max-content;
+        min-width: 160px;
+    }
+}
+
+.prismal-context-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+// Menu itself only styles `.prismal-menu-item` as a horizontal nav-bar row (or leaves it bare when
+// nested in a Dropdown submenu); scope our own vertical-popup row styling to ContextMenu so it
+// doesn't leak into Menu's other, unrelated usages.
+.prismal-context-menu-anchor .prismal-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--border-radius, 4px);
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: vars.$font-body;
+    font-size: 0.875rem;
+    color: #1e293b;
+
+    &:hover {
+        background-color: #f1f5f9;
+    }
+
+    [data-theme='dark'] & {
+        color: #e2e8f0;
+
+        &:hover {
+            background-color: #334155;
+        }
+    }
+}
+
+.prismal-context-menu-anchor .prismal-menu-item-icon {
+    display: inline-flex;
+    align-items: center;
+}
