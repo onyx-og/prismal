@@ -1,0 +1,316 @@
+@use '../../styles/vars';
+
+.prismal-canvas-wrapper {
+    position: relative;
+    display: block;
+}
+
+.prismal-canvas {
+    display: block;
+    box-sizing: border-box;
+    background-color: #fafafa;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius, 6px);
+    touch-action: none;
+    outline: none;
+
+    [data-theme='dark'] & {
+        background-color: #16181d;
+        border-color: #334155;
+    }
+}
+
+.prismal-canvas-connector-path {
+    fill: none;
+    stroke: #94a3b8;
+    stroke-width: 2;
+    cursor: pointer;
+
+    [data-theme='dark'] & {
+        stroke: #475569;
+    }
+}
+
+.prismal-canvas-connector-selected .prismal-canvas-connector-path {
+    stroke: vars.$primary-color;
+    stroke-width: 2.5;
+
+    [data-theme='dark'] & {
+        stroke: vars.$primary-color-light;
+    }
+}
+
+.prismal-canvas-connector-label {
+    font-family: vars.$font-body;
+    font-size: 11px;
+    fill: #64748b;
+    paint-order: stroke;
+    stroke: #fafafa;
+    stroke-width: 3px;
+
+    [data-theme='dark'] & {
+        fill: #94a3b8;
+        stroke: #16181d;
+    }
+}
+
+.prismal-canvas-connector-preview {
+    fill: none;
+    stroke: vars.$primary-color;
+    stroke-width: 2;
+    stroke-dasharray: 5 4;
+    pointer-events: none;
+
+    [data-theme='dark'] & {
+        stroke: vars.$primary-color-light;
+    }
+}
+
+#prismal-canvas-arrow path {
+    fill: #94a3b8;
+
+    [data-theme='dark'] & {
+        fill: #475569;
+    }
+}
+
+.prismal-canvas-node {
+    cursor: grab;
+
+    &.prismal-canvas-node-static {
+        cursor: default;
+    }
+
+    &.prismal-canvas-node-dragging {
+        cursor: grabbing;
+    }
+}
+
+.prismal-canvas-shape {
+    fill: #ffffff;
+    stroke: #94a3b8;
+    stroke-width: 1.5;
+    transition: stroke 0.15s ease, fill 0.15s ease;
+
+    [data-theme='dark'] & {
+        fill: #1e293b;
+        stroke: #475569;
+    }
+}
+
+.prismal-canvas-node-selected .prismal-canvas-shape {
+    stroke: vars.$primary-color;
+    stroke-width: 2.5;
+
+    [data-theme='dark'] & {
+        stroke: vars.$primary-color-light;
+    }
+}
+
+.prismal-canvas-shape-end {
+    fill: #475569;
+    stroke: #475569;
+
+    [data-theme='dark'] & {
+        fill: #94a3b8;
+        stroke: #94a3b8;
+    }
+}
+
+.prismal-canvas-shape-end-inner {
+    stroke: #ffffff;
+    stroke-width: 1.5;
+
+    [data-theme='dark'] & {
+        stroke: #1e293b;
+    }
+}
+
+.prismal-canvas-shape-loop-glyph {
+    stroke: #64748b;
+    stroke-width: 1.5;
+    fill: #64748b;
+
+    [data-theme='dark'] & {
+        stroke: #94a3b8;
+        fill: #94a3b8;
+    }
+}
+
+.prismal-canvas-node-label {
+    font-family: vars.$font-body;
+    font-size: 12px;
+    fill: #1e293b;
+    pointer-events: none;
+    user-select: none;
+
+    [data-theme='dark'] & {
+        fill: #e2e8f0;
+    }
+}
+
+.prismal-canvas-node-sublabel {
+    font-family: vars.$font-body;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    fill: #64748b;
+    pointer-events: none;
+    user-select: none;
+
+    [data-theme='dark'] & {
+        fill: #94a3b8;
+    }
+}
+
+.prismal-canvas-port {
+    fill: #ffffff;
+    stroke: #94a3b8;
+    stroke-width: 1.5;
+    cursor: crosshair;
+    transition: fill 0.15s ease, stroke 0.15s ease, r 0.15s ease;
+
+    [data-theme='dark'] & {
+        fill: #1e293b;
+        stroke: #64748b;
+    }
+
+    &:hover {
+        fill: vars.$primary-color;
+        stroke: vars.$primary-color;
+
+        [data-theme='dark'] & {
+            fill: vars.$primary-color-light;
+            stroke: vars.$primary-color-light;
+        }
+    }
+}
+
+.prismal-canvas-port-label {
+    font-family: vars.$font-body;
+    font-size: 9px;
+    fill: #64748b;
+    pointer-events: none;
+    user-select: none;
+
+    [data-theme='dark'] & {
+        fill: #94a3b8;
+    }
+}
+
+// NodeInspector — a fieldset overlay docked to the canvas's top-right corner, shown only while a
+// single node is selected. Its legend is stretched to full width (overriding Card's default, which
+// sizes the <legend> to its content) so the Edit button can sit flush to the right edge.
+.prismal-canvas-inspector {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 220px;
+    background: #ffffff;
+    z-index: 10;
+
+    [data-theme='dark'] & {
+        background: #1e293b;
+    }
+
+    .prismal-card-legend {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+.prismal-canvas-inspector-legend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.prismal-canvas-inspector-legend-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.prismal-canvas-inspector-fields {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 8px;
+    margin: 0;
+    font-size: 12px;
+    font-family: vars.$font-body;
+
+    dt {
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    dd {
+        margin: 0;
+        color: #1e293b;
+        text-align: right;
+    }
+
+    [data-theme='dark'] & {
+        dt { color: #94a3b8; }
+        dd { color: #e2e8f0; }
+    }
+}
+
+.prismal-canvas-node-editor .prismal-tab-content {
+    padding-top: 12px;
+}
+
+.prismal-canvas-node-editor-empty {
+    color: #64748b;
+    font-size: 13px;
+
+    [data-theme='dark'] & {
+        color: #94a3b8;
+    }
+}
+
+.prismal-canvas-connections-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.prismal-canvas-connector-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 4px 0;
+        font-size: 13px;
+        border-bottom: 1px solid #e2e8f0;
+
+        [data-theme='dark'] & {
+            border-color: #334155;
+        }
+    }
+}
+
+.prismal-canvas-connector-list-empty {
+    color: #64748b;
+    font-style: italic;
+    border-bottom: none !important;
+
+    [data-theme='dark'] & {
+        color: #94a3b8;
+    }
+}
+
+.prismal-canvas-connector-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

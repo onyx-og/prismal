@@ -43,6 +43,16 @@ import Chip, { ChipProps } from "./components/Chip";
 import Breadcrumb, { BreadcrumbItem, BreadcrumbProps, BreadcrumbItemProps, BreadcrumbItemConfig } from "./components/Breadcrumb";
 import Gallery, { GalleryProps } from "./components/Gallery";
 import Sandbox, { SandboxProps } from "./components/Sandbox";
+import Canvas, {
+    CanvasProps,
+    CanvasNode, NodeId, NodeShape, Point, ConnectionPoint, ConnectionPointSide,
+    CircleNode, RectangleNode, RectangleVariant, ControlNode, UnionNode, LoopNode, LoopMode, EndNode,
+    Connector, ConnectorId, ConnectorEndpoint,
+    autoLayoutNodes, useAutoLayout, AutoLayoutOptions, UseAutoLayoutOptions,
+    exportCanvasToJSON, importCanvasFromJSON, downloadCanvasJSON, CanvasImportError, CanvasDocument,
+    NodeInspector, NodeInspectorProps,
+    NodeEditor, NodeEditorProps, NodeDataField,
+} from "./components/Canvas";
 
 import {
     useModal, useSidebar,
@@ -73,6 +83,18 @@ export { Table };
 export { List, Masonry };
 export { Gallery };
 export type { GalleryProps };
+export { Canvas };
+export type {
+    CanvasProps,
+    CanvasNode, NodeId, NodeShape, Point, ConnectionPoint, ConnectionPointSide,
+    CircleNode, RectangleNode, RectangleVariant, ControlNode, UnionNode, LoopNode, LoopMode, EndNode,
+    Connector, ConnectorId, ConnectorEndpoint,
+    AutoLayoutOptions, UseAutoLayoutOptions,
+    CanvasDocument,
+};
+export { autoLayoutNodes, useAutoLayout, exportCanvasToJSON, importCanvasFromJSON, downloadCanvasJSON, CanvasImportError };
+export { NodeInspector, NodeEditor };
+export type { NodeInspectorProps, NodeEditorProps, NodeDataField };
 export {Icon, Card, Modal, Alert, SearchBar, Sidebar};
 export { Form, Select, TextInput, Toggle, NumberInput, FileInput, Range, DateInput, DateInputCombo, InputRefType };
 export type { DateRange };
