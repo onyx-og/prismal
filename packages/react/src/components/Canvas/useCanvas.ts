@@ -8,7 +8,8 @@ import {
     useState,
 } from "react";
 import { getRandId } from "utils/";
-import { CanvasNode, Connector, NodeId, Point } from "./types";
+import { CanvasNode, Connector, ConnectorId, NodeId, Point, destinationList } from "./types";
+import { DEFAULT_VIEWPORT, Viewport } from "./useViewport";
 
 export interface UseCanvasOptions<TData = unknown> {
     nodes: CanvasNode<TData>[];
@@ -17,6 +18,8 @@ export interface UseCanvasOptions<TData = unknown> {
     onConnectorsChange?: (connectors: Connector[]) => void;
     /** Whether shift/ctrl/meta-click adds to the current selection instead of replacing it. Defaults to true. */
     multiSelect?: boolean;
+    /** Current pan/zoom, so pointer positions can be mapped back to content-space coordinates. */
+    viewport?: Viewport;
 }
 
 interface DragState {
@@ -28,38 +31,69 @@ interface DragState {
     moved: boolean;
 }
 
+interface RewireTarget {
+    connectorId: ConnectorId;
+    role: "source" | "destination";
+}
+
 export interface ConnectingState {
     pointerId: number;
     sourceNodeId: NodeId;
     sourcePointId: string;
     /** Pointer position, in canvas-local coordinates — where the in-progress connector's loose end is drawn. */
     currentPoint: Point;
+    /**
+     * Set when the dragged-from port already belongs to a connector: dropping on a new port then
+     * moves that connector's matching endpoint instead of adding a second connector alongside it.
+     */
+    rewire?: RewireTarget;
 }
+
+/** The first existing connector (if any) with an endpoint at this exact port, and which end it is. */
+const findConnectorAtPort = (connectors: Connector[], nodeId: NodeId, pointId: string): RewireTarget | undefined => {
+    for (const connector of connectors) {
+        if (connector.sourcePoint.nodeId === nodeId && connector.sourcePoint.pointId === pointId) {
+            return { connectorId: connector.id, role: "source" };
+        }
+        if (destinationList(connector).some((d) => d.nodeId === nodeId && d.pointId === pointId)) {
+            return { connectorId: connector.id, role: "destination" };
+        }
+    }
+    return undefined;
+};
 
 const DRAG_THRESHOLD_PX = 4;
 
 /**
  * @function useCanvas
- * @description Drives Canvas's pointer interactions — node dragging, click-to-select (with
- * shift/ctrl/meta for multi-select), and Delete/Backspace removal of selected, deletable nodes
- * and connectors. Canvas stays controlled: this hook only ever proposes new arrays through
- * `onNodesChange`/`onConnectorsChange`, it holds no node state of its own besides the in-flight drag.
+ * @description Drives Canvas's pointer interactions — node dragging, drag-to-connect (dragging a
+ * port that already belongs to a connector rewires that connector's matching endpoint instead of
+ * adding a new one alongside it), click-to-select (with shift/ctrl/meta for multi-select), and
+ * Delete/Backspace removal of selected, deletable nodes and connectors. Canvas stays controlled:
+ * this hook only ever proposes new arrays through `onNodesChange`/`onConnectorsChange`, it holds no
+ * node state of its own besides the in-flight drag.
  */
 export const useCanvas = <TData,>(
     containerRef: RefObject<SVGSVGElement | null>,
     options: UseCanvasOptions<TData>,
 ) => {
-    const { nodes, connectors, onNodesChange, onConnectorsChange, multiSelect = true } = options;
+    const { nodes, connectors, onNodesChange, onConnectorsChange, multiSelect = true, viewport = DEFAULT_VIEWPORT } = options;
     const dragState = useRef<DragState | null>(null);
     const lastDragMoved = useRef(false);
     // State (not a ref) because the in-progress connector line is drawn from it every move.
     const [connecting, setConnecting] = useState<ConnectingState | null>(null);
 
+    // Converts a client-space pointer position to content-space (the coordinate system nodes'
+    // `position` live in), undoing both the SVG's on-screen placement and the pan/zoom transform.
     const toLocalPoint = useCallback((clientX: number, clientY: number): Point => {
         const rect = containerRef.current?.getBoundingClientRect();
-        if (!rect) return { x: clientX, y: clientY };
-        return { x: clientX - rect.left, y: clientY - rect.top };
-    }, [containerRef]);
+        const screenX = rect ? clientX - rect.left : clientX;
+        const screenY = rect ? clientY - rect.top : clientY;
+        return {
+            x: (screenX - viewport.x) / viewport.scale,
+            y: (screenY - viewport.y) / viewport.scale,
+        };
+    }, [containerRef, viewport]);
 
     const updateNode = useCallback((nodeId: NodeId, patch: Partial<CanvasNode<TData>>) => {
         onNodesChange?.(nodes.map((node) => (
@@ -88,8 +122,9 @@ export const useCanvas = <TData,>(
             sourceNodeId: node.id,
             sourcePointId: pointId,
             currentPoint: toLocalPoint(event.clientX, event.clientY),
+            rewire: findConnectorAtPort(connectors, node.id, pointId),
         });
-    }, [toLocalPoint]);
+    }, [connectors, toLocalPoint]);
 
     const handlePointerMove = useCallback((event: ReactPointerEvent) => {
         const drag = dragState.current;
@@ -133,7 +168,31 @@ export const useCanvas = <TData,>(
         setConnecting((prev) => {
             if (!prev || prev.pointerId !== event.pointerId) return prev;
             const target = findPortAtPoint(event.clientX, event.clientY);
-            if (target && !(target.nodeId === prev.sourceNodeId && target.pointId === prev.sourcePointId)) {
+            // Dropping back on the same port that started the drag, or off any port, is a no-op —
+            // for a rewire in particular, this leaves the connector exactly as it was.
+            if (!target || (target.nodeId === prev.sourceNodeId && target.pointId === prev.sourcePointId)) {
+                return null;
+            }
+
+            if (prev.rewire) {
+                const { connectorId, role } = prev.rewire;
+                onConnectorsChange?.(connectors.map((c) => {
+                    if (c.id !== connectorId) return c;
+                    if (role === "source") {
+                        return { ...c, sourcePoint: { nodeId: target.nodeId, pointId: target.pointId } };
+                    }
+                    // role === "destination": replace only the matching entry, preserving any other
+                    // branches when destinationPoints is an array.
+                    const nextDestination = { nodeId: target.nodeId, pointId: target.pointId };
+                    if (!Array.isArray(c.destinationPoints)) return { ...c, destinationPoints: nextDestination };
+                    return {
+                        ...c,
+                        destinationPoints: c.destinationPoints.map((d) => (
+                            d.nodeId === prev.sourceNodeId && d.pointId === prev.sourcePointId ? nextDestination : d
+                        )),
+                    };
+                }));
+            } else {
                 const newConnector: Connector = {
                     id: getRandId(),
                     sourcePoint: { nodeId: prev.sourceNodeId, pointId: prev.sourcePointId },

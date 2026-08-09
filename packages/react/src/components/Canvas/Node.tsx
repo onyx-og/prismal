@@ -1,6 +1,6 @@
 import { FC, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from "react";
-import { CanvasNode, LoopNode } from "./types";
-import { getNodePorts } from "./ports";
+import { CanvasNode, FlowDirection, LoopNode } from "./types";
+import { getNodePorts, getNodeRotation } from "./ports";
 import { getPortLocalPosition } from "./geometry";
 import CircleShape from "./shapes/CircleShape";
 import RectangleShape from "./shapes/RectangleShape";
@@ -9,7 +9,7 @@ import UnionShape from "./shapes/UnionShape";
 import LoopShape from "./shapes/LoopShape";
 import EndShape from "./shapes/EndShape";
 
-const SHAPE_RENDERERS: Record<CanvasNode["shape"], FC<{ node: any }>> = {
+const SHAPE_RENDERERS: Record<CanvasNode["shape"], FC<{ node: any; rotation: number }>> = {
     circle: CircleShape,
     rectangle: RectangleShape,
     control: ControlShape,
@@ -20,6 +20,8 @@ const SHAPE_RENDERERS: Record<CanvasNode["shape"], FC<{ node: any }>> = {
 
 export interface NodeViewProps {
     node: CanvasNode;
+    /** The diagram's flow direction, for shapes whose ports (and, for union/loop, drawing) default differently in each. */
+    flowDirection?: FlowDirection;
     onPointerDownNode?: (node: CanvasNode, event: ReactPointerEvent) => void;
     onPointerDownPort?: (node: CanvasNode, pointId: string, event: ReactPointerEvent) => void;
     onClickNode?: (node: CanvasNode, event: ReactMouseEvent) => void;
@@ -30,9 +32,10 @@ export interface NodeViewProps {
  * @description Renders a single Canvas node: its shape, label, and connection points, and wires up
  * the pointer handlers Canvas uses to drive dragging and selection.
  */
-const NodeView: FC<NodeViewProps> = ({ node, onPointerDownNode, onPointerDownPort, onClickNode }) => {
+const NodeView: FC<NodeViewProps> = ({ node, flowDirection = "vertical", onPointerDownNode, onPointerDownPort, onClickNode }) => {
     const ShapeComponent = SHAPE_RENDERERS[node.shape];
-    const ports = node.connectable === false ? [] : getNodePorts(node.shape);
+    const rotation = getNodeRotation(node, flowDirection);
+    const ports = node.connectable === false ? [] : getNodePorts(node.shape, rotation);
 
     let className = `prismal-canvas-node prismal-canvas-node-${node.shape}`;
     if (node.isSelected) className += " prismal-canvas-node-selected";
@@ -47,7 +50,7 @@ const NodeView: FC<NodeViewProps> = ({ node, onPointerDownNode, onPointerDownPor
             onPointerDown={(event) => onPointerDownNode?.(node, event)}
             onClick={(event) => onClickNode?.(node, event)}
         >
-            <ShapeComponent node={node} />
+            <ShapeComponent node={node} rotation={rotation} />
             <text
                 className="prismal-canvas-node-label"
                 x={node.width / 2}
@@ -69,7 +72,7 @@ const NodeView: FC<NodeViewProps> = ({ node, onPointerDownNode, onPointerDownPor
                 </text>
             ) : null}
             {ports.map((port) => {
-                const { x, y } = getPortLocalPosition(node, port.id);
+                const { x, y } = getPortLocalPosition(node, port.id, flowDirection);
                 return (
                     <g key={port.id} className="prismal-canvas-port-group">
                         <circle

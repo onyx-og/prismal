@@ -6,8 +6,8 @@ import TextInput from "components/Form/TextInput";
 import Select from "components/Form/Select";
 import Button from "components/Button";
 import { getRandId } from "utils/";
-import { CanvasNode, Connector, ConnectorEndpoint, ConnectorId, destinationList } from "./types";
-import { getNodePorts } from "./ports";
+import { CanvasNode, Connector, ConnectorEndpoint, ConnectorId, FlowDirection, destinationList } from "./types";
+import { getPortsForNode } from "./ports";
 
 export interface NodeDataField {
     /** Key into the node's `data` object. */
@@ -44,6 +44,8 @@ export interface NodeEditorProps<TData = unknown> {
     /** Called with a fully-formed connector when "Add connector" is submitted. */
     onAddConnector?: (connector: Connector) => void;
     onRemoveConnector?: (connectorId: ConnectorId) => void;
+    /** The diagram's flow direction — needed on the "Connections" tab so its port pickers match what's actually rendered on the canvas. Defaults to "vertical". */
+    flowDirection?: FlowDirection;
 }
 
 /**
@@ -71,6 +73,7 @@ const NodeEditor = <TData,>(props: NodeEditorProps<TData>) => {
     const {
         node, visible, dataFields, onClose, onSubmit,
         nodes, connectors, onAddConnector, onRemoveConnector,
+        flowDirection = "vertical",
     } = props;
 
     const resolvedDataFields = useMemo(
@@ -91,11 +94,11 @@ const NodeEditor = <TData,>(props: NodeEditorProps<TData>) => {
 
     // Reset the add-connector form whenever the node being edited changes underneath it.
     useEffect(() => {
-        setSourcePointId(node ? getNodePorts(node.shape)[0]?.id ?? "" : "");
+        setSourcePointId(node ? getPortsForNode(node, flowDirection)[0]?.id ?? "" : "");
         setTargetNodeId("");
         setTargetPointId("");
         setConnectorLabel("");
-    }, [node?.id]);
+    }, [node?.id, flowDirection]);
 
     if (!node) return null;
 
@@ -113,9 +116,9 @@ const NodeEditor = <TData,>(props: NodeEditorProps<TData>) => {
         onSubmit({ ...node, data: nextData as TData });
     };
 
-    const sourcePorts = getNodePorts(node.shape);
+    const sourcePorts = getPortsForNode(node, flowDirection);
     const targetNode = otherNodes.find((n) => n.id === targetNodeId);
-    const targetPorts = targetNode ? getNodePorts(targetNode.shape) : [];
+    const targetPorts = targetNode ? getPortsForNode(targetNode, flowDirection) : [];
 
     const describeEndpoint = (endpoint: ConnectorEndpoint) => {
         const endpointNode = nodes?.find((n) => n.id === endpoint.nodeId);

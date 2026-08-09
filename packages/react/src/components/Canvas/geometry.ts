@@ -1,5 +1,5 @@
-import { CanvasNode, ConnectionPointSide, ConnectorEndpoint, Point } from "./types";
-import { getPort } from "./ports";
+import { CanvasNode, ConnectionPointSide, ConnectorEndpoint, FlowDirection, Point } from "./types";
+import { getPortForNode } from "./ports";
 
 const SIDE_NORMALS: Record<ConnectionPointSide, Point> = {
     top: { x: 0, y: -1 },
@@ -9,8 +9,8 @@ const SIDE_NORMALS: Record<ConnectionPointSide, Point> = {
 };
 
 /** Position of a node's connection point relative to the node's own origin (0,0 = top-left). */
-export const getPortLocalPosition = (node: CanvasNode, pointId: string): Point => {
-    const port = getPort(node.shape, pointId);
+export const getPortLocalPosition = (node: CanvasNode, pointId: string, flowDirection: FlowDirection = "vertical"): Point => {
+    const port = getPortForNode(node, pointId, flowDirection);
     const offset = port?.offset ?? 0.5;
     const { width, height } = node;
 
@@ -24,18 +24,18 @@ export const getPortLocalPosition = (node: CanvasNode, pointId: string): Point =
 };
 
 /** Absolute canvas-space position of a node's connection point. */
-export const getPortPosition = (node: CanvasNode, pointId: string): Point => {
-    const local = getPortLocalPosition(node, pointId);
+export const getPortPosition = (node: CanvasNode, pointId: string, flowDirection: FlowDirection = "vertical"): Point => {
+    const local = getPortLocalPosition(node, pointId, flowDirection);
     return { x: node.position.x + local.x, y: node.position.y + local.y };
 };
 
-export const resolveEndpoint = (nodes: CanvasNode[], endpoint: ConnectorEndpoint) => {
+export const resolveEndpoint = (nodes: CanvasNode[], endpoint: ConnectorEndpoint, flowDirection: FlowDirection = "vertical") => {
     const node = nodes.find((n) => n.id === endpoint.nodeId);
     if (!node) return null;
     return {
         node,
-        point: getPort(node.shape, endpoint.pointId),
-        position: getPortPosition(node, endpoint.pointId),
+        point: getPortForNode(node, endpoint.pointId, flowDirection),
+        position: getPortPosition(node, endpoint.pointId, flowDirection),
     };
 };
 

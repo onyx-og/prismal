@@ -44,7 +44,7 @@ import Breadcrumb, { BreadcrumbItem, BreadcrumbProps, BreadcrumbItemProps, Bread
 import Gallery, { GalleryProps } from "./components/Gallery";
 import Sandbox, { SandboxProps } from "./components/Sandbox";
 import Canvas, {
-    CanvasProps,
+    CanvasProps, CanvasOrientation,
     CanvasNode, NodeId, NodeShape, Point, ConnectionPoint, ConnectionPointSide,
     CircleNode, RectangleNode, RectangleVariant, ControlNode, UnionNode, LoopNode, LoopMode, EndNode,
     Connector, ConnectorId, ConnectorEndpoint,
@@ -52,6 +52,9 @@ import Canvas, {
     exportCanvasToJSON, importCanvasFromJSON, downloadCanvasJSON, CanvasImportError, CanvasDocument,
     NodeInspector, NodeInspectorProps,
     NodeEditor, NodeEditorProps, NodeDataField,
+    useViewport, DEFAULT_VIEWPORT, Viewport, UseViewportOptions,
+    ViewportControls, ViewportControlsProps,
+    NodePalette, NodePaletteProps, defaultPaletteEntries, PaletteEntry,
 } from "./components/Canvas";
 
 import {
@@ -85,7 +88,7 @@ export { Gallery };
 export type { GalleryProps };
 export { Canvas };
 export type {
-    CanvasProps,
+    CanvasProps, CanvasOrientation,
     CanvasNode, NodeId, NodeShape, Point, ConnectionPoint, ConnectionPointSide,
     CircleNode, RectangleNode, RectangleVariant, ControlNode, UnionNode, LoopNode, LoopMode, EndNode,
     Connector, ConnectorId, ConnectorEndpoint,
@@ -95,6 +98,10 @@ export type {
 export { autoLayoutNodes, useAutoLayout, exportCanvasToJSON, importCanvasFromJSON, downloadCanvasJSON, CanvasImportError };
 export { NodeInspector, NodeEditor };
 export type { NodeInspectorProps, NodeEditorProps, NodeDataField };
+export { useViewport, DEFAULT_VIEWPORT, ViewportControls };
+export type { Viewport, UseViewportOptions, ViewportControlsProps };
+export { NodePalette, defaultPaletteEntries };
+export type { NodePaletteProps, PaletteEntry };
 export {Icon, Card, Modal, Alert, SearchBar, Sidebar};
 export { Form, Select, TextInput, Toggle, NumberInput, FileInput, Range, DateInput, DateInputCombo, InputRefType };
 export type { DateRange };

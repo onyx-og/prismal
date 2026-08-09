@@ -18,6 +18,14 @@
         background-color: #16181d;
         border-color: #334155;
     }
+
+    &.prismal-canvas-pannable {
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
+    }
 }
 
 .prismal-canvas-connector-path {
@@ -52,6 +60,10 @@
         fill: #94a3b8;
         stroke: #16181d;
     }
+}
+
+.prismal-canvas-connector-dimmed {
+    opacity: 0.35;
 }
 
 .prismal-canvas-connector-preview {
@@ -270,6 +282,51 @@
     }
 }
 
+// ViewportControls — docked to the canvas's bottom-right corner, opposite NodeInspector.
+.prismal-canvas-zoom-controls {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius, 6px);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+
+    [data-theme='dark'] & {
+        background: #1e293b;
+        border-color: #334155;
+    }
+}
+
+.prismal-canvas-zoom-level {
+    min-width: 44px;
+    padding: 4px 6px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: vars.$font-body;
+    font-size: 12px;
+    color: #1e293b;
+    border-radius: var(--border-radius, 6px);
+
+    &:hover {
+        background: #f1f5f9;
+    }
+
+    [data-theme='dark'] & {
+        color: #e2e8f0;
+
+        &:hover {
+            background: #334155;
+        }
+    }
+}
+
 .prismal-canvas-connections-tab {
     display: flex;
     flex-direction: column;
@@ -313,4 +370,56 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+// NodePalette — docked to the canvas's top-left corner, opposite NodeInspector.
+.prismal-canvas-palette {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 4px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius, 6px);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px;
+
+    [data-theme='dark'] & {
+        background: #1e293b;
+        border-color: #334155;
+    }
+}
+
+.prismal-canvas-palette-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border: none;
+    background: none;
+    border-radius: var(--border-radius, 6px);
+    cursor: pointer;
+    font-family: vars.$font-body;
+    font-size: 12px;
+    color: #1e293b;
+    text-align: left;
+
+    &:hover {
+        background: #f1f5f9;
+    }
+
+    [data-theme='dark'] & {
+        color: #e2e8f0;
+
+        &:hover {
+            background: #334155;
+        }
+    }
+}
+
+.prismal-canvas-palette-item-label {
+    white-space: nowrap;
 }
