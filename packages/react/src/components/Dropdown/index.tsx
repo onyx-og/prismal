@@ -66,8 +66,6 @@ const Dropdown: FC<DropdownProps> = (props) => {
 
                 dropdownRef.current.style.setProperty('--dropdown-width', `${rect.width}px`);
                 dropdownRef.current.style.setProperty('--dropdown-height', `${rect.height}px`);
-                dropdownRef.current.style.setProperty('--dropdown-top', `${rect.top}px`);
-                dropdownRef.current.style.setProperty('--dropdown-left', `${rect.left}px`);
 
                 const spaceBelow = viewportHeight - rect.bottom;
                 const spaceAbove = rect.top;

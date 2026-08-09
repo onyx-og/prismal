@@ -7,6 +7,10 @@
     font-family: vars.$font-body;
 
     .prismal-dropdown-select {
+        // Containing block for .prismal-dropdown-content's `position: absolute` — without this,
+        // the content anchors to whatever ancestor happens to be positioned instead of the toggle.
+        position: relative;
+
         &.type-primary {
             background-color: white;
             padding: .5rem 2rem .5rem 1rem;
