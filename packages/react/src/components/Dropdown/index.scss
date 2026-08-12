@@ -18,7 +18,6 @@
             border-radius: var(--border-radius);
             user-select: none;
             border-style: none;
-            filter: url("#");
         }
 
         cursor: pointer;
@@ -155,6 +154,16 @@
                 opacity: 1 !important;
                 transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
                 filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            }
+
+            // The multi-child case also hides each item individually (see the
+            // `:has(* + *) > *` rule above) with its own explicit visibility/opacity,
+            // which an ancestor's `!important` can't override through inheritance —
+            // so it needs its own explicit "visible" rule here too.
+            &>.prismal-dropdown-content:has(* + *)>* {
+                visibility: visible !important;
+                opacity: 1 !important;
+                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
             }
 
             .prismal-dropdown-toggle-btn {

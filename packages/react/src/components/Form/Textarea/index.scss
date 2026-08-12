@@ -1,0 +1,159 @@
+@use '../../../styles/vars';
+@use '../../../styles/typography';
+@use '../../../styles/layout';
+
+.prismal-input-textarea {
+    gap: 1rem;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    &.inline {
+        align-items: center;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    // Reset the browser's default <fieldset> UA styling (groove border, min-width,
+    // built-in padding) so the fieldset variant (used when `legend` is set) matches
+    // the div variant's look, differing only in semantics.
+    &.prismal-input-textarea {
+        &:is(fieldset) {
+            border: none;
+            min-width: 0;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    label {
+        position: relative;
+        font-family: vars.$font-body;
+    }
+
+    textarea {
+        background-color: white;
+        padding: 0.5rem 1rem;
+        font-size: inherit;
+        font-family: inherit;
+        border: none;
+        background-color: transparent;
+        border-radius: var(--border-radius);
+        width: 100%;
+        flex: 1;
+        resize: vertical;
+
+        &:focus-visible {
+            outline: 0;
+        }
+
+        // Autogrow sizes the element to its own scrollHeight; a visible scrollbar
+        // would throw that measurement off, so it's hidden while autogrow is on.
+        &.prismal-textarea-autogrow {
+            overflow: hidden;
+        }
+    }
+
+    .prismal-input {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-elevation-primary);
+
+        &.prismal-input-default:has(> textarea) {
+            border: 1px solid #dddddd;
+        }
+
+        &.prismal-input-primary:has(> textarea) {
+            background-color: rgba(var(--color-primary-light_), 0.25);
+            border-color: rgba(var(--color-primary-light_), 0.25);
+        }
+
+        &.prismal-input-default:has(> textarea:disabled),
+        &.prismal-input-primary:has(> textarea:disabled) {
+            background-color: rgba(var(--color-primary-light_), 0.1);
+            border-color: rgba(var(--color-primary-light_), 0.1);
+        }
+
+        &:has(> textarea:hover) {
+            border-color: var(--color-primary);
+            box-shadow: var(--box-elevation-secondary);
+        }
+
+        &:has(> textarea:focus-visible) {
+            background-color: rgba(var(--color-primary-light_), 0.25);
+            border-color: var(--color-primary);
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                bottom: 0;
+                background-color: var(--color-primary-light);
+            }
+        }
+
+        // With a header/footer, the focus bar sitting at the very bottom of the
+        // container would cut across the footer instead of underlining the
+        // textarea, breaking the single-element look — so it's dropped in favor
+        // of the border/background highlight alone.
+        &.prismal-input-has-sections:has(> textarea:focus-visible)::after {
+            content: none;
+        }
+    }
+
+    &-header,
+    &-footer {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    &-header {
+        padding-top: 0.5rem;
+    }
+
+    &-footer {
+        padding-bottom: 0.5rem;
+    }
+
+    &-counter {
+        margin-left: auto;
+        color: #999999;
+        white-space: nowrap;
+        @include typography.f6;
+
+        &.at-limit {
+            color: vars.$error-color;
+        }
+    }
+
+    &-legend {
+        padding: 0 0.5rem;
+        font-weight: 600;
+        font-family: vars.$font-body;
+    }
+
+    .input-errors {
+        color: vars.$error-color;
+        margin-right: .5rem;
+        margin-left: .5rem;
+        @include typography.f6;
+    }
+
+    &.input-required {
+        label::before {
+            content: '•';
+            color: vars.$error-color;
+            position: absolute;
+            left: -1rem;
+            font-size: inherit;
+        }
+    }
+}

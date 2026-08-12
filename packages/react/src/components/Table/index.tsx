@@ -1,4 +1,4 @@
-import { ReactNode, JSX, useMemo, useEffect, useCallback, useState, CSSProperties, FC } from "react";
+import { ReactNode, JSX, useMemo, useEffect, useCallback, useState, useRef, CSSProperties, FC } from "react";
 import ComponentProps from "../Component";
 
 import "./index.scss";
@@ -107,6 +107,11 @@ const Table: FC<TableProps> = (props) => {
 
     const [keysY_, setKeysY] = useState(Object.keys(data));
 
+    // Ref kept in sync during render so sort() can always read the latest
+    // keysY_ without declaring it as a dependency (which would cause a cycle).
+    const keysY_Ref = useRef<string[]>(keysY_);
+    keysY_Ref.current = keysY_;
+
     useEffect(() => {
         setKeysY(Object.keys(data));
     }, [data]);
@@ -133,7 +138,10 @@ const Table: FC<TableProps> = (props) => {
      */
     const sort = useCallback((keyX: string, sortOrder: 'asc' | 'desc' = 'asc') => {
         let orderedList: [string, CellData][] = []
-        for (const i of keysY_) {
+        // Read current keysY_ via ref — avoids adding keysY_ as a dependency
+        // which would create an infinite loop: sort → setKeysY → keysY_ changes
+        // → new sort ref → useEffect([sort]) fires → sort → …
+        for (const i of keysY_Ref.current) {
             if (Array.isArray(data)) {
                 orderedList.push([i, data[Number(i)][keyX]]);
             } else {
@@ -167,7 +175,7 @@ const Table: FC<TableProps> = (props) => {
             return tuple[0]
         });
         setKeysY(sortedKeysY);
-    }, [data, keysY_]);
+    }, [data]); // keysY_ intentionally omitted — accessed via keysY_Ref to break the dep cycle
 
     // Applies sort when specified
     useEffect(() => {
