@@ -161,6 +161,15 @@ interface SliderProcProps extends ComponentProps {
     selected?: number;
     /** Called whenever the active slide changes, from any source (swipe, keyboard, pagination, autoplay). */
     onChange?: (index: number) => void;
+    /**
+     * Called with (fromIndex, toIndex) before any internal navigation (pagination
+     * click, swipe, arrow key, or autoplay tick) commits. Return false to block the
+     * transition entirely — the slider stays on `fromIndex` and no onChange fires.
+     * Omit for the previous unguarded behavior. Not consulted for programmatic
+     * changes via the `selected` prop — a controlling parent is assumed to have
+     * already applied its own gating before choosing to change `selected`.
+     */
+    canAdvance?: (fromIndex: number, toIndex: number) => boolean;
 }
 
 interface SliderRawProps extends ComponentProps {
@@ -182,6 +191,15 @@ interface SliderRawProps extends ComponentProps {
     selected?: number;
     /** Called whenever the active slide changes, from any source (swipe, keyboard, pagination, autoplay). */
     onChange?: (index: number) => void;
+    /**
+     * Called with (fromIndex, toIndex) before any internal navigation (pagination
+     * click, swipe, arrow key, or autoplay tick) commits. Return false to block the
+     * transition entirely — the slider stays on `fromIndex` and no onChange fires.
+     * Omit for the previous unguarded behavior. Not consulted for programmatic
+     * changes via the `selected` prop — a controlling parent is assumed to have
+     * already applied its own gating before choosing to change `selected`.
+     */
+    canAdvance?: (fromIndex: number, toIndex: number) => boolean;
 }
 
 export type SliderProps = SliderProcProps | SliderRawProps;
@@ -197,7 +215,8 @@ const Slider: FC<SliderProps> = ( props ) => {
         autoPlay = false,
         showNavBar = true,
         selected,
-        onChange
+        onChange,
+        canAdvance
     } = props;
 
     const { className } = props;
@@ -320,7 +339,22 @@ const Slider: FC<SliderProps> = ( props ) => {
         const [slideNumber, setSlide] = useState<number>(selected ?? 0);
         const [isFocused, setIsFocused] = useState(false);
 
-        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements(setSlide);
+        // Gate every internal-navigation path through `canAdvance` before it commits.
+        // If blocked, the hidden radio for `slideNumber` is forced back to `checked`
+        // — the native click already flipped its own `checked` attribute before this
+        // ever runs, and the CSS `:checked ~ ...` transform rule (buildSlideshowStyle)
+        // reacts to that DOM attribute directly, not to React state, so leaving it
+        // flipped would show the blocked slide's transform even though `slideNumber`
+        // in JS state never moved.
+        const attemptSlide = useCallback((next: number) => {
+            if (canAdvance && !canAdvance(slideNumber, next)) {
+                if (inputCtrlList.current[slideNumber]) inputCtrlList.current[slideNumber].checked = true;
+                return;
+            }
+            setSlide(next);
+        }, [canAdvance, slideNumber]);
+
+        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements(attemptSlide);
 
         useEffect(() => {
             if (inputCtrlList.current[slideNumber]) {
@@ -351,9 +385,9 @@ const Slider: FC<SliderProps> = ( props ) => {
             if (inputCtrlList.current.length == inputCtrls.length && autoPlay && !isFocused) {
                 interval = setInterval(() => {
                     if (slideNumber < (inputCtrlList.current.length-1)) {
-                        setSlide(slideNumber+1)
+                        attemptSlide(slideNumber+1)
                     } else {
-                        setSlide(0)
+                        attemptSlide(0)
                     }
                 }, autoPlay);
             }
@@ -362,7 +396,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                     clearInterval(interval)
                 }
             }
-        }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length, isFocused]);
+        }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length, isFocused, attemptSlide]);
 
         const handleTouchEnd = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
             if (!touchStartRef.current) return;
@@ -372,11 +406,11 @@ const Slider: FC<SliderProps> = ( props ) => {
             if (!direction) return;
             const total = slides.length;
             if (direction === 'left') {
-                setSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
+                attemptSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
             } else {
-                setSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
+                attemptSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
             }
-        }, [slideNumber, slides.length]);
+        }, [slideNumber, slides.length, attemptSlide]);
 
         /**
          * @function handleKeyDown
@@ -388,12 +422,12 @@ const Slider: FC<SliderProps> = ( props ) => {
             const total = slides.length;
             if (e.key === forwardKey) {
                 e.preventDefault();
-                setSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
+                attemptSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
             } else if (e.key === backwardKey) {
                 e.preventDefault();
-                setSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
+                attemptSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
             }
-        }, [orientation, slideNumber, slides.length]);
+        }, [orientation, slideNumber, slides.length, attemptSlide]);
 
         const slideshowStyle = buildSlideshowStyle({ id, spacing, orientation, count: slides.length });
 
@@ -454,7 +488,17 @@ const Slider: FC<SliderProps> = ( props ) => {
         const [slideNumber, setSlide] = useState<number>(selected ?? 0);
         const [isFocused, setIsFocused] = useState(false);
 
-        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements(setSlide);
+        // See the `type === "process"` branch's identical comment above — same gate,
+        // duplicated here since this branch keeps its own separate state/effects.
+        const attemptSlide = useCallback((next: number) => {
+            if (canAdvance && !canAdvance(slideNumber, next)) {
+                if (inputCtrlList.current[slideNumber]) inputCtrlList.current[slideNumber].checked = true;
+                return;
+            }
+            setSlide(next);
+        }, [canAdvance, slideNumber]);
+
+        const { labels, inputCtrls, navArrowsNext, navArrowsPrevious, slideList } = renderElements(attemptSlide);
 
         useEffect(() => {
             if (inputCtrlList.current[slideNumber]) {
@@ -485,9 +529,9 @@ const Slider: FC<SliderProps> = ( props ) => {
             if (inputCtrlList.current.length == inputCtrls.length && autoPlay && !isFocused) {
                 interval = setInterval(() => {
                     if (slideNumber < (inputCtrlList.current.length-1)) {
-                        setSlide(slideNumber+1)
+                        attemptSlide(slideNumber+1)
                     } else {
-                        setSlide(0)
+                        attemptSlide(0)
                     }
                 }, autoPlay);
             }
@@ -496,7 +540,7 @@ const Slider: FC<SliderProps> = ( props ) => {
                     clearInterval(interval)
                 }
             }
-        }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length, isFocused]);
+        }, [inputCtrlList.current.length, slideNumber, autoPlay, inputCtrls.length, isFocused, attemptSlide]);
 
         const handleTouchEnd = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
             if (!touchStartRef.current) return;
@@ -506,11 +550,11 @@ const Slider: FC<SliderProps> = ( props ) => {
             if (!direction) return;
             const total = children_.length;
             if (direction === 'left') {
-                setSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
+                attemptSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
             } else {
-                setSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
+                attemptSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
             }
-        }, [slideNumber, children_.length]);
+        }, [slideNumber, children_.length, attemptSlide]);
 
         /**
          * @function handleKeyDown
@@ -522,12 +566,12 @@ const Slider: FC<SliderProps> = ( props ) => {
             const total = children_.length;
             if (e.key === forwardKey) {
                 e.preventDefault();
-                setSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
+                attemptSlide(slideNumber === total - 1 ? 0 : slideNumber + 1);
             } else if (e.key === backwardKey) {
                 e.preventDefault();
-                setSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
+                attemptSlide(slideNumber === 0 ? total - 1 : slideNumber - 1);
             }
-        }, [orientation, slideNumber, children_.length]);
+        }, [orientation, slideNumber, children_.length, attemptSlide]);
 
         const slideshowStyle = buildSlideshowStyle({ id, spacing, orientation, count: children_.length });
 
