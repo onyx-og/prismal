@@ -1,7 +1,24 @@
 @use '../../styles/vars';
 
 .prismal-table-container {
-    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .prismal-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .prismal-table-header,
+    .prismal-table-footer {
+        width: 100%;
+    }
+
+    // Invisible probe observed by the [DRAFT] infinite scroll behaviour.
+    .prismal-table-scroll-sentinel {
+        width: 100%;
+        height: 1px;
+    }
 }
 
 .prismal-table-container table {
