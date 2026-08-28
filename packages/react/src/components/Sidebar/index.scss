@@ -72,7 +72,7 @@ $sidebar-width: calc(180px + 10vw);
         }
         .sidebar-fg {
             // left sidebar when visible
-            width: calc(250px + 10vw);
+            width: var(--sidebar-width, calc(250px + 10vw));
             left: 0;
             z-index: vars.$zindex-4;
     
@@ -115,6 +115,49 @@ $sidebar-width: calc(180px + 10vw);
         @include utils.mq_max(sm) {
             width: 100%;
             height: var(--sidebar-collapsed-width, 3.5rem);
+        }
+    }
+}
+
+// Static form: the sidebar is part of the layout instead of floating over it,
+// so everything that makes the overlay an overlay -- absolute positioning, the
+// off-screen start offset, the stacking context and the slide transition -- is
+// dropped. Only the width still animates, for the collapse/expand toggle.
+.sidebar.is-static {
+    display: flex;
+    height: 100%;
+
+    .sidebar-bg {
+        display: none;
+    }
+
+    &.visible .sidebar-fg,
+    .sidebar-fg {
+        position: relative;
+        top: auto;
+        left: auto;
+        height: 100%;
+        z-index: auto;
+        flex: 0 0 auto;
+        width: var(--sidebar-width, calc(250px + 10vw));
+        transition: width var(--motion-duration-slow) var(--motion-ease-standard);
+
+        // A static panel has no page to slide over, so it stays a column at
+        // every breakpoint and simply narrows to the rail instead of turning
+        // into the overlay's top sheet.
+        @include utils.mq_max(sm) {
+            width: var(--sidebar-collapsed-width, 3.5rem);
+            height: 100%;
+            top: auto;
+            left: auto;
+        }
+    }
+
+    &.is-collapsed {
+        &.visible .sidebar-fg,
+        .sidebar-fg {
+            width: var(--sidebar-collapsed-width, 3.5rem);
+            height: 100%;
         }
     }
 }

@@ -31,6 +31,7 @@ type UseSidebarReturn = {
  * @param {string} [config.areaId] The ID of the DOM element to render the sidebar into.
  * @param {boolean} [config.collapsible] Shows the built-in collapse/expand toggle.
  * @param {boolean} [config.defaultCollapsed] Whether the sidebar starts collapsed.
+ * @param {'overlay'|'static'} [config.mode] Whether the sidebar floats over the page or sits in the layout.
  * @returns {UseSidebarReturn} An object containing the Sidebar component and state management functions.
  * @example
  * const { Sidebar, open } = useSidebar();
@@ -40,9 +41,18 @@ type UseSidebarReturn = {
  * // Collapsible sidebar: items inside it fall back to icons when collapsed
  * const { Sidebar, open } = useSidebar({ collapsible: true });
  * <Sidebar><Menu data={items} /></Sidebar>
+ * @example
+ * // Static sidebar: always on screen, `open`/`close` are unused
+ * const { Sidebar, toggleCollapsed } = useSidebar({ mode: 'static', collapsible: true });
+ * <Sidebar><Menu data={items} /></Sidebar>
  */
 const useSidebar = (
-    config?: {areaId?: string, collapsible?: boolean, defaultCollapsed?: boolean}
+    config?: {
+        areaId?: string,
+        collapsible?: boolean,
+        defaultCollapsed?: boolean,
+        mode?: 'overlay' | 'static'
+    }
 ) : UseSidebarReturn => {
     const [ state, setState ] = useState(false);
     const [ collapsed, setCollapsed ] = useState(config?.defaultCollapsed ?? false);
@@ -89,14 +99,19 @@ const useSidebar = (
 
     // `collapsed`/`collapsible`/`toggleCollapsed` are defaults: a caller can
     // still drive the collapsed form itself by passing them explicitly.
+    const isStatic = config?.mode === 'static';
+
     const _Sidebar: FC<SidebarProps> = ( props ): ReactElement => <Sidebar
         areaId={config?.areaId}
+        mode={config?.mode}
         collapsed={collapsed}
         collapsible={config?.collapsible}
         toggleCollapsed={toggleCollapsed}
         {...props}
-        visible={state}
-        closeSidebar={close}
+        // A static sidebar is always on screen and has nothing to close, so
+        // the open/close state is not applied to it.
+        visible={isStatic ? true : state}
+        closeSidebar={isStatic ? undefined : close}
     />
 
     return { Sidebar: _Sidebar, state, open, close, collapsed, collapse, expand, toggleCollapsed }

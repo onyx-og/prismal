@@ -1,6 +1,7 @@
 import { JSX, FC, ReactNode, useMemo, CSSProperties } from 'react';
 import './index.scss';
 import Modal from 'components/Modal';
+import Card from 'components/Card';
 import Button from 'components/Button';
 import ComponentProps from '../Component';
 import { SidebarContext, SidebarContextValue } from './context';
@@ -10,9 +11,17 @@ import { SidebarContext, SidebarContextValue } from './context';
  * @description Props for the Sidebar component.
  */
 export interface SidebarProps extends ComponentProps {
-    /** The ID of the DOM element where the sidebar should be rendered. */
+    /**
+     * How the sidebar occupies the page.
+     * - `overlay` (default): portaled, floats over the page behind a backdrop
+     *   and slides in and out with `visible`.
+     * - `static`: rendered inline as part of the layout, always on screen,
+     *   with no backdrop, no portal and no close affordance.
+     */
+    mode?: 'overlay' | 'static';
+    /** The ID of the DOM element where the sidebar should be rendered. Overlay mode only. */
     areaId?: string;
-    /** Callback function to close the sidebar. */
+    /** Callback function to close the sidebar. Overlay mode only. */
     closeSidebar?: () => void;
     /** Custom header content for the sidebar. */
     header?: JSX.Element;
@@ -20,7 +29,7 @@ export interface SidebarProps extends ComponentProps {
     footer?: JSX.Element;
     /** The main content of the sidebar. */
     children?: ReactNode;
-    /** Controls the visibility of the sidebar. */
+    /** Controls the visibility of the sidebar. Ignored in `static` mode, which is always visible. */
     visible?: boolean;
     /**
      * Renders the sidebar in its collapsed form: a narrow rail that keeps the
@@ -34,22 +43,26 @@ export interface SidebarProps extends ComponentProps {
     toggleCollapsed?: () => void;
     /** Width of the collapsed rail. Defaults to `3.5rem`. */
     collapsedWidth?: string;
+    /** Width of the expanded panel. Defaults to `calc(250px + 10vw)`. */
+    width?: string;
 }
 
 /**
  * @component Sidebar
- * @description A sidebar component that slides in from the side, built on top of the Modal component.
- * Supports an expanded form and a collapsed "icon rail" form; the current form is published on
- * {@link SidebarContext} so nested content can adapt to the reduced width.
+ * @description A sidebar panel, available either as an overlay that slides in over the page
+ * or as a static panel that is part of the layout. Either form supports an expanded and a
+ * collapsed "icon rail" state; the current state is published on an internal context so nested
+ * content adapts to the reduced width without the consumer wiring anything up.
  * @param {SidebarProps} props The component props.
  * @returns {React.ReactElement} The rendered Sidebar component.
  * @example
+ * // Overlay (default): slides in over the page
  * <Sidebar visible={true} closeSidebar={() => {}}>
  *   <p>Sidebar content.</p>
  * </Sidebar>
  * @example
- * // Collapsed icon rail with the built-in toggle
- * <Sidebar visible collapsible collapsed={collapsed} toggleCollapsed={toggle}>
+ * // Static: part of the layout, collapsible to an icon rail
+ * <Sidebar mode="static" collapsible collapsed={collapsed} toggleCollapsed={toggle}>
  *   <Menu data={items} />
  * </Sidebar>
  */
@@ -57,6 +70,7 @@ const Sidebar: FC<SidebarProps> = (props) => {
     const {
         "data-id": dataId,
         className, style,
+        mode = 'overlay',
         areaId,
         header,
         children,
@@ -66,18 +80,23 @@ const Sidebar: FC<SidebarProps> = (props) => {
         collapsed = false,
         collapsible = false,
         toggleCollapsed,
-        collapsedWidth = '3.5rem'
+        collapsedWidth = '3.5rem',
+        width
     } = props;
+
+    const isStatic = mode === 'static';
 
     let sidebarClassName = 'sidebar';
     let sidebarFgClassName = "sidebar-fg";
     if (className) sidebarClassName = `${sidebarClassName} ${className}`;
     if (collapsed) sidebarClassName = `${sidebarClassName} is-collapsed`;
+    if (isStatic) sidebarClassName = `${sidebarClassName} is-static visible`;
     let sidebarBgClassName = 'sidebar-bg';
 
     const style_ = {
         ...style,
-        '--sidebar-collapsed-width': collapsedWidth
+        '--sidebar-collapsed-width': collapsedWidth,
+        ...(width ? { '--sidebar-width': width } : {})
     } as CSSProperties;
 
     const context = useMemo<SidebarContextValue>(
@@ -99,6 +118,24 @@ const Sidebar: FC<SidebarProps> = (props) => {
         </div>
         : null;
 
+    const content = <SidebarContext.Provider value={context}>
+        {toggle}
+        {children}
+    </SidebarContext.Provider>;
+
+    // Static mode bypasses Modal entirely: no portal, no backdrop, no
+    // visibility transition and no close button -- the panel is just a Card in
+    // the layout. It keeps the same class names so both forms share styling.
+    if (isStatic) {
+        return <div data-id={dataId} className={sidebarClassName} style={style_}>
+            <Card className={sidebarFgClassName} header={header} footer={footer}>
+                <div className="sidebar-content">
+                    {content}
+                </div>
+            </Card>
+        </div>
+    }
+
     return <Modal data-id={dataId}
         style={style_}
         visible={visible}
@@ -110,10 +147,7 @@ const Sidebar: FC<SidebarProps> = (props) => {
         footer={footer}
         closeModal={closeSidebar}
     >
-        <SidebarContext.Provider value={context}>
-            {toggle}
-            {children}
-        </SidebarContext.Provider>
+        {content}
     </Modal>
 }
 
