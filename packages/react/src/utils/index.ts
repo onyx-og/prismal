@@ -162,3 +162,33 @@ export const reCloneChildren = (
     return child;
   });
 }
+/**
+ * @function textFromNode
+ * @description Recursively extracts the plain text content of a ReactNode.
+ * Used where a node has to be reduced to a string (labels -> initials,
+ * tooltips, `title` attributes).
+ * @param {any} node The node to flatten.
+ * @returns {string} The concatenated text, trimmed.
+ */
+export const textFromNode = (node: any): string => {
+    if (node === null || node === undefined || typeof node === 'boolean') return '';
+    if (typeof node === 'string' || typeof node === 'number') return String(node);
+    if (Array.isArray(node)) return node.map(textFromNode).join(' ');
+    if (typeof node === 'object' && node.props) return textFromNode(node.props.children);
+    return '';
+}
+
+/**
+ * @function getInitials
+ * @description Derives up to `max` uppercase initials from a piece of text, used
+ * as the icon-only fallback when no icon is available.
+ * @param {string} text The source text.
+ * @param {number} [max=2] Maximum number of initials to return.
+ * @returns {string} The initials, e.g. "User Settings" -> "US".
+ */
+export const getInitials = (text: string, max: number = 2): string => {
+    const words = (text || '').trim().split(/[\s\-_/]+/).filter(Boolean);
+    if (!words.length) return '';
+    if (words.length === 1) return words[0].slice(0, max).toUpperCase();
+    return words.slice(0, max).map(w => w[0]).join('').toUpperCase();
+}

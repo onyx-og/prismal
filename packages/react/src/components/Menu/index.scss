@@ -45,3 +45,63 @@
     gap: var(--menu-item-padding, 1rem);
     white-space: normal;
 }
+
+// --- Item internals -------------------------------------------------------
+// An item is laid out as [icon][label]; the icon never shrinks and the label
+// absorbs whatever width is left, truncating with an ellipsis rather than
+// pushing the row wider than its container.
+.prismal-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    min-width: 0;
+    max-width: 100%;
+
+    .prismal-menu-item-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+    }
+
+    .prismal-menu-item-label {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    // Icon-only form, used inside a collapsed Sidebar or via `iconOnly`.
+    // The label is not rendered at all, so nothing can force the rail wider.
+    &.is-icon-only {
+        justify-content: center;
+        gap: 0;
+
+        .prismal-menu-item-icon {
+            width: 1.5em;
+            height: 1.5em;
+        }
+    }
+
+    // Initials stand in for a missing icon; sized down so two characters
+    // still fit the same square an icon would occupy.
+    .prismal-menu-item-initials {
+        font-size: 0.8em;
+        font-weight: 600;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+}
+
+// A Menu nested in a Sidebar is a vertical list filling the panel width, so
+// its items have a definite width to truncate against.
+.prismal-menu.is-in-sidebar {
+    display: block;
+    width: 100%;
+
+    .prismal-menu-items {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+}

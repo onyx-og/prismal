@@ -57,6 +57,13 @@ $sidebar-width: calc(180px + 10vw);
         .sidebar-footer {
             // TODO
         }
+
+        .sidebar-collapse-toggle {
+            display: flex;
+            justify-content: flex-end;
+            flex: 0 0 auto;
+            width: 100%;
+        }
     }
 
     &.visible {
@@ -77,6 +84,37 @@ $sidebar-width: calc(180px + 10vw);
                 top: 0;
                 z-index: vars.$zindex-4;
             }
+        }
+    }
+}
+// Collapsed ("icon rail") form: the panel stays on screen at a width that only
+// fits an icon, so it never masks the page behind it. Content adapts through
+// the sidebar context rather than being clipped -- see Menu's icon-only mode.
+.sidebar.is-collapsed {
+    .sidebar-bg {
+        // A rail is not modal: it must not dim or swallow clicks on the page.
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .sidebar-fg {
+        overflow-x: hidden;
+
+        .sidebar-collapse-toggle {
+            justify-content: center;
+        }
+    }
+
+    &.visible .sidebar-fg {
+        width: var(--sidebar-collapsed-width, 3.5rem);
+        left: 0;
+
+        // Horizontally there is no room for a rail on small screens, so the
+        // collapsed form keeps the mobile top-sheet behaviour of the expanded
+        // one and only sheds its height.
+        @include utils.mq_max(sm) {
+            width: 100%;
+            height: var(--sidebar-collapsed-width, 3.5rem);
         }
     }
 }
