@@ -56,50 +56,80 @@ const Dropdown: FC<DropdownProps> = (props) => {
     } = props;
 
     const dropdownRef = useRef<HTMLDivElement | null>(null);
+    const contentRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const updateRect = () => {
-            if (dropdownRef.current) {
-                const rect = dropdownRef.current.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const viewportWidth = window.innerWidth;
+        /**
+         * Places the content on whichever side of the toggle it actually fits.
+         *
+         * The measurement that matters is the *content's* — the toggle's size
+         * says nothing about whether the panel hanging off it will overflow, so
+         * a panel is flipped only when its own height or width does not fit in
+         * the space on that side. The content stays laid out relative to the
+         * toggle: nothing here moves the toggle, only which corner the panel
+         * grows from.
+         */
+        const place = () => {
+            const anchor = dropdownRef.current;
+            const content = contentRef.current;
+            if (!anchor || !content) return;
 
-                dropdownRef.current.style.setProperty('--dropdown-width', `${rect.width}px`);
-                dropdownRef.current.style.setProperty('--dropdown-height', `${rect.height}px`);
+            const rect = anchor.getBoundingClientRect();
+            // Measurable even while closed: closed content is `visibility:
+            // hidden`, not `display: none`, so it keeps its box.
+            const contentHeight = content.offsetHeight;
+            const contentWidth = content.offsetWidth;
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
 
-                const spaceBelow = viewportHeight - rect.bottom;
-                const spaceAbove = rect.top;
-                if (spaceBelow < 200 && spaceAbove > spaceBelow) {
-                    dropdownRef.current.style.setProperty('--dropdown-content-top', 'auto');
-                    dropdownRef.current.style.setProperty('--dropdown-content-bottom', '100%');
-                    dropdownRef.current.style.setProperty('--dropdown-content-margin-top', '0');
-                    dropdownRef.current.style.setProperty('--dropdown-content-margin-bottom', '0.5em');
-                } else {
-                    dropdownRef.current.style.setProperty('--dropdown-content-top', 'var(--dropdown-height)');
-                    dropdownRef.current.style.setProperty('--dropdown-content-bottom', 'auto');
-                    dropdownRef.current.style.setProperty('--dropdown-content-margin-top', '0.5em');
-                    dropdownRef.current.style.setProperty('--dropdown-content-margin-bottom', '0');
-                }
+            anchor.style.setProperty('--dropdown-width', `${rect.width}px`);
+            anchor.style.setProperty('--dropdown-height', `${rect.height}px`);
 
-                const spaceRight = viewportWidth - rect.right;
-                const spaceLeft = rect.left;
-                if (spaceRight < 200 && spaceLeft > spaceRight) {
-                    dropdownRef.current.style.setProperty('--dropdown-content-left', 'auto');
-                    dropdownRef.current.style.setProperty('--dropdown-content-right', '0');
-                } else {
-                    dropdownRef.current.style.setProperty('--dropdown-content-left', '0');
-                    dropdownRef.current.style.setProperty('--dropdown-content-right', 'auto');
-                }
+            const spaceBelow = viewportHeight - rect.bottom;
+            const spaceAbove = rect.top;
+            // Flip only when it does not fit *and* the other side is roomier;
+            // a panel taller than both sides stays below, where scrolling can
+            // still reach it.
+            if (contentHeight > spaceBelow && spaceAbove > spaceBelow) {
+                anchor.style.setProperty('--dropdown-content-top', 'auto');
+                anchor.style.setProperty('--dropdown-content-bottom', '100%');
+                anchor.style.setProperty('--dropdown-content-margin-top', '0');
+                anchor.style.setProperty('--dropdown-content-margin-bottom', '0.5em');
+            } else {
+                anchor.style.setProperty('--dropdown-content-top', '100%');
+                anchor.style.setProperty('--dropdown-content-bottom', 'auto');
+                anchor.style.setProperty('--dropdown-content-margin-top', '0.5em');
+                anchor.style.setProperty('--dropdown-content-margin-bottom', '0');
+            }
+
+            const spaceRight = viewportWidth - rect.left;
+            const spaceLeft = rect.right;
+            if (contentWidth > spaceRight && spaceLeft > spaceRight) {
+                anchor.style.setProperty('--dropdown-content-left', 'auto');
+                anchor.style.setProperty('--dropdown-content-right', '0');
+            } else {
+                anchor.style.setProperty('--dropdown-content-left', '0');
+                anchor.style.setProperty('--dropdown-content-right', 'auto');
             }
         };
-        updateRect();
-        window.addEventListener('resize', updateRect);
-        window.addEventListener('scroll', updateRect, true);
+
+        place();
+        window.addEventListener('resize', place);
+        window.addEventListener('scroll', place, true);
+
+        // Content that grows after opening — a filtered list, a lazy render —
+        // must be re-placed, or it overflows the edge it was measured against.
+        const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(place) : null;
+        if (observer && contentRef.current) observer.observe(contentRef.current);
+
         return () => {
-            window.removeEventListener('resize', updateRect);
-            window.removeEventListener('scroll', updateRect, true);
+            window.removeEventListener('resize', place);
+            window.removeEventListener('scroll', place, true);
+            observer?.disconnect();
         };
-    }, []);
+        // Re-placed when it opens: a panel measured while closed may open at a
+        // different size, and an anchored menu re-opens at a new point.
+    }, [isOpen]);
 
     let style_: { [key: string]: any } = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
@@ -129,7 +159,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
         <div tabIndex={0} className={`prismal-dropdown-select type-${type}`} ref={dropdownRef}>
             {toggleEl}
             {type == 'primary' ? <div className='prismal-dropdown-toggle-btn'></div> : null}
-            <div className={`prismal-dropdown-content ${isOpen ? 'open' : ''}`}>
+            <div ref={contentRef} className={`prismal-dropdown-content ${isOpen ? 'open' : ''}`}>
                 {children}
             </div>
         </div>
