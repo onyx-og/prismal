@@ -1,5 +1,5 @@
 import {
-    FC, ReactNode, useRef, useMemo, useEffect
+    FC, ReactNode, useRef, useMemo, useEffect, useCallback
 } from 'react';
 import ComponentProps from '../Component';
 import { setAccentStyle } from 'utils/colors';
@@ -58,62 +58,71 @@ const Dropdown: FC<DropdownProps> = (props) => {
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useRef<HTMLDivElement | null>(null);
 
+    /**
+     * Places the content on whichever side of the toggle it actually fits.
+     *
+     * The measurement that matters is the *content's* — the toggle's size says
+     * nothing about whether the panel hanging off it will overflow, so a panel
+     * is flipped only when its own height or width does not fit in the space on
+     * that side. The content stays laid out relative to the toggle: nothing here
+     * moves the toggle, only which corner the panel grows from.
+     */
+    const place = useCallback(() => {
+        const anchor = dropdownRef.current;
+        const content = contentRef.current;
+        if (!anchor || !content) return;
+
+        const rect = anchor.getBoundingClientRect();
+        // Measurable even while closed: closed content is `visibility: hidden`,
+        // not `display: none`, so it keeps its box.
+        const contentHeight = content.offsetHeight;
+        const contentWidth = content.offsetWidth;
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+
+        anchor.style.setProperty('--dropdown-width', `${rect.width}px`);
+        anchor.style.setProperty('--dropdown-height', `${rect.height}px`);
+
+        const spaceBelow = viewportHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        // Flip only when it does not fit *and* the other side is roomier; a
+        // panel taller than both sides stays below, where scrolling can still
+        // reach it.
+        if (contentHeight > spaceBelow && spaceAbove > spaceBelow) {
+            anchor.style.setProperty('--dropdown-content-top', 'auto');
+            anchor.style.setProperty('--dropdown-content-bottom', '100%');
+            anchor.style.setProperty('--dropdown-content-margin-top', '0');
+            anchor.style.setProperty('--dropdown-content-margin-bottom', '0.5em');
+        } else {
+            anchor.style.setProperty('--dropdown-content-top', '100%');
+            anchor.style.setProperty('--dropdown-content-bottom', 'auto');
+            anchor.style.setProperty('--dropdown-content-margin-top', '0.5em');
+            anchor.style.setProperty('--dropdown-content-margin-bottom', '0');
+        }
+
+        const spaceRight = viewportWidth - rect.left;
+        const spaceLeft = rect.right;
+        if (contentWidth > spaceRight && spaceLeft > spaceRight) {
+            anchor.style.setProperty('--dropdown-content-left', 'auto');
+            anchor.style.setProperty('--dropdown-content-right', '0');
+        } else {
+            anchor.style.setProperty('--dropdown-content-left', '0');
+            anchor.style.setProperty('--dropdown-content-right', 'auto');
+        }
+    }, []);
+
+    /**
+     * Re-placed after every render, because the consumer can *move* the toggle
+     * and nothing else would say so: a menu anchored to a cursor keeps the same
+     * mounted dropdown and simply appears somewhere else, and a placement keyed
+     * only to `isOpen` would keep answering for where it used to be. The work is
+     * a few DOM reads and no React state, so it cannot loop.
+     */
     useEffect(() => {
-        /**
-         * Places the content on whichever side of the toggle it actually fits.
-         *
-         * The measurement that matters is the *content's* — the toggle's size
-         * says nothing about whether the panel hanging off it will overflow, so
-         * a panel is flipped only when its own height or width does not fit in
-         * the space on that side. The content stays laid out relative to the
-         * toggle: nothing here moves the toggle, only which corner the panel
-         * grows from.
-         */
-        const place = () => {
-            const anchor = dropdownRef.current;
-            const content = contentRef.current;
-            if (!anchor || !content) return;
-
-            const rect = anchor.getBoundingClientRect();
-            // Measurable even while closed: closed content is `visibility:
-            // hidden`, not `display: none`, so it keeps its box.
-            const contentHeight = content.offsetHeight;
-            const contentWidth = content.offsetWidth;
-            const viewportHeight = window.innerHeight;
-            const viewportWidth = window.innerWidth;
-
-            anchor.style.setProperty('--dropdown-width', `${rect.width}px`);
-            anchor.style.setProperty('--dropdown-height', `${rect.height}px`);
-
-            const spaceBelow = viewportHeight - rect.bottom;
-            const spaceAbove = rect.top;
-            // Flip only when it does not fit *and* the other side is roomier;
-            // a panel taller than both sides stays below, where scrolling can
-            // still reach it.
-            if (contentHeight > spaceBelow && spaceAbove > spaceBelow) {
-                anchor.style.setProperty('--dropdown-content-top', 'auto');
-                anchor.style.setProperty('--dropdown-content-bottom', '100%');
-                anchor.style.setProperty('--dropdown-content-margin-top', '0');
-                anchor.style.setProperty('--dropdown-content-margin-bottom', '0.5em');
-            } else {
-                anchor.style.setProperty('--dropdown-content-top', '100%');
-                anchor.style.setProperty('--dropdown-content-bottom', 'auto');
-                anchor.style.setProperty('--dropdown-content-margin-top', '0.5em');
-                anchor.style.setProperty('--dropdown-content-margin-bottom', '0');
-            }
-
-            const spaceRight = viewportWidth - rect.left;
-            const spaceLeft = rect.right;
-            if (contentWidth > spaceRight && spaceLeft > spaceRight) {
-                anchor.style.setProperty('--dropdown-content-left', 'auto');
-                anchor.style.setProperty('--dropdown-content-right', '0');
-            } else {
-                anchor.style.setProperty('--dropdown-content-left', '0');
-                anchor.style.setProperty('--dropdown-content-right', 'auto');
-            }
-        };
-
         place();
+    });
+
+    useEffect(() => {
         window.addEventListener('resize', place);
         window.addEventListener('scroll', place, true);
 
@@ -127,9 +136,7 @@ const Dropdown: FC<DropdownProps> = (props) => {
             window.removeEventListener('scroll', place, true);
             observer?.disconnect();
         };
-        // Re-placed when it opens: a panel measured while closed may open at a
-        // different size, and an anchored menu re-opens at a new point.
-    }, [isOpen]);
+    }, [place]);
 
     let style_: { [key: string]: any } = {};
     setAccentStyle(style_, { accent, accentLight, accentDark });
