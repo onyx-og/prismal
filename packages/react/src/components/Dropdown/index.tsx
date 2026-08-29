@@ -74,7 +74,11 @@ const Dropdown: FC<DropdownProps> = (props) => {
 
         const rect = anchor.getBoundingClientRect();
         // Measurable even while closed: closed content is `visibility: hidden`,
-        // not `display: none`, so it keeps its box.
+        // not `display: none`, so it keeps its box. The open animation reveals
+        // the panel with a clip rather than by resizing it, precisely so this
+        // measurement stays the content's real size at every point of the
+        // transition -- a max-width/height growth would reflow the content and
+        // make every mid-animation re-place read a bogus size.
         const contentHeight = content.offsetHeight;
         const contentWidth = content.offsetWidth;
         const viewportHeight = window.innerHeight;

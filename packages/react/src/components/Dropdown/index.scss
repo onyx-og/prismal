@@ -38,82 +38,36 @@
             margin-top: var(--dropdown-content-margin-top, 0.2em);
             margin-bottom: var(--dropdown-content-margin-bottom, 0);
 
-            &:not(:has(>*:only-child)) {
-                /* Multi child content has no background color */
-                visibility: hidden;
-                opacity: 0;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
-                            visibility 0s var(--motion-duration-base);
-                cursor: pointer;
-                margin: 0.5rem 0;
-                padding: 0.5rem 1rem;
-                >* {
-                    cursor: pointer;
-                    margin: 0.5rem 0;
-                    border: none;
-                    border-radius: var(--border-radius);
-                    padding: 0.5rem 1rem;
-                    background-color: white;
-                    transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
-                    &:hover {
-                        transform: translateX(0.5em);
-                    }
-                }
-            }
-
-            &:has(> *:only-child) {
-                visibility: hidden;
-                opacity: 0;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
-                            visibility 0s var(--motion-duration-base);
-                cursor: pointer;
-                margin: 0.5rem 0;
-                border: none;
-                border-radius: var(--border-radius);
-                padding: 0.5rem 1rem;
-                background-color: white;
-                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
-
-                &:hover {
-                    transform: translateX(0.5em);
-                }
-            }
-
-            &:has(*:only-child) {
-                visibility: hidden;
-                opacity: 0;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
-                            visibility 0s var(--motion-duration-base);
-                cursor: pointer;
-                margin: 0.5rem 0;
-                border: none;
-                border-radius: var(--border-radius);
-                padding: 0.5rem 1rem;
-                background-color: white;
-                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
-
-                &:hover {
-                    transform: translateX(0.5em);
-                }
-            }
-
-            &:has(* + *)>* {
-                visibility: hidden;
-                opacity: 0;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard),
-                            visibility 0s var(--motion-duration-base);
-                cursor: pointer;
-                margin: 0.5rem 0;
-                border: none;
-                border-radius: var(--border-radius);
-                padding: 0.5rem 1rem;
-                background-color: white;
-                transition: all 200ms cubic-bezier(.47, 1.64, .41, .8);
-
-                &:hover {
-                    transform: translateX(0.5em);
-                }
-            }
+            // Closed state. This is the *only* place the panel is hidden.
+            //
+            // It used to be spelled out four times over near-identical `:has()`
+            // variants, and the multi-child variant hid each child individually
+            // as well -- which is what broke the fade: a child's own `opacity: 0`
+            // is not inherited from the parent, so revealing the panel left the
+            // items behind and every "open" rule needed `!important` to fight it.
+            // Hiding only the panel itself makes one transition drive everything.
+            visibility: hidden;
+            opacity: 0;
+            // The panel opens by uncovering its box in width and then height --
+            // two independently timed insets, no transform, so the content is
+            // never scaled or distorted and never reflows mid-animation.
+            //
+            // A clip rather than an animated width/height: the panel's layout
+            // box has to stay at its natural size throughout, both because
+            // place() measures it on every render to decide which corner to
+            // open from, and because resizing the box would re-wrap the content
+            // on every frame.
+            //
+            // Order is `inset(top right bottom left)`; the panel is revealed
+            // from the corner it is anchored to, so a flipped panel opens
+            // toward the toggle rather than away from it.
+            clip-path: inset(0 100% 100% 0);
+            transition:
+                opacity var(--motion-duration-fast) var(--motion-ease-standard),
+                clip-path var(--motion-duration-base) var(--motion-ease-standard),
+                // Held until the rest has finished, so the panel does not blink
+                // out of existence before it has faded and closed.
+                visibility 0s linear var(--motion-duration-base);
         }
 
         .prismal-dropdown-toggle-btn {
@@ -136,37 +90,35 @@
         }
 
         span {
-            margin-right: 1.5rem;
+            // margin-right: 1.5rem;
         }
 
-        &:focus-within, &.is-open {
-            z-index: vars.$zindex-0;
-
-            &>.prismal-dropdown-content:has(>*:only-child) {
-                visibility: visible !important;
-                opacity: 1 !important;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
-                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+        // Commented out: `&.is-open`.
+        //
+        // `is-open` is only ever set on the root `.prismal-dropdown` (see
+        // index.tsx) -- never on the select -- so this half of the selector
+        // matched nothing. Worse, it read as a descendant of `.prismal-dropdown`,
+        // so any nested select that did pick the class up would have opened its
+        // panel independently of the dropdown that owns it. The root-level
+        // `&.is-open` block below is the one that drives the `isOpen` prop.
+        &:focus-within /* , &.is-open */ {
+            &>.prismal-dropdown-content {
+                visibility: visible;
+                opacity: 1;
+                transition:
+                    opacity var(--motion-duration-fast) var(--motion-ease-standard),
+                    // Visible immediately, so the reveal is actually watchable.
+                    visibility 0s linear;
+                // Keyframed rather than transitioned because the two axes are
+                // staged: a single clip-path transition would interpolate every
+                // inset at once and read as one diagonal wipe.
+                animation: prismal-dropdown-reveal
+                    var(--motion-duration-base) var(--motion-ease-standard) forwards;
             }
-
-            &>.prismal-dropdown-content:not(:has(>*:only-child)) {
-                visibility: visible !important;
-                opacity: 1 !important;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
-                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
-            }
-
-            // The multi-child case also hides each item individually (see the
-            // `:has(* + *) > *` rule above) with its own explicit visibility/opacity,
-            // which an ancestor's `!important` can't override through inheritance —
-            // so it needs its own explicit "visible" rule here too.
-            &>.prismal-dropdown-content:has(* + *)>* {
-                visibility: visible !important;
-                opacity: 1 !important;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
-            }
-
-            .prismal-dropdown-toggle-btn {
+            // `>`, not a descendant: a nested dropdown renders its own select
+            // (and its own toggle button) *inside* this panel, so a descendant
+            // selector would flip every submenu's arrow along with this one's.
+            &>.prismal-dropdown-toggle-btn {
                 &::before {
                     content: '▲';
                     font-size: 0.5em;
@@ -175,32 +127,28 @@
         }
     }
 
+    // Same containment problem, one level up: `.prismal-dropdown.is-open` must
+    // reach only its *own* select. A nested Dropdown's select is a descendant
+    // of this one's content, so without `>` this block opened every submenu
+    // inside an open dropdown at once.
     &.is-open {
-        .prismal-dropdown-select {
+        &>.prismal-dropdown-select {
             z-index: vars.$zindex-0;
 
-            &>.prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
-                visibility: visible !important;
-                opacity: 1 !important;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
-                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            &>.prismal-dropdown-content {
+                visibility: visible;
+                opacity: 1;
+                transition:
+                    opacity var(--motion-duration-fast) var(--motion-ease-standard),
+                    // Visible immediately, so the reveal is actually watchable.
+                    visibility 0s linear;
+                // Keyframed rather than transitioned because the two axes are
+                // staged: a single clip-path transition would interpolate every
+                // inset at once and read as one diagonal wipe.
+                animation: prismal-dropdown-reveal
+                    var(--motion-duration-base) var(--motion-ease-standard) forwards;
             }
-
-            &>.prismal-dropdown-content:has(*:only-child) {
-                visibility: visible !important;
-                opacity: 1 !important;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
-                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
-            }
-
-            &>.prismal-dropdown-content:has(* + *)>* {
-                visibility: visible !important;
-                opacity: 1 !important;
-                transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
-                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
-            }
-
-            .prismal-dropdown-toggle-btn {
+            &>.prismal-dropdown-toggle-btn {
                 &::before {
                     content: '▲';
                     font-size: 0.5em;
@@ -209,4 +157,17 @@
         }
 
     }
+}
+// Open reveal: the panel uncovers in width, then in height, and finally drops
+// the clip entirely.
+//
+// That last step matters -- a clip-path clips descendants too, so leaving one
+// applied would cut off nested dropdowns (a Menu submenu) that hang outside
+// this panel's own box. Closing needs no reverse keyframes: the closed rule's
+// clip-path snaps back behind the opacity fade.
+@keyframes prismal-dropdown-reveal {
+    from { clip-path: inset(0 100% 100% 0); }
+    50%  { clip-path: inset(0 0 100% 0); }
+    99%  { clip-path: inset(0); }
+    to   { clip-path: none; }
 }

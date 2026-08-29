@@ -46,16 +46,14 @@ $sidebar-width: calc(180px + 10vw);
             top: -20vh;
         }
 
-        .sidebar-header {
-            // TODO
-        }
-
-        .sidebar-content {
-            // TODO
-        }
-
+        // The three slots share one layout contract so they morph together:
+        // full width while expanded, centred and stripped of horizontal padding
+        // once the panel is only wide enough for an icon.
+        .sidebar-header,
+        .sidebar-content,
         .sidebar-footer {
-            // TODO
+            width: 100%;
+            min-width: 0;
         }
 
         .sidebar-collapse-toggle {
@@ -102,6 +100,23 @@ $sidebar-width: calc(180px + 10vw);
 
         .sidebar-collapse-toggle {
             justify-content: center;
+        }
+
+        // Header and footer collapse with the panel rather than keeping their
+        // expanded layout and being clipped by the rail: they centre their
+        // contents, drop side padding, and let anything too wide truncate.
+        .sidebar-header,
+        .sidebar-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 
@@ -159,5 +174,51 @@ $sidebar-width: calc(180px + 10vw);
             width: var(--sidebar-collapsed-width, 3.5rem);
             height: 100%;
         }
+    }
+}
+
+// --- Outer edge: drag zone + handle ---------------------------------------
+// The edge is anchored to the inner face of the panel's outer border, not
+// overhanging it, because `.sidebar-fg` clips its overflow. `.sidebar-fg` is a
+// Card and so is already `position: relative`; the content wrappers between it
+// and the edge are pinned to `static` so it remains the containing block.
+.sidebar {
+    .modal-content,
+    .sidebar-content {
+        position: static;
+    }
+
+    .sidebar-edge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        // Wide enough to contain the default handle. It used to be 0.5rem,
+        // which the 1.5rem handle overhung on both sides -- and the outer half
+        // was then clipped away by `.sidebar-fg`'s `overflow: hidden`, leaving
+        // much of the handle invisible and unclickable.
+        width: 1.5rem;
+        display: flex;
+        // The handle sits at the middle of the panel's vertical height.
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+
+        &.is-draggable {
+            cursor: ew-resize;
+            // The drag is tracked through pointer capture, so the browser's own
+            // touch panning must not claim the gesture first.
+            touch-action: none;
+        }
+    }
+
+    .sidebar-edge-handle {
+        cursor: pointer;
+        pointer-events: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        margin-left: 1.5rem;
     }
 }

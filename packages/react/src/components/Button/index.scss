@@ -235,6 +235,18 @@
         }
     }
 
+    &.btn-xs {
+        height: 1.5rem;
+        min-width: 1.5rem;
+        padding: 0.15em 0.3em;
+        font-size: 0.75em;
+
+        &.btn-circle {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
     &.btn-sm {
         height: 2rem;
         min-width: 2rem;

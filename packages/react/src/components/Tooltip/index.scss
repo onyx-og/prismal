@@ -11,28 +11,20 @@
             width: max-content;
         }
 
-        &:hover {
-            .prismal-dropdown-content:not(:has(*:only-child)):not(:has(* + *)) {
-                visibility: visible !important;
-                opacity: 1 !important;
-                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
-
-                &:hover {
-                    transform:initial;
-                }
-            }
-
-            .prismal-dropdown-content:has(*:only-child) {
-                visibility: visible !important;
-                opacity: 1 !important;
-                filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
-
-                &:hover {
-                    transform: initial;
-                }
-            }
-
-            .prismal-dropdown-content:has(* + *)>* {}
+        // A tooltip opens on hover rather than on the `is-open` class, so it
+        // has to restate the reveal. This mirrors Dropdown's open rule exactly
+        // -- previously it was three near-identical `:has()` variants leaning on
+        // `!important`, which only existed to out-specify the per-child hiding
+        // that Dropdown no longer does.
+        &:hover > .prismal-dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            filter: drop-shadow(0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2));
+            transition:
+                opacity var(--motion-duration-fast) var(--motion-ease-standard),
+                visibility 0s linear;
+            animation: prismal-dropdown-reveal
+                var(--motion-duration-base) var(--motion-ease-standard) forwards;
         }
     }
 }
