@@ -67,8 +67,23 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
     if (isIconOnly) itemClass = `${itemClass} is-icon-only`;
 
     const content = (
-        <div className={itemClass} onClick={onClick} title={hint || undefined}>
-            {iconNode && <span className="prismal-menu-item-icon">{iconNode}</span>}
+        <div
+            className={itemClass}
+            onClick={onClick}
+            title={hint || undefined}
+            // Icon-only rendering drops the label element entirely, so without
+            // this the item has no accessible name at all -- a glyph or a pair
+            // of initials is not one.
+            aria-label={isIconOnly ? (hint || undefined) : undefined}
+        >
+            {iconNode && <span
+                className="prismal-menu-item-icon"
+                // Repeated on the glyph itself, not just inherited from the
+                // wrapper: a caller-supplied `icon` element may carry its own
+                // `title` (or none where it needs one), and in a collapsed rail
+                // the glyph is the only thing left to hover.
+                title={hint || undefined}
+            >{iconNode}</span>}
             {!isIconOnly && <span className="prismal-menu-item-label">{label}</span>}
         </div>
     );

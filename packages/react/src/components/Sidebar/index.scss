@@ -33,7 +33,7 @@ $sidebar-width: calc(180px + 10vw);
         white-space: nowrap;
         overflow: hidden;
         -ms-scroll-limit: 0 0 0 0;
-        box-shadow: 10px 5px 10px -15px rgba(0, 0, 0, 0.75);
+        // box-shadow: 10px 5px 10px -15px rgba(0, 0, 0, 0.75);
 
         // left sidebar
         left: -20vw;
@@ -203,8 +203,15 @@ $sidebar-width: calc(180px + 10vw);
         align-items: center;
         justify-content: center;
         z-index: 1;
+        // The strip spans the panel's full height, and in a collapsed rail it
+        // covers a third of the width -- enough to sit on top of the menu
+        // glyphs and swallow their hover, so they showed the edge's tooltip
+        // instead of their own. It only claims pointer events when there is
+        // actually a drag to start; the handle re-enables them for itself.
+        pointer-events: none;
 
         &.is-draggable {
+            pointer-events: auto;
             cursor: ew-resize;
             // The drag is tracked through pointer capture, so the browser's own
             // touch panning must not claim the gesture first.

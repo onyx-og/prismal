@@ -114,7 +114,16 @@ const Sidebar: FC<SidebarProps> = (props) => {
         width,
         dragEdge = false,
         dragThreshold = DRAG_THRESHOLD,
-        handle = false
+        handle = false,
+        // A sidebar is flush against the edge of the viewport (overlay) or of
+        // its layout slot (static), where Card's default rounding just reads as
+        // a gap. Defaulted to "none" here rather than hard-coded, so the
+        // ComponentProps `borderRadius` still works for callers who want it.
+        borderRadius = 'none',
+        // Left to Card's default (1) when unset, so the panel keeps the shadow
+        // it has always had -- but a caller can now actually turn it off or up,
+        // which the missing forward below made impossible.
+        elevation
     } = props;
 
     const isStatic = mode === 'static';
@@ -292,7 +301,10 @@ const Sidebar: FC<SidebarProps> = (props) => {
     // the layout. It keeps the same class names so both forms share styling.
     if (isStatic) {
         return <div data-id={dataId} className={sidebarClassName} style={style_}>
-            <Card className={sidebarFgClassName} header={header_} footer={footer_}>
+            <Card className={sidebarFgClassName}
+                borderRadius={borderRadius}
+                elevation={elevation}
+                header={header_} footer={footer_}>
                 <div className="sidebar-content">
                     {content}
                     {edge}
@@ -306,6 +318,8 @@ const Sidebar: FC<SidebarProps> = (props) => {
         visible={visible}
         areaId={areaId}
         className={sidebarClassName}
+        borderRadius={borderRadius}
+        elevation={elevation}
         bgClassName={sidebarBgClassName}
         fgClassName={sidebarFgClassName}
         header={header_}

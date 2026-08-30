@@ -69,6 +69,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        display: flex;
     }
 
     // Icon-only form, used inside a collapsed Sidebar or via `iconOnly`.

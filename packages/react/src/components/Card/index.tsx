@@ -54,7 +54,9 @@ const Card: FC<CardProps> = (props) => {
         children, bodyClass,
         orientation = "vertical",
         borderRadius = 'xs', padding = 's',
-        elevation = 1,
+        // Flat by default: a shadow is a deliberate choice about depth, not
+        // something every card should assert. Callers that want lift ask for it.
+        elevation = 0,
         type = "container", legend
     } = props;
 

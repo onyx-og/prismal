@@ -62,6 +62,7 @@ const Modal: FC<ModalProps> = (props) => {
         showClose = true,
         className,
         accent, accentDark, accentLight,
+        borderRadius, elevation,
         bgClassName, fgClassName
     } = props;
 
@@ -111,7 +112,13 @@ const Modal: FC<ModalProps> = (props) => {
 
     const component = <div data-id={dataId} className={modalClass}>
         <div className={modalBgClass} onClick={doCloseModal}></div>
+        {/* `borderRadius` and `elevation` are forwarded rather than left to
+            Card's own defaults so a caller can shape the panel -- Sidebar
+            relies on this to opt out of the rounding entirely. Undefined still
+            falls through to Card's defaults, so a plain Modal is unchanged. */}
         <Card className={modalFgClass}
+            borderRadius={borderRadius}
+            elevation={elevation}
             header={header} footer={footer}>
             {<div className='modal-content'>
                 {children}

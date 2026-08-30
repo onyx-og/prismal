@@ -15,9 +15,6 @@
     font-family: vars.$font-body;
     border-radius: var(--border-radius);
 
-    &:hover {
-        box-shadow: var(--box-elevation-secondary);
-    }
 
     .prismal-card-body {
         flex: 1;
